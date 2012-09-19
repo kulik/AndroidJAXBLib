@@ -33,18 +33,19 @@ public class SearchSuggestion {
     public static class Section {
         private static final String TAG = Section.class.getSimpleName();
         @Annotations.XMLValue(name="Item")
-        private Item[] item;
+        private List<Item> item;
 
-//        public List<Item> getItem() {
-//            return item;
-//        }
+        public List<Item> getItem() {
+            return item;
+        }
 
         public Section() {
             Log.v(TAG, "Section constructor");
         }
-//        public void setItem(List<Item> item) {
-//            this.item = item;
-//        }
+
+        public void setItem(List<Item> item) {
+            this.item = item;
+        }
 
         public static class Item {
 

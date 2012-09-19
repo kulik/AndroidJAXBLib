@@ -15,7 +15,8 @@ public class ElementAdapterFactory {
         IElementAdapter adapter = null;
         switch (ad) {
             case XMLAdapter:
-                adapter = new ElemXMLAdapterImpl(data);
+                adapter = new ElemXMLAdapterImpl(null);
+                adapter.init(data);
                 break;
             case JSONAdapter:
                 break;

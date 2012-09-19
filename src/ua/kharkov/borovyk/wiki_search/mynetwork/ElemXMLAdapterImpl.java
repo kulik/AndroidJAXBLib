@@ -4,6 +4,7 @@ import android.util.Log;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -11,6 +12,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,8 +26,8 @@ public class ElemXMLAdapterImpl implements IElementAdapter {
     private static final String TAG = ElemXMLAdapterImpl.class.getSimpleName();
     private Element mElement;
 
-    public ElemXMLAdapterImpl(InputStream data){
-        init(data);
+    public ElemXMLAdapterImpl(Element elem) {
+        mElement = elem;
     }
 
     @Override
@@ -48,21 +50,28 @@ public class ElemXMLAdapterImpl implements IElementAdapter {
 
     @Override
     public List getChildren() {
-        List children = null;
-        children = (List<Node>) mElement.getChildNodes();
+        List<IElementAdapter> children = new ArrayList<IElementAdapter>();
+        NodeList nodes = mElement.getChildNodes();
+        for (int i = 0; i < nodes.getLength(); i++ ) {
+            Node node = nodes.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                children.add(new ElemXMLAdapterImpl((Element) node));
+            }
+        }
         return children;
     }
 
     @Override
     public IElementAdapter getChild(String name) {
-        return null;
+        Element el = (Element) mElement.getElementsByTagName(name).item(0);
+        return new ElemXMLAdapterImpl(el);
     }
 
     @Override
     public String getValue(String tagName) {
         Node node;
         node = mElement.getElementsByTagName(tagName).item(0);
-        if (node != null) {
+        if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
             node = node.getChildNodes().item(0);
             if (node != null) {
                 return node.getNodeValue();
@@ -75,10 +84,6 @@ public class ElemXMLAdapterImpl implements IElementAdapter {
     public String getAttributeValue(String attrName) {
         return mElement.getAttribute(attrName);
     }
-
-
-
-
 
 
 }
