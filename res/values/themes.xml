@@ -1,0 +1,9 @@
+<resources>
+    <style name="WikiBackground">
+        <item name="android:windowBackground">@color/violet</item>
+    </style>
+
+    <style name="CustomTheme" parent="android:Theme">
+        <item name="android:listViewStyle">@style/ResultsListView</item>
+    </style>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wiki Search</string>
+    <string name="results">Search results</string>
+    <string name="enter">Enter text</string>
+    <string name="search">Search</string>
+    <string name="result">Result xml</string>
+    <string name="no_picture">No picture</string>
+    <string name="loading">Please wait, information is loading...</string>
+    <string name="empty_url">Url of this title is empty</string>
+    <string name="no_search_req">Enter some text for search</string>
+    <string name="no_search_result">Nothing appropriate was found</string>
+
+</resources>
