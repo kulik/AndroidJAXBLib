@@ -2,7 +2,10 @@ package ua.kharkov.borovyk.wiki_search;
 
 import android.test.AndroidTestCase;
 import ua.kharkov.borovyk.wiki_search.SearchSuggestion;
+import ua.kharkov.borovyk.wiki_search.mynetwork.AdapterTypes;
 import ua.kharkov.borovyk.wiki_search.mynetwork.XMLParser;
+
+import java.io.ByteArrayInputStream;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,7 +26,6 @@ public class TestXMLParser extends AndroidTestCase {
         super.tearDown();
     }
 
-    //  @Test
     public void testParse() {
         String xml = new String("<SearchSuggestion xmlns=\"http://opensearch.org/searchsuggest2\" version=\"2.0\">" +
                 "<Query xml:space=\"preserve\">sun</Query>" +
@@ -39,10 +41,10 @@ public class TestXMLParser extends AndroidTestCase {
 
                 "</Section>" +
                 "</SearchSuggestion>");
-        XMLParser<SearchSuggestion> parser = new XMLParser<SearchSuggestion>();
+        XMLParser<SearchSuggestion> parser = new XMLParser<SearchSuggestion>(AdapterTypes.XMLAdapter);
 
         SearchSuggestion se;
-        se = parser.parse(SearchSuggestion.class, xml);
+        se = parser.parse(SearchSuggestion.class, new ByteArrayInputStream(xml.getBytes()));
 
         assertTrue(true);
         String s = "Sun";

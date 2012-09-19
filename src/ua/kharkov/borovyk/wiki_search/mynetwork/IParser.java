@@ -12,5 +12,5 @@ import java.io.InputStream;
 public interface IParser<T> {
     T parse(Class cls, InputStream data);
 
-    T parse(Class cls, String data);
+    //T parse(Class cls, String data);
 }

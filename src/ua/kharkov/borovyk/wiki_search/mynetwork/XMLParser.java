@@ -1,18 +1,7 @@
 package ua.kharkov.borovyk.wiki_search.mynetwork;
 
-import android.R;
 import android.util.Log;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.*;
 import java.util.ArrayList;
@@ -27,44 +16,29 @@ import java.util.List;
  */
 public class XMLParser<T> implements IParser<T> {
     private static final String TAG = XMLParser.class.getSimpleName();
+    private AdapterTypes mAdapterType;
 
-    @Override
+    public XMLParser(AdapterTypes ad) {
+        mAdapterType = ad;
+    }
+
+//    @Override
+//    public T parse(Class cls, InputStream data) {
+//        Document doc = toDocument(data);
+//        return parse(cls, doc);
+//    }
+
+//    @Override
+//    public T parse(Class cls, String data) {
+//        InputStream dat = new ByteArrayInputStream(data.getBytes());
+//        Document doc = toDocument(dat);
+//        T parsedObj = parse(cls, doc);
+//        return  parsedObj;
+//    }
+
+    //XXX input point
     public T parse(Class cls, InputStream data) {
-        Document doc = toDocument(data);
-        return parse(cls, doc);
-    }
-
-    @Override
-    public T parse(Class cls, String data) {
-        InputStream dat = new ByteArrayInputStream(data.getBytes());
-        Document doc = toDocument(dat);
-        T parsedObj = parse(cls, doc);
-        return  parsedObj;
-    }
-
-    private Document toDocument(InputStream data) {
-        Document doc;
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setIgnoringElementContentWhitespace(true);
-        try {
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            doc = db.parse(data);
-        } catch (ParserConfigurationException e) {
-            Log.e(TAG, "XML parse error while converting to Document: " + e.getMessage());
-            return null;
-        } catch (SAXException e) {
-            Log.e(TAG, "Wrong XML file structure while converting to Document: " + e.getMessage());
-            return null;
-        } catch (IOException e) {
-            Log.e(TAG, "I/O exception while converting to Document: " + e.getMessage());
-            return null;
-        }
-        return doc;
-    }
-
-
-    private T parse(Class cls, Document document) {
-        Element rootElement = document.getDocumentElement();
+        IElementAdapter rootElement = ElementAdapterFactory.createAdapter(mAdapterType, data);
         T rootObj = null;
         try {
             rootObj = (T) cls.newInstance();
@@ -80,7 +54,7 @@ public class XMLParser<T> implements IParser<T> {
     }
 
 
-    protected void processObject(Object obj, Element elem) throws IllegalArgumentException, IllegalAccessException,
+    protected void processObject(Object obj, IElementAdapter elem) throws IllegalArgumentException, IllegalAccessException,
             InvocationTargetException, InstantiationException {
         Class<?> cl = obj.getClass();
         Field[] allFields = cl.getDeclaredFields();
@@ -91,7 +65,7 @@ public class XMLParser<T> implements IParser<T> {
 
             if (field.isAnnotationPresent(Annotations.XMLAttribute.class)) {
                 String annotationName = field.getAnnotation(Annotations.XMLAttribute.class).name();
-                xmlValue = elem.getAttribute(annotationName);   //Retrieves an attribute value by name.
+                xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
                 processAtributeValue(xmlValue, field, obj);
             } else if (field.isAnnotationPresent(Annotations.XMLValue.class)) {
 
@@ -105,35 +79,30 @@ public class XMLParser<T> implements IParser<T> {
 
     }
     /**
-     * @param value String value from xml document
+     *
      * @param field Field of object where to put value
      * @param obj   Object which field will be set
      * @throws IllegalAccessException
      */
-    protected boolean processSimpleValue(Element elem, Field field, Object obj) throws IllegalAccessException {
+    protected boolean processSimpleValue(IElementAdapter elem, Field field, Object obj) throws IllegalAccessException {
         String annotationName = field.getAnnotation(Annotations.XMLValue.class).name();
-        String value;
+        String value = elem.getValue(annotationName);
 
         field.setAccessible(true);
         Class<?> valueType = field.getType();
         if (String.class.equals(valueType)) {
-            value = elem.getElementsByTagName(annotationName).item(0).getChildNodes().item(0).getNodeValue();
             field.set(obj, value);
             return true;
         } else if (Integer.class.equals(valueType)) {
-            value = elem.getElementsByTagName(annotationName).item(0).getChildNodes().item(0).getNodeValue();
             field.set(obj, Integer.valueOf(value));
             return true;
         } else if (Long.class.equals(valueType)) {
-            value = elem.getElementsByTagName(annotationName).item(0).getChildNodes().item(0).getNodeValue();
             field.set(obj, Long.valueOf(value));
             return true;
         } else if (Float.class.equals(valueType)) {
-            value = elem.getElementsByTagName(annotationName).item(0).getChildNodes().item(0).getNodeValue();
             field.set(obj, Float.valueOf(value));
             return true;
         } else if (Double.class.equals(valueType)) {
-            value = elem.getElementsByTagName(annotationName).item(0).getChildNodes().item(0).getNodeValue();
             field.set(obj, Double.valueOf(value));
             return true;
         }
@@ -169,20 +138,19 @@ public class XMLParser<T> implements IParser<T> {
         return false;
     }
 
-    protected void processComplexValue(Element elem, Field field, Object obj) throws IllegalAccessException,
+    protected void processComplexValue(IElementAdapter elem, Field field, Object obj) throws IllegalAccessException,
             InstantiationException, InvocationTargetException {
         field.setAccessible(true);
         Class<?> valueType = field.getType();
         String annotName = field.getAnnotation(Annotations.XMLValue.class).name();
-        NodeList children = elem.getElementsByTagName(annotName);
 
         if (valueType == List.class) {
-            NodeList childNodes = elem.getChildNodes();
+            List<IElementAdapter> children = elem.getChildren();
             List objects = new ArrayList();
             field.set(obj, objects);
 
             Type genericType = field.getGenericType();
-            for (int i = 0; i < childNodes.getLength(); i++) {
+            for (int i = 0; i < children.size(); i++) {
                 Object item = null;
                 if (genericType instanceof ParameterizedType) {
                     ParameterizedType paramType = (ParameterizedType) genericType;
@@ -190,7 +158,7 @@ public class XMLParser<T> implements IParser<T> {
                     item = tClass.newInstance();
                     objects.add(item);
                 }
-                processObject(item, (Element) childNodes.item(i));
+                processObject(item, children.get(i));
             }
         } else if (valueType.isArray()) {
             //TODO Need to implement
@@ -202,19 +170,15 @@ public class XMLParser<T> implements IParser<T> {
 //            field.set(obj, Array.newInstance(aClass, childNodes.getLength()));
 //
 //            for (int i = 0; i < childNodes.getLength(); i++) {
-//                Object item = null;
-//             /*   if (genericType instanceof ParameterizedType) {
-//                    ParameterizedType paramType = (ParameterizedType) genericType;
-//                    Class<?> tClass = (Class<T>) paramType.getActualTypeArguments()[0];
-//                    item = tClass.newInstance();
-//                }*/
+//
 //                processObject(item, (Element) childNodes.item(i));
 //            }
         } else {
+            IElementAdapter child = elem.getChild(annotName);
             Class<?> type = field.getType();
-            Object child = type.newInstance();
-            field.set(obj,child);
-            processObject(child, (Element) children.item(0));
+            Object childObj = type.newInstance();
+            field.set(obj,childObj);
+            processObject(childObj, child);
         }
     }
 
