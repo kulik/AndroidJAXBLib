@@ -11,14 +11,14 @@ import java.io.InputStream;
  */
 public class ElementAdapterFactory {
 
-    public static IElementAdapter createAdapter(AdapterTypes ad, InputStream data) {
-        IElementAdapter adapter = null;
+    public static ElementAdapter createAdapter(AdapterTypes ad, InputStream data) {
+        ElementAdapter adapter = null;
         switch (ad) {
             case XMLAdapter:
-                adapter = new ElemXMLAdapterImpl(null);
-                adapter.init(data);
+                adapter = new ElemXMLAdapterImpl(data);
                 break;
             case JSONAdapter:
+                adapter = new ElemJSONAdapterImpl(data);
                 break;
             case SOAPAdapter:
                 break;

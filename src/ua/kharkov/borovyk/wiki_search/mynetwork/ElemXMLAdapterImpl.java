@@ -22,7 +22,7 @@ import java.util.List;
  * Time: 6:47 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ElemXMLAdapterImpl implements IElementAdapter {
+public class ElemXMLAdapterImpl implements ElementAdapter {
     private static final String TAG = ElemXMLAdapterImpl.class.getSimpleName();
     private Element mElement;
 
@@ -30,8 +30,8 @@ public class ElemXMLAdapterImpl implements IElementAdapter {
         mElement = elem;
     }
 
-    @Override
-    public void init(InputStream is) {
+
+    public ElemXMLAdapterImpl(InputStream is) {
         Document doc;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setIgnoringElementContentWhitespace(true);
@@ -49,8 +49,8 @@ public class ElemXMLAdapterImpl implements IElementAdapter {
     }
 
     @Override
-    public List getChildren() {
-        List<IElementAdapter> children = new ArrayList<IElementAdapter>();
+    public List getChildren(String name) {
+        List<ElementAdapter> children = new ArrayList<ElementAdapter>();
         NodeList nodes = mElement.getChildNodes();
         for (int i = 0; i < nodes.getLength(); i++ ) {
             Node node = nodes.item(i);
@@ -62,7 +62,7 @@ public class ElemXMLAdapterImpl implements IElementAdapter {
     }
 
     @Override
-    public IElementAdapter getChild(String name) {
+    public ElementAdapter getChild(String name) {
         Element el = (Element) mElement.getElementsByTagName(name).item(0);
         return new ElemXMLAdapterImpl(el);
     }

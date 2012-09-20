@@ -1,11 +1,10 @@
 package ua.kharkov.borovyk.wiki_search;
 
 import android.test.AndroidTestCase;
-import ua.kharkov.borovyk.wiki_search.SearchSuggestion;
 import ua.kharkov.borovyk.wiki_search.mynetwork.AdapterTypes;
-import ua.kharkov.borovyk.wiki_search.mynetwork.XMLParser;
+import ua.kharkov.borovyk.wiki_search.mynetwork.ParserImpl;
 
-import java.io.ByteArrayInputStream;
+import java.io.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,7 +13,7 @@ import java.io.ByteArrayInputStream;
  * Time: 6:34 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TestXMLParser extends AndroidTestCase {
+public class TestParser extends AndroidTestCase {
 
     @Override
     protected void setUp() throws Exception {
@@ -26,7 +25,8 @@ public class TestXMLParser extends AndroidTestCase {
         super.tearDown();
     }
 
-    public void testParse() {
+    public void testParseXML() {
+        //start test xml
         String xml = new String("<SearchSuggestion xmlns=\"http://opensearch.org/searchsuggest2\" version=\"2.0\">" +
                 "<Query xml:space=\"preserve\">sun</Query>" +
                 "<Section>" +
@@ -41,14 +41,31 @@ public class TestXMLParser extends AndroidTestCase {
 
                 "</Section>" +
                 "</SearchSuggestion>");
-        XMLParser<SearchSuggestion> parser = new XMLParser<SearchSuggestion>(AdapterTypes.XMLAdapter);
+        ParserImpl<SearchSuggestion> parser = new ParserImpl<SearchSuggestion>(AdapterTypes.XMLAdapter);
 
         SearchSuggestion se;
         se = parser.parse(SearchSuggestion.class, new ByteArrayInputStream(xml.getBytes()));
 
+    }
+
+    public void testParseJSON() {
+        // To load text file
+        InputStream jsonStream = null;
+            try {
+                jsonStream = getContext().getAssets().open("JSON.txt");
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+
+        ParserImpl<SearchSuggestion> parser2 = new ParserImpl<SearchSuggestion>(AdapterTypes.JSONAdapter);
+
+        SearchSuggestion se2;
+        se2 = parser2.parse(SearchSuggestion.class, jsonStream);
+
+
+
+
         assertTrue(true);
-        String s = "Sun";
-        //String ss = se.getQuery().getItem().get(0).
 
     }
 }

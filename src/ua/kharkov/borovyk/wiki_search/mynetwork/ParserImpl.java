@@ -14,11 +14,11 @@ import java.util.List;
  * Time: 11:09 AM
  * To change this template use File | Settings | File Templates.
  */
-public class XMLParser<T> implements IParser<T> {
-    private static final String TAG = XMLParser.class.getSimpleName();
+public class ParserImpl<T> implements Parser<T> {
+    private static final String TAG = ParserImpl.class.getSimpleName();
     private AdapterTypes mAdapterType;
 
-    public XMLParser(AdapterTypes ad) {
+    public ParserImpl(AdapterTypes ad) {
         mAdapterType = ad;
     }
 
@@ -38,7 +38,7 @@ public class XMLParser<T> implements IParser<T> {
 
     //XXX input point
     public T parse(Class cls, InputStream data) {
-        IElementAdapter rootElement = ElementAdapterFactory.createAdapter(mAdapterType, data);
+        ElementAdapter rootElement = ElementAdapterFactory.createAdapter(mAdapterType, data);
         T rootObj = null;
         try {
             rootObj = (T) cls.newInstance();
@@ -54,7 +54,7 @@ public class XMLParser<T> implements IParser<T> {
     }
 
 
-    protected void processObject(Object obj, IElementAdapter elem) throws IllegalArgumentException, IllegalAccessException,
+    protected void processObject(Object obj, ElementAdapter elem) throws IllegalArgumentException, IllegalAccessException,
             InvocationTargetException, InstantiationException {
         Class<?> cl = obj.getClass();
         Field[] allFields = cl.getDeclaredFields();
@@ -84,7 +84,7 @@ public class XMLParser<T> implements IParser<T> {
      * @param obj   Object which field will be set
      * @throws IllegalAccessException
      */
-    protected boolean processSimpleValue(IElementAdapter elem, Field field, Object obj) throws IllegalAccessException {
+    protected boolean processSimpleValue(ElementAdapter elem, Field field, Object obj) throws IllegalAccessException{
         String annotationName = field.getAnnotation(Annotations.XMLValue.class).name();
         String value = elem.getValue(annotationName);
 
@@ -138,14 +138,14 @@ public class XMLParser<T> implements IParser<T> {
         return false;
     }
 
-    protected void processComplexValue(IElementAdapter elem, Field field, Object obj) throws IllegalAccessException,
+    protected void processComplexValue(ElementAdapter elem, Field field, Object obj) throws IllegalAccessException,
             InstantiationException, InvocationTargetException {
         field.setAccessible(true);
         Class<?> valueType = field.getType();
         String annotName = field.getAnnotation(Annotations.XMLValue.class).name();
 
         if (valueType == List.class) {
-            List<IElementAdapter> children = elem.getChildren();
+            List<ElementAdapter> children = elem.getChildren(annotName);
             List objects = new ArrayList();
             field.set(obj, objects);
 
@@ -174,7 +174,7 @@ public class XMLParser<T> implements IParser<T> {
 //                processObject(item, (Element) childNodes.item(i));
 //            }
         } else {
-            IElementAdapter child = elem.getChild(annotName);
+            ElementAdapter child = elem.getChild(annotName);
             Class<?> type = field.getType();
             Object childObj = type.newInstance();
             field.set(obj,childObj);
