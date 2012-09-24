@@ -1,4 +1,4 @@
-package ua.kharkov.borovyk.wiki_search.mynetwork;
+package ua.kharkov.borovyk.wiki_search.parser;
 
 import java.io.InputStream;
 
@@ -23,7 +23,7 @@ public class ElementAdapterFactory {
             case SOAPAdapter:
                 break;
             default: {
-                throw new IllegalArgumentException("Adapter is not inplemented yet. Sorry =)");
+                throw new IllegalArgumentException("Adapter is not inplemented yet. Sorry");
             }
 
         }

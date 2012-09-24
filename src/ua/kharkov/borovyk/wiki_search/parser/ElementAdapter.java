@@ -1,4 +1,4 @@
-package ua.kharkov.borovyk.wiki_search.mynetwork;
+package ua.kharkov.borovyk.wiki_search.parser;
 
 import java.util.List;
 

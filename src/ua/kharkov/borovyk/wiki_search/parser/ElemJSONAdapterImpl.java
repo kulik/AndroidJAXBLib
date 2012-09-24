@@ -1,4 +1,4 @@
-package ua.kharkov.borovyk.wiki_search.mynetwork;
+package ua.kharkov.borovyk.wiki_search.parser;
 
 import android.util.Log;
 import org.json.JSONArray;

@@ -1,8 +1,9 @@
 package ua.kharkov.borovyk.wiki_search;
 
 import android.test.AndroidTestCase;
-import ua.kharkov.borovyk.wiki_search.mynetwork.AdapterTypes;
-import ua.kharkov.borovyk.wiki_search.mynetwork.ParserImpl;
+import android.util.Log;
+import ua.kharkov.borovyk.wiki_search.parser.AdapterTypes;
+import ua.kharkov.borovyk.wiki_search.parser.ParserImpl;
 
 import java.io.*;
 
@@ -14,6 +15,7 @@ import java.io.*;
  * To change this template use File | Settings | File Templates.
  */
 public class TestParser extends AndroidTestCase {
+    private static final String TAG = TestParser.class.getSimpleName();
 
     @Override
     protected void setUp() throws Exception {
@@ -51,11 +53,11 @@ public class TestParser extends AndroidTestCase {
     public void testParseJSON() {
         // To load text file
         InputStream jsonStream = null;
-            try {
-                jsonStream = getContext().getAssets().open("JSON.txt");
-            } catch (IOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            }
+        try {
+            jsonStream = getContext().getAssets().open("json");
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
 
         ParserImpl<SearchSuggestion> parser2 = new ParserImpl<SearchSuggestion>(AdapterTypes.JSONAdapter);
 
@@ -63,9 +65,29 @@ public class TestParser extends AndroidTestCase {
         se2 = parser2.parse(SearchSuggestion.class, jsonStream);
 
 
-
-
         assertTrue(true);
 
     }
+
+    public void testJSONParser() {
+        InputStream jsonStream = null;
+        try {
+               // getContext().getResources().openRawResource();
+            jsonStream = new BufferedInputStream(this.getContext().openFileInput("countries_json"));
+            //jsonStream = getContext().getAssets().open("countries_json");
+        } catch (IOException e) {
+            Log.v("Test","IOEXception");
+        }
+//        File file = null;
+//        InputStream in = null;
+//
+//        in = this.getClass().getClassLoader().getResourceAsStream("raw/countries_json");
+
+
+        ParserImpl<Country> parser = new ParserImpl<Country>(AdapterTypes.JSONAdapter);
+        Country countries;
+        countries = parser.parse(Country.class, jsonStream);
+
+    }
+
 }

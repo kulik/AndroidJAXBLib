@@ -1,9 +1,5 @@
 package ua.kharkov.borovyk.wiki_search;
 
-import android.net.Uri;
-import android.util.Log;
-import ua.kharkov.borovyk.wiki_search.mynetwork.Annotations;
-
 import java.io.Serializable;
 
 /**
