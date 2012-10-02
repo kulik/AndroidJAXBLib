@@ -14,11 +14,11 @@ import java.util.List;
  * Time: 11:09 AM
  * To change this template use File | Settings | File Templates.
  */
-public class XMLParser<T> implements IParser<T> {
-    private static final String TAG = XMLParser.class.getSimpleName();
+public class ParserImpl<T> implements IParser<T> {
+    private static final String TAG = ParserImpl.class.getSimpleName();
     private AdapterTypes mAdapterType;
 
-    public XMLParser(AdapterTypes ad) {
+    public ParserImpl(AdapterTypes ad) {
         mAdapterType = ad;
     }
 

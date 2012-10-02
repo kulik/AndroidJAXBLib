@@ -21,4 +21,5 @@ public class Annotations {
     public @interface XMLAttribute{
         String name();
     }
+
 }

@@ -1,9 +1,8 @@
 package ua.kharkov.borovyk.wiki_search;
 
 import android.test.AndroidTestCase;
-import ua.kharkov.borovyk.wiki_search.SearchSuggestion;
 import ua.kharkov.borovyk.wiki_search.mynetwork.AdapterTypes;
-import ua.kharkov.borovyk.wiki_search.mynetwork.XMLParser;
+import ua.kharkov.borovyk.wiki_search.mynetwork.ParserImpl;
 
 import java.io.ByteArrayInputStream;
 
@@ -41,7 +40,7 @@ public class TestXMLParser extends AndroidTestCase {
 
                 "</Section>" +
                 "</SearchSuggestion>");
-        XMLParser<SearchSuggestion> parser = new XMLParser<SearchSuggestion>(AdapterTypes.XMLAdapter);
+        ParserImpl<SearchSuggestion> parser = new ParserImpl<SearchSuggestion>(AdapterTypes.XMLAdapter);
 
         SearchSuggestion se;
         se = parser.parse(SearchSuggestion.class, new ByteArrayInputStream(xml.getBytes()));

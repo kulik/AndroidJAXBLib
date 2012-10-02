@@ -28,5 +28,4 @@ public interface IElementAdapter {
     public String getAttributeValue(String name);
 
 
-
 }
