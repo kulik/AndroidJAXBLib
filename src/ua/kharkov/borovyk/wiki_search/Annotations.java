@@ -1,4 +1,4 @@
-package ua.kharkov.borovyk.wiki_search.mynetwork;
+package ua.kharkov.borovyk.wiki_search;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -13,13 +13,19 @@ import java.lang.annotation.RetentionPolicy;
 public class Annotations {
 
     @Retention(RetentionPolicy.RUNTIME)
-    public @interface XMLValue{
+    public @interface Value {
         String name();
     }
 
     @Retention(RetentionPolicy.RUNTIME)
-    public @interface XMLAttribute{
+    public @interface Attribute {
         String name();
     }
+
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface PathWrapper {
+        String path();
+    }
+
 
 }

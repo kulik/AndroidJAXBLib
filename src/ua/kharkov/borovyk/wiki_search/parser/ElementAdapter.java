@@ -1,6 +1,5 @@
-package ua.kharkov.borovyk.wiki_search.mynetwork;
+package ua.kharkov.borovyk.wiki_search.parser;
 
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -10,13 +9,13 @@ import java.util.List;
  * Time: 6:08 PM
  * To change this template use File | Settings | File Templates.
  */
-public interface IElementAdapter {
+public interface ElementAdapter {
 
-    public void init(InputStream is);
+    //public void init(InputStream is);
 
-    public List getChildren();
+    public List getChildren(String name);
 
-    public IElementAdapter getChild(String name);
+    public ElementAdapter getChild(String name);
 
     /**
      * if value doesnt exist return ""

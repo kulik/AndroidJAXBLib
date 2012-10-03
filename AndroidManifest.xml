@@ -4,21 +4,7 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="8"/>
-    <application android:label="@string/app_name"
-                 android:theme="@style/WikiBackground" >
-        <activity android:name="MainActivity"
-                  android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity android:name="ResultsActivity"
-                  android:label="@string/results">
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="ua.kharkov.borovyk.MainActivity" />
-        </activity>
+    <application android:label="@string/app_name">
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
