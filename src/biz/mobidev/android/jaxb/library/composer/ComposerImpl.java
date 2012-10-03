@@ -1,11 +1,9 @@
-package ua.kharkov.borovyk.wiki_search.composer;
+package biz.mobidev.android.jaxb.library.composer;
 
 import android.util.Log;
+import biz.mobidev.android.jaxb.library.Annotations;
 import org.w3c.dom.Document;
-import ua.kharkov.borovyk.wiki_search.Annotations;
-import ua.kharkov.borovyk.wiki_search.parser.AdapterTypes;
-import ua.kharkov.borovyk.wiki_search.parser.ElementAdapter;
-import ua.kharkov.borovyk.wiki_search.parser.ElementAdapterFactory;
+import biz.mobidev.android.jaxb.library.parser.ElementAdapter;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;

@@ -1,9 +1,9 @@
-package ua.kharkov.borovyk.wiki_search;
+package biz.mobidev.android.jaxb.library;
 
 import android.test.AndroidTestCase;
 import android.util.Log;
-import ua.kharkov.borovyk.wiki_search.parser.AdapterTypes;
-import ua.kharkov.borovyk.wiki_search.parser.ParserImpl;
+import biz.mobidev.android.jaxb.library.parser.AdapterTypes;
+import biz.mobidev.android.jaxb.library.parser.ParserImpl;
 
 import java.io.*;
 

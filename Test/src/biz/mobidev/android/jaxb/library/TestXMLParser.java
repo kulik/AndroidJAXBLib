@@ -1,8 +1,8 @@
-package ua.kharkov.borovyk.wiki_search;
+package biz.mobidev.android.jaxb.library;
 
 import android.test.AndroidTestCase;
-import ua.kharkov.borovyk.wiki_search.mynetwork.AdapterTypes;
-import ua.kharkov.borovyk.wiki_search.mynetwork.ParserImpl;
+import biz.mobidev.android.jaxb.library.parser.AdapterTypes;
+import biz.mobidev.android.jaxb.library.parser.ParserImpl;
 
 import java.io.ByteArrayInputStream;
 

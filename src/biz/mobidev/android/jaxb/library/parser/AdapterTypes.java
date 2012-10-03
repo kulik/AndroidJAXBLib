@@ -1,4 +1,4 @@
-package ua.kharkov.borovyk.wiki_search.parser;
+package biz.mobidev.android.jaxb.library.parser;
 
 /**
  * Created with IntelliJ IDEA.

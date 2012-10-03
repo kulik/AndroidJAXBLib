@@ -1,4 +1,4 @@
-package ua.kharkov.borovyk.wiki_search.parser;
+package biz.mobidev.android.jaxb.library.parser;
 
 import android.util.Log;
 import ua.kharkov.borovyk.wiki_search.Annotations;

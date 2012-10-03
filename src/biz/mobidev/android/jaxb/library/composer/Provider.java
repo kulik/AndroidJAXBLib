@@ -1,4 +1,4 @@
-package ua.kharkov.borovyk.wiki_search.composer;
+package biz.mobidev.android.jaxb.library.composer;
 
 import java.util.List;
 

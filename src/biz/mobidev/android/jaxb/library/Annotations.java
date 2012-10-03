@@ -1,4 +1,4 @@
-package ua.kharkov.borovyk.wiki_search;
+package biz.mobidev.android.jaxb.library;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

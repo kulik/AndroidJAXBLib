@@ -1,4 +1,6 @@
-package ua.kharkov.borovyk.wiki_search;
+package biz.mobidev.android.jaxb.library;
+
+import ua.kharkov.borovyk.wiki_search.Annotations;
 
 import java.util.List;
 

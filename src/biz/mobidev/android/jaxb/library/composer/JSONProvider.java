@@ -1,4 +1,4 @@
-package ua.kharkov.borovyk.wiki_search.composer;
+package biz.mobidev.android.jaxb.library.composer;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class JSONProvider<T> implements Provider {
     }
 
     @Override
-    public void putChild(Object child) {
+    public void putChild(String key, String node) {
 
     }
 

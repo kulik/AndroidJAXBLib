@@ -1,4 +1,4 @@
-package ua.kharkov.borovyk.wiki_search.composer;
+package biz.mobidev.android.jaxb.library.composer;
 
 import javax.xml.parsers.ParserConfigurationException;
 

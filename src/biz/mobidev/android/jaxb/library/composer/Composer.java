@@ -1,6 +1,4 @@
-package ua.kharkov.borovyk.wiki_search.composer;
-
-import ua.kharkov.borovyk.wiki_search.parser.AdapterTypes;
+package biz.mobidev.android.jaxb.library.composer;
 
 /**
  * Created with IntelliJ IDEA.
