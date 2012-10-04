@@ -1,7 +1,7 @@
 package biz.mobidev.android.jaxb.library.parser;
 
 import android.util.Log;
-import ua.kharkov.borovyk.wiki_search.Annotations;
+import biz.mobidev.android.jaxb.library.Annotations;
 
 import java.io.InputStream;
 import java.lang.reflect.*;
@@ -9,11 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: nata
  * Date: 9/18/12
  * Time: 11:09 AM
- * To change this template use File | Settings | File Templates.
  */
 public class ParserImpl<T> implements Parser<T> {
     private static final String TAG = ParserImpl.class.getSimpleName();
@@ -74,7 +72,6 @@ public class ParserImpl<T> implements Parser<T> {
                 if (simpleTypeParsed == false) {
                     processComplexValue(elem, field, obj);
                 }
-
             }
         }
 

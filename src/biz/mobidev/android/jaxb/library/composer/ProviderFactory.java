@@ -11,15 +11,15 @@ import javax.xml.parsers.ParserConfigurationException;
  */
 public class ProviderFactory {
 
-    public static Provider createProvider(ProviderTypes type, Object data) throws ParserConfigurationException {
-         Provider provider = null;
+    public static UniversalMarshalObject createProvider(ProviderTypes type, Object data) {
+         UniversalMarshalObject provider = null;
          switch (type){
              case XMLProvider:
-                 provider = new XMLProvider(data);
+                 provider = new XMLUnivObject(data);
                  break;
-             case JSONProvider:
-                 provider = new JSONProvider(data);
-                 break;
+//             case JSONProvider:
+//                 provider = new JSONProvider(data);
+//                 break;
              default:
                  throw new IllegalArgumentException("This type of provider is not inplemented yet.");
          }

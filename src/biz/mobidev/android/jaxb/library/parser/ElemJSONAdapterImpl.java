@@ -24,6 +24,17 @@ public class ElemJSONAdapterImpl implements ElementAdapter {
         mObject = obj;
     }
 
+    public ElemJSONAdapterImpl(InputStream data) {
+        String str = openFileAsString(data);
+        JSONObject json = null;
+        try {
+            json = new JSONObject(str);
+        } catch (JSONException e) {
+            Log.e(TAG, "JSONException when retriving json object from string");
+        }
+        mObject = json;
+    }
+
     public static String openFileAsString(InputStream stream) {
         InputStreamReader isr = new InputStreamReader(stream);
         BufferedReader buff = new BufferedReader(isr);
@@ -37,17 +48,6 @@ public class ElemJSONAdapterImpl implements ElementAdapter {
             e.printStackTrace();
         }
         return strBuff.toString();
-    }
-
-    public ElemJSONAdapterImpl(InputStream data) {
-        String str = openFileAsString(data);
-        JSONObject json = null;
-        try {
-            json = new JSONObject(str);
-        } catch (JSONException e) {
-            Log.e(TAG, "JSONException when retriving json object from string");
-        }
-        mObject = json;
     }
 
     @Override
