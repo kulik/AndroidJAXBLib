@@ -16,6 +16,6 @@
     "adb shell am instrument -w ua.kharkov.borovyk.wiki_search.tests/android.test.InstrumentationTestRunner"
     -->
     <instrumentation android:name="android.test.InstrumentationTestRunner"
-                     android:targetPackage="ua.kharkov.borovyk.wiki_search"
-                     android:label="Tests for ua.kharkov.borovyk.wiki_search"/>
+                     android:targetPackage="biz.mobidev.android.jaxb.library"
+                     android:label="Tests for biz.mobidev.android.jaxb.library"/>
 </manifest>
