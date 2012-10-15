@@ -1,4 +1,4 @@
-package biz.mobidev.android.jaxb.library.composer;
+package biz.mobidev.android.jaxb.library.composer.providers;
 
 /**
  * User: nata
