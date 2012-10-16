@@ -43,6 +43,7 @@ public class ComposerImpl implements Composer {
 
 
                 for (Object itemObj : ourList) {
+                    //TODO check if simple type
                     ((UMOArray) myElem).put(processObject(itemObj));
                 }
             } else if (objType.isArray()) {
@@ -118,12 +119,13 @@ public class ComposerImpl implements Composer {
         Log.d(TAG, "ProcessFields quantity:" + allFields.length);
         for (Field field : allFields) {
             Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + field.getAnnotations());
+            field.setAccessible(true);
             Object value = field.get(obj);
             if (field.isAnnotationPresent(Annotations.Attribute.class)) {
                 String annotationName = field.getAnnotation(Annotations.Attribute.class).name();
                 processAtributeValue(value, annotationName, sobj);
             } else if (field.isAnnotationPresent(Annotations.Value.class)) {
-                String valueName = field.getAnnotation(Annotations.Attribute.class).name();
+                String valueName = field.getAnnotation(Annotations.Value.class).name();
                 boolean simpleTypeParsed = processSimpleValue(value, valueName, sobj);
                 if (simpleTypeParsed == false) {
                     processComplexValue(value, valueName, sobj);

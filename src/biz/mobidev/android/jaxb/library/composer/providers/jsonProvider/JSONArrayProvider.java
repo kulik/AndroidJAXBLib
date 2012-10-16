@@ -1,6 +1,7 @@
 package biz.mobidev.android.jaxb.library.composer.providers.jsonProvider;
 
 import biz.mobidev.android.jaxb.library.composer.providers.abstractProvider.UMOArray;
+import org.json.JSONArray;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,8 +12,10 @@ import biz.mobidev.android.jaxb.library.composer.providers.abstractProvider.UMOA
  */
 public class JSONArrayProvider extends UMOArray {
 
+    private JSONArray mJsonArray = new JSONArray();
+
     @Override
     public void put(Object value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        mJsonArray.put(value);
     }
 }
