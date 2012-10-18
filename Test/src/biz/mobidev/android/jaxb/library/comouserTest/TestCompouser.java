@@ -7,11 +7,9 @@ import biz.mobidev.android.jaxb.library.composer.providers.ProviderTypes;
 import biz.mobidev.android.jaxb.library.composer.providers.abstractProvider.UMO;
 
 /**
- * Created with IntelliJ IDEA.
- * User: nata
+ * User: kulik
  * Date: 9/18/12
  * Time: 6:34 PM
- * To change this template use File | Settings | File Templates.
  */
 public class TestCompouser extends AndroidTestCase {
     private static final String TAG = TestCompouser.class.getSimpleName();

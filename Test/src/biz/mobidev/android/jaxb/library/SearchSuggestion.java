@@ -3,11 +3,9 @@ package biz.mobidev.android.jaxb.library;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: nata
  * Date: 9/18/12
  * Time: 6:58 PM
- * To change this template use File | Settings | File Templates.
  */
 public class SearchSuggestion {
     private static final String TAG = SearchSuggestion.class.getSimpleName();

@@ -3,11 +3,9 @@ package biz.mobidev.android.jaxb.library.parser;
 import java.io.InputStream;
 
 /**
- * Created with IntelliJ IDEA.
  * User: nata
  * Date: 9/19/12
  * Time: 7:45 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ElementAdapterFactory {
 

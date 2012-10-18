@@ -10,11 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: nata
  * Date: 9/20/12
  * Time: 12:39 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ElemJSONAdapterImpl implements ElementAdapter {
     private static final String TAG = ElemJSONAdapterImpl.class.getSimpleName();

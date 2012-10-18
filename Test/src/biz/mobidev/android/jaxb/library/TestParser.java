@@ -8,11 +8,9 @@ import biz.mobidev.android.jaxb.library.parser.ParserImpl;
 import java.io.*;
 
 /**
- * Created with IntelliJ IDEA.
  * User: nata
  * Date: 9/18/12
  * Time: 6:34 PM
- * To change this template use File | Settings | File Templates.
  */
 public class TestParser extends AndroidTestCase {
     private static final String TAG = TestParser.class.getSimpleName();

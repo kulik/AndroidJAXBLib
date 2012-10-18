@@ -37,7 +37,7 @@ public class ComposerImpl implements Composer {
         UMO myElem = null;
         Class objType = obj.getClass();
         try {
-            if (objType == List.class) {
+            if (objType.isAssignableFrom(List.class)) {
                 List ourList = (List) obj;
                 myElem = ProviderFactory.createProvider(mProviderType, ObjectType.ARRAY); //new UMOArray();
 
@@ -73,19 +73,19 @@ public class ComposerImpl implements Composer {
 
         Class<?> valueType = value.getClass();
         if (String.class.equals(valueType)) {
-            sobj.putAnnotation(annotationName, (String) value);
+            sobj.putAnnotationStr(annotationName, (String) value);
             return true;
         } else if (Integer.class.equals(valueType)) {
-            sobj.putAnnotation(annotationName, (Integer) value);
+            sobj.putAnnotationInt(annotationName, (Integer) value);
             return true;
         } else if (Long.class.equals(valueType)) {
-            sobj.putAnnotation(annotationName, (Long) value);
+            sobj.putAnnotationLong(annotationName, (Long) value);
             return true;
         } else if (Float.class.equals(valueType)) {
-            sobj.putAnnotation(annotationName, (Float) value);
+            sobj.putAnnotationFloat(annotationName, (Float) value);
             return true;
         } else if (Double.class.equals(valueType)) {
-            sobj.putAnnotation(annotationName, (Double) value);
+            sobj.putAnnotationDouble(annotationName, (Double) value);
             return true;
         }
         return false;
@@ -95,19 +95,19 @@ public class ComposerImpl implements Composer {
 
         Class<?> valueType = value.getClass();
         if (String.class.equals(valueType)) {
-            sobj.putValue(valueName, (String) value);
+            sobj.putValueStr(valueName, (String) value);
             return true;
         } else if (Integer.class.equals(valueType)) {
-            sobj.putValue(valueName, (Integer) value);
+            sobj.putValueInt(valueName, (Integer) value);
             return true;
         } else if (Long.class.equals(valueType)) {
-            sobj.putValue(valueName, (Long) value);
+            sobj.putValueLong(valueName, (Long) value);
             return true;
         } else if (Float.class.equals(valueType)) {
-            sobj.putValue(valueName, (Float) value);
+            sobj.putValueFloat(valueName, (Float) value);
             return true;
         } else if (Double.class.equals(valueType)) {
-            sobj.putValue(valueName, (Double) value);
+            sobj.putValueDouble(valueName, (Double) value);
             return true;
         }
         return false;
@@ -139,12 +139,14 @@ public class ComposerImpl implements Composer {
 
         Class objType = obj.getClass();
 
-        if (objType == List.class) {
+        if (List.class.isInstance(obj)) {
+            UMOArray list = (UMOArray) ProviderFactory.createProvider(mProviderType, ObjectType.ARRAY);
+            sobj.put(valueName, list);
             List ourList = (List) obj;
 
-//            for (Object itemObj : ourList) {
-//                sobj.put(processObject(itemObj));
-//            }
+            for (Object itemObj : ourList) {
+                list.put(processObject(itemObj));
+            }
         } else if (objType.isArray()) {
             //TODO Need to implement
         } else {

@@ -16,11 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: nata
  * Date: 9/19/12
  * Time: 6:47 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ElemXMLAdapterImpl implements ElementAdapter {
     private static final String TAG = ElemXMLAdapterImpl.class.getSimpleName();

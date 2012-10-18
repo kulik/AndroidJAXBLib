@@ -7,11 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: kulik
  * Date: 10/16/12
  * Time: 1:40 PM
- * To change this template use File | Settings | File Templates.
  */
 public class RootProxy {
     @Annotations.Value(name="B")

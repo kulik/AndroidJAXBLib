@@ -5,11 +5,9 @@ import android.util.Log;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: nata
  * Date: 9/21/12
  * Time: 11:46 AM
- * To change this template use File | Settings | File Templates.
  */
 public class Country {
     private static final String TAG = Country.class.getSimpleName();
