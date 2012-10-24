@@ -3,6 +3,7 @@ package biz.mobidev.android.jaxb.library.parser;
 import android.util.Log;
 import biz.mobidev.android.jaxb.library.Annotations;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.lang.reflect.*;
 import java.util.ArrayList;
@@ -34,6 +35,13 @@ public class ParserImpl implements Parser {
 //        T parsedObj = parse(cls, doc);
 //        return  parsedObj;
 //    }
+
+//    TODO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    @Override
+    public <T> T parse(Class<T> cls, String data) {
+        InputStream dat = new ByteArrayInputStream(data.getBytes());
+        return parse(cls, dat);
+    }
 
     //XXX input point
     @Override
