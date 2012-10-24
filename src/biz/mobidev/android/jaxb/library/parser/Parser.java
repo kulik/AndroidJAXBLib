@@ -7,8 +7,8 @@ import java.io.InputStream;
  * Date: 9/18/12
  * Time: 11:06 AM
  */
-public interface Parser<T> {
-    T parse(Class cls, InputStream data);
+public interface Parser {
+    <T> T parse(Class<T> cls, InputStream data);
 
     //T parse(Class cls, String data);
 }

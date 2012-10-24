@@ -13,7 +13,7 @@ import java.util.List;
  * Date: 9/18/12
  * Time: 11:09 AM
  */
-public class ParserImpl<T> implements Parser<T> {
+public class ParserImpl implements Parser {
     private static final String TAG = ParserImpl.class.getSimpleName();
     private AdapterTypes mAdapterType;
 
@@ -36,11 +36,12 @@ public class ParserImpl<T> implements Parser<T> {
 //    }
 
     //XXX input point
-    public T parse(Class cls, InputStream data) {
+    @Override
+    public <T> T parse(Class<T> cls, InputStream data) {
         ElementAdapter rootElement = ElementAdapterFactory.createAdapter(mAdapterType, data);
         T rootObj = null;
         try {
-            rootObj = (T) cls.newInstance();
+            rootObj = cls.newInstance();
             processObject(rootObj, rootElement);
         } catch (InvocationTargetException e) {
             Log.e(TAG, "InvocationTargetException while parcing: " + e.getMessage());
@@ -82,7 +83,7 @@ public class ParserImpl<T> implements Parser<T> {
      * @param obj   Object which field will be set
      * @throws IllegalAccessException
      */
-    protected boolean processSimpleValue(ElementAdapter elem, Field field, Object obj) throws IllegalAccessException{
+    protected <T> boolean processSimpleValue(ElementAdapter elem, Field field, T obj) throws IllegalAccessException{
         String annotationName = field.getAnnotation(Annotations.Value.class).name();
         String value = elem.getValue(annotationName);
 
@@ -114,7 +115,7 @@ public class ParserImpl<T> implements Parser<T> {
      * @param obj   Object which field will be set
      * @throws IllegalAccessException
      */
-    protected boolean processAtributeValue(String value, Field field, Object obj) throws IllegalAccessException {
+    protected <T> boolean processAtributeValue(String value, Field field, T obj) throws IllegalAccessException {
         field.setAccessible(true);
         Class<?> valueType = field.getType();
         if (String.class.equals(valueType)) {
@@ -136,7 +137,7 @@ public class ParserImpl<T> implements Parser<T> {
         return false;
     }
 
-    protected void processComplexValue(ElementAdapter elem, Field field, Object obj) throws IllegalAccessException,
+    protected <T> void processComplexValue(ElementAdapter elem, Field field, T obj) throws IllegalAccessException,
             InstantiationException, InvocationTargetException {
         field.setAccessible(true);
         Class<?> valueType = field.getType();
