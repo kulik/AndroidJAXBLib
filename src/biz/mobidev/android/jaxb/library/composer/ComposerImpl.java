@@ -1,6 +1,8 @@
 package biz.mobidev.android.jaxb.library.composer;
 
 import android.util.Log;
+import biz.mobidev.android.jaxb.library.Annotations.XMLAttribute;
+import biz.mobidev.android.jaxb.library.Annotations.XMLValue;
 import biz.mobidev.android.jaxb.library.composer.providers.ObjectType;
 import biz.mobidev.android.jaxb.library.composer.providers.ProviderFactory;
 import biz.mobidev.android.jaxb.library.composer.providers.abstractProvider.UMO;
@@ -120,11 +122,11 @@ public class ComposerImpl implements Composer {
             Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + field.getAnnotations());
             field.setAccessible(true);
             Object value = field.get(obj);
-            if (field.isAnnotationPresent(Annotations.Attribute.class)) {
-                String annotationName = field.getAnnotation(Annotations.Attribute.class).name();
+            if (field.isAnnotationPresent(XMLAttribute.class)) {
+                String annotationName = field.getAnnotation(XMLAttribute.class).name();
                 processAtributeValue(value, annotationName, sobj);
-            } else if (field.isAnnotationPresent(Annotations.XMLValue.class)) {
-                String valueName = field.getAnnotation(Annotations.XMLValue.class).name();
+            } else if (field.isAnnotationPresent(XMLValue.class)) {
+                String valueName = field.getAnnotation(XMLValue.class).name();
                 boolean simpleTypeParsed = processSimpleValue(value, valueName, sobj);
                 if (simpleTypeParsed == false) {
                     processComplexValue(value, valueName, sobj);
