@@ -27,4 +27,24 @@ public class ElementAdapterFactory {
         }
         return adapter;
     }
+
+    public static ElementAdapter createAdapter(AdapterTypes ad, String data) {
+        ElementAdapter adapter = null;
+        switch (ad) {
+            case XMLAdapter:
+                adapter = new ElemXMLAdapterImpl(data);
+                break;
+            case JSONAdapter:
+                adapter = new ElemJSONAdapterImpl(data);
+                break;
+            case SOAPAdapter:
+                //adapter = new Ksoapaa();
+                break;
+            default: {
+                throw new IllegalArgumentException("Adapter is not inplemented yet. Sorry");
+            }
+
+        }
+        return adapter;
+    }
 }

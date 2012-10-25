@@ -38,7 +38,7 @@ public class TestXMLParser extends AndroidTestCase {
 
                 "</Section>" +
                 "</SearchSuggestion>");
-        ParserImpl<SearchSuggestion> parser = new ParserImpl<SearchSuggestion>(AdapterTypes.XMLAdapter);
+        ParserImpl parser = new ParserImpl(AdapterTypes.XMLAdapter);
 
         SearchSuggestion se;
         se = parser.parse(SearchSuggestion.class, new ByteArrayInputStream(xml.getBytes()));

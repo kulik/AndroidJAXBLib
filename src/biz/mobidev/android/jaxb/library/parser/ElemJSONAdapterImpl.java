@@ -14,23 +14,38 @@ import java.util.List;
  * Date: 9/20/12
  * Time: 12:39 PM
  */
-public class ElemJSONAdapterImpl implements ElementAdapter {
+public class ElemJSONAdapterImpl extends AbstractElementAdapter {
     private static final String TAG = ElemJSONAdapterImpl.class.getSimpleName();
     private JSONObject mObject;
 
-    public ElemJSONAdapterImpl(JSONObject obj) {
-        mObject = obj;
+    public ElemJSONAdapterImpl(InputStream data) {
+        super(data);
     }
 
-    public ElemJSONAdapterImpl(InputStream data) {
+    public ElemJSONAdapterImpl(String data) {
+        super(data);
+    }
+
+    @Override
+    protected void init(InputStream data) {
         String str = openFileAsString(data);
+        init(str);
+    }
+
+    @Override
+    protected void init(String data) {
         JSONObject json = null;
         try {
-            json = new JSONObject(str);
+            json = new JSONObject(data);
         } catch (JSONException e) {
             Log.e(TAG, "JSONException when retriving json object from string");
         }
         mObject = json;
+    }
+
+    public ElemJSONAdapterImpl(JSONObject obj) {
+        super();
+        mObject = obj;
     }
 
     public static String openFileAsString(InputStream stream) {

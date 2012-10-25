@@ -5,6 +5,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -12,6 +13,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,7 @@ import java.util.List;
  * Date: 9/19/12
  * Time: 6:47 PM
  */
-public class ElemXMLAdapterImpl implements ElementAdapter {
+public class ElemXMLAdapterImpl extends AbstractElementAdapter {
     private static final String TAG = ElemXMLAdapterImpl.class.getSimpleName();
     private Element mElement;
 
@@ -28,8 +30,16 @@ public class ElemXMLAdapterImpl implements ElementAdapter {
         mElement = elem;
     }
 
+    public ElemXMLAdapterImpl(InputStream data) {
+        super(data);
+    }
 
-    public ElemXMLAdapterImpl(InputStream is) {
+    public ElemXMLAdapterImpl(String data) {
+        super(data);
+    }
+
+    @Override
+    protected void init(InputStream is) {
         Document doc;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setIgnoringElementContentWhitespace(true);
@@ -44,6 +54,32 @@ public class ElemXMLAdapterImpl implements ElementAdapter {
         } catch (IOException e) {
             Log.e(TAG, "I/O exception" + e.getMessage());
         }
+    }
+
+    @Override
+    protected void init(String data) {
+        Document doc;
+
+        try {
+            doc = loadXMLFromString(data);
+            mElement = doc.getDocumentElement();
+        } catch (ParserConfigurationException e) {
+            Log.e(TAG, "XML parse error " + e.getMessage());
+        } catch (SAXException e) {
+            Log.e(TAG, "Wrong XML file " + e.getMessage());
+        } catch (IOException e) {
+            Log.e(TAG, "I/O exception" + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Document loadXMLFromString(String xml) throws Exception
+    {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        InputSource is = new InputSource(new StringReader(xml));
+        return builder.parse(is);
     }
 
     @Override

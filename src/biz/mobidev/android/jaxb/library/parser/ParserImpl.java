@@ -22,31 +22,21 @@ public class ParserImpl implements Parser {
         mAdapterType = ad;
     }
 
-//    @Override
-//    public T parse(Class cls, InputStream data) {
-//        Document doc = toDocument(data);
-//        return parse(cls, doc);
-//    }
-
-//    @Override
-//    public T parse(Class cls, String data) {
-//        InputStream dat = new ByteArrayInputStream(data.getBytes());
-//        Document doc = toDocument(dat);
-//        T parsedObj = parse(cls, doc);
-//        return  parsedObj;
-//    }
-
-//    TODO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     @Override
     public <T> T parse(Class<T> cls, String data) {
         InputStream dat = new ByteArrayInputStream(data.getBytes());
         return parse(cls, dat);
     }
 
-    //XXX input point
     @Override
     public <T> T parse(Class<T> cls, InputStream data) {
         ElementAdapter rootElement = ElementAdapterFactory.createAdapter(mAdapterType, data);
+        T rootObj = null;
+        rootObj = parse(cls,rootElement);
+        return rootObj;
+    }
+
+    private <T> T parse(Class<T> cls, ElementAdapter rootElement) {
         T rootObj = null;
         try {
             rootObj = cls.newInstance();

@@ -41,7 +41,7 @@ public class TestParser extends AndroidTestCase {
 
                 "</Section>" +
                 "</SearchSuggestion>");
-        ParserImpl<SearchSuggestion> parser = new ParserImpl<SearchSuggestion>(AdapterTypes.XMLAdapter);
+        ParserImpl parser = new ParserImpl(AdapterTypes.XMLAdapter);
 
         SearchSuggestion se;
         se = parser.parse(SearchSuggestion.class, new ByteArrayInputStream(xml.getBytes()));
@@ -57,7 +57,7 @@ public class TestParser extends AndroidTestCase {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
-        ParserImpl<SearchSuggestion> parser2 = new ParserImpl<SearchSuggestion>(AdapterTypes.JSONAdapter);
+        ParserImpl parser2 = new ParserImpl(AdapterTypes.JSONAdapter);
 
         SearchSuggestion se2;
         se2 = parser2.parse(SearchSuggestion.class, jsonStream);
@@ -82,7 +82,7 @@ public class TestParser extends AndroidTestCase {
 //        in = this.getClass().getClassLoader().getResourceAsStream("raw/countries_json");
 
 
-        ParserImpl<Country> parser = new ParserImpl<Country>(AdapterTypes.JSONAdapter);
+        ParserImpl parser = new ParserImpl(AdapterTypes.JSONAdapter);
         Country countries;
         countries = parser.parse(Country.class, jsonStream);
 
