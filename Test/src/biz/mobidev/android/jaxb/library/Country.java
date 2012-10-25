@@ -1,6 +1,7 @@
 package biz.mobidev.android.jaxb.library;
 
 import android.util.Log;
+import biz.mobidev.android.jaxb.library.Annotations.XMLValue;
 
 import java.util.List;
 
@@ -11,9 +12,9 @@ import java.util.List;
  */
 public class Country {
     private static final String TAG = Country.class.getSimpleName();
-    @Annotations.Value(name="Title")
+    @XMLValue(name="Title")
     private String title;
-    @Annotations.Value(name="City")
+    @XMLValue(name="City")
     private List<City> cities;
 
     public Country(){
@@ -23,9 +24,9 @@ public class Country {
 
     public static class City {
         private static final String TAG = City.class.getSimpleName();
-        @Annotations.Value(name="Title")
+        @XMLValue(name="Title")
         private String title;
-        @Annotations.Value(name="Description")
+        @XMLValue(name="Description")
         private String description;
 
         public City(){

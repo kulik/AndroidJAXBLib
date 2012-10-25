@@ -1,6 +1,7 @@
 package biz.mobidev.android.jaxb.library;
 
 import android.test.AndroidTestCase;
+import android.test.InstrumentationTestCase;
 import android.util.Log;
 import biz.mobidev.android.jaxb.library.parser.AdapterTypes;
 import biz.mobidev.android.jaxb.library.parser.ParserImpl;
@@ -12,7 +13,7 @@ import java.io.*;
  * Date: 9/18/12
  * Time: 6:34 PM
  */
-public class TestParser extends AndroidTestCase {
+public class TestParser extends InstrumentationTestCase {
     private static final String TAG = TestParser.class.getSimpleName();
 
     @Override
@@ -52,7 +53,8 @@ public class TestParser extends AndroidTestCase {
         // To load text file
         InputStream jsonStream = null;
         try {
-            jsonStream = getContext().getAssets().open("json");
+
+            jsonStream = getInstrumentation().getContext().openFileInput("json");
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
@@ -67,25 +69,26 @@ public class TestParser extends AndroidTestCase {
 
     }
 
-    public void testJSONParser() {
-        InputStream jsonStream = null;
-        try {
-               // getContext().getResources().openRawResource();
-            jsonStream = new BufferedInputStream(this.getContext().openFileInput("countries_json"));
-            //jsonStream = getContext().getAssets().open("countries_json");
-        } catch (IOException e) {
-            Log.v("Test","IOEXception");
-        }
-//        File file = null;
-//        InputStream in = null;
+//    public void testJSONParser() {
+//        InputStream jsonStream = null;
+//        try {
+//               // getContext().getResources().openRawResource();
+//            //jsonStream = new BufferedInputStream(this.getContext().openFileInput("countries_json"));
 //
-//        in = this.getClass().getClassLoader().getResourceAsStream("raw/countries_json");
-
-
-        ParserImpl parser = new ParserImpl(AdapterTypes.JSONAdapter);
-        Country countries;
-        countries = parser.parse(Country.class, jsonStream);
-
-    }
+//            //jsonStream = getContext().getAssets().open("countries_json");
+//        } catch (IOException e) {
+//            Log.v("Test","IOEXception");
+//        }
+////        File file = null;
+////        InputStream in = null;
+////
+////        in = this.getClass().getClassLoader().getResourceAsStream("raw/countries_json");
+//
+//
+//        ParserImpl parser = new ParserImpl(AdapterTypes.JSONAdapter);
+//        Country countries;
+//        countries = parser.parse(Country.class, jsonStream);
+//
+//    }
 
 }

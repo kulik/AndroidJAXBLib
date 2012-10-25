@@ -1,7 +1,6 @@
 package biz.mobidev.android.jaxb.library.composer;
 
 import android.util.Log;
-import biz.mobidev.android.jaxb.library.Annotations;
 import biz.mobidev.android.jaxb.library.composer.providers.ObjectType;
 import biz.mobidev.android.jaxb.library.composer.providers.ProviderFactory;
 import biz.mobidev.android.jaxb.library.composer.providers.abstractProvider.UMO;
@@ -124,8 +123,8 @@ public class ComposerImpl implements Composer {
             if (field.isAnnotationPresent(Annotations.Attribute.class)) {
                 String annotationName = field.getAnnotation(Annotations.Attribute.class).name();
                 processAtributeValue(value, annotationName, sobj);
-            } else if (field.isAnnotationPresent(Annotations.Value.class)) {
-                String valueName = field.getAnnotation(Annotations.Value.class).name();
+            } else if (field.isAnnotationPresent(Annotations.XMLValue.class)) {
+                String valueName = field.getAnnotation(Annotations.XMLValue.class).name();
                 boolean simpleTypeParsed = processSimpleValue(value, valueName, sobj);
                 if (simpleTypeParsed == false) {
                     processComplexValue(value, valueName, sobj);

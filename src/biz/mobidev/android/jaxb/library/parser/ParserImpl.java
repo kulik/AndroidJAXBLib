@@ -1,9 +1,7 @@
 package biz.mobidev.android.jaxb.library.parser;
 
 import android.util.Log;
-import biz.mobidev.android.jaxb.library.Annotations;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.lang.reflect.*;
 import java.util.ArrayList;
@@ -67,7 +65,7 @@ public class ParserImpl implements Parser {
                 String annotationName = field.getAnnotation(Annotations.Attribute.class).name();
                 xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
                 processAtributeValue(xmlValue, field, obj);
-            } else if (field.isAnnotationPresent(Annotations.Value.class)) {
+            } else if (field.isAnnotationPresent(Annotations.XMLValue.class)) {
 
                 boolean simpleTypeParsed = processSimpleValue(elem, field, obj);
                 if (simpleTypeParsed == false) {
@@ -84,7 +82,7 @@ public class ParserImpl implements Parser {
      * @throws IllegalAccessException
      */
     protected <T> boolean processSimpleValue(ElementAdapter elem, Field field, T obj) throws IllegalAccessException{
-        String annotationName = field.getAnnotation(Annotations.Value.class).name();
+        String annotationName = field.getAnnotation(Annotations.XMLValue.class).name();
         String value = elem.getValue(annotationName);
 
         field.setAccessible(true);
@@ -141,7 +139,7 @@ public class ParserImpl implements Parser {
             InstantiationException, InvocationTargetException {
         field.setAccessible(true);
         Class<?> valueType = field.getType();
-        String annotName = field.getAnnotation(Annotations.Value.class).name();
+        String annotName = field.getAnnotation(Annotations.XMLValue.class).name();
 
         if (valueType == List.class) {
             List<ElementAdapter> children = elem.getChildren(annotName);

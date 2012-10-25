@@ -1,7 +1,5 @@
 package biz.mobidev.android.jaxb.library.comouserTest;
 
-import biz.mobidev.android.jaxb.library.Annotations;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,16 +10,16 @@ import java.util.List;
  * Time: 1:40 PM
  */
 public class RootProxy {
-    @Annotations.Value(name="B")
+    @Annotations.XMLValue(name="B")
     BProxy mb = new BProxy();
 
-    @Annotations.Value(name="A")
+    @Annotations.XMLValue(name="A")
     AProxy ma = new AProxy();
 
-    @Annotations.Value(name="TestList")
+    @Annotations.XMLValue(name="TestList")
     List<TestListItem> mlist = new ArrayList<TestListItem>(Arrays.asList(new TestListItem[] {new TestListItem(122), new TestListItem(123)}));
 
-    @Annotations.Value(name="TestIntegerValue")
+    @Annotations.XMLValue(name="TestIntegerValue")
     Integer mTestIntegerVal = Integer.valueOf(12212);
 
 }

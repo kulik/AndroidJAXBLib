@@ -1,5 +1,8 @@
 package biz.mobidev.android.jaxb.library;
 
+import biz.mobidev.android.jaxb.library.Annotations.XMLAttribute;
+import biz.mobidev.android.jaxb.library.Annotations.XMLValue;
+
 import java.util.List;
 
 /**
@@ -10,7 +13,7 @@ import java.util.List;
 public class SearchSuggestion {
     private static final String TAG = SearchSuggestion.class.getSimpleName();
 
-    @Annotations.Value(name="Section")
+    @XMLValue(name="Section")
     private Section section;
 
     public Section getQuery() {
@@ -23,7 +26,7 @@ public class SearchSuggestion {
 
     public static class Section {
         private static final String TAG = Section.class.getSimpleName();
-        @Annotations.Value(name="Item")
+        @XMLValue(name="Item")
         private List<Item> item;
 
 
@@ -31,15 +34,15 @@ public class SearchSuggestion {
 
             private static final String TAG = Item.class.getSimpleName();
 
-            @Annotations.Value(name = "Text")
+            @XMLValue(name = "Text")
             private String title;
-            @Annotations.Value(name = "Image")
+            @XMLValue(name = "Image")
             private Image image;
-            @Annotations.Value(name = "Url")
+            @XMLValue(name = "Url")
             private String url;
 
             public static class Image {
-                @Annotations.Attribute(name="source")
+                @XMLAttribute(name="source")
                 private String source = "";
 
 
