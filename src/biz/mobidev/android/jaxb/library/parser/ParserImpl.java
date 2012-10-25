@@ -24,8 +24,10 @@ public class ParserImpl implements Parser {
 
     @Override
     public <T> T parse(Class<T> cls, String data) {
-        InputStream dat = new ByteArrayInputStream(data.getBytes());
-        return parse(cls, dat);
+        ElementAdapter rootElement = ElementAdapterFactory.createAdapter(mAdapterType, data);
+        T rootObj = null;
+        rootObj = parse(cls,rootElement);
+        return rootObj;
     }
 
     @Override
