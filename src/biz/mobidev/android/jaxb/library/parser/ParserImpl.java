@@ -44,11 +44,11 @@ public class ParserImpl implements Parser {
             rootObj = cls.newInstance();
             processObject(rootObj, rootElement);
         } catch (InvocationTargetException e) {
-            Log.e(TAG, "InvocationTargetException while parcing: " + e.getMessage());
+            Log.e(TAG, "InvocationTargetException while parsing: " + e.getMessage());
         } catch (IllegalAccessException e) {
-            Log.e(TAG, "IllegalAccessException while parcing: " + e.getMessage());
+            Log.e(TAG, "IllegalAccessException while parsing: " + e.getMessage());
         } catch (InstantiationException e) {
-            Log.e(TAG, "InstantiationException while parcing: " + e.getMessage());
+            Log.e(TAG, "InstantiationException while parsing: " + e.getMessage());
         }
         return rootObj;
     }
