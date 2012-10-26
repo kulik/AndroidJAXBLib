@@ -72,6 +72,15 @@ public class JSONObjectProvider extends UMOObject {
     }
 
     @Override
+    public void putAnnotationBoolean(String annotationName, Boolean value) {
+        try {
+            mJSONObject.put(annotationName, value.booleanValue());
+        } catch (JSONException e) {
+            Log.e(TAG,e.toString());
+        }
+    }
+
+    @Override
     public void putValueStr(String valueName, String value) {
         try {
             mJSONObject.put(valueName, value);
@@ -111,6 +120,15 @@ public class JSONObjectProvider extends UMOObject {
     public void putValueDouble(String valueName, Double value) {
         try {
             mJSONObject.put(valueName, value.doubleValue());
+        } catch (JSONException e) {
+            Log.e(TAG,e.toString());
+        }
+    }
+
+    @Override
+    public void putValueBoolean(String valueName, Boolean value) {
+        try {
+            mJSONObject.put(valueName, value.booleanValue());
         } catch (JSONException e) {
             Log.e(TAG,e.toString());
         }

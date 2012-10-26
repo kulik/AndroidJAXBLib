@@ -104,6 +104,9 @@ public class ParserImpl implements Parser {
         } else if (Double.class.equals(valueType)) {
             field.set(obj, Double.valueOf(value));
             return true;
+        } else if (Boolean.class.equals(valueType)) {
+            field.set(obj, Boolean.valueOf(value));
+            return true;
         }
         return false;
     }
@@ -132,6 +135,9 @@ public class ParserImpl implements Parser {
             return true;
         } else if (Double.class.equals(valueType)) {
             field.set(obj, Double.valueOf(value));
+            return true;
+        } else if (Boolean.class.equals(valueType)) {
+            field.set(obj, Boolean.valueOf(value));
             return true;
         }
         return false;

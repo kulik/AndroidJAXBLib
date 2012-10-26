@@ -19,6 +19,8 @@ public abstract class UMOObject extends UMO {
 
     public abstract void putAnnotationDouble(String annotationName, Double value);
 
+    public abstract void putAnnotationBoolean(String annotationName, Boolean value);
+
 
     public abstract void putValueStr(String valueName, String value);
 
@@ -29,4 +31,6 @@ public abstract class UMOObject extends UMO {
     public abstract void putValueFloat(String valueName, Float value);
 
     public abstract void putValueDouble(String valueName, Double value);
+
+    public abstract void putValueBoolean(String valueName, Boolean value);
 }

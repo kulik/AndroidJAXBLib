@@ -88,6 +88,9 @@ public class ComposerImpl implements Composer {
         } else if (Double.class.equals(valueType)) {
             sobj.putAnnotationDouble(annotationName, (Double) value);
             return true;
+        } else if (Boolean.class.equals(valueType)) {
+            sobj.putAnnotationBoolean(annotationName, (Boolean) value);
+            return true;
         }
         return false;
     }
@@ -109,6 +112,9 @@ public class ComposerImpl implements Composer {
             return true;
         } else if (Double.class.equals(valueType)) {
             sobj.putValueDouble(valueName, (Double) value);
+            return true;
+        } else if (Boolean.class.equals(valueType)) {
+            sobj.putValueBoolean(valueName, (Boolean) value);
             return true;
         }
         return false;

@@ -1,4 +1,4 @@
-package biz.mobidev.android.jaxb.library.comouserTest;
+package biz.mobidev.android.jaxb.library.compouserTest;
 
 import biz.mobidev.android.jaxb.library.Annotations.XMLValue;
 
