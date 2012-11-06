@@ -9,6 +9,6 @@ import java.lang.annotation.RetentionPolicy;
  * Time: 4:42 PM
  */
 @Retention(RetentionPolicy.RUNTIME)
-public @interface XMLValue {
+public @interface XmlElement {
     String name();
 }

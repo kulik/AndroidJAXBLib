@@ -9,7 +9,7 @@ import java.lang.annotation.RetentionPolicy;
  * Time: 4:43 PM
  */
 @Retention(RetentionPolicy.RUNTIME)
-public @interface XMLAttribute {
+public @interface XmlAttribute {
     String name();
 }
 

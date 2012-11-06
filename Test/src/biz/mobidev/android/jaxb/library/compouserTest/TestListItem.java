@@ -1,6 +1,6 @@
 package biz.mobidev.android.jaxb.library.compouserTest;
 
-import biz.mobidev.android.jaxb.library.Annotations.XMLValue;
+import biz.mobidev.android.jaxb.library.Annotations.XmlElement;
 
 /**
  * User: kulik
@@ -8,7 +8,7 @@ import biz.mobidev.android.jaxb.library.Annotations.XMLValue;
  * Time: 1:46 PM
  */
 public class TestListItem {
-    @XMLValue(name = "item_value")
+    @XmlElement(name = "item_value")
     Integer mItval;
 
     TestListItem(int val) {

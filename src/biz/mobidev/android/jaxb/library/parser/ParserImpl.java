@@ -1,8 +1,8 @@
 package biz.mobidev.android.jaxb.library.parser;
 
 import android.util.Log;
-import biz.mobidev.android.jaxb.library.Annotations.XMLAttribute;
-import biz.mobidev.android.jaxb.library.Annotations.XMLValue;
+import biz.mobidev.android.jaxb.library.Annotations.XmlAttribute;
+import biz.mobidev.android.jaxb.library.Annotations.XmlElement;
 
 import java.io.InputStream;
 import java.lang.reflect.*;
@@ -63,11 +63,11 @@ public class ParserImpl implements Parser {
             Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + field.getAnnotations());
             String xmlValue = "";
 
-            if (field.isAnnotationPresent(XMLAttribute.class)) {
-                String annotationName = field.getAnnotation(XMLAttribute.class).name();
+            if (field.isAnnotationPresent(XmlAttribute.class)) {
+                String annotationName = field.getAnnotation(XmlAttribute.class).name();
                 xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
                 processAtributeValue(xmlValue, field, obj);
-            } else if (field.isAnnotationPresent(XMLValue.class)) {
+            } else if (field.isAnnotationPresent(XmlElement.class)) {
 
                 boolean simpleTypeParsed = processSimpleValue(elem, field, obj);
                 if (simpleTypeParsed == false) {
@@ -84,7 +84,7 @@ public class ParserImpl implements Parser {
      * @throws IllegalAccessException
      */
     protected <T> boolean processSimpleValue(ElementAdapter elem, Field field, T obj) throws IllegalAccessException{
-        String annotationName = field.getAnnotation(XMLValue.class).name();
+        String annotationName = field.getAnnotation(XmlElement.class).name();
         String value = elem.getValue(annotationName);
 
         field.setAccessible(true);
@@ -147,7 +147,7 @@ public class ParserImpl implements Parser {
             InstantiationException, InvocationTargetException {
         field.setAccessible(true);
         Class<?> valueType = field.getType();
-        String annotName = field.getAnnotation(XMLValue.class).name();
+        String annotName = field.getAnnotation(XmlElement.class).name();
 
         if (valueType == List.class) {
             List<ElementAdapter> children = elem.getChildren(annotName);

@@ -1,9 +1,9 @@
 package biz.mobidev.android.jaxb.library;
 
 import android.test.AndroidTestCase;
-import android.util.Log;
 import biz.mobidev.android.jaxb.library.parser.AdapterTypes;
 import biz.mobidev.android.jaxb.library.parser.ParserImpl;
+import biz.mobidev.android.jaxb.library.parserTest.TestData1.SearchSuggestion;
 
 import java.io.ByteArrayInputStream;
 
@@ -25,9 +25,6 @@ public class TestXMLParser extends AndroidTestCase {
     }
 
     public void testParseIS() {
-        int i = 1;
-        i += i++ + ++i;
-        Log.v("summ", ""+ i);
 
         String xml = new String("<SearchSuggestion xmlns=\"http://opensearch.org/searchsuggest2\" version=\"2.0\">" +
                 "<Query xml:space=\"preserve\">sun</Query>" +
@@ -55,9 +52,6 @@ public class TestXMLParser extends AndroidTestCase {
     }
 
     public void testParseString() {
-        int i = 1;
-        i += i++ + ++i;
-        Log.v("summ", ""+ i);
 
         String xml = new String("<SearchSuggestion xmlns=\"http://opensearch.org/searchsuggest2\" version=\"2.0\">" +
                 "<Query xml:space=\"preserve\">sun</Query>" +

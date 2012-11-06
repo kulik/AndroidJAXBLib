@@ -7,4 +7,5 @@ package biz.mobidev.android.jaxb.library.compouserTest;
  */
 public class BProxy {
 
+
 }

@@ -1,0 +1,29 @@
+<SearchSuggestion xmlns="http://opensearch.org/searchsuggest2" version="2.0">
+  <Query xml:space="preserve">sun</Query>
+  <Section>
+    <Item>
+      <Image source="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_August_1%2C_2010.jpg" width="50" height="45"/>
+      <Text xml:space="preserve">Sun</Text>
+      <Description xml:space="preserve">
+                The Sun is the star at the center of the Solar System. It is almost perfectly spherical and consists of hot plasma interwoven with magnetic fields.
+                </Description>
+      <Url xml:space="preserve">http://en.wikipedia.org/wiki/Sun</Url>
+    </Item>
+    <Item>
+          <Image source="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_August_1%2C_2010.jpg" width="50" height="45"/>
+          <Text xml:space="preserve">Sun</Text>
+          <Description xml:space="preserve">
+                    The Sun is the star at the center of the Solar System. It is almost perfectly spherical and consists of hot plasma interwoven with magnetic fields.
+                    </Description>
+          <Url xml:space="preserve">http://en.wikipedia.org/wiki/Sun</Url>
+        </Item>
+        <Item>
+              <Image source="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_August_1%2C_2010.jpg" width="50" height="45"/>
+              <Text xml:space="preserve">Sun</Text>
+              <Description xml:space="preserve">
+                        The Sun is the star at the center of the Solar System. It is almost perfectly spherical and consists of hot plasma interwoven with magnetic fields.
+                        </Description>
+              <Url xml:space="preserve">http://en.wikipedia.org/wiki/Sun</Url>
+            </Item>
+  </Section>
+</SearchSuggestion>

@@ -1,6 +1,6 @@
 package biz.mobidev.android.jaxb.library.compouserTest;
 
-import biz.mobidev.android.jaxb.library.Annotations.XMLValue;
+import biz.mobidev.android.jaxb.library.Annotations.XmlElement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,16 +12,16 @@ import java.util.List;
  * Time: 1:40 PM
  */
 public class RootProxy {
-    @XMLValue(name="B")
+    @XmlElement(name="B")
     BProxy mb = new BProxy();
 
-    @XMLValue(name="A")
+    @XmlElement(name="A")
     AProxy ma = new AProxy();
 
-    @XMLValue(name="TestList")
+    @XmlElement(name="TestList")
     List<TestListItem> mlist = new ArrayList<TestListItem>(Arrays.asList(new TestListItem[] {new TestListItem(122), new TestListItem(123)}));
 
-    @XMLValue(name="TestIntegerValue")
+    @XmlElement(name="TestIntegerValue")
     Integer mTestIntegerVal = Integer.valueOf(12212);
 
 }

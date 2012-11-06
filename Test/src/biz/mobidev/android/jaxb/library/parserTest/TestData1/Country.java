@@ -1,7 +1,7 @@
-package biz.mobidev.android.jaxb.library;
+package biz.mobidev.android.jaxb.library.parserTest.TestData1;
 
 import android.util.Log;
-import biz.mobidev.android.jaxb.library.Annotations.XMLValue;
+import biz.mobidev.android.jaxb.library.Annotations.XmlElement;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import java.util.List;
  */
 public class Country {
     private static final String TAG = Country.class.getSimpleName();
-    @XMLValue(name="Title")
+    @XmlElement(name="Title")
     private String title;
-    @XMLValue(name="City")
+    @XmlElement(name="City")
     private List<City> cities;
 
     public Country(){
@@ -24,9 +24,9 @@ public class Country {
 
     public static class City {
         private static final String TAG = City.class.getSimpleName();
-        @XMLValue(name="Title")
+        @XmlElement(name="Title")
         private String title;
-        @XMLValue(name="Description")
+        @XmlElement(name="Description")
         private String description;
 
         public City(){
