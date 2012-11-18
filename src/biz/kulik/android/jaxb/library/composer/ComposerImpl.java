@@ -38,6 +38,7 @@ public class ComposerImpl implements Composer {
         UMO myElem = null;
         Class objType = obj.getClass();
         try {
+            //TODO need changed to Collection.class
             if (objType.isAssignableFrom(List.class)) {
                 List ourList = (List) obj;
                 myElem = ProviderFactory.createProvider(mProviderType, ObjectType.ARRAY); //new UMOArray();

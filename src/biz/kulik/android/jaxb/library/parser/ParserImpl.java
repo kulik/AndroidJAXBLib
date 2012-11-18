@@ -152,6 +152,7 @@ public class ParserImpl implements Parser {
         Class<?> valueType = field.getType();
         String annotName = field.getAnnotation(XmlElement.class).name();
 
+        //TODO change to Collection.class
         if (valueType == List.class) {
             List<ElementAdapter> children = elem.getChildren(annotName);
             List objects = new ArrayList();
@@ -170,6 +171,7 @@ public class ParserImpl implements Parser {
             }
         } else if (valueType.isArray()) {
             //TODO Need to implement
+            throw new UnsupportedOperationException();
 //            NodeList childNodes = elem.getChildNodes();
 //            Type genericType = field.getGenericType();
 //            ParameterizedType paramType = (ParameterizedType) genericType;

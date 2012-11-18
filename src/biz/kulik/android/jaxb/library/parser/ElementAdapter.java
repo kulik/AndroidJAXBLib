@@ -13,6 +13,8 @@ public interface ElementAdapter {
 
     public List getChildren(String name);
 
+    //public List getChildren();
+
     public ElementAdapter getChild(String name);
 
     /**
