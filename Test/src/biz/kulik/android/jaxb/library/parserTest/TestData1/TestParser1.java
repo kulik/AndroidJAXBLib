@@ -2,7 +2,7 @@ package biz.kulik.android.jaxb.library.parserTest.TestData1;
 
 import android.test.AndroidTestCase;
 import biz.kulik.android.jaxb.library.R;
-import biz.kulik.android.jaxb.library.parser.AdapterTypes;
+import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
 
 import java.io.InputStream;
@@ -29,7 +29,7 @@ public class TestParser1 extends AndroidTestCase {
     public void testParse1JSON() {
         InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_1_json);
 
-        ParserImpl parser = new ParserImpl(AdapterTypes.JSONAdapter);
+        ParserImpl parser = new ParserImpl(UnMarshalerTypes.JSONAdapter);
 
         SearchSuggestion se;
         se = parser.parse(SearchSuggestion.class, inputStream);
@@ -40,7 +40,7 @@ public class TestParser1 extends AndroidTestCase {
     public void testParse1XML() {
         InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_1_xml);
 
-        ParserImpl parser = new ParserImpl(AdapterTypes.XMLAdapter);
+        ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
 
         SearchSuggestion se;
         se = parser.parse(SearchSuggestion.class, inputStream);

@@ -2,7 +2,7 @@ package biz.kulik.android.jaxb.library.parserTest.TestData2;
 
 import android.test.AndroidTestCase;
 import biz.kulik.android.jaxb.library.R;
-import biz.kulik.android.jaxb.library.parser.AdapterTypes;
+import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
 
 import java.io.InputStream;
@@ -29,7 +29,7 @@ public class TestParser2 extends AndroidTestCase {
 
         InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_2_json);
 
-        ParserImpl parser = new ParserImpl(AdapterTypes.JSONAdapter);
+        ParserImpl parser = new ParserImpl(UnMarshalerTypes.JSONAdapter);
 
         TestStorage ts;
         ts = parser.parse(TestStorage.class, inputStream);
@@ -41,7 +41,7 @@ public class TestParser2 extends AndroidTestCase {
 
 //       InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_2_xml);
 //
-//        ParserImpl parser = new ParserImpl(AdapterTypes.XMLAdapter);
+//        ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
 //
 //        TestStorage ts;
 //        ts = parser.parse(TestStorage.class, inputStream);

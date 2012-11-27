@@ -3,9 +3,10 @@ package biz.kulik.android.jaxb.library.parser;
 import android.util.Log;
 import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
+import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler;
+import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory;
 
 import java.io.InputStream;
-import java.lang.annotation.Retention;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
@@ -21,15 +22,15 @@ import java.util.List;
  */
 public class ParserArrayStartedImpl implements Parser {
     private static final String TAG = ParserArrayStartedImpl.class.getSimpleName();
-    private AdapterTypes mAdapterType;
+    private UnMarshalerTypes mUnMarshalerType;
 
-    public ParserArrayStartedImpl(AdapterTypes ad) {
-        mAdapterType = ad;
+    public ParserArrayStartedImpl(UnMarshalerTypes ad) {
+        mUnMarshalerType = ad;
     }
 
     @Override
     public <T> T parse(Class<T> cls, String data) {
-        ElementAdapter rootElement = ElementAdapterFactory.createAdapter(mAdapterType, data);
+        ElementUnmarshaler rootElement = ElementUnmarshalerFactory.createAdapter(mUnMarshalerType, data);
         T rootObj = null;
         rootObj = parse(cls, rootElement);
         return rootObj;
@@ -37,20 +38,20 @@ public class ParserArrayStartedImpl implements Parser {
 
     @Override
     public <T> T parse(Class<T> cls, InputStream data) {
-        ElementAdapter rootElement = ElementAdapterFactory.createAdapter(mAdapterType, data);
+        ElementUnmarshaler rootElement = ElementUnmarshalerFactory.createAdapter(mUnMarshalerType, data);
         T rootObj = null;
         rootObj = parse(cls, rootElement);
         return rootObj;
     }
 
 
-    private <T> T parse(Class<T> cls, ElementAdapter rootElement) {
+    private <T> T parse(Class<T> cls, ElementUnmarshaler rootElement) {
         T rootObj = null;
         //TODO change to Collection.class
         if (cls.isAssignableFrom(Collection.class)) {
             try {
                 //XXX
-                List<ElementAdapter> children = rootElement.getChildren("sdfgsdfgsdfgsdfgsdf");
+                List<ElementUnmarshaler> children = rootElement.getChildren("sdfgsdfgsdfgsdfgsdf");
                 rootObj = (T) new ArrayList();
 
                 Class<?> genericClass = cls.getTypeParameters()[0].getGenericDeclaration();
@@ -100,7 +101,7 @@ public class ParserArrayStartedImpl implements Parser {
     }
 
 
-    protected void processObject(Object obj, ElementAdapter elem) throws IllegalArgumentException, IllegalAccessException,
+    protected void processObject(Object obj, ElementUnmarshaler elem) throws IllegalArgumentException, IllegalAccessException,
             InvocationTargetException, InstantiationException {
         Class<?> cl = obj.getClass();
         Field[] allFields = cl.getDeclaredFields();
@@ -129,7 +130,7 @@ public class ParserArrayStartedImpl implements Parser {
      * @param obj   Object which field will be set
      * @throws IllegalAccessException
      */
-    protected <T> boolean processSimpleValue(ElementAdapter elem, Field field, T obj) throws IllegalAccessException {
+    protected <T> boolean processSimpleValue(ElementUnmarshaler elem, Field field, T obj) throws IllegalAccessException {
         String annotationName = field.getAnnotation(XmlElement.class).name();
         String value = elem.getValue(annotationName);
 
@@ -189,7 +190,7 @@ public class ParserArrayStartedImpl implements Parser {
         return false;
     }
 
-    protected <T> void processComplexValue(ElementAdapter elem, Field field, T obj) throws IllegalAccessException,
+    protected <T> void processComplexValue(ElementUnmarshaler elem, Field field, T obj) throws IllegalAccessException,
             InstantiationException, InvocationTargetException {
         field.setAccessible(true);
         Class<?> valueType = field.getType();
@@ -197,7 +198,7 @@ public class ParserArrayStartedImpl implements Parser {
 
         //TODO change to Collection.class
         if (valueType == Collection.class) {
-            List<ElementAdapter> children = elem.getChildren(annotName);
+            List<ElementUnmarshaler> children = elem.getChildren(annotName);
             List objects = new ArrayList();
             field.set(obj, objects);
 
@@ -227,7 +228,7 @@ public class ParserArrayStartedImpl implements Parser {
 //                processObject(item, (Element) childNodes.item(i));
 //            }
         } else {
-            ElementAdapter child = elem.getChild(annotName);
+            ElementUnmarshaler child = elem.getChild(annotName);
             Class<?> type = field.getType();
             Object childObj = type.newInstance();
             field.set(obj, childObj);

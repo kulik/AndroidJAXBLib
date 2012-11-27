@@ -2,7 +2,7 @@ package biz.kulik.android.jaxb.library.parserTest.TestData3;
 
 import android.test.AndroidTestCase;
 import biz.kulik.android.jaxb.library.R;
-import biz.kulik.android.jaxb.library.parser.AdapterTypes;
+import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
 import biz.kulik.android.jaxb.library.parserTest.TestData2.TestStorage;
 
@@ -30,7 +30,7 @@ public class TestParser3 extends AndroidTestCase {
 
         InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_3_json);
 
-        ParserImpl parser = new ParserImpl(AdapterTypes.JSONAdapter);
+        ParserImpl parser = new ParserImpl(UnMarshalerTypes.JSONAdapter);
 
 //        ResponseContainer<List<ApartmentViewingsListResponse> ts;
 //        ts = parser.parse(ResponseContainer<List<ApartmentViewingsListResponse>>.class, inputStream);
@@ -42,14 +42,14 @@ public class TestParser3 extends AndroidTestCase {
 
 //       InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_2_xml);
 //
-//        ParserImpl parser = new ParserImpl(AdapterTypes.XMLAdapter);
+//        ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
 //
 //        TestStorage ts;
 //        ts = parser.parse(TestStorage.class, inputStream);
 //        assertTestDate2(ts);
     }
 
-    private void assertTestDate2(TestStorage ts) {
+    private void assertTestDate2( TestStorage ts) {
 
         assertNotNull("", ts);
         assertNotNull("", ts.mFavoritePropertyResponses);

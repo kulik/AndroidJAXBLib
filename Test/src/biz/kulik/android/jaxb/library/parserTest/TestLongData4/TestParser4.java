@@ -2,7 +2,7 @@ package biz.kulik.android.jaxb.library.parserTest.TestLongData4;
 
 import android.test.AndroidTestCase;
 import biz.kulik.android.jaxb.library.R;
-import biz.kulik.android.jaxb.library.parser.AdapterTypes;
+import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
 
 import java.io.InputStream;
@@ -29,7 +29,7 @@ public class TestParser4 extends AndroidTestCase {
     public void testParse4JSON() {
         InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_4_json_big);
 
-        ParserImpl parser = new ParserImpl(AdapterTypes.JSONAdapter);
+        ParserImpl parser = new ParserImpl(UnMarshalerTypes.JSONAdapter);
 
         RootBusStop lbs;
         lbs = parser.parse(RootBusStop.class, inputStream);
@@ -40,7 +40,7 @@ public class TestParser4 extends AndroidTestCase {
 //    public void testParse4XML() {
 //        InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_1_xml);
 //
-//        ParserImpl parser = new ParserImpl(AdapterTypes.XMLAdapter);
+//        ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
 //
 //        BusStops se;
 //        se = parser.parse(BusStops.class, inputStream);
