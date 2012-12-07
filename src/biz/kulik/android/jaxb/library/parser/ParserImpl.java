@@ -6,6 +6,7 @@ import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 import biz.kulik.android.jaxb.library.parser.adapters.AdaptersManager;
 import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler;
 import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory;
+import biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager;
 
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -26,10 +27,12 @@ public class ParserImpl implements Parser {
     private UnMarshalerTypes mUnMarshalerType;
 
     private AdaptersManager xmlAdaptersManager;
+    private SimpleParsersManager mSimpleParsersManager;
 
     public ParserImpl(UnMarshalerTypes ad) {
         mUnMarshalerType = ad;
-       xmlAdaptersManager = new AdaptersManager();
+        xmlAdaptersManager = new AdaptersManager();
+        mSimpleParsersManager = new SimpleParsersManager();
     }
 
     @Override
@@ -63,7 +66,6 @@ public class ParserImpl implements Parser {
         return rootObj;
     }
 
-
     protected void processObject(Object obj, ElementUnmarshaler elem) throws IllegalArgumentException, IllegalAccessException,
             InvocationTargetException, InstantiationException {
         Class<?> cl = obj.getClass();
@@ -96,28 +98,7 @@ public class ParserImpl implements Parser {
         String annotationName = field.getAnnotation(XmlElement.class).name();
         String value = elem.getValue(annotationName);
 
-        field.setAccessible(true);
-        Class<?> valueType = field.getType();
-        if (String.class.equals(valueType)) {
-            field.set(obj, value);
-            return true;
-        } else if (Integer.class.equals(valueType)) {
-            field.set(obj, Integer.valueOf(value));
-            return true;
-        } else if (Long.class.equals(valueType)) {
-            field.set(obj, Long.valueOf(value));
-            return true;
-        } else if (Float.class.equals(valueType)) {
-            field.set(obj, Float.valueOf(value));
-            return true;
-        } else if (Double.class.equals(valueType)) {
-            field.set(obj, Double.valueOf(value));
-            return true;
-        } else if (Boolean.class.equals(valueType)) {
-            field.set(obj, Boolean.valueOf(value));
-            return true;
-        }
-        return false;
+        return processAtributeValue(value, field, obj);
     }
 
 
@@ -135,19 +116,19 @@ public class ParserImpl implements Parser {
             field.set(obj, value);
             return true;
         } else if (Integer.class.equals(valueType)) {
-            field.set(obj, Integer.valueOf(value));
+            field.set(obj, mSimpleParsersManager.getParser(Integer.class).valueOf(value));
             return true;
         } else if (Long.class.equals(valueType)) {
-            field.set(obj, Long.valueOf(value));
+            field.set(obj, mSimpleParsersManager.getParser(Long.class).valueOf(value));
             return true;
         } else if (Float.class.equals(valueType)) {
-            field.set(obj, Float.valueOf(value));
+            field.set(obj, mSimpleParsersManager.getParser(Float.class).valueOf(value));
             return true;
         } else if (Double.class.equals(valueType)) {
-            field.set(obj, Double.valueOf(value));
+            field.set(obj, mSimpleParsersManager.getParser(Double.class).valueOf(value));
             return true;
         } else if (Boolean.class.equals(valueType)) {
-            field.set(obj, Boolean.valueOf(value));
+            field.set(obj, mSimpleParsersManager.getParser(Boolean.class).valueOf(value));
             return true;
         }
         return false;
@@ -166,6 +147,7 @@ public class ParserImpl implements Parser {
             field.set(obj, objects);
 
             Type genericType = field.getGenericType();
+//            Class<?> tClass = ReflectionUtils.getGenericParameterClass(List.class, field.getDeclaringClass(), 0);
             Object item = null;
             if (genericType instanceof ParameterizedType) {
                 ParameterizedType paramType = (ParameterizedType) genericType;
@@ -176,6 +158,7 @@ public class ParserImpl implements Parser {
                     processObject(item, children.get(i));
                 }
             }
+
         } else if (valueType.isArray()) {
             //TODO Need to implement
             throw new UnsupportedOperationException();

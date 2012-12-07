@@ -2,10 +2,11 @@ package biz.kulik.android.jaxb.library.parserTest.TestLongData4;
 
 import android.test.AndroidTestCase;
 import biz.kulik.android.jaxb.library.R;
-import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
+import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * User: kulik
@@ -27,6 +28,9 @@ public class TestParser4 extends AndroidTestCase {
 
 
     public void testParse4JSON() {
+        InputStream is = null;
+        InputStreamReader reader = new InputStreamReader(is);
+
         InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_4_json_big);
 
         ParserImpl parser = new ParserImpl(UnMarshalerTypes.JSONAdapter);
