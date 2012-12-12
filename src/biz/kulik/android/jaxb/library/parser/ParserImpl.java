@@ -3,7 +3,8 @@ package biz.kulik.android.jaxb.library.parser;
 import android.util.Log;
 import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
-import biz.kulik.android.jaxb.library.parser.adapters.AdaptersManager;
+import biz.kulik.android.jaxb.library.parser.chache.ChacheField;
+import biz.kulik.android.jaxb.library.parser.chache.ClassChacheManager;
 import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler;
 import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory;
 import biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager;
@@ -26,13 +27,15 @@ public class ParserImpl implements Parser {
 
     private UnMarshalerTypes mUnMarshalerType;
 
-    private AdaptersManager xmlAdaptersManager;
+    //    private AdaptersManager xmlAdaptersManager;
     private SimpleParsersManager mSimpleParsersManager;
+    private ClassChacheManager mClassChacheManager;
 
     public ParserImpl(UnMarshalerTypes ad) {
         mUnMarshalerType = ad;
-        xmlAdaptersManager = new AdaptersManager();
+//        xmlAdaptersManager = new AdaptersManager();
         mSimpleParsersManager = new SimpleParsersManager();
+        mClassChacheManager = new ClassChacheManager();
     }
 
     @Override
@@ -55,7 +58,7 @@ public class ParserImpl implements Parser {
         T rootObj = null;
         try {
             rootObj = cls.newInstance();
-            processObject(rootObj, rootElement);
+            processObject(rootObj, cls, rootElement);
         } catch (InvocationTargetException e) {
             Log.e(TAG, "InvocationTargetException while parsing: " + e.getMessage());
         } catch (IllegalAccessException e) {
@@ -66,25 +69,55 @@ public class ParserImpl implements Parser {
         return rootObj;
     }
 
-    protected void processObject(Object obj, ElementUnmarshaler elem) throws IllegalArgumentException, IllegalAccessException,
+    //TODO mast be refactored exclude logic from chache
+    protected void processObject(Object obj, Class<?> clazz, ElementUnmarshaler elem) throws IllegalArgumentException, IllegalAccessException,
             InvocationTargetException, InstantiationException {
-        Class<?> cl = obj.getClass();
-        Field[] allFields = cl.getDeclaredFields();
-        Log.d(TAG, "ProcessFields quantity:" + allFields.length);
-        for (Field field : allFields) {
-            Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + field.getAnnotations());
-            String xmlValue = "";
+        //Class<?> cl = obj.getClass();
+        List<ChacheField> attributesFields = mClassChacheManager.getChachedAttributesFieldList(clazz);
+        List<ChacheField> elementsFields = mClassChacheManager.getChachedElementsFieldList(clazz);
 
-            if (field.isAnnotationPresent(XmlAttribute.class)) {
-                String annotationName = field.getAnnotation(XmlAttribute.class).name();
-                xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
-                processAtributeValue(xmlValue, field, obj);
-            } else if (field.isAnnotationPresent(XmlElement.class)) {
+        Field[] allFields;
+        if (attributesFields == null || elementsFields == null) {
+            allFields = clazz.getDeclaredFields();
+            attributesFields = new ArrayList<ChacheField>(allFields.length % 2);
+            elementsFields = new ArrayList<ChacheField>(allFields.length % 2);
 
-                boolean simpleTypeParsed = processSimpleValue(elem, field, obj);
-                if (simpleTypeParsed == false) {
-                    processComplexValue(elem, field, obj);
+            for (Field field : allFields) {
+                // Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + field.getAnnotations());
+
+                if (field.isAnnotationPresent(XmlAttribute.class)) {
+                    String annotationName = field.getAnnotation(XmlAttribute.class).name();
+                    String xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
+                    processAtributeValue(xmlValue, field, obj);
+                    attributesFields.add(new ChacheField(field, annotationName));
+
+                } else if (field.isAnnotationPresent(XmlElement.class)) {
+
+                    String annotationName = field.getAnnotation(XmlElement.class).name();
+                    boolean simpleTypeParsed = processSimpleValue(elem, field, annotationName, obj);
+                    if (simpleTypeParsed == false) {
+                        processComplexValue(elem, field, annotationName, obj);
+                    }
+                    elementsFields.add(new ChacheField(field, annotationName));
                 }
+            }
+            mClassChacheManager.pushFieldsToCache(clazz, attributesFields, elementsFields);
+        } else {
+            for (ChacheField chacheField : attributesFields) {
+                // Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + field.getAnnotations());
+                String xmlValue = "";
+
+                String annotationName = chacheField.getXmlName();
+                xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
+                processAtributeValue(xmlValue, chacheField.getField(), obj);
+            }
+            for (ChacheField field : elementsFields) {
+
+                boolean simpleTypeParsed = processSimpleValue(elem, field.getField(), field.getXmlName(), obj);
+                if (simpleTypeParsed == false) {
+                    processComplexValue(elem, field.getField(), field.getXmlName(), obj);
+                }
+
             }
         }
     }
@@ -94,8 +127,8 @@ public class ParserImpl implements Parser {
      * @param obj   Object which field will be set
      * @throws IllegalAccessException
      */
-    protected <T> boolean processSimpleValue(ElementUnmarshaler elem, Field field, T obj) throws IllegalAccessException {
-        String annotationName = field.getAnnotation(XmlElement.class).name();
+    protected <T> boolean processSimpleValue(ElementUnmarshaler elem, Field field, String annotationName, T obj) throws IllegalAccessException {
+
         String value = elem.getValue(annotationName);
 
         return processAtributeValue(value, field, obj);
@@ -134,16 +167,15 @@ public class ParserImpl implements Parser {
         return false;
     }
 
-    protected <T> void processComplexValue(ElementUnmarshaler elem, Field field, T obj) throws IllegalAccessException,
+    protected <T> void processComplexValue(ElementUnmarshaler elem, Field field, String annotName, T obj) throws IllegalAccessException,
             InstantiationException, InvocationTargetException {
         field.setAccessible(true);
         Class<?> valueType = field.getType();
-        String annotName = field.getAnnotation(XmlElement.class).name();
 
         //TODO change to Collection.class
         if (valueType == List.class) {
             List<ElementUnmarshaler> children = elem.getChildren(annotName);
-            List objects = new ArrayList();
+            List objects = new ArrayList(children.size());
             field.set(obj, objects);
 
             Type genericType = field.getGenericType();
@@ -155,7 +187,7 @@ public class ParserImpl implements Parser {
                 for (int i = 0; i < children.size(); i++) {
                     item = tClass.newInstance();
                     objects.add(item);
-                    processObject(item, children.get(i));
+                    processObject(item, tClass, children.get(i));
                 }
             }
 
@@ -178,7 +210,7 @@ public class ParserImpl implements Parser {
             Class<?> type = field.getType();
             Object childObj = type.newInstance();
             field.set(obj, childObj);
-            processObject(childObj, child);
+            processObject(childObj, type, child);
         }
     }
 
