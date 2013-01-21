@@ -17,7 +17,6 @@ public class ClassChacheManager {
     public ClassChacheManager() {
         attributesChache = new HashMap<Class<?>, List<ChacheField>>();
         elementsChache = new HashMap<Class<?>, List<ChacheField>>();
-
     }
 
     /**

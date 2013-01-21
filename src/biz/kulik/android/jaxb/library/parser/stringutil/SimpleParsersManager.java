@@ -1,5 +1,6 @@
 package biz.kulik.android.jaxb.library.parser.stringutil;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 /**
@@ -19,6 +20,7 @@ public class SimpleParsersManager {
         mSimpleTypeParserList.put(Float.class, new FloatParser());
         mSimpleTypeParserList.put(Boolean.class, new BooleanParser());
         mSimpleTypeParserList.put(Long.class, new LongParser());
+        mSimpleTypeParserList.put(BigDecimal.class, new BigDecimalParser());
     }
 
     public SimpleTypeParser getParser(Class<?> clazz) {
