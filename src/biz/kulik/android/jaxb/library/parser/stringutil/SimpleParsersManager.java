@@ -13,7 +13,7 @@ public class SimpleParsersManager {
     private HashMap<Class<?>, SimpleTypeParser> mSimpleTypeParserList;
 
     public SimpleParsersManager() {
-        mSimpleTypeParserList = new HashMap<Class<?>, SimpleTypeParser>(5);
+        mSimpleTypeParserList = new HashMap<Class<?>, SimpleTypeParser>(6);
 
         mSimpleTypeParserList.put(Integer.class, new IntegerParser());
         mSimpleTypeParserList.put(Double.class, new DoubleParser());
