@@ -25,9 +25,6 @@ public class SimpleParsersManager {
 
     public SimpleTypeParser getParser(Class<?> clazz) {
         SimpleTypeParser parser = mSimpleTypeParserList.get(clazz);
-        if (parser == null) {
-            throw new UnsupportedOperationException("Parser Not implemented yet " + clazz.getSimpleName());
-        }
         return parser;
     }
 }

@@ -8,6 +8,7 @@ import biz.kulik.android.jaxb.library.parser.chache.ClassChacheManager;
 import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler;
 import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory;
 import biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager;
+import biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser;
 
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -149,24 +150,13 @@ public class ParserImpl implements Parser {
         if (String.class.equals(valueType)) {
             field.set(obj, value);
             return true;
-        } else if (Integer.class.equals(valueType)) {
-            field.set(obj, mSimpleParsersManager.getParser(Integer.class).valueOf(value));
-            return true;
-        } else if (Long.class.equals(valueType)) {
-            field.set(obj, mSimpleParsersManager.getParser(Long.class).valueOf(value));
-            return true;
-        } else if (Float.class.equals(valueType)) {
-            field.set(obj, mSimpleParsersManager.getParser(Float.class).valueOf(value));
-            return true;
-        } else if (Double.class.equals(valueType)) {
-            field.set(obj, mSimpleParsersManager.getParser(Double.class).valueOf(value));
-            return true;
-        } else if (Boolean.class.equals(valueType)) {
-            field.set(obj, mSimpleParsersManager.getParser(Boolean.class).valueOf(value));
-            return true;
-        } else if (BigDecimal.class.equals(valueType)) {
-            field.set(obj, mSimpleParsersManager.getParser(BigDecimal.class).valueOf(value));
-            return true;
+        } else {
+            SimpleTypeParser simpleTypeParser = mSimpleParsersManager.getParser(valueType);
+            //TODO  make it as Static Factory   ^^^^^^^^^^^^^^^^^^^^^
+            if (simpleTypeParser != null) {
+                field.set(obj, simpleTypeParser.valueOf(value));
+                return true;
+            }
         }
         return false;
     }
