@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -162,6 +163,9 @@ public class ParserImpl implements Parser {
             return true;
         } else if (Boolean.class.equals(valueType)) {
             field.set(obj, mSimpleParsersManager.getParser(Boolean.class).valueOf(value));
+            return true;
+        } else if (BigDecimal.class.equals(valueType)) {
+            field.set(obj, mSimpleParsersManager.getParser(BigDecimal.class).valueOf(value));
             return true;
         }
         return false;
