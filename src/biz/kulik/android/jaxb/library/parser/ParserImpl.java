@@ -3,19 +3,17 @@ package biz.kulik.android.jaxb.library.parser;
 import android.util.Log;
 import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
-import biz.kulik.android.jaxb.library.parser.chache.ChacheField;
-import biz.kulik.android.jaxb.library.parser.chache.ClassChacheManager;
+import biz.kulik.android.jaxb.library.parser.chache.CacheEntity;
+import biz.kulik.android.jaxb.library.parser.chache.ClassCacheManager;
+import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter;
+import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory;
 import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler;
 import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory;
 import biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager;
 import biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser;
 
 import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,28 +29,26 @@ public class ParserImpl implements Parser {
 
     //    private AdaptersManager xmlAdaptersManager;
     private SimpleParsersManager mSimpleParsersManager;
-    private ClassChacheManager mClassChacheManager;
+    private ClassCacheManager mClassCacheManager;
 
     public ParserImpl(UnMarshalerTypes ad) {
         mUnMarshalerType = ad;
 //        xmlAdaptersManager = new AdaptersManager();
         mSimpleParsersManager = new SimpleParsersManager();
-        mClassChacheManager = new ClassChacheManager();
+        mClassCacheManager = new ClassCacheManager();
     }
 
     @Override
     public <T> T parse(Class<T> cls, String data) {
         ElementUnmarshaler rootElement = ElementUnmarshalerFactory.createAdapter(mUnMarshalerType, data);
-        T rootObj = null;
-        rootObj = parse(cls, rootElement);
+        T rootObj = parse(cls, rootElement);
         return rootObj;
     }
 
     @Override
     public <T> T parse(Class<T> cls, InputStream data) {
         ElementUnmarshaler rootElement = ElementUnmarshalerFactory.createAdapter(mUnMarshalerType, data);
-        T rootObj = null;
-        rootObj = parse(cls, rootElement);
+        T rootObj = parse(cls, rootElement);
         return rootObj;
     }
 
@@ -75,49 +71,60 @@ public class ParserImpl implements Parser {
     protected void processObject(Object obj, Class<?> clazz, ElementUnmarshaler elem) throws IllegalArgumentException, IllegalAccessException,
             InvocationTargetException, InstantiationException {
         //Class<?> cl = obj.getClass();
-        List<ChacheField> attributesFields = mClassChacheManager.getChachedAttributesFieldList(clazz);
-        List<ChacheField> elementsFields = mClassChacheManager.getChachedElementsFieldList(clazz);
+        processClassEntities(obj, clazz, elem, MethodFieldFactory.EntityType.FIELDS);
+        processClassEntities(obj, clazz, elem, MethodFieldFactory.EntityType.METHODS);
 
-        Field[] allFields;
-        if (attributesFields == null || elementsFields == null) {
-            allFields = clazz.getDeclaredFields();
-            attributesFields = new ArrayList<ChacheField>(allFields.length % 2);
-            elementsFields = new ArrayList<ChacheField>(allFields.length % 2);
+    }
 
-            for (Field field : allFields) {
-                // Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + field.getAnnotations());
+    private void processClassEntities(Object obj, Class<?> clazz, ElementUnmarshaler elem, MethodFieldFactory.EntityType entityType) throws IllegalArgumentException, IllegalAccessException,
+            InvocationTargetException, InstantiationException {
+        List<CacheEntity> attributesEntity = mClassCacheManager.getChachedAttributesEntityList(clazz, entityType);
+        List<CacheEntity> elementsEntity = mClassCacheManager.getChachedElementsEntityList(clazz, entityType);
+        if (attributesEntity == null || elementsEntity == null) {
+            MethodFieldAdapter[] allEntity;
+            allEntity = MethodFieldFactory.getAllEntytyByType(clazz, entityType);
 
-                if (field.isAnnotationPresent(XmlAttribute.class)) {
-                    String annotationName = field.getAnnotation(XmlAttribute.class).name();
+            attributesEntity = new ArrayList<CacheEntity>(allEntity.length % 3 * 2);
+            elementsEntity = new ArrayList<CacheEntity>(allEntity.length % 3 * 2);
+
+            MethodFieldAdapter methodfield;
+            for (int i = 0, d = allEntity.length; i < d; i++) {
+                methodfield = allEntity[i];
+
+                if (methodfield.isAnnotationPresent(XmlAttribute.class)) {
+                    String annotationName = methodfield.getAnnotation(XmlAttribute.class).name();
                     String xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
-                    processAtributeValue(xmlValue, field, obj);
-                    attributesFields.add(new ChacheField(field, annotationName));
+                    processAtributeValue(xmlValue, methodfield, obj);
+                    attributesEntity.add(new CacheEntity(methodfield, annotationName));
 
-                } else if (field.isAnnotationPresent(XmlElement.class)) {
+                } else if (methodfield.isAnnotationPresent(XmlElement.class)) {
 
-                    String annotationName = field.getAnnotation(XmlElement.class).name();
-                    boolean simpleTypeParsed = processSimpleValue(elem, field, annotationName, obj);
+                    String annotationName = methodfield.getAnnotation(XmlElement.class).name();
+                    boolean simpleTypeParsed = processSimpleValue(elem, methodfield, annotationName, obj);
                     if (simpleTypeParsed == false) {
-                        processComplexValue(elem, field, annotationName, obj);
+                        processComplexValue(elem, methodfield, annotationName, obj);
                     }
-                    elementsFields.add(new ChacheField(field, annotationName));
+                    elementsEntity.add(new CacheEntity(methodfield, annotationName));
                 }
             }
-            mClassChacheManager.pushFieldsToCache(clazz, attributesFields, elementsFields);
+            mClassCacheManager.pushEntityToCache(clazz, attributesEntity, elementsEntity, entityType);
         } else {
-            for (ChacheField chacheField : attributesFields) {
-                // Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + field.getAnnotations());
-                String xmlValue = "";
+            CacheEntity cacheEntity;
+            String xmlValue;
+            String annotationName;
+            for (int i = 0, d = attributesEntity.size(); i < d; i++) {
+                cacheEntity = attributesEntity.get(i);
 
-                String annotationName = chacheField.getXmlName();
+                annotationName = cacheEntity.getXmlName();
                 xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
-                processAtributeValue(xmlValue, chacheField.getField(), obj);
+                processAtributeValue(xmlValue, cacheEntity.getMethodField(), obj);
             }
-            for (ChacheField field : elementsFields) {
-
-                boolean simpleTypeParsed = processSimpleValue(elem, field.getField(), field.getXmlName(), obj);
-                if (simpleTypeParsed == false) {
-                    processComplexValue(elem, field.getField(), field.getXmlName(), obj);
+            boolean simpleTypeParsed;
+            for (int i = 0, d = elementsEntity.size(); i < d; i++) {
+                cacheEntity = elementsEntity.get(i);
+                simpleTypeParsed = processSimpleValue(elem, cacheEntity.getMethodField(), cacheEntity.getXmlName(), obj);
+                if (!simpleTypeParsed) {
+                    processComplexValue(elem, cacheEntity.getMethodField(), cacheEntity.getXmlName(), obj);
                 }
 
             }
@@ -125,43 +132,42 @@ public class ParserImpl implements Parser {
     }
 
     /**
-     * @param field Field of object where to put value
-     * @param obj   Object which field will be set
+     * @param mfAdapter Method or Field adapter of object where to put value
+     * @param obj       Object which field will be set
      * @throws IllegalAccessException
      */
-    protected <T> boolean processSimpleValue(ElementUnmarshaler elem, Field field, String annotationName, T obj) throws IllegalAccessException {
+    protected <T> boolean processSimpleValue(ElementUnmarshaler elem, MethodFieldAdapter mfAdapter, String annotationName, T obj) throws IllegalAccessException, InvocationTargetException {
 
         String value = elem.getValue(annotationName);
 
-        return processAtributeValue(value, field, obj);
+        return processAtributeValue(value, mfAdapter, obj);
     }
 
-
     /**
-     * @param value String value from xml document
-     * @param field Field of object where to put value
-     * @param obj   Object which field will be set
+     * @param value     String value from xml document
+     * @param mfAdapter Method or Field adapter of object where to put value
+     * @param obj       Object which field will be set
      * @throws IllegalAccessException
      */
-    protected <T> boolean processAtributeValue(String value, Field field, T obj) throws IllegalAccessException {
+    protected <T> boolean processAtributeValue(String value, MethodFieldAdapter mfAdapter, T obj) throws IllegalAccessException, InvocationTargetException {
 
-        field.setAccessible(true);
-        Class<?> valueType = field.getType();
+        mfAdapter.setAccessible(true); //TODO add accessorTypeLogic
+        Class<?> valueType = mfAdapter.getType();
         if (String.class.equals(valueType)) {
-            field.set(obj, value);
+            mfAdapter.put(obj, value);
             return true;
         } else {
             SimpleTypeParser simpleTypeParser = mSimpleParsersManager.getParser(valueType);
             //TODO  make it as Static Factory   ^^^^^^^^^^^^^^^^^^^^^
             if (simpleTypeParser != null) {
-                field.set(obj, simpleTypeParser.valueOf(value));
+                mfAdapter.put(obj, simpleTypeParser.valueOf(value));
                 return true;
             }
         }
         return false;
     }
 
-    protected <T> void processComplexValue(ElementUnmarshaler elem, Field field, String annotName, T obj) throws IllegalAccessException,
+    protected <T> void processComplexValue(ElementUnmarshaler elem, MethodFieldAdapter field, String annotName, T obj) throws IllegalAccessException,
             InstantiationException, InvocationTargetException {
         field.setAccessible(true);
         Class<?> valueType = field.getType();
@@ -170,15 +176,15 @@ public class ParserImpl implements Parser {
         if (valueType == List.class) {
             List<ElementUnmarshaler> children = elem.getChildren(annotName);
             List objects = new ArrayList(children.size());
-            field.set(obj, objects);
+            field.put(obj, objects);
 
-            Type genericType = field.getGenericType();
+            Type genericType = field.getGenericParameterTypes();
 //            Class<?> tClass = ReflectionUtils.getGenericParameterClass(List.class, field.getDeclaringClass(), 0);
             Object item = null;
             if (genericType instanceof ParameterizedType) {
                 ParameterizedType paramType = (ParameterizedType) genericType;
                 Class<?> tClass = (Class<T>) paramType.getActualTypeArguments()[0];
-                for (int i = 0; i < children.size(); i++) {
+                for (int i = 0, d = children.size(); i < d; i++) {
                     item = tClass.newInstance();
                     objects.add(item);
                     processObject(item, tClass, children.get(i));
@@ -187,7 +193,7 @@ public class ParserImpl implements Parser {
 
         } else if (valueType.isArray()) {
             //TODO Need to implement
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("Array parsing not implemented yet, use List instaed");
 //            NodeList childNodes = elem.getChildNodes();
 //            Type genericType = field.getGenericType();
 //            ParameterizedType paramType = (ParameterizedType) genericType;
@@ -203,10 +209,9 @@ public class ParserImpl implements Parser {
             ElementUnmarshaler child = elem.getChild(annotName);
             Class<?> type = field.getType();
             Object childObj = type.newInstance();
-            field.set(obj, childObj);
+            field.put(obj, childObj);
             processObject(childObj, type, child);
         }
     }
-
 
 }

@@ -28,8 +28,8 @@ public class TestParser4 extends AndroidTestCase {
 
 
     public void testParse4JSON() {
-        InputStream is = null;
-        InputStreamReader reader = new InputStreamReader(is);
+//        InputStream is = null;
+//        InputStreamReader reader = new InputStreamReader(is);
 
         InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_4_json_big);
 
