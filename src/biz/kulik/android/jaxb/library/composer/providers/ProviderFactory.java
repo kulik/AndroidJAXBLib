@@ -18,11 +18,11 @@ public class ProviderFactory {
 
                  switch (objType) {
                      case ARRAY:
-                         provider = new XMLUnivObject(data);
+//                         provider = new XMLUnivObject(data);
 //                         provider = new JSONArrayProvider();
                          break;
                      case OBJECT:
-                         provider = new XMLUnivObject(data);
+//                         provider = new XMLUnivObject(data);
 //                         provider = new JSONObjectProvider();
                          break;
                  }
