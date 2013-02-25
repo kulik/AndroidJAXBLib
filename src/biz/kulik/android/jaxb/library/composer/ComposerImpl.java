@@ -30,7 +30,7 @@ public class ComposerImpl implements Composer {
     @Override
     public UMO compose(Object data) {
         UMO rootElem = null;
-            rootElem = processObject(data);
+        rootElem = processObject(data);
         return rootElem;
     }
 
@@ -38,23 +38,23 @@ public class ComposerImpl implements Composer {
         UMO myElem = null;
         Class objType = obj.getClass();
         try {
-            //TODO need changed to Collection.class
-            if (objType.isAssignableFrom(List.class)) {
-                List ourList = (List) obj;
-                myElem = ProviderFactory.createProvider(mProviderType, ObjectType.ARRAY); //new UMOArray();
+            if (obj != null) {
+                //TODO need changed to Collection.class
+                if (objType.isAssignableFrom(List.class)) {
+                    List ourList = (List) obj;
+                    myElem = ProviderFactory.createProvider(mProviderType, ObjectType.ARRAY); //new UMOArray();
 
-
-                for (Object itemObj : ourList) {
-                    //TODO check if simple type
-                    ((UMOArray) myElem).put(processObject(itemObj));
+                    for (Object itemObj : ourList) {
+                        //TODO check if simple type
+                        ((UMOArray) myElem).put(processObject(itemObj));
+                    }
+                } else if (objType.isArray()) {
+                    //TODO Need to implement
+                } else {
+                    myElem = ProviderFactory.createProvider(mProviderType, ObjectType.OBJECT); //new UMOObject();
+                    processObjectContent(obj, (UMOObject) myElem);
                 }
-            } else if (objType.isArray()) {
-                //TODO Need to implement
-            } else {
-                myElem = ProviderFactory.createProvider(mProviderType, ObjectType.OBJECT); //new UMOObject();
-                processObjectContent(obj, (UMOObject) myElem);
             }
-
         } catch (InvocationTargetException e) {
             Log.e(TAG, e.getMessage());
         } catch (IllegalAccessException e) {
