@@ -1,0 +1,24 @@
+package com.worker.rest.responses.roster;
+
+import biz.kulik.android.jaxb.library.Annotations.XmlElement;
+
+import java.io.Serializable;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: bender
+ * Date: 16.01.13
+ * Time: 17:53
+ * To change this template use File | Settings | File Templates.
+ */
+public class DistribCollection implements Serializable {
+
+    private static final String TAG = DistribCollection.class.getSimpleName();
+
+    @XmlElement(name = "DISTRIB_ID")
+    private String destributionID;
+
+    public String getDestributionID() {
+        return destributionID;
+    }
+}

@@ -5,8 +5,8 @@ package biz.kulik.android.jaxb.library.composer.providers.abstractProvider;
  * Date: 10/11/12
  * Time: 9:33 PM
  */
-public abstract class UMO {
+public interface UMO {
 
-    public abstract Object getWrappedObject();
+    public Object getWrappedObject();
 
 }

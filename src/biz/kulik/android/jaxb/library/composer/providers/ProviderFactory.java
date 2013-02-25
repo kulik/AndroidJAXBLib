@@ -14,9 +14,19 @@ public class ProviderFactory {
     public static UMO createProvider(ProviderTypes type, ObjectType objType) {
          UMO provider = null;
          switch (type){
-//             case XMLProvider:
-//                 provider = new XMLUnivObject(data);
-//                 break;
+             case XMLProvider:
+
+                 switch (objType) {
+                     case ARRAY:
+                         provider = new XMLUnivObject(data);
+//                         provider = new JSONArrayProvider();
+                         break;
+                     case OBJECT:
+                         provider = new XMLUnivObject(data);
+//                         provider = new JSONObjectProvider();
+                         break;
+                 }
+                 break;
              case JSONProvider:
                  switch (objType) {
                      case ARRAY:

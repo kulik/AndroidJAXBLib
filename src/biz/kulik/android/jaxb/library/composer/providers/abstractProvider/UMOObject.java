@@ -5,32 +5,32 @@ package biz.kulik.android.jaxb.library.composer.providers.abstractProvider;
  * Date: 10/11/12
  * Time: 9:42 PM
  */
-public abstract class UMOObject extends UMO {
+public interface UMOObject extends UMO {
 
-    public abstract void put(String key, UMO umo);
+    public void put(String key, UMO umo);
 
-    public abstract void putAnnotationStr(String annotationName, String value);
+    public void putAnnotationStr(String annotationName, String value);
 
-    public abstract void putAnnotationInt(String annotationName, Integer value);
+    public void putAnnotationInt(String annotationName, Integer value);
 
-    public abstract void putAnnotationLong(String annotationName, Long value);
+    public void putAnnotationLong(String annotationName, Long value);
 
-    public abstract void putAnnotationFloat(String annotationName, Float value);
+    public void putAnnotationFloat(String annotationName, Float value);
 
-    public abstract void putAnnotationDouble(String annotationName, Double value);
+    public void putAnnotationDouble(String annotationName, Double value);
 
-    public abstract void putAnnotationBoolean(String annotationName, Boolean value);
+    public void putAnnotationBoolean(String annotationName, Boolean value);
 
 
-    public abstract void putValueStr(String valueName, String value);
+    public void putValueStr(String valueName, String value);
 
-    public abstract void putValueInt(String valueName, Integer value);
+    public void putValueInt(String valueName, Integer value);
 
-    public abstract void putValueLong(String valueName, Long value);
+    public void putValueLong(String valueName, Long value);
 
-    public abstract void putValueFloat(String valueName, Float value);
+    public void putValueFloat(String valueName, Float value);
 
-    public abstract void putValueDouble(String valueName, Double value);
+    public void putValueDouble(String valueName, Double value);
 
-    public abstract void putValueBoolean(String valueName, Boolean value);
+    public void putValueBoolean(String valueName, Boolean value);
 }

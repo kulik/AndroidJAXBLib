@@ -12,7 +12,7 @@ import org.json.JSONObject;
  * Date: 10/15/12
  * Time: 8:37 PM
  */
-public class JSONObjectProvider extends UMOObject {
+public class JSONObjectProvider implements UMOObject {
     private static final String TAG = JSONObjectProvider.class.getSimpleName();
 
     private JSONObject mJSONObject = new JSONObject();
