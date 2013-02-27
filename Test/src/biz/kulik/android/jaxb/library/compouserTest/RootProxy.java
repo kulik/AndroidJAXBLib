@@ -2,6 +2,7 @@ package biz.kulik.android.jaxb.library.compouserTest;
 
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,4 +25,12 @@ public class RootProxy {
     @XmlElement(name="TestIntegerValue")
     Integer mTestIntegerVal = Integer.valueOf(12212);
 
+    @XmlElement(name="TestNull")
+    String mTestNull = null;
+
+    @XmlElement(name="TestNullList")
+    List<TestListItem> mNullList = null;
+
+    @XmlElement(name="TestNullObj")
+    Object mNullObj = null;
 }

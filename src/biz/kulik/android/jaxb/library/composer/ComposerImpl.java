@@ -3,7 +3,6 @@ package biz.kulik.android.jaxb.library.composer;
 import android.util.Log;
 import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
-import biz.kulik.android.jaxb.library.composer.providers.ObjectType;
 import biz.kulik.android.jaxb.library.composer.providers.ProviderFactory;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray;
@@ -21,10 +20,10 @@ import java.util.List;
  */
 public class ComposerImpl implements Composer {
     private static final String TAG = ComposerImpl.class.getSimpleName();
-    private ProviderTypes mProviderType;
+    private ProviderFactory mFactory;
 
     public ComposerImpl(ProviderTypes ad) {
-        mProviderType = ad;
+        mFactory = new ProviderFactory(ad);
     }
 
     @Override
@@ -42,16 +41,17 @@ public class ComposerImpl implements Composer {
                 //TODO need changed to Collection.class
                 if (objType.isAssignableFrom(List.class)) {
                     List ourList = (List) obj;
-                    myElem = ProviderFactory.createProvider(mProviderType, ObjectType.ARRAY); //new UMOArray();
+                    myElem = mFactory.createProvider(UMOArray.class);
 
-                    for (Object itemObj : ourList) {
+                    for (int i = 0, d = ourList.size(); i < d; i++) {
+
                         //TODO check if simple type
-                        ((UMOArray) myElem).put(processObject(itemObj));
+                        ((UMOArray) myElem).put(processObject(ourList.get(i)));
                     }
                 } else if (objType.isArray()) {
                     //TODO Need to implement
                 } else {
-                    myElem = ProviderFactory.createProvider(mProviderType, ObjectType.OBJECT); //new UMOObject();
+                    myElem = mFactory.createProvider(UMOObject.class);
                     processObjectContent(obj, (UMOObject) myElem);
                 }
             }
@@ -129,14 +129,16 @@ public class ComposerImpl implements Composer {
             Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + field.getAnnotations());
             field.setAccessible(true);
             Object value = field.get(obj);
-            if (field.isAnnotationPresent(XmlAttribute.class)) {
-                String annotationName = field.getAnnotation(XmlAttribute.class).name();
-                processAtributeValue(value, annotationName, sobj);
-            } else if (field.isAnnotationPresent(XmlElement.class)) {
-                String valueName = field.getAnnotation(XmlElement.class).name();
-                boolean simpleTypeParsed = processSimpleValue(value, valueName, sobj);
-                if (simpleTypeParsed == false) {
-                    processComplexValue(value, valueName, sobj);
+            if (value != null) {
+                if (field.isAnnotationPresent(XmlAttribute.class)) {
+                    String annotationName = field.getAnnotation(XmlAttribute.class).name();
+                    processAtributeValue(value, annotationName, sobj);
+                } else if (field.isAnnotationPresent(XmlElement.class)) {
+                    String valueName = field.getAnnotation(XmlElement.class).name();
+                    boolean simpleTypeParsed = processSimpleValue(value, valueName, sobj);
+                    if (simpleTypeParsed == false) {
+                        processComplexValue(value, valueName, sobj);
+                    }
                 }
             }
         }
@@ -148,7 +150,7 @@ public class ComposerImpl implements Composer {
         Class objType = obj.getClass();
 
         if (List.class.isInstance(obj)) {
-            UMOArray list = (UMOArray) ProviderFactory.createProvider(mProviderType, ObjectType.ARRAY);
+            UMOArray list = mFactory.createProvider(UMOArray.class);
             sobj.put(valueName, list);
             List ourList = (List) obj;
 

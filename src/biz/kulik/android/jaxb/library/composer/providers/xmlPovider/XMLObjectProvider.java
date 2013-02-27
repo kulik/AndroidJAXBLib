@@ -3,7 +3,9 @@ package biz.kulik.android.jaxb.library.composer.providers.xmlPovider;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * User: kulik
@@ -12,75 +14,94 @@ import org.w3c.dom.Element;
  */
 public class XMLObjectProvider implements UMOObject {
 
+    Document mDocument;
+
     private Element mElement;
+
+    public XMLObjectProvider(Document document, String rootElement) {
+        mDocument = document;
+        mElement = document.createElement(rootElement);
+    }
 
     @Override
     public Object getWrappedObject() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return mElement;
     }
 
     @Override
     public void put(String key, UMO umo) {
-
+        mElement.appendChild((Element) umo.getWrappedObject());
     }
 
     @Override
     public void putAnnotationStr(String annotationName, String value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        mElement.setAttribute(annotationName,value);
     }
 
     @Override
     public void putAnnotationInt(String annotationName, Integer value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        putAnnotationStr(annotationName, String.valueOf(value));
     }
 
     @Override
     public void putAnnotationLong(String annotationName, Long value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        putAnnotationStr(annotationName, String.valueOf(value));
     }
 
     @Override
     public void putAnnotationFloat(String annotationName, Float value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        putAnnotationStr(annotationName, String.valueOf(value));
     }
 
     @Override
     public void putAnnotationDouble(String annotationName, Double value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        putAnnotationStr(annotationName, String.valueOf(value));
     }
 
     @Override
     public void putAnnotationBoolean(String annotationName, Boolean value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        putAnnotationStr(annotationName, String.valueOf(value));
     }
 
     @Override
     public void putValueStr(String valueName, String value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Element elem = mDocument.createElement(valueName);
+        elem.appendChild(mDocument.createTextNode(value));
+        mElement.appendChild(elem);
     }
 
     @Override
     public void putValueInt(String valueName, Integer value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Element elem = mDocument.createElement(valueName);
+        elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
+        mElement.appendChild(elem);
     }
 
     @Override
     public void putValueLong(String valueName, Long value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Element elem = mDocument.createElement(valueName);
+        elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
+        mElement.appendChild(elem);
     }
 
     @Override
     public void putValueFloat(String valueName, Float value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Element elem = mDocument.createElement(valueName);
+        elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
+        mElement.appendChild(elem);
     }
 
     @Override
     public void putValueDouble(String valueName, Double value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Element elem = mDocument.createElement(valueName);
+        elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
+        mElement.appendChild(elem);
     }
 
     @Override
     public void putValueBoolean(String valueName, Boolean value) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Element elem = mDocument.createElement(valueName);
+        elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
+        mElement.appendChild(elem);
     }
 }

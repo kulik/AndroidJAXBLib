@@ -1,6 +1,7 @@
 package biz.kulik.android.jaxb.library.compouserTest;
 
 import android.test.AndroidTestCase;
+import android.util.Log;
 import biz.kulik.android.jaxb.library.composer.Composer;
 import biz.kulik.android.jaxb.library.composer.ComposerImpl;
 import biz.kulik.android.jaxb.library.composer.providers.ProviderTypes;
@@ -30,10 +31,18 @@ public class TestCompouser extends AndroidTestCase {
         Composer composer = new ComposerImpl(ProviderTypes.JSONProvider);
 
         UMO umo = (UMO) composer.compose(rootObject);
-
+        Log.v(TAG, umo.getWrappedObject().toString());
         assertTrue(true);
 
     }
 
+    public void testCompouseXML() {
+        RootProxy rootObject = new RootProxy();
+        Composer composer = new ComposerImpl(ProviderTypes.XMLProvider);
 
+        UMO umo = (UMO) composer.compose(rootObject);
+
+        Log.v(TAG, umo.getWrappedObject().toString());
+        assertTrue(true);
+    }
 }
