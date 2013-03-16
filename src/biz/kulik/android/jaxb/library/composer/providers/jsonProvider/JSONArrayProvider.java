@@ -22,4 +22,9 @@ public class JSONArrayProvider implements UMOArray {
     public Object getWrappedObject() {
         return mJsonArray;
     }
+
+    @Override
+    public Object getRootDocument() {
+        return mJsonArray;
+    }
 }

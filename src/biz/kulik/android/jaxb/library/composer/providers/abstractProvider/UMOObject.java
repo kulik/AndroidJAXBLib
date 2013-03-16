@@ -6,20 +6,21 @@ package biz.kulik.android.jaxb.library.composer.providers.abstractProvider;
  * Time: 9:42 PM
  */
 public interface UMOObject extends UMO {
-
+    //TODO add primitive appenders
+    //TODO add checking for null
     public void put(String key, UMO umo);
 
-    public void putAnnotationStr(String annotationName, String value);
+    public void putAttributeStr(String annotationName, String value);
 
-    public void putAnnotationInt(String annotationName, Integer value);
+    public void putAttributeInt(String annotationName, Integer value);
 
-    public void putAnnotationLong(String annotationName, Long value);
+    public void putAttributeLong(String annotationName, Long value);
 
-    public void putAnnotationFloat(String annotationName, Float value);
+    public void putAttributeFloat(String annotationName, Float value);
 
-    public void putAnnotationDouble(String annotationName, Double value);
+    public void putAttributeDouble(String annotationName, Double value);
 
-    public void putAnnotationBoolean(String annotationName, Boolean value);
+    public void putAttributeBoolean(String annotationName, Boolean value);
 
 
     public void putValueStr(String valueName, String value);

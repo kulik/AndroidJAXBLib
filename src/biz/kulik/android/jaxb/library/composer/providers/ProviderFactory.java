@@ -7,6 +7,7 @@ import biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONObject
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import biz.kulik.android.jaxb.library.composer.providers.xmlPovider.XMLObjectProvider;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,6 +21,7 @@ import javax.xml.parsers.ParserConfigurationException;
 public class ProviderFactory {
 
     Document mDocument;
+    boolean isRootXml = true;
     private ProviderTypes mType;
 
     public ProviderFactory(ProviderTypes ad) {
@@ -37,11 +39,15 @@ public class ProviderFactory {
         }
     }
 
-    public <T> T createProvider(Class<T> objClass) {
+    public <T> T createProvider(Class<T> objClass, String root) {
         T provider = null;
         switch (mType) {
             case XMLProvider:
-                provider = (T) new XMLObjectProvider(mDocument, "root");
+                provider = (T) new XMLObjectProvider(mDocument, root);
+                if (isRootXml) {
+                    mDocument.appendChild((Node) ((XMLObjectProvider)provider).getWrappedObject());
+                    isRootXml = false;
+                }
 
                 break;
             case JSONProvider:

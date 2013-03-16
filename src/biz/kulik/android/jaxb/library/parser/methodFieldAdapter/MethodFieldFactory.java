@@ -4,11 +4,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * Created with IntelliJ IDEA.
  * User: kulik
  * Date: 2/17/13
  * Time: 4:27 PM
- * To change this template use File | Settings | File Templates.
  */
 public class MethodFieldFactory {
 

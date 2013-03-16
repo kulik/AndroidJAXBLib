@@ -5,14 +5,13 @@ import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArr
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * User: kulik
  * Date: 2/19/13
  * Time: 5:06 PM
  */
-public class XMLObjectProvider implements UMOObject {
+public class XMLObjectProvider implements UMOObject, UMOArray {
 
     Document mDocument;
 
@@ -29,38 +28,43 @@ public class XMLObjectProvider implements UMOObject {
     }
 
     @Override
+    public Object getRootDocument() {
+        return mDocument;
+    }
+
+    @Override
     public void put(String key, UMO umo) {
         mElement.appendChild((Element) umo.getWrappedObject());
     }
 
     @Override
-    public void putAnnotationStr(String annotationName, String value) {
+    public void putAttributeStr(String annotationName, String value) {
         mElement.setAttribute(annotationName,value);
     }
 
     @Override
-    public void putAnnotationInt(String annotationName, Integer value) {
-        putAnnotationStr(annotationName, String.valueOf(value));
+    public void putAttributeInt(String annotationName, Integer value) {
+        putAttributeStr(annotationName, String.valueOf(value));
     }
 
     @Override
-    public void putAnnotationLong(String annotationName, Long value) {
-        putAnnotationStr(annotationName, String.valueOf(value));
+    public void putAttributeLong(String annotationName, Long value) {
+        putAttributeStr(annotationName, String.valueOf(value));
     }
 
     @Override
-    public void putAnnotationFloat(String annotationName, Float value) {
-        putAnnotationStr(annotationName, String.valueOf(value));
+    public void putAttributeFloat(String annotationName, Float value) {
+        putAttributeStr(annotationName, String.valueOf(value));
     }
 
     @Override
-    public void putAnnotationDouble(String annotationName, Double value) {
-        putAnnotationStr(annotationName, String.valueOf(value));
+    public void putAttributeDouble(String annotationName, Double value) {
+        putAttributeStr(annotationName, String.valueOf(value));
     }
 
     @Override
-    public void putAnnotationBoolean(String annotationName, Boolean value) {
-        putAnnotationStr(annotationName, String.valueOf(value));
+    public void putAttributeBoolean(String annotationName, Boolean value) {
+        putAttributeStr(annotationName, String.valueOf(value));
     }
 
     @Override
@@ -103,5 +107,10 @@ public class XMLObjectProvider implements UMOObject {
         Element elem = mDocument.createElement(valueName);
         elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
         mElement.appendChild(elem);
+    }
+
+    @Override
+    public void put(UMO value) {
+        mElement.appendChild((Element) value.getWrappedObject());
     }
 }

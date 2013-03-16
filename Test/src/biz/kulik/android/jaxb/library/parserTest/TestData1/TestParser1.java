@@ -50,36 +50,35 @@ public class TestParser1 extends AndroidTestCase {
 
     private void assertTestDate1(SearchSuggestion se) {
         assertNotNull("", se);
-        assertNotNull("", se.getSection());
-        assertNotNull("", se.getSection().getItem());
-        assertTrue("", se.getSection().getItem().size() == 3);
-        assertNotNull("", se.getSection().getItem().get(0).getImage());
-        assertNotNull("", se.getSection().getItem().get(0).getImage().getSource());
-        assertNotNull("", se.getSection().getItem().get(0).getTitle());
-        assertNotNull("", se.getSection().getItem().get(0).getUrl());
+        assertNotNull("", se.section);
+        assertNotNull("", se.section.item);
+        assertTrue("",    se.section.item.size() == 3);
+        assertNotNull("", se.section.item.get(0).image);
+        assertNotNull("", se.section.item.get(0).image.source);
+        assertNotNull("", se.section.item.get(0).title);
+        assertNotNull("", se.section.item.get(0).url);
 
-        assertNotNull("", se.getSection().getItem().get(1).getImage());
-        assertNotNull("", se.getSection().getItem().get(1).getImage().getSource());
-        assertNotNull("", se.getSection().getItem().get(1).getTitle());
-        assertNotNull("", se.getSection().getItem().get(1).getUrl());
+        assertNotNull("", se.section.item.get(1).image);
+        assertNotNull("", se.section.item.get(1).image.source);
+        assertNotNull("", se.section.item.get(1).title);
+        assertNotNull("", se.section.item.get(1).url);
 
-        assertNotNull("", se.getSection().getItem().get(2).getImage());
-        assertNotNull("", se.getSection().getItem().get(2).getImage().getSource());
-        assertNotNull("", se.getSection().getItem().get(2).getTitle());
-        assertNotNull("", se.getSection().getItem().get(2).getUrl());
+        assertNotNull("", se.section.item.get(2).image);
+        assertNotNull("", se.section.item.get(2).image.source);
+        assertNotNull("", se.section.item.get(2).title);
+        assertNotNull("", se.section.item.get(2).url);
 
+        assertEquals("", se.section.item.get(0).url, "http://en.wikipedia.org/wiki/Sun");
+        assertEquals("", se.section.item.get(0).title, "Sun1");
+        assertEquals("", se.section.item.get(0).image.source, "http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_August_1%2C_2010.jpg");
 
-        assertEquals("", se.getSection().getItem().get(0).getUrl(), "http://en.wikipedia.org/wiki/Sun");
-        assertEquals("", se.getSection().getItem().get(0).getTitle(), "Sun1");
-        assertEquals("", se.getSection().getItem().get(0).getImage().getSource(), "http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_August_1%2C_2010.jpg");
+        assertEquals("", se.section.item.get(1).url, "http://en.wikipedia.org/wiki/Sun1111");
+        assertEquals("", se.section.item.get(1).title, "Sun2");
+        assertEquals("", se.section.item.get(1).image.source, "http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_1%2C_2010.jpg");
 
-        assertEquals("", se.getSection().getItem().get(1).getUrl(), "http://en.wikipedia.org/wiki/Sun1111");
-        assertEquals("", se.getSection().getItem().get(1).getTitle(), "Sun2");
-        assertEquals("", se.getSection().getItem().get(1).getImage().getSource(), "http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_1%2C_2010.jpg");
-
-        assertEquals("", se.getSection().getItem().get(2).getUrl(), "http://en.wikipedia.org/wiki/Sun2222");
-        assertEquals("", se.getSection().getItem().get(2).getTitle(), "Sun3");
-        assertEquals("", se.getSection().getItem().get(2).getImage().getSource(), "http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/August_1%2C_2010.jpg");
+        assertEquals("", se.section.item.get(2).url, "http://en.wikipedia.org/wiki/Sun2222");
+        assertEquals("", se.section.item.get(2).title, "Sun3");
+        assertEquals("", se.section.item.get(2).image.source, "http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/August_1%2C_2010.jpg");
     }
 
 }

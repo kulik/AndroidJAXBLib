@@ -9,4 +9,6 @@ public interface UMO {
 
     public Object getWrappedObject();
 
+    public Object getRootDocument();
+
 }

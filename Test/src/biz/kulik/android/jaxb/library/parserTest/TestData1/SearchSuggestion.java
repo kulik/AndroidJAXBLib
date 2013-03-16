@@ -11,65 +11,28 @@ import java.util.List;
  * Time: 6:58 PM
  */
 public class SearchSuggestion {
-    private static final String TAG = SearchSuggestion.class.getSimpleName();
 
     @XmlElement(name="Section")
-    private Section section;
-
-    public Section getSection() {
-        return section;
-    }
-
-    public void setSection(Section section) {
-        this.section = section;
-    }
+    public Section section;
 
     public static class Section {
-        private static final String TAG = Section.class.getSimpleName();
         @XmlElement(name="Item")
-        private List<Item> item;
-
-        public List<Item> getItem() {
-            return item;
-        }
-
+        public List<Item> item;
 
         public static class Item {
 
-            private static final String TAG = Item.class.getSimpleName();
-
             @XmlElement(name = "Text")
-            private String title;
+            public String title;
             @XmlElement(name = "Image")
-            private Image image;
+            public Image image;
             @XmlElement(name = "Url")
-            private String url;
-
-            public String getTitle() {
-                return title;
-            }
-
-            public Image getImage() {
-                return image;
-            }
-
-            public String getUrl() {
-                return url;
-            }
+            public String url;
 
             public static class Image {
 
                 @XmlAttribute(name="source")
-                private String source = "";
-
-
-                public String getSource() {
-                    return source;
-                }
+                public String source = "";
             }
-
         }
-
     }
-
 }
