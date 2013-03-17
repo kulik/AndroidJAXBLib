@@ -37,7 +37,7 @@ public class TestParser4 extends AndroidTestCase {
 
         RootBusStop lbs;
 //        lbs = parser.parse(RootBusStop.class, inputStream);
-        n
+
 //        assertTestDate4(lbs);
         assertTrue(true);
     }
