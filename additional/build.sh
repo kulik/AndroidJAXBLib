@@ -45,15 +45,12 @@ echo "CVS_BRANCH:"$CVS_BRANCH
 #For CVS-based projects, this variable contains the branch of the module. If CVS is configured to check out the trunk, this environment variable will not be set.
 echo " ########################### PRE SCRIPT ##############################" 
 echo "                        * * * * * $1 $2 $3 $4 * * * * *" 
-name=$1_$2_RC32.apk
-self="${0#./}"
-base="${self%/*}"
-sources=$WORKSPACE/Merchant
 
-echo $base
 cd $WORKSPACE
 cp $HUDSON_SETTINGS/local.properties Test
 cp $HUDSON_SETTINGS/local.properties .
+
+cd Test
 
 echo " ########################### BUILD SCRIPT ##############################" 
 echo "uninstall biz.kulik.android.jaxb.library"	
