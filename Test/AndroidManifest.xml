@@ -12,8 +12,8 @@
     </application>
     <!--
     This declares that this application uses the instrumentation test runner targeting
-    the package of ua.kharkov.borovyk.wiki_search.  To run the tests use the command:
-    "adb shell am instrument -w ua.kharkov.borovyk.wiki_search.tests/android.test.InstrumentationTestRunner"
+    the package of biz.kulik.android.jaxb.library.  To run the tests use the command:
+    "adb shell am instrument -w biz.kulik.android.jaxb.library/android.test.InstrumentationTestRunner"
     -->
     <instrumentation android:name="android.test.InstrumentationTestRunner"
                      android:targetPackage="biz.kulik.android.jaxb.library"
