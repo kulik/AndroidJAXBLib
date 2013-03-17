@@ -64,7 +64,7 @@ ant emma debug install
 echo "***START LOG"
 adb logcat -v time> ./report/log_unit.log &
 
-ant test
+ant emma test
 	
 echo "***sleep process"
 sleep 10
