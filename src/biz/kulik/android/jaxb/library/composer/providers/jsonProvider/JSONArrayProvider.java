@@ -9,7 +9,7 @@ import org.json.JSONArray;
  * Date: 10/15/12
  * Time: 8:36 PM
  */
-public class JSONArrayProvider extends UMOArray {
+public class JSONArrayProvider implements UMOArray {
 
     private JSONArray mJsonArray = new JSONArray();
 
@@ -20,6 +20,11 @@ public class JSONArrayProvider extends UMOArray {
 
     @Override
     public Object getWrappedObject() {
+        return mJsonArray;
+    }
+
+    @Override
+    public Object getRootDocument() {
         return mJsonArray;
     }
 }

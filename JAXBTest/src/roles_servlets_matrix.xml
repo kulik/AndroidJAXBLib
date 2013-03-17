@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rolesMatrix>
+<!-- 
+     +=============================================================================+
+     !                                                                             !
+     !  ATTENTION !!!                                                              !
+     !  IN <url-pattern> definition used classic java regular expressions syntax!  !
+     !                                                                             !
+     !  In this file has described user's roles.                                   !
+     !  For appropriate User's role we enumerate URL patterns                      !
+     !  permitted for this User. Other URLs will be restricted.                    !
+     !                                                                             !
+     +=============================================================================+		
+ -->
+
+
+	<rolesList>
+		<role role_id="1" role_description="UNREGISTERED USER ROLE">
+			<url-pattern>/rest/search/all</url-pattern>
+			<url-pattern>/rest/search/favorites.*</url-pattern>
+            <url-pattern>/rest/property/details/.*</url-pattern>
+            <url-pattern>/rest/facebook/fblogin/.*</url-pattern>
+		</role>
+		<role role_id="2" role_description="REGISTERED USER ROLE">
+			<url-pattern>/rest/search/all</url-pattern>
+			<url-pattern>/rest/search/favorites</url-pattern>
+			<url-pattern>/rest/search/new</url-pattern>
+			<url-pattern>/rest/property/rate/.*</url-pattern>
+			<url-pattern>/rest/property/favorite/.*</url-pattern>
+			<url-pattern>/rest/property/unfavorite/.*</url-pattern>
+			<url-pattern>/rest/comments/.*</url-pattern>
+			<url-pattern>/rest/user/logoff</url-pattern>
+			<url-pattern>/rest/user/clearprofile</url-pattern>
+			<url-pattern>/rest/user/clearfavorites</url-pattern>
+			<url-pattern>/rest/user/addfriend</url-pattern>
+			<url-pattern>/rest/user/clearfriends</url-pattern>
+			<url-pattern>/rest/user/favorite/.*</url-pattern>
+			<url-pattern>/rest/user/avatar</url-pattern>
+            <url-pattern>/rest/property/details/.*</url-pattern>
+            <url-pattern>/rest/user/profile</url-pattern>
+            <url-pattern>/rest/facebook/fblogin/.*</url-pattern>
+            <url-pattern>/rest/social/.*</url-pattern>
+		</role>
+    </rolesList>
+
+</rolesMatrix>
+

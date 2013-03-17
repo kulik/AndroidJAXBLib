@@ -1,10 +1,9 @@
-package biz.kulik.android.jaxb.library.compouserTest;
+package com.kulik.compouserTest;
 
-import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
-import biz.kulik.android.jaxb.library.Annotations.XmlElement;
-import biz.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
-import biz.kulik.android.jaxb.library.Annotations.XmlRootElement;
-
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
  * Date: 10/16/12
  * Time: 1:40 PM
  */
-@XmlRootElement(name = "RootMe")
+@XmlRootElement
 public class RootProxy {
 
     @XmlElement(name = "B")
@@ -23,9 +22,9 @@ public class RootProxy {
     @XmlElement(name = "A")
     AProxy ma = new AProxy();
 
-        @XmlElement(name = "TestList1")
-        @XmlElementWrapper(name = "bookList")
-        List<TestListItem> mlist1 = new ArrayList<TestListItem>(Arrays.asList(new TestListItem[]{new TestListItem(1224), new TestListItem(1234)}));
+    @XmlElement(name = "TestList1")
+    @XmlElementWrapper(name = "bookList")
+    List<TestListItem> mlist1 = new ArrayList<TestListItem>(Arrays.asList(new TestListItem[]{new TestListItem(1224), new TestListItem(1234)}));
 
     @XmlElement(name = "TestList")
     List<TestListItem> mlist = new ArrayList<TestListItem>(Arrays.asList(new TestListItem[]{new TestListItem(122), new TestListItem(123)}));
@@ -42,11 +41,11 @@ public class RootProxy {
     @XmlElement(name = "TestNullObj")
     Object mNullObj = null;
 
-//        @XmlElement(name = "TestNullNillableObj", nillable = true)
-//        Object mNullObjnilable = null;
-//
-//        @XmlElement(name = "TestNullObj1", defaultValue = "14", required = true)
-//        Integer mNullObj1 = null;
+    @XmlElement(name = "TestNullNillableObj", nillable = true)
+    Object mNullObjnilable = null;
+
+    @XmlElement(name = "TestNullObj1", defaultValue = "14", required = true)
+    Integer mNullObj1 = null;
 
     @XmlAttribute(name = "classicType")
     int classicType = 10;

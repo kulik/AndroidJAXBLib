@@ -26,7 +26,6 @@ public @interface XmlJavaTypeAdapter {
 
     Class type() default DEFAULT.class;
 
-
     static final class DEFAULT {
     }
 }

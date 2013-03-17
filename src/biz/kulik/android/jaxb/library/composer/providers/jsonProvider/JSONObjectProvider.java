@@ -12,7 +12,7 @@ import org.json.JSONObject;
  * Date: 10/15/12
  * Time: 8:37 PM
  */
-public class JSONObjectProvider extends UMOObject {
+public class JSONObjectProvider implements UMOObject {
     private static final String TAG = JSONObjectProvider.class.getSimpleName();
 
     private JSONObject mJSONObject = new JSONObject();
@@ -27,7 +27,7 @@ public class JSONObjectProvider extends UMOObject {
     }
 
     @Override
-    public void putAnnotationStr(String annotationName, String value) {
+    public void putAttributeStr(String annotationName, String value) {
         try {
             mJSONObject.put(annotationName, value);
         } catch (JSONException e) {
@@ -36,7 +36,7 @@ public class JSONObjectProvider extends UMOObject {
     }
 
     @Override
-    public void putAnnotationInt(String annotationName, Integer value) {
+    public void putAttributeInt(String annotationName, Integer value) {
         try {
             mJSONObject.put(annotationName, value.intValue());
         } catch (JSONException e) {
@@ -45,7 +45,7 @@ public class JSONObjectProvider extends UMOObject {
     }
 
     @Override
-    public void putAnnotationLong(String annotationName, Long value) {
+    public void putAttributeLong(String annotationName, Long value) {
         try {
             mJSONObject.put(annotationName, value.longValue());
         } catch (JSONException e) {
@@ -54,7 +54,7 @@ public class JSONObjectProvider extends UMOObject {
     }
 
     @Override
-    public void putAnnotationFloat(String annotationName, Float value) {
+    public void putAttributeFloat(String annotationName, Float value) {
         try {
             mJSONObject.put(annotationName, value.floatValue());
         } catch (JSONException e) {
@@ -63,7 +63,7 @@ public class JSONObjectProvider extends UMOObject {
     }
 
     @Override
-    public void putAnnotationDouble(String annotationName, Double value) {
+    public void putAttributeDouble(String annotationName, Double value) {
         try {
             mJSONObject.put(annotationName, value.doubleValue());
         } catch (JSONException e) {
@@ -72,7 +72,7 @@ public class JSONObjectProvider extends UMOObject {
     }
 
     @Override
-    public void putAnnotationBoolean(String annotationName, Boolean value) {
+    public void putAttributeBoolean(String annotationName, Boolean value) {
         try {
             mJSONObject.put(annotationName, value.booleanValue());
         } catch (JSONException e) {
@@ -136,6 +136,11 @@ public class JSONObjectProvider extends UMOObject {
 
     @Override
     public Object getWrappedObject() {
+        return mJSONObject;
+    }
+
+    @Override
+    public Object getRootDocument() {
         return mJSONObject;
     }
 }

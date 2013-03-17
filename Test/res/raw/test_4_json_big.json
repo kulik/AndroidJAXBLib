@@ -1,4 +1,4 @@
-[
+{root:[
   {
     "bus_stop_id": "900029106A",
     "id": 1,
@@ -46409,4 +46409,4 @@
     "naptan_common_name": null,
     "naptan_direction": null
   }
-]
+]}
