@@ -57,7 +57,7 @@ cp $HUDSON_SETTINGS/local.properties .
 
 echo " ########################### BUILD SCRIPT ##############################" 
 echo "uninstall biz.kulik.android.jaxb.library"	
-adb -s emulator-5556 uninstall com.creator
+adb uninstall biz.kulik.android.jaxb.library
 
 echo " ###################### MAKE UNIT TESTS ########################" 
 
@@ -65,7 +65,7 @@ ant clean
 ant emma debug install 
 	
 echo "***START LOG"
-adb -s emulator-5556 logcat -v time> ./report/log_unit.log &
+adb logcat -v time> ./report/log_unit.log &
 
 ant test
 	
@@ -82,107 +82,3 @@ sleep 10
 	#cat log.log | $base/logtoHTML.sh  >log.html 
 $WORKSPACE/additional/logtoHTML.sh < ./report/log_unit.log > ./report/log_unit.html 
 echo "***FINISH LOG"
-
-	echo "*** Copy butafore test reports"
-	cd $WORKSPACE/CreatorTest
-	mkdir -p bin
-	mkdir -p report
-	cp $WORKSPACE/BuildScripts/default_log_unit.html $WORKSPACE/CreatorTest/report/log_unit.html 
-	cd bin
-	mkdir -p reports
-	cp $WORKSPACE/BuildScripts/default_junit_report.xml $WORKSPACE/CreatorTest/bin/reports/junit-report.xml 
-fi
-#if [ "$3" = "test" ]; then
-#	echo " ########################### TEST SCRIPT ##############################" 
-#	cd $WORKSPACE/CreatorTest
-#	  
-#	ant uninstall
-#	#ant debug
-#	ant installr
-#	ant test
-#fi
-#if [ "$4" = "func-test" ]; then
-if [ "$RUN_FUNCTIONAL_TEST" = "true" ]; 
-then
-	echo " ###################### FUNCTIONAL TEST SCRIPT ########################" 
-
-	cd $WORKSPACE
-	rm -rf testapk
-	mkdir -p testapk
-		
-       echo "prepare target app"
-	if [ $1 = "merchant" ]; then
-	  cp sources/build_settings/CreatorManifest.xml $WORKSPACE/sources/AndroidManifest.xml
-	fi
-	
-	cd sources 	
-	ant clean
-	ant release
-	
-	echo "cp "$WORKSPACE/"sources/bin/"$1"-release.apk  "$WORKSPACE"/testapk/"$name
-	cp $WORKSPACE/sources/bin/$1-release.apk  $WORKSPACE/testapk/$name
-
-	cd $WORKSPACE/CreatorFunctionalTests
-	sed -i -e 's/Creator_stable/sources/i' "ant.properties" 
-	
-	echo "ant clean"
-	ant clean
-	echo "ant instrument"
-	ant instrument
-	
-	echo "prepare to release"
-	sed -i -e 's/<!--<classpathentry kind="lib" path="libs/emma.jar"/>-->/<classpathentry kind="lib" path="libs/emma.jar"/>/i' ".classpath" 
-	cp $WORKSPACE/BuildScripts/emma.jar  $WORKSPACE/CreatorFunctionalTests/libs
-	cp $WORKSPACE/BuildScripts/emma_ant.jar  $WORKSPACE/CreatorFunctionalTests/libs
-	ant clean
-	ant release
-
-	cp bin/$1-functional-test-release.apk $WORKSPACE/testapk && echo "cp bin/"$1"-functional-test-release.apk "$WORKSPACE"/testapk"
-	
-	cd $WORKSPACE
-
-	echo "uninstall com.creator.test - functional test"
-	adb -s emulator-5556 uninstall com.creator.test 
-	
-	echo "uninstall com.adscreator"
-	adb -s emulator-5556 uninstall com.adscreator
-	
-	echo "uninstall com.adscreator.test"
-	adb -s emulator-5556 uninstall com.adscreator.test
-
-	echo "install com.adscreator"
-	adb -s emulator-5556 install testapk/$name
-
-	echo "install com.creator.test -functional test"
-	adb -s emulator-5556 install testapk/$1-functional-test-release.apk 
-
-#	adb -s emulator-5556 shell am instrument -w com.adscreator.test/com.zutubi.android.junitreport.JUnitReportTestRunner
-	cd $WORKSPACE/CreatorFunctionalTests 
-	
-	echo " ###################### MAKE FUNCTIONAL TESTS ########################" 
-	echo "***START LOG"
-	adb -s emulator-5556 logcat -v time> ./report/log_func.log &
-	ant emma test
-	
-	echo "***sleep process"
- 	sleep 10
-
-	echo "***kill log writer process"
- 	kill $!
-
-	echo "***sleep process"
- 	sleep 10
-	
-	#echo $base/logtoHTML.sh
-	#cat log.log | $base/logtoHTML.sh  >log.html 
-	$WORKSPACE/BuildScripts/logtoHTML.sh < ./report/log_func.log > ./report/log_func.html 
-	echo "***FINISH LOG"
-#else
-#	if [ $2 = "dev" ]; then
-#		echo "*** Copy butafore test reports"
-#		cd $WORKSPACE/CreatorFunctionalTests
-#		cp $WORKSPACE/BuildScripts/default_coverage.xml $WORKSPACE/CreatorFunctionalTests/coverage.xml 
-#		mkdir -p report
-#		cp $WORKSPACE/BuildScripts/default_log_func.html $WORKSPACE/CreatorFunctionalTests/report/log_func.html 
-#	fi
-fi
