@@ -187,7 +187,7 @@ public class ParserImpl implements Parser {
 
         } else if (valueType.isArray()) {
             //TODO Need to implement
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("Array parsing not implemented yet, use List instaed");
 //            NodeList childNodes = elem.getChildNodes();
 //            Type genericType = field.getGenericType();
 //            ParameterizedType paramType = (ParameterizedType) genericType;
