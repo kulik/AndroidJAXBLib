@@ -152,6 +152,7 @@
                         <infileset file="${tested.project.out.absolute.dir}/coverage.em" />
                         <!-- TODO: reports in other, indicated by user formats -->
                         <html outfile="${out.absolute.dir}/coverage.html" />
+			<xml outfile="${out.absolute.dir}/coverage.xml" />
                    </report>
                 </emma>
                 <echo level="info">Saving the report file in ${out.absolute.dir}/coverage.html</echo>
