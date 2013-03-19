@@ -1,15 +1,13 @@
-package com.worker.rest.responses.roster;
+package biz.kulik.android.jaxb.library.parserTest.TestData5;
 
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 
 import java.io.Serializable;
 
 /**
- * Created with IntelliJ IDEA.
  * User: bender
  * Date: 16.01.13
  * Time: 17:53
- * To change this template use File | Settings | File Templates.
  */
 public class DistribCollection implements Serializable {
 

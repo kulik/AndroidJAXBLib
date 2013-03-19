@@ -13,9 +13,9 @@ import java.io.InputStream;
  * Date: 10/26/12
  * Time: 12:45 PM
  */
-public class TestParser3 extends AndroidTestCase {
-    private static final String TAG = TestParser3.class.getSimpleName();
-
+public class TestParser5 extends AndroidTestCase {
+    private static final String TAG = TestParser5.class.getSimpleName();
+       //TODO parser need to implement
     @Override
     protected void setUp() throws Exception {
         super.setUp();

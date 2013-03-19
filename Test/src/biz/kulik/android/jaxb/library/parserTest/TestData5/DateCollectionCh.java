@@ -1,6 +1,7 @@
-package com.worker.rest.responses.roster;
+package biz.kulik.android.jaxb.library.parserTest.TestData5;
 
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
+import biz.kulik.android.jaxb.library.parserTest.TS_Roster.WoCollection;
 
 import java.io.Serializable;
 import java.util.List;

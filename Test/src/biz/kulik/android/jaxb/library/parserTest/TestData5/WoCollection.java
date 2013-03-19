@@ -1,4 +1,4 @@
-package com.worker.rest.responses.roster;
+package biz.kulik.android.jaxb.library.parserTest.TestData5;
 
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 
@@ -6,11 +6,9 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: bender
  * Date: 16.01.13
  * Time: 17:55
- * To change this template use File | Settings | File Templates.
  */
 public class WoCollection implements Serializable {
 
