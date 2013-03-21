@@ -1,6 +1,7 @@
 package biz.kulik.android.jaxb.library.parserTest.TestData9;
 
 import android.test.AndroidTestCase;
+import biz.kulik.android.jaxb.library.ParserAbstractTest;
 import biz.kulik.android.jaxb.library.R;
 import biz.kulik.android.jaxb.library.parser.Parser;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
@@ -16,41 +17,18 @@ import java.util.List;
  * Date: 10/26/12
  * Time: 12:45 PM
  */
-public class TestParser9 extends AndroidTestCase {
-    private static final String TAG = TestParser9.class.getSimpleName();
-
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
+public class TestParser9 extends ParserAbstractTest<TSCreateRsp> {
 
     public void testParse9JSON() {
-
-        parse(UnMarshalerTypes.JSONAdapter, R.raw.test_9_json);
+        parse(UnMarshalerTypes.JSONAdapter, R.raw.test_9_json, TSCreateRsp.class);
     }
 
     public void testParse9XML() {
-
-        parse(UnMarshalerTypes.XMLAdapter, R.raw.test_9_xml);
+        parse(UnMarshalerTypes.XMLAdapter, R.raw.test_9_xml, TSCreateRsp.class);
     }
 
-    private void parse(UnMarshalerTypes type, int resID) {
-        InputStream inputStream = getContext().getResources().openRawResource(resID);
-
-        ParserImpl parser = new ParserImpl(type);
-        TSCreateRsp ts;
-        ts = parser.parse(TSCreateRsp.class, inputStream);
-
-        assertTestDate9(ts);
-    }
-
-    private void assertTestDate9( TSCreateRsp ts) {
-
+    @Override
+    protected void assertTestData(TSCreateRsp ts) {
         assertNotNull(ts);
         assertNotNull(ts.text);
         assertTrue(ts.text.size() == 4);
@@ -67,5 +45,4 @@ public class TestParser9 extends AndroidTestCase {
         assertEquals(ts.textS, "TimeSheetString");
 
     }
-
 }

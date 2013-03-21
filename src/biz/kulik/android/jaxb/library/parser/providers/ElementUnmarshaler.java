@@ -24,6 +24,8 @@ public interface ElementUnmarshaler {
      */
     public String getValue(String name);
 
+    public String getValue();
+
     public String getAttributeValue(String name);
 
 

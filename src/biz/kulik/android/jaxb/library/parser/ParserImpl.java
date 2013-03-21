@@ -185,25 +185,31 @@ public class ParserImpl implements Parser {
             if (genericType instanceof ParameterizedType) {
                 ParameterizedType paramType = (ParameterizedType) genericType;
                 Class<?> tClass = (Class<T>) paramType.getActualTypeArguments()[0];
-                for (int i = 0, d = children.size(); i < d; i++) {
 
-                    //XXX problem here
+                //XXX problem here
 //                    processObject(item, tClass, children.get(i));
 
-                    if (String.class.equals(tClass)) {
-                        objects.add(children.get(i).getValue(annotName));
-                    } else {
-                        SimpleTypeParser simpleTypeParser = mSimpleParsersManager.getParser(valueType);
-                        //TODO  make it as Static Factory   ^^^^^^^^^^^^^^^^^^^^^
-                        if (simpleTypeParser != null) {
+                if (String.class.equals(tClass)) {
+//TODO create stub SIMPLEPARSER for String
+                    for (int i = 0, d = children.size(); i < d; i++) {
+                        objects.add(children.get(i).getValue());
+                    }
+                } else {
+                    SimpleTypeParser simpleTypeParser = mSimpleParsersManager.getParser(valueType);
+                    //TODO  make it as Static Factory   ^^^^^^^^^^^^^^^^^^^^^
+                    if (simpleTypeParser != null) {
+                        for (int i = 0, d = children.size(); i < d; i++) {
                             objects.add(simpleTypeParser.valueOf(children.get(i).getValue(annotName)));
-                        } else {
+                        }
+                    } else {
+                        for (int i = 0, d = children.size(); i < d; i++) {
+                            item = tClass.newInstance();
+                            objects.add(item);
                             processObject(item, tClass, children.get(i));
                         }
                     }
                 }
             }
-
         } else if (valueType.isArray()) {
             //TODO Need to implement
             throw new UnsupportedOperationException("Array parsing not implemented yet, use List instaed");

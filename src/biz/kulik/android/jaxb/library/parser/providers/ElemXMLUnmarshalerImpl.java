@@ -74,8 +74,7 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
         }
     }
 
-    public static Document loadXMLFromString(String xml) throws Exception
-    {
+    public static Document loadXMLFromString(String xml) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         InputSource is = new InputSource(new StringReader(xml));
@@ -86,7 +85,7 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
     public List getChildren(String name) {
         List<ElementUnmarshaler> children = new ArrayList<ElementUnmarshaler>();
         NodeList nodes = mElement.getElementsByTagName(name);
-        for (int i = 0; i < nodes.getLength(); i++ ) {
+        for (int i = 0; i < nodes.getLength(); i++) {
             Node node = nodes.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 children.add(new ElemXMLUnmarshalerImpl((Element) node));
@@ -110,6 +109,15 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
             if (node != null) {
                 return node.getNodeValue();
             }
+        }
+        return null;
+    }
+
+    @Override
+    public String getValue() {
+        Node textNode = mElement.getFirstChild();
+        if (textNode != null && textNode.getNodeType() == Node.TEXT_NODE) {
+            return textNode.getNodeValue();
         }
         return null;
     }

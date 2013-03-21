@@ -16,6 +16,8 @@ import java.util.List;
  */
 public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
     private static final String TAG = ElemJSONUnmarshalerImpl.class.getSimpleName();
+
+    private static final String stub_wrapper = "SELF";
     private JSONObject mObject;
 
     public ElemJSONUnmarshalerImpl(InputStream data) {
@@ -66,14 +68,19 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
     @Override
     public List getChildren(String name) {
         List<ElementUnmarshaler> children = new ArrayList<ElementUnmarshaler>();
-        JSONObject ob = null;
         JSONArray jarray = null;
         try {
             jarray = mObject.getJSONArray(name);
             for (int i = 0; i < jarray.length(); i++) {
-                ob = (JSONObject) jarray.get(i);
+                Object exp = jarray.get(i);
+                if (exp instanceof JSONObject) { //TODO optimize
                 //XXX problem here if contentis string
-                children.add(new ElemJSONUnmarshalerImpl(ob));
+                    children.add(new ElemJSONUnmarshalerImpl((JSONObject) exp));
+                } else if (exp instanceof JSONArray) {
+                   //TODO Array of Arrays
+                } else if (exp instanceof String) {
+                    children.add(new ElemJSONStringUnmarshalerImpl((String) exp));
+                }
             }
         } catch (JSONException e) {
             Log.v(TAG, "JSONException when parsing json data");
@@ -96,6 +103,16 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
     public String getValue(String name) {
         try {
             return mObject.getString(name);
+        } catch (JSONException e) {
+            Log.v(TAG, "JSONException when parsing json data");
+        }
+        return "";
+    }
+
+    @Override
+    public String getValue() {
+        try {
+            return mObject.getString(stub_wrapper);
         } catch (JSONException e) {
             Log.v(TAG, "JSONException when parsing json data");
         }
