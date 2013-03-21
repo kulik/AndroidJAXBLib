@@ -72,6 +72,7 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
             jarray = mObject.getJSONArray(name);
             for (int i = 0; i < jarray.length(); i++) {
                 ob = (JSONObject) jarray.get(i);
+                //XXX problem here if contentis string
                 children.add(new ElemJSONUnmarshalerImpl(ob));
             }
         } catch (JSONException e) {

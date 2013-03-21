@@ -9,13 +9,18 @@
          which is needed when building test cases. -->
     <application>
         <uses-library android:name="android.test.runner"/>
+        <!--<uses-library android:name="com.zutubi.android.junitreport"/>-->
     </application>
     <!--
     This declares that this application uses the instrumentation test runner targeting
     the package of biz.kulik.android.jaxb.library.  To run the tests use the command:
     "adb shell am instrument -w biz.kulik.android.jaxb.library/android.test.InstrumentationTestRunner"
     -->
-    <instrumentation android:name="android.test.InstrumentationTestRunner"
-                     android:targetPackage="biz.kulik.android.jaxb.library"
-                     android:label="Tests for biz.kulik.android.jaxb.library"/>
+    <!--<instrumentation android:name="com.zutubi.android.junitreport.JUnitReportTestRunner"-->
+                     <!--android:targetPackage="biz.kulik.android.jaxb.library"-->
+                     <!--android:label="Tests for biz.kulik.android.jaxb.library"/>-->
+
+    <instrumentation
+            android:name="android.test.InstrumentationTestRunner"
+            android:targetPackage="biz.kulik.android.jaxb.library" />
 </manifest>

@@ -27,10 +27,7 @@ public class TestTS_Roster extends AndroidTestCase {
     }
 
 
-    public void testParse4JSON() {
-//        InputStream is = null;
-//        InputStreamReader reader = new InputStreamReader(is);
-
+    public void testParse4XML() {
         InputStream inputStream = getContext().getResources().openRawResource(R.raw.ts_roster_xml);
 
         ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);

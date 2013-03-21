@@ -63,6 +63,7 @@ public class ParserImpl implements Parser {
             Log.e(TAG, "IllegalAccessException while parsing: " + e.getMessage());
         } catch (InstantiationException e) {
             Log.e(TAG, "InstantiationException while parsing: " + e.getMessage());
+            Log.e(TAG, "It may caused missing defoult constructor");
         }
         return rootObj;
     }
@@ -137,7 +138,7 @@ public class ParserImpl implements Parser {
      * @throws IllegalAccessException
      */
     protected <T> boolean processSimpleValue(ElementUnmarshaler elem, MethodFieldAdapter mfAdapter, String annotationName, T obj) throws IllegalAccessException, InvocationTargetException {
-
+        //TODO get velue after checking
         String value = elem.getValue(annotationName);
 
         return processAtributeValue(value, mfAdapter, obj);
@@ -185,26 +186,27 @@ public class ParserImpl implements Parser {
                 ParameterizedType paramType = (ParameterizedType) genericType;
                 Class<?> tClass = (Class<T>) paramType.getActualTypeArguments()[0];
                 for (int i = 0, d = children.size(); i < d; i++) {
-                    item = tClass.newInstance();
-                    objects.add(item);
-                    processObject(item, tClass, children.get(i));
+
+                    //XXX problem here
+//                    processObject(item, tClass, children.get(i));
+
+                    if (String.class.equals(tClass)) {
+                        objects.add(children.get(i).getValue(annotName));
+                    } else {
+                        SimpleTypeParser simpleTypeParser = mSimpleParsersManager.getParser(valueType);
+                        //TODO  make it as Static Factory   ^^^^^^^^^^^^^^^^^^^^^
+                        if (simpleTypeParser != null) {
+                            objects.add(simpleTypeParser.valueOf(children.get(i).getValue(annotName)));
+                        } else {
+                            processObject(item, tClass, children.get(i));
+                        }
+                    }
                 }
             }
 
         } else if (valueType.isArray()) {
             //TODO Need to implement
             throw new UnsupportedOperationException("Array parsing not implemented yet, use List instaed");
-//            NodeList childNodes = elem.getChildNodes();
-//            Type genericType = field.getGenericType();
-//            ParameterizedType paramType = (ParameterizedType) genericType;
-//            Class<?> aClass = (Class<T>) paramType.getActualTypeArguments()[0];
-//
-//            field.set(obj, Array.newInstance(aClass, childNodes.getLength()));
-//
-//            for (int i = 0; i < childNodes.getLength(); i++) {
-//
-//                processObject(item, (Element) childNodes.item(i));
-//            }
         } else {
             ElementUnmarshaler child = elem.getChild(annotName);
             Class<?> type = field.getType();
