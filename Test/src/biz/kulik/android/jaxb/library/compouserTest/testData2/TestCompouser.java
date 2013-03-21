@@ -1,13 +1,14 @@
-package biz.kulik.android.jaxb.library.compouserTest;
+package biz.kulik.android.jaxb.library.compouserTest.testData2;
 
 import android.test.AndroidTestCase;
 import android.util.Log;
-//import biz.kulik.android.jaxb.library.DocUtils;
 import biz.kulik.android.jaxb.library.composer.Composer;
 import biz.kulik.android.jaxb.library.composer.ComposerImpl;
 import biz.kulik.android.jaxb.library.composer.providers.ProviderTypes;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
-import org.w3c.dom.Document;
+import biz.kulik.android.jaxb.library.compouserTest.testData1.RootProxy;
+
+//import biz.kulik.android.jaxb.library.DocUtils;
 
 /**
  * User: kulik
@@ -27,7 +28,7 @@ public class TestCompouser extends AndroidTestCase {
         super.tearDown();
     }
 
-    public void testCompouseJSON() {
+    public void testCompouse2JSON() {
         // To load text file
         RootProxy rootObject = new RootProxy();
         Composer composer = new ComposerImpl(ProviderTypes.JSONProvider);

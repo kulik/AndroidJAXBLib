@@ -10,6 +10,8 @@ public interface UMOObject extends UMO {
     //TODO add checking for null
     public void put(String key, UMO umo);
 
+    public void putArray(String valueName, UMO value);
+
     public void putAttributeStr(String annotationName, String value);
 
     public void putAttributeInt(String annotationName, Integer value);
@@ -34,4 +36,5 @@ public interface UMOObject extends UMO {
     public void putValueDouble(String valueName, Double value);
 
     public void putValueBoolean(String valueName, Boolean value);
+
 }

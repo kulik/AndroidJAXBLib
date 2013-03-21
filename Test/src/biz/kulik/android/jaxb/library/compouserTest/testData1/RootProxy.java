@@ -1,4 +1,4 @@
-package biz.kulik.android.jaxb.library.compouserTest;
+package biz.kulik.android.jaxb.library.compouserTest.testData1;
 
 import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;

@@ -5,6 +5,7 @@ import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArr
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * User: kulik
@@ -28,18 +29,24 @@ public class XMLObjectProvider implements UMOObject, UMOArray {
     }
 
     @Override
+    public void setWrappedObject(Object obj) {
+        mElement = (Element) obj;
+    }
+
+    @Override
     public Object getRootDocument() {
         return mDocument;
     }
 
     @Override
     public void put(String key, UMO umo) {
+
         mElement.appendChild((Element) umo.getWrappedObject());
     }
 
     @Override
     public void putAttributeStr(String annotationName, String value) {
-        mElement.setAttribute(annotationName,value);
+        mElement.setAttribute(annotationName, value);
     }
 
     @Override
@@ -109,8 +116,18 @@ public class XMLObjectProvider implements UMOObject, UMOArray {
         mElement.appendChild(elem);
     }
 
+//    @Override
+//    public void put(UMO value) {
+//        mElement.appendChild((Element) value.getWrappedObject());
+//    }
+
     @Override
-    public void put(UMO value) {
-        mElement.appendChild((Element) value.getWrappedObject());
+    public void putArray(String key, UMO value) {
+//        Node parent = mElement.getParentNode();
+//        parent.removeChild(mElement);
+//        mElement.appendChild((Element) value.getWrappedObject());
+        value.setWrappedObject(mElement);
+//        mElement = (Element) parent;
+//        parent.replaceChild(mElement, (Node) value.getWrappedObject());
     }
 }

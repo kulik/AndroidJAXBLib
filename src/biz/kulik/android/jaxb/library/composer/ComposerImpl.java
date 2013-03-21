@@ -10,6 +10,7 @@ import biz.kulik.android.jaxb.library.composer.providers.ProviderTypes;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
+import org.json.JSONArray;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -53,7 +54,7 @@ public class ComposerImpl implements Composer {
                     for (int i = 0, d = ourList.size(); i < d; i++) {
 
                         //TODO check if simple type
-                        ((UMOArray) myElem).put(processObject(ourList.get(i), "".equals(valueName) ? root : valueName));
+                        ((UMOArray) myElem).put("", processObject(ourList.get(i), "".equals(valueName) ? root : valueName));
                     }
                 } else if (objType.isArray()) {
                     //TODO Need to implement
@@ -217,31 +218,32 @@ public class ComposerImpl implements Composer {
         Class objType = obj.getClass();
 
         if (List.class.isInstance(obj)) {
-            //TODO Check for Wrapper
-
-            if (isWrapped) {
-               UMOObject wrapper = mFactory.createProvider(UMOObject.class, wrapperName);
-                sobj.put(wrapperName, wrapper);
-                sobj = wrapper;
-            }
-            UMOArray list = mFactory.createProvider(UMOArray.class, valueName);
             List ourList = (List) obj;
             Object listItem;
             UMO umoListItem;
+
             if (isWrapped) {
-                for (int i = 0, d = ourList.size(); i < d; i++) {
-                    listItem = ourList.get(i);
-                    umoListItem = processObject(listItem, valueName);
-                    list.put(umoListItem);
-                }
-                sobj.put(valueName, list);
-            } else {
-                for (int i = 0, d = ourList.size(); i < d; i++) {
-                    listItem = ourList.get(i);
-                    umoListItem = processObject(listItem, valueName);
-                    sobj.put(valueName, umoListItem);
-                }
+                UMOObject wrapper = mFactory.createProvider(UMOObject.class, wrapperName);
+                sobj.put(wrapperName, wrapper);
+                sobj = wrapper;
             }
+            //TODO XXX this is hot fix for compatibility it MUST BE FIXED
+            UMOArray list = mFactory.createProvider(UMOArray.class, valueName);
+            sobj.putArray(valueName, list);
+//            if (list.getWrappedObject() instanceof JSONArray) {
+//                sobj.put(valueName, list);
+//                for (int i = 0, d = ourList.size(); i < d; i++) {
+//                    listItem = ourList.get(i);
+//                    umoListItem = processObject(listItem, valueName);
+//                    sobj.put(valueName, umoListItem);
+//                }
+//            } else {
+                for (int i = 0, d = ourList.size(); i < d; i++) {
+                    listItem = ourList.get(i);
+                    umoListItem = processObject(listItem, valueName);
+                    list.put(valueName, umoListItem);
+                }
+//            }
 
         } else if (objType.isArray()) {
             //TODO Need to implement

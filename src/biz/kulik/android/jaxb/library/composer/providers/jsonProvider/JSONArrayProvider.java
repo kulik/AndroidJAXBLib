@@ -14,17 +14,22 @@ public class JSONArrayProvider implements UMOArray {
     private JSONArray mJsonArray = new JSONArray();
 
     @Override
-    public void put(UMO value) {
-        mJsonArray.put(value.getWrappedObject());
-    }
-
-    @Override
     public Object getWrappedObject() {
         return mJsonArray;
     }
 
     @Override
+    public void setWrappedObject(Object obj) {
+        mJsonArray = (JSONArray) obj;
+    }
+
+    @Override
     public Object getRootDocument() {
         return mJsonArray;
+    }
+
+    @Override
+    public void put(String key, UMO value) {
+        mJsonArray.put(value.getWrappedObject());
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RootMe classicType="10">
+    <bookList>
+        <TestList1>
+            <item_value>1224</item_value>
+        </TestList1>
+        <TestList1>
+            <item_value>1234</item_value>
+        </TestList1>
+    </bookList>
+    <TestIntegerValue>12212</TestIntegerValue>
+    <A/>
+    <B/>
+    <TestList>
+        <item_value>122</item_value>
+    </TestList>
+    <TestList>
+        <item_value>123</item_value>
+    </TestList>
+</RootMe>

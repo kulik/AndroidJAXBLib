@@ -6,6 +6,7 @@ package biz.kulik.android.jaxb.library.composer.providers.abstractProvider;
  * Time: 9:37 PM
  */
 public interface UMOArray extends UMO {
-    public void put(UMO value);
+
+    public void put(String key, UMO value);
 
 }

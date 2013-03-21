@@ -27,6 +27,11 @@ public class JSONObjectProvider implements UMOObject {
     }
 
     @Override
+    public void putArray(String valueName, UMO value) {
+       put(valueName, value);
+    }
+
+    @Override
     public void putAttributeStr(String annotationName, String value) {
         try {
             mJSONObject.put(annotationName, value);
@@ -137,6 +142,11 @@ public class JSONObjectProvider implements UMOObject {
     @Override
     public Object getWrappedObject() {
         return mJSONObject;
+    }
+
+    @Override
+    public void setWrappedObject(Object obj) {
+        mJSONObject = (JSONObject) obj;
     }
 
     @Override
