@@ -28,13 +28,12 @@ public class ParserImpl implements Parser {
     private UnMarshalerTypes mUnMarshalerType;
 
     //    private AdaptersManager xmlAdaptersManager;
-    private SimpleParsersManager mSimpleParsersManager;
+
     private ClassCacheManager mClassCacheManager;
 
     public ParserImpl(UnMarshalerTypes ad) {
         mUnMarshalerType = ad;
 //        xmlAdaptersManager = new AdaptersManager();
-        mSimpleParsersManager = new SimpleParsersManager();
         mClassCacheManager = new ClassCacheManager();
     }
 
@@ -137,11 +136,24 @@ public class ParserImpl implements Parser {
      * @param obj       Object which field will be set
      * @throws IllegalAccessException
      */
-    protected <T> boolean processSimpleValue(ElementUnmarshaler elem, MethodFieldAdapter mfAdapter, String annotationName, T obj) throws IllegalAccessException, InvocationTargetException {
+    protected <T> boolean processSimpleValue(ElementUnmarshaler elem, MethodFieldAdapter mfAdapter, String valueName, T obj) throws IllegalAccessException, InvocationTargetException {
         //TODO get velue after checking
-        String value = elem.getValue(annotationName);
 
-        return processAtributeValue(value, mfAdapter, obj);
+        mfAdapter.setAccessible(true); //TODO add accessorTypeLogic
+        Class<?> valueType = mfAdapter.getType();
+        if (String.class.equals(valueType)) {
+            String value = elem.getValue(valueName);
+            mfAdapter.put(obj, value);
+            return true;
+        } else {
+            SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
+            if (simpleTypeParser != null) {
+                String value = elem.getValue(valueName);
+                mfAdapter.put(obj, simpleTypeParser.valueOf(value));
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -158,8 +170,7 @@ public class ParserImpl implements Parser {
             mfAdapter.put(obj, value);
             return true;
         } else {
-            SimpleTypeParser simpleTypeParser = mSimpleParsersManager.getParser(valueType);
-            //TODO  make it as Static Factory   ^^^^^^^^^^^^^^^^^^^^^
+            SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
             if (simpleTypeParser != null) {
                 mfAdapter.put(obj, simpleTypeParser.valueOf(value));
                 return true;
@@ -195,8 +206,7 @@ public class ParserImpl implements Parser {
                         objects.add(children.get(i).getValue());
                     }
                 } else {
-                    SimpleTypeParser simpleTypeParser = mSimpleParsersManager.getParser(valueType);
-                    //TODO  make it as Static Factory   ^^^^^^^^^^^^^^^^^^^^^
+                    SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
                     if (simpleTypeParser != null) {
                         for (int i = 0, d = children.size(); i < d; i++) {
                             objects.add(simpleTypeParser.valueOf(children.get(i).getValue(annotName)));
