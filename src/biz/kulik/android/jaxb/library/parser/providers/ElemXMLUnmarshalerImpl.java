@@ -84,10 +84,10 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
     @Override
     public List getChildren(String name) {
         List<ElementUnmarshaler> children = new ArrayList<ElementUnmarshaler>();
-        NodeList nodes = mElement.getElementsByTagName(name);
+        NodeList nodes = mElement.getChildNodes();
         for (int i = 0; i < nodes.getLength(); i++) {
             Node node = nodes.item(i);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
+            if (node.getNodeType() == Node.ELEMENT_NODE && node.getNodeName().equals(name)) {
                 children.add(new ElemXMLUnmarshalerImpl((Element) node));
             }
         }
