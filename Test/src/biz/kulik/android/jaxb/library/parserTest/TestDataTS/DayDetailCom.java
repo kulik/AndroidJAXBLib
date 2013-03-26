@@ -15,11 +15,4 @@ public class DayDetailCom implements Serializable{
     @XmlElement(name = "DayDetail")
     private List<DayDetail> dayDetail;
 
-    public List<DayDetail> getDayDetail() {
-        return dayDetail;
-    }
-
-    public void setDayDetail(List<DayDetail> dayDetail) {
-        this.dayDetail = dayDetail;
-    }
 }

@@ -15,11 +15,4 @@ public class TSCom implements Serializable{
     @XmlElement(name = "TSDetail")
     public List<TSDetail> TSDetail;
 
-    public List<TSDetail> getTSDetail() {
-        return TSDetail;
-    }
-
-    public void setTSDetail(List<TSDetail> TSDetail) {
-        this.TSDetail = TSDetail;
-    }
 }

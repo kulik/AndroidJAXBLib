@@ -13,13 +13,6 @@ import java.util.List;
 public class DayCom implements Serializable{
 
     @XmlElement(name = "Day")
-    private List<Day> day;
+    public List<Day> day;
 
-    public List<Day> getDay() {
-        return day;
-    }
-
-    public void setDay(List<Day> day) {
-        this.day = day;
-    }
 }

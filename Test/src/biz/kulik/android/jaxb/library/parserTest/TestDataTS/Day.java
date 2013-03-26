@@ -11,37 +11,14 @@ import java.io.Serializable;
  */
 public class Day implements Serializable {
 
-    @XmlElement(name = "Day")
-    private String day;
+//    @XmlElement(name = "Day")
+//    private String day;
 
-    @XmlElement(name = "TotalHours")
-    private Double totalHours;
+//    @XmlElement(name = "TotalHours")
+//    private Double totalHours;
 
     @XmlElement(name = "DayDetailCom")
     private DayDetailCom dayDetailCom;
 
 
-    public String getDay() {
-        return day;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
-    }
-
-    public Double getTotalHours() {
-        return totalHours;
-    }
-
-    public void setTotalHours(Double totalHours) {
-        this.totalHours = totalHours;
-    }
-
-    public DayDetailCom getDayDetailCom() {
-        return dayDetailCom;
-    }
-
-    public void setDayDetailCom(DayDetailCom dayDetailCom) {
-        this.dayDetailCom = dayDetailCom;
-    }
 }
