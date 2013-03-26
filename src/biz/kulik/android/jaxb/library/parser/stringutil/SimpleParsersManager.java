@@ -10,21 +10,19 @@ import java.util.HashMap;
  */
 public class SimpleParsersManager {
 
-    private HashMap<Class<?>, SimpleTypeParser> mSimpleTypeParserList;
+    private static final HashMap<Class<?>, SimpleTypeParser> SIMPLE_TYPE_PARSERS = new HashMap<Class<?>, SimpleTypeParser>(6) {{
+        put(Integer.class, new IntegerParser());
+        put(Double.class, new DoubleParser());
+        put(Float.class, new FloatParser());
+        put(Boolean.class, new BooleanParser());
+        put(Long.class, new LongParser());
+        put(BigDecimal.class, new BigDecimalParser());
+    }};
 
-    public SimpleParsersManager() {
-        mSimpleTypeParserList = new HashMap<Class<?>, SimpleTypeParser>(6);
 
-        mSimpleTypeParserList.put(Integer.class, new IntegerParser());
-        mSimpleTypeParserList.put(Double.class, new DoubleParser());
-        mSimpleTypeParserList.put(Float.class, new FloatParser());
-        mSimpleTypeParserList.put(Boolean.class, new BooleanParser());
-        mSimpleTypeParserList.put(Long.class, new LongParser());
-        mSimpleTypeParserList.put(BigDecimal.class, new BigDecimalParser());
-    }
 
-    public SimpleTypeParser getParser(Class<?> clazz) {
-        SimpleTypeParser parser = mSimpleTypeParserList.get(clazz);
+    public static SimpleTypeParser getParser(Class<?> clazz) {
+        SimpleTypeParser parser = SIMPLE_TYPE_PARSERS.get(clazz);
         return parser;
     }
 }
