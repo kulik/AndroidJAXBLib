@@ -22,6 +22,7 @@ public class TestParserTS extends ParserAbstractTest<GetTSSavedResponse> {
         assertNotNull(ts.tsCom);
         assertNotNull(ts.tsCom.TSDetail);
         assertTrue(ts.tsCom.TSDetail.size() == 52);
+        //TODO make mare assertations
 //        assertNotNull(ts.text.get(0));
 //        assertEquals(ts.text.get(0), "TimeSheet1");
 //        assertNotNull(ts.text.get(1));
