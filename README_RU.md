@@ -22,8 +22,8 @@ application -- then use the "--core-library" option to suppress this error
 и изменив в них только импорт.
 
 ### Родоначальники идеи:
-  [Yevgen Kulik](ua.linkedin.com/in/yevgenkulik)<br />
-  [Dmytro Korablyov](ua.linkedin.com/in/dmytrokorablyov)
+  [Yevgen Kulik](http://ua.linkedin.com/in/yevgenkulik)<br />
+  [Dmytro Korablyov](http://ua.linkedin.com/in/dmytrokorablyov)
 
 ##Возможности
 
