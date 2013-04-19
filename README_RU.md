@@ -29,19 +29,131 @@ application -- then use the "--core-library" option to suppress this error
 
 На данный момент поддерживаются следующие анотации:
 
-1) @XmlElement<br />
-2) @XmlAttribute<br />
-3) @XmlRootElement<br />
+  1) @XmlElement<br />
+  2) @XmlAttribute<br />
+  3) @XmlRootElement<br />
 
 ##План
-1) @XmlJavaTypeAdapter annotation implemntation;<br />
-2) @XmlJavaTypeAdapters  anotation (class, package level annotation);<br />
-3) создания парсера, который на этапе предкомпиляции будет генерить парсер для каждого тр;<br />
-4) Stream parser implementation;<br />
+  1) @XmlJavaTypeAdapter annotation implemntation;<br />
+  2) @XmlJavaTypeAdapters  anotation (class, package level annotation);<br />
+  3) создания парсера, который на этапе предкомпиляции будет генерить парсер для каждого тр;<br />
+  4) Stream parser implementation;<br />
 
 
 ##How to use
-for example if you need parse something like this
+К примеру мы имеем иерархию классов в которую мы хотим демаршализировать XML.
+К примеру возьмем АПИ Википедии и поиск "sun"
+<code>
+<SearchSuggestion xmlns="http://opensearch.org/searchsuggest2" version="2.0">
+    <Query xml:space="preserve">sun</Query>
+    <Section>
+
+            <Item>
+                <Image source="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_August_1%2C_2010.jpg" width="50" height="45"/>
+                <Text xml:space="preserve">Sun1</Text>
+                <Description xml:space="preserve">
+                    The Sun is the star at the center of the Solar System. It is almost perfectly spherical and consists of hot plasma interwoven with magnetic fields.
+                </Description>
+                <Url xml:space="preserve">http://en.wikipedia.org/wiki/Sun</Url>
+            </Item>
+            <Item>
+                <Image source="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_1%2C_2010.jpg" width="50" height="45"/>
+                <Text xml:space="preserve">Sun2</Text>
+                <Description xml:space="preserve">
+                            The Sun is the star at the center of the Solar System. It is almost perfectly spherical and consists of hot plasma interwoven with magnetic fields.
+                </Description>
+                <Url xml:space="preserve">http://en.wikipedia.org/wiki/Sun1111</Url>
+            </Item>
+            <Item>
+              <Image source="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/August_1%2C_2010.jpg" width="50" height="45"/>
+              <Text xml:space="preserve">Sun3</Text>
+              <Description xml:space="preserve">
+                        The Sun is the star at the center of the Solar System. It is almost perfectly spherical and consists of hot plasma interwoven with magnetic fields.
+              </Description>
+              <Url xml:space="preserve">http://en.wikipedia.org/wiki/Sun2222</Url>
+            </Item>
+
+    </Section>
+</SearchSuggestion>
+</code>
+
+Тогда прокси классы будут выглядеть
+<code>
+public class SearchSuggestion {
+
+    @XmlElement(name="Section")
+    public Section section;
+
+    public static class Section {
+        
+        @XmlElement(name="Item")
+        public List<Item> item;
+
+        public static class Item {
+
+            @XmlElement(name = "Text")
+            public String title;
+            
+            @XmlElement(name = "Image")
+            public Image image;
+
+            @XmlElement(name = "Url")
+            public String url;
+        }
+    }
+}
+</code>
+
+Теперь остается вызвать сам процесс демаршалинга
+<code>
+  //получение стрима xml
+InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_1_xml);
+  // создание парсера для XML
+ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
+
+SearchSuggestion se;
+  // собственно получение объекта демаршалинга
+  //тут указывает в какой рут класс будем парсить, и инпут стрим с которого парсить
+se = parser.parse(SearchSuggestion.class, inputStream);
+</code>
+
+Теперь допустим нам надо отпарсить в такуюже структуру из JSON
+<code>
+{
+  "Query":{ },
+   "Section":{
+      "Item":[
+         {
+            "Image":{
+               "source":"http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_August_1%2C_2010.jpg"
+            },
+            "Text":"Sun1",
+            "Description":"http://en.wikipedia.org/wiki/Sun",
+            "Url":"http://en.wikipedia.org/wiki/Sun"
+         },
+         {
+            "Image":{
+               "source":"http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/50px-Sun_-_1%2C_2010.jpg"
+            },
+            "Text":"Sun2",
+            "Description":"http://en.wikipedia.org/wiki/SunDescription",
+            "Url":"http://en.wikipedia.org/wiki/Sun1111"
+         },
+         {
+            "Image":{
+               "source":"http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/August_1%2C_2010.jpg"
+            },
+            "Text":"Sun3",
+            "Description":"http://en.wikipedia.org/wiki/SunDescription",
+            "Url":"http://en.wikipedia.org/wiki/Sun2222"
+         }
+      ]
+   }
+}
+</code>
+
+в нашем коде меняется только одна инициализирующая константа<br/>
+UnMarshalerTypes.XMLAdapter > UnMarshalerTypes.JSONAdapter
 
 
 ## Comparing with gson
