@@ -1,38 +1,49 @@
-package biz.kulik.android.jaxb.library.parserTest.TestData1;
+package library.parserTest.TestData1;
 
-import android.test.AndroidTestCase;
-import biz.kulik.android.jaxb.library.R;
-import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
+import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
+import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.io.InputStream;
+
+import static org.junit.Assert.*;
 
 /**
  * User: kulik
  * Date: 10/26/12
  * Time: 12:50 PM
  */
-public class TestParser1 extends AndroidTestCase {
-    private static final String TAG = TestParser1.class.getSimpleName();
+@RunWith(RobolectricTestRunner.class)
+public class TestParser1 {
 
+    private static final String TAG = TestParser1.class.getSimpleName();
+    public static final String RES_NAME = "test_1_";
+
+    InputStream jsonInputStream = getClass().getResourceAsStream(RES_NAME + "json.json");
+    InputStream xmlInputStream = getClass().getResourceAsStream(RES_NAME + "xml.xml");
+
+    @Test
     public void testParse1JSON() {
-        InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_1_json);
+
 
         ParserImpl parser = new ParserImpl(UnMarshalerTypes.JSONAdapter);
 
         SearchSuggestion se;
-        se = parser.parse(SearchSuggestion.class, inputStream);
+        se = parser.parse(SearchSuggestion.class, jsonInputStream);
 
         assertTestDate1(se);
     }
 
+    @Test
     public void testParse1XML() {
-        InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_1_xml);
+
 
         ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
 
         SearchSuggestion se;
-        se = parser.parse(SearchSuggestion.class, inputStream);
+        se = parser.parse(SearchSuggestion.class, xmlInputStream);
 
         assertTestDate1(se);
     }
