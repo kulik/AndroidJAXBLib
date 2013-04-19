@@ -28,17 +28,22 @@ application -- then use the "--core-library" option to suppress this error
 ##Возможности
 
 На данный момент поддерживаются следующие анотации:
-
-  1) @XmlElement<br />
-  2) @XmlAttribute<br />
-  3) @XmlRootElement<br />
+<ol>
+  <li>@XmlElement
+  <li> @XmlAttribute
+  <li> @XmlRootElement
+</ol>
+  
 
 ##План
-  1) @XmlJavaTypeAdapter annotation implemntation;<br />
-  2) @XmlJavaTypeAdapters  anotation (class, package level annotation);<br />
-  3) создания парсера, который на этапе предкомпиляции будет генерить парсер для каждого тр;<br />
-  4) Stream parser implementation;<br />
-
+<ol>
+  <li> default для @XmlElement(default=25) @XmlAttribute(default=-1)
+  <li> парсер для примитивных типов джава.(пока примитивные типы только компоузятся)
+  <li> @XmlJavaTypeAdapter annotation implemntation;<br />
+  <li> @XmlJavaTypeAdapters  anotation (class, package level annotation);<br />
+  <li> создания парсера, который на этапе предкомпиляции будет генерить парсер для каждого тр;<br />
+  <li> Stream parser implementation;<br />
+</ol>
 
 ##How to use
 К примеру мы имеем иерархию классов в которую мы хотим демаршализировать XML.
@@ -119,7 +124,7 @@ public class SearchSuggestion {
 </code>
 
 Теперь допустим нам надо отпарсить в такуюже структуру из JSON
-<code>
+~~~~~~
 {
   "Query":{ },
    "Section":{
@@ -151,10 +156,23 @@ public class SearchSuggestion {
       ]
    }
 }
+~~~~~~
 </code>
+</div>
 
 в нашем коде меняется только одна инициализирующая константа<br/>
-UnMarshalerTypes.XMLAdapter > UnMarshalerTypes.JSONAdapter
+<code>UnMarshalerTypes.XMLAdapter > UnMarshalerTypes.JSONAdapter</code>
+
+Другие примуры вы можете найти в JUnit Tests  (AndroidJAXBLib/Tests)
+
+### Нет человека нет проблемы.
+Частой ситуацией является "падание" парсера, при отсутствии необходимых данных. 
+Все просто наш парсер выдаст установит значение null в переменную, и пойдет дальше.
+Что же происходит с примитивными типами Java(не объектами). Как известно они не 
+могут быть null. Для этого как и в Jersey у нас предусмотрен параметр в анатациях 
+@XmlElement(default=25) @XmlAttribute(default=-1)
+
+
 
 
 ## Comparing with gson
