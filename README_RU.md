@@ -106,15 +106,16 @@ public class SearchSuggestion {
 
 Теперь остается вызвать сам процесс демаршалинга
 <code>
-  //получение стрима xml
-InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_1_xml);
-  // создание парсера для XML
-ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
+  
+        // получение стрима xml
+        InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_1_xml);
+        // создание парсера для XML
+        ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
 
-SearchSuggestion se;
-  // собственно получение объекта демаршалинга
-  //тут указывает в какой рут класс будем парсить, и инпут стрим с которого парсить
-se = parser.parse(SearchSuggestion.class, inputStream);
+        SearchSuggestion se;
+        // собственно получение объекта демаршалинга
+        //тут указывает в какой рут класс будем парсить, и инпут стрим с которого парсить
+        se = parser.parse(SearchSuggestion.class, inputStream);
 </code>
 
 Теперь допустим нам надо отпарсить в такуюже структуру из JSON
