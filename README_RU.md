@@ -21,17 +21,23 @@ application -- then use the "--core-library" option to suppress this error
 Также родителем идеи были мысли о простом переносе серверных прокси классов в проэкт мобильного приложения, 
 и изменив в них только импорт.
 
-Родоначальники идеи 
-
-по сравнениюс гугл либой Гсон, андроидДжахБЛиб имеет такойже синтаксис как и джах б либ, но написан специально для мобильной платформы(размер ядра библиотеки джах б либ 9.5мб, что не сочитается с парадигмой мобильных платформ). на данный момент работает два типа анотаций @хмлелемент и @хмлатрибут
+### Родоначальники идеи:
+  [Yevgen Kulik](ua.linkedin.com/in/yevgenkulik)<br />
+  [Dmytro Korablyov](ua.linkedin.com/in/dmytrokorablyov)
 
 ##Возможности
 
-##Plans
-1) @XmlJavaTypeAdapter annotation implemntation,
-2) @XmlJavaTypeAdapters  anotation (class, package level annotation)
-3) создания парсера, который на этапе предкомпиляции будет генерить парсер для каждого тр
-4) Stream parser implementation
+На данный момент поддерживаются следующие анотации:
+
+1) @XmlElement<br />
+2) @XmlAttribute<br />
+3) @XmlRootElement<br />
+
+##План
+1) @XmlJavaTypeAdapter annotation implemntation;<br />
+2) @XmlJavaTypeAdapters  anotation (class, package level annotation);<br />
+3) создания парсера, который на этапе предкомпиляции будет генерить парсер для каждого тр;<br />
+4) Stream parser implementation;<br />
 
 
 ##How to use
@@ -44,3 +50,4 @@ for example if you need parse something like this
 
 ##Comparing with simple parsing using JSONObject, JSONArray,
 сложность такого алгоритма, в том, что при изменении структуры данных, требуется менять как парсер, так и сторайдж в который мы парсим, при использовании
+по сравнениюс гугл либой Гсон, андроидДжахБЛиб имеет такойже синтаксис как и джах б либ, но написан специально для мобильной платформы(размер ядра библиотеки джах б либ 9.5мб, что не сочитается с парадигмой мобильных платформ). на данный момент работает два типа анотаций @хмлелемент и @хмлатрибут
