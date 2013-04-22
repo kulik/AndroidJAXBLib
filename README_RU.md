@@ -18,7 +18,7 @@ application -- then use the "--core-library" option to suppress this error
 При этом объем приложения с либой в комплекте сразуже вырос на 11.5 МВ. 
 Както это многовато для простого маршалинга, в мобильном приложении.
 Так выстрелила идея реализовать упрощенный стандарт JAXB для Андрюши.
-Также родителем идеи были мысли о простом переносе серверных прокси классов в проэкт мобильного приложения, 
+Также родителем идеи были мысли о простом переносе серверных прокси классов в проект мобильного приложения, 
 и изменив в них только импорт.
 
 ### Родоначальники идеи:
@@ -29,7 +29,7 @@ application -- then use the "--core-library" option to suppress this error
 
 На данный момент поддерживаются следующие анотации:
 <ol>
-  <li>@XmlElement
+  <li> @XmlElement
   <li> @XmlAttribute
   <li> @XmlRootElement
 </ol>
@@ -41,7 +41,7 @@ application -- then use the "--core-library" option to suppress this error
   <li> парсер для примитивных типов джава.(пока примитивные типы только компоузятся)
   <li> @XmlJavaTypeAdapter annotation implemntation;<br />
   <li> @XmlJavaTypeAdapters  anotation (class, package level annotation);<br />
-  <li> создания парсера, который на этапе предкомпиляции будет генерить парсер для каждого тр;<br />
+  <li> создания парсера, который на этапе предкомпиляции будет генерить парсеры и компоузеры;<br />
   <li> Stream parser implementation;<br />
 </ol>
 
@@ -163,7 +163,7 @@ public class SearchSuggestion {
 в нашем коде меняется только одна инициализирующая константа<br/>
 <code>UnMarshalerTypes.XMLAdapter > UnMarshalerTypes.JSONAdapter</code>
 
-Другие примуры вы можете найти в JUnit Tests  (AndroidJAXBLib/Tests)
+Другие примеры вы можете найти в JUnit Tests  (AndroidJAXBLib/Tests)
 
 ### Нет человека нет проблемы.
 Частой ситуацией является "падание" парсера, при отсутствии необходимых данных. 
