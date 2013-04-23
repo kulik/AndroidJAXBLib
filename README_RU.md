@@ -1,5 +1,5 @@
 # AndroidJAXBLib
-http://kulik.no-ip.org:8080/job/AndroidJAXBLib/
+http://kulik.no-ip.org/hudson/job/AndroidJAXBLib/
 
 ## Введение
 В процессе паралельной работы с андроидом и серверными технологиями, 
