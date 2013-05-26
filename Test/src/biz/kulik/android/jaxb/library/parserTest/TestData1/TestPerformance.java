@@ -2,8 +2,8 @@ package biz.kulik.android.jaxb.library.parserTest.TestData1;
 
 import android.test.AndroidTestCase;
 import android.test.PerformanceTestCase;
-import com.kulik.logger.EasyLoggerFactory;
-import com.kulik.logger.MyLog;
+//import com.kulik.logger.EasyLoggerFactory;
+//import com.kulik.logger.MyLog;
 
 
 /**
@@ -12,22 +12,22 @@ import com.kulik.logger.MyLog;
  * Time: 12:50 PM
  */
 public class TestPerformance extends AndroidTestCase implements PerformanceTestCase{
-    private static final MyLog LOG = EasyLoggerFactory.getLogger(TestPerformance.class);
+//    private static final MyLog LOG = EasyLoggerFactory.getLogger(TestPerformance.class);
 
     @Override
     protected void tearDown() throws Exception {
-        LOG.d("tearDown()");
+//        LOG.d("tearDown()");
         super.tearDown();
     }
 
     @Override
     protected void setUp() throws Exception {
-        LOG.d("setUp()");
+//        LOG.d("setUp()");
         super.setUp();
     }
 
     public void testPerfi() {
-        LOG.d("testPerfi()");
+//        LOG.d("testPerfi()");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -37,14 +37,14 @@ public class TestPerformance extends AndroidTestCase implements PerformanceTestC
 
     @Override
     public int startPerformance(Intermediates intermediates) {
-        LOG.d("startPerformance()");
+//        LOG.d("startPerformance()");
         intermediates.setInternalIterations(100);
         return 0;
     }
 
     @Override
     public boolean isPerformanceOnly() {
-        LOG.d("isPerformanceOnly()");
+//        LOG.d("isPerformanceOnly()");
         return true;
     }
 }

@@ -1,6 +1,6 @@
 # AndroidJAXBLib
 
-[Russion DOC](README_RU.md)
+[Russian DOC](README_RU.md)
 
-[English DOC](README_ENG.md)
+~~[English DOC](README_ENG.md)~~
 
