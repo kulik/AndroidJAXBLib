@@ -14,9 +14,8 @@ import java.io.StringWriter;
  */
 public class DocUtils {
 
-    public static String getStringFromDoc(org.w3c.dom.Document doc)    {
-        try
-        {
+    public static String getStringFromDoc(org.w3c.dom.Document doc) {
+        try {
             DOMSource domSource = new DOMSource(doc);
             StringWriter writer = new StringWriter();
             StreamResult result = new StreamResult(writer);
@@ -25,9 +24,7 @@ public class DocUtils {
             transformer.transform(domSource, result);
             writer.flush();
             return writer.toString();
-        }
-        catch(TransformerException ex)
-        {
+        } catch (TransformerException ex) {
             ex.printStackTrace();
             return null;
         }

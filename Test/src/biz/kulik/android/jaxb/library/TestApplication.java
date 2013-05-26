@@ -1,8 +1,8 @@
 package biz.kulik.android.jaxb.library;
 
 import android.app.Application;
-import com.kulik.logger.EasyLoggerFactory;
-import com.kulik.logger.MyLogAndroid;
+//import com.kulik.logger.EasyLoggerFactory;
+//import com.kulik.logger.MyLogAndroid;
 
 /**
  * User: kulik
@@ -13,6 +13,6 @@ public class TestApplication extends Application {
 
     public TestApplication() {
         super();
-        EasyLoggerFactory.init(MyLogAndroid.class, "JAXB_tests");
+//        EasyLoggerFactory.init(MyLogAndroid.class, "JAXB_tests");
     }
 }

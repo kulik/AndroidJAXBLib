@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu>
+    <Categories level="0">
+        <Category id="toolCategory" order="0" >
+            <elementA>element0</elementA>
+        </Category>
+        <Category id="toolCategory1" order="10" >
+            <elementA>element20</elementA>
+        </Category>
+        <Category id="toolCategory2" order="20" >
+            <elementA>element10</elementA>
+        </Category>
+        <platform type="" enabled="" minOsVersion="" caption="" visible="" />
+    </Categories>
+
+    <StringElWrapper>
+        <StringElem>MyString</StringElem>
+    </StringElWrapper>
+
+    <CostomElemWrapper>
+        <Category id="toolCostom" order="40" >
+            <elementA>element</elementA>
+        </Category>
+    </CostomElemWrapper>
+</menu>
