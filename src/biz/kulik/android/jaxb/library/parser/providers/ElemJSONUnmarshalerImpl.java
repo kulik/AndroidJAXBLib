@@ -100,6 +100,11 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
     }
 
     @Override
+    public boolean isChildExist(String name) {
+        return mObject.optJSONObject(name) != null;
+    }
+
+    @Override
     public String getValue(String name) {
         try {
             return mObject.getString(name);

@@ -101,6 +101,12 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
     }
 
     @Override
+    public boolean isChildExist(String name) {
+        return (mElement.getElementsByTagName(name).getLength() > 0 &&
+                mElement.getElementsByTagName(name).item(0) != null);
+    }
+
+    @Override
     public String getValue(String tagName) {
         Node node;
         node = mElement.getElementsByTagName(tagName).item(0);

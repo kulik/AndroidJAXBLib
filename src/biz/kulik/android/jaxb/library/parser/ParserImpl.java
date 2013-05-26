@@ -117,7 +117,7 @@ public class ParserImpl implements Parser {
         }
     }
 
-    private void processMethodField(MethodFieldAdapter methodfield, ElementUnmarshaler elem, List<CacheEntity> attributesEntity, List<CacheEntity> elementsEntity, boolean isWrapped, Object obj,Class<?> clazz, MethodFieldFactory.EntityType entityType) throws InvocationTargetException, IllegalAccessException, InstantiationException {
+    private void processMethodField(MethodFieldAdapter methodfield, ElementUnmarshaler elem, List<CacheEntity> attributesEntity, List<CacheEntity> elementsEntity, boolean isWrapped, Object obj, Class<?> clazz, MethodFieldFactory.EntityType entityType) throws InvocationTargetException, IllegalAccessException, InstantiationException {
 
         if (methodfield.isAnnotationPresent(XmlAttribute.class)) {
             String annotationName = methodfield.getAnnotation(XmlAttribute.class).name();
@@ -127,7 +127,7 @@ public class ParserImpl implements Parser {
 
         } else if (!isWrapped && methodfield.isAnnotationPresent(XmlElementWrapper.class)) {
             String annotationName = methodfield.getAnnotation(XmlElementWrapper.class).name();
-            ElementUnmarshaler elemWrapped =  elem.getChild(annotationName);
+            ElementUnmarshaler elemWrapped = elem.getChild(annotationName);
             processMethodField(methodfield, elemWrapped, attributesEntity, elementsEntity, true, obj, clazz, entityType);
 //                  TODO  elementsEntity.add(new CacheEntity(methodfield, annotationName));
 
@@ -235,11 +235,13 @@ public class ParserImpl implements Parser {
             //TODO Need to implement
             throw new UnsupportedOperationException("Array parsing not implemented yet, use List instaed");
         } else {
-            ElementUnmarshaler child = elem.getChild(annotName);
-            Class<?> type = field.getType();
-            Object childObj = type.newInstance();
-            field.put(obj, childObj);
-            processObject(childObj, type, child);
+            if (elem.isChildExist(annotName)) {
+                ElementUnmarshaler child = elem.getChild(annotName);
+                Class<?> type = field.getType();
+                Object childObj = type.newInstance();
+                field.put(obj, childObj);
+                processObject(childObj, type, child);
+            }
         }
     }
 
