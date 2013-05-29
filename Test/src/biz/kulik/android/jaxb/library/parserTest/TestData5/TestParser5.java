@@ -1,10 +1,10 @@
 package biz.kulik.android.jaxb.library.parserTest.TestData5;
 
 import android.test.AndroidTestCase;
-import biz.kulik.android.jaxb.library.R;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
 import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import biz.kulik.android.jaxb.library.parserTest.TestData2.TestStorage;
+import biz.kulik.android.jaxb.library.R;
 
 import java.io.InputStream;
 

@@ -3,7 +3,6 @@ package biz.kulik.android.jaxb.library.parserTest.TestDataTS;
 import biz.kulik.android.jaxb.library.ParserAbstractTest;
 import biz.kulik.android.jaxb.library.R;
 import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
-import biz.kulik.android.jaxb.library.parserTest.TestData9.TSCreateRsp;
 
 /**
  * User: kulik

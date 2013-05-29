@@ -9,7 +9,7 @@ public abstract class AbstractWorkerResponse extends AbstractResponse{
     protected static final String FUNCTION_GET_EMAIL = "Worker_Email.v1/";
     protected static final String FUNCTION_SEND_PASSWORD = "Email_Pswd.v1/";
     protected static final String FUNCTION_GET_HOME_TAB = "WorkerHomeDetail.v1/";
-    protected static final String FUNCTION_GET_ROSTER = "TS_Roster.v1/";
+    protected static final String FUNCTION_GET_ROSTER = "parserDima21.v1/";
     protected static final String FUNCTION_GET_TS_SAVED = "TS_Saved.v1/";
     protected static final String FUNCTION_GET_TS_HISTORY = "TimeSheetHistory.v1/";
     protected static final String FUNCTION_GET_ALERTS = "WorkerAlert.v1/";

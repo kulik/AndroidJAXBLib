@@ -1,8 +1,8 @@
 package biz.kulik.android.jaxb.library.parserTest.TestWrappedData;
 
 import biz.kulik.android.jaxb.library.ParserAbstractTest;
-import biz.kulik.android.jaxb.library.R;
 import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
+import biz.kulik.android.jaxb.library.R;
 
 /**
  * User: kulik
@@ -11,7 +11,7 @@ import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
  */
 public class TestWrapperParser extends ParserAbstractTest<Menu> {
 
-    public void testParse9JSON() {
+    public void testJSON() {
         parse(UnMarshalerTypes.JSONAdapter, R.raw.test_wrappers_json, Menu.class);
     }
 

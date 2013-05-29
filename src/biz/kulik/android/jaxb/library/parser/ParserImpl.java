@@ -5,6 +5,7 @@ import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 import biz.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
 import biz.kulik.android.jaxb.library.parser.chache.CacheEntity;
+import biz.kulik.android.jaxb.library.parser.chache.CacheWrapperEntity;
 import biz.kulik.android.jaxb.library.parser.chache.ClassCacheManager;
 import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter;
 import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory;
@@ -81,43 +82,70 @@ public class ParserImpl implements Parser {
             InvocationTargetException, InstantiationException {
         List<CacheEntity> attributesEntity = mClassCacheManager.getChachedAttributesEntityList(clazz, entityType);
         List<CacheEntity> elementsEntity = mClassCacheManager.getChachedElementsEntityList(clazz, entityType);
-        if (attributesEntity == null || elementsEntity == null) {
+        List<CacheWrapperEntity> wrappersEntity = mClassCacheManager.getChachedWrappedElementsEntityList(clazz, entityType);
+
+        if (attributesEntity == null || elementsEntity == null || elementsEntity == null) {
             MethodFieldAdapter[] allEntity;
             allEntity = MethodFieldFactory.getAllEntytyByType(clazz, entityType);
 
             attributesEntity = new ArrayList<CacheEntity>(allEntity.length % 3 * 2);
             elementsEntity = new ArrayList<CacheEntity>(allEntity.length % 3 * 2);
+            wrappersEntity = new ArrayList<CacheWrapperEntity>(2);
 
             MethodFieldAdapter methodfield;
             for (int i = 0, d = allEntity.length; i < d; i++) {
                 methodfield = allEntity[i];
-                processMethodField(methodfield, elem, attributesEntity, elementsEntity, false, obj, clazz, entityType);
+                processMethodField(methodfield, elem, attributesEntity, elementsEntity, wrappersEntity, false, obj, clazz, entityType);
             }
-            mClassCacheManager.pushEntityToCache(clazz, attributesEntity, elementsEntity, entityType);
+            mClassCacheManager.pushEntityToCache(clazz, attributesEntity, elementsEntity, wrappersEntity, entityType);
         } else {
             CacheEntity cacheEntity;
             String xmlValue;
             String annotationName;
+            MethodFieldAdapter methodField;
             for (int i = 0, d = attributesEntity.size(); i < d; i++) {
                 cacheEntity = attributesEntity.get(i);
-
+                methodField = cacheEntity.getMethodField();
                 annotationName = cacheEntity.getXmlName();
                 xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
-                processAtributeValue(xmlValue, cacheEntity.getMethodField(), obj);
+
+                processAtributeValue(xmlValue, methodField, obj);
             }
             boolean simpleTypeParsed;
             for (int i = 0, d = elementsEntity.size(); i < d; i++) {
                 cacheEntity = elementsEntity.get(i);
-                simpleTypeParsed = processSimpleValue(elem, cacheEntity.getMethodField(), cacheEntity.getXmlName(), obj);
-                if (!simpleTypeParsed) {
-                    processComplexValue(elem, cacheEntity.getMethodField(), cacheEntity.getXmlName(), obj);
-                }
+                methodField = cacheEntity.getMethodField();
+                annotationName = cacheEntity.getXmlName();
 
+                simpleTypeParsed = processSimpleValue(elem, methodField, annotationName, obj);
+                if (!simpleTypeParsed) {
+                    processComplexValue(elem, methodField, annotationName, obj);
+                }
+            }
+            CacheWrapperEntity wraperEntity;
+            for (int i = 0, d = wrappersEntity.size(); i < d; i++) {
+                wraperEntity = wrappersEntity.get(i);
+                String wrapperName = wraperEntity.getXmlWrapper();
+                String elementName = wraperEntity.getXmlName();
+                methodField = wraperEntity.getMethodField();
+
+                ElementUnmarshaler elemWrapped = elem.getChild(wrapperName);
+                simpleTypeParsed = processSimpleValue(elemWrapped, methodField, elementName, obj);
+                if (!simpleTypeParsed) {
+                    processComplexValue(elemWrapped, methodField, elementName, obj);
+                }
             }
         }
     }
 
-    private void processMethodField(MethodFieldAdapter methodfield, ElementUnmarshaler elem, List<CacheEntity> attributesEntity, List<CacheEntity> elementsEntity, boolean isWrapped, Object obj, Class<?> clazz, MethodFieldFactory.EntityType entityType) throws InvocationTargetException, IllegalAccessException, InstantiationException {
+    private void processMethodField(MethodFieldAdapter methodfield, ElementUnmarshaler elem,
+                                    List<CacheEntity> attributesEntity,
+                                    List<CacheEntity> elementsEntity,
+                                    List<CacheWrapperEntity> wrappersEntity,
+                                    boolean isWrapped,
+                                    Object obj,
+                                    Class<?> clazz,
+                                    MethodFieldFactory.EntityType entityType) throws InvocationTargetException, IllegalAccessException, InstantiationException {
 
         if (methodfield.isAnnotationPresent(XmlAttribute.class)) {
             String annotationName = methodfield.getAnnotation(XmlAttribute.class).name();
@@ -126,11 +154,12 @@ public class ParserImpl implements Parser {
             attributesEntity.add(new CacheEntity(methodfield, annotationName));
 
         } else if (!isWrapped && methodfield.isAnnotationPresent(XmlElementWrapper.class)) {
-            String annotationName = methodfield.getAnnotation(XmlElementWrapper.class).name();
-            ElementUnmarshaler elemWrapped = elem.getChild(annotationName);
-            processMethodField(methodfield, elemWrapped, attributesEntity, elementsEntity, true, obj, clazz, entityType);
+            String wrapperName = methodfield.getAnnotation(XmlElementWrapper.class).name();
+            ElementUnmarshaler elemWrapped = elem.getChild(wrapperName);
+            processMethodField(methodfield, elemWrapped, attributesEntity, elementsEntity, wrappersEntity, true, obj, clazz, entityType);
 //                  TODO  elementsEntity.add(new CacheEntity(methodfield, annotationName));
-
+            String elementName = methodfield.getAnnotation(XmlElement.class).name();
+            wrappersEntity.add(new CacheWrapperEntity(methodfield, elementName, wrapperName));
         } else if (methodfield.isAnnotationPresent(XmlElement.class)) {
 
             String annotationName = methodfield.getAnnotation(XmlElement.class).name();
@@ -138,7 +167,9 @@ public class ParserImpl implements Parser {
             if (simpleTypeParsed == false) {
                 processComplexValue(elem, methodfield, annotationName, obj);
             }
-            elementsEntity.add(new CacheEntity(methodfield, annotationName));
+            if (!isWrapped) { // item already exist in wrapper chache
+                elementsEntity.add(new CacheEntity(methodfield, annotationName));
+            }
         }
     }
 

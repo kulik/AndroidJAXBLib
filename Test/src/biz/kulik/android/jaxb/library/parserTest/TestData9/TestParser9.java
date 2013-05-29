@@ -1,16 +1,8 @@
 package biz.kulik.android.jaxb.library.parserTest.TestData9;
 
-import android.test.AndroidTestCase;
 import biz.kulik.android.jaxb.library.ParserAbstractTest;
 import biz.kulik.android.jaxb.library.R;
-import biz.kulik.android.jaxb.library.parser.Parser;
-import biz.kulik.android.jaxb.library.parser.ParserImpl;
 import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
-import biz.kulik.android.jaxb.library.parserTest.TestData6.AbstractResponse;
-import biz.kulik.android.jaxb.library.parserTest.TestData6.ParseCreateTSWeekResponse;
-
-import java.io.InputStream;
-import java.util.List;
 
 /**
  * User: kulik

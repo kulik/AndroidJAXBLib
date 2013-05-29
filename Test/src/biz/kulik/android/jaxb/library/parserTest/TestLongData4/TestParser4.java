@@ -6,7 +6,6 @@ import biz.kulik.android.jaxb.library.parser.ParserImpl;
 import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 /**
  * User: kulik

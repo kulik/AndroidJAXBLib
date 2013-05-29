@@ -24,7 +24,6 @@ public class CacheEntity {
         return mXmlName;
     }
 
-
     public MethodFieldAdapter getMethodField() {
         return mMethodField;
     }
