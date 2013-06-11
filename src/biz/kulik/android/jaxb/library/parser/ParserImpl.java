@@ -230,7 +230,6 @@ public class ParserImpl implements Parser {
         if (valueType == List.class) {
             List<ElementUnmarshaler> children = elem.getChildren(annotName);
             List objects = new ArrayList(children.size());
-            field.put(obj, objects);
 
             Type genericType = field.getGenericParameterTypes();
 //            Class<?> tClass = ReflectionUtils.getGenericParameterClass(List.class, field.getDeclaringClass(), 0);
@@ -262,6 +261,7 @@ public class ParserImpl implements Parser {
                     }
                 }
             }
+            field.put(obj, objects);
         } else if (valueType.isArray()) {
             //TODO Need to implement
             throw new UnsupportedOperationException("Array parsing not implemented yet, use List instaed");
