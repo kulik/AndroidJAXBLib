@@ -1,0 +1,43 @@
+
+buildscript {
+    repositories {
+        maven { url 'http://repo1.maven.org/maven2' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.4'
+    }
+} 
+apply plugin: 'android-library'
+
+android {
+    compileSdkVersion "Google Inc.:Google APIs:17"
+    buildToolsVersion "17.0.0"
+
+    sourceSets {
+        main {
+            manifest {
+                srcFile 'AndroidManifest.xml'
+            }
+            java {
+                srcDir 'src'
+            }
+            res {
+                srcDir 'res'
+            }
+            assets {
+                srcDir 'assets'
+            }
+            resources {
+                srcDir 'src'
+            }
+            aidl.srcDirs = ['src']
+        }
+
+    }
+
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 11
+    }
+}
