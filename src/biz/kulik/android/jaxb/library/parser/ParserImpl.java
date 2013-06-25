@@ -4,6 +4,8 @@ import android.util.Log;
 import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 import biz.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
+import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
+import biz.kulik.android.jaxb.library.parser.adapters.AdaptersManager;
 import biz.kulik.android.jaxb.library.parser.chache.CacheEntity;
 import biz.kulik.android.jaxb.library.parser.chache.CacheWrapperEntity;
 import biz.kulik.android.jaxb.library.parser.chache.ClassCacheManager;
@@ -17,6 +19,7 @@ import biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser;
 import java.io.InputStream;
 import java.lang.reflect.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -29,13 +32,13 @@ public class ParserImpl implements Parser {
 
     private UnMarshalerTypes mUnMarshalerType;
 
-    //    private AdaptersManager xmlAdaptersManager;
+        private AdaptersManager mJavaAdaptersManager;
 
     private ClassCacheManager mClassCacheManager;
 
     public ParserImpl(UnMarshalerTypes ad) {
         mUnMarshalerType = ad;
-//        xmlAdaptersManager = new AdaptersManager();
+        mJavaAdaptersManager = new AdaptersManager();
         mClassCacheManager = new ClassCacheManager();
     }
 
@@ -88,9 +91,9 @@ public class ParserImpl implements Parser {
             MethodFieldAdapter[] allEntity;
             allEntity = MethodFieldFactory.getAllEntytyByType(clazz, entityType);
 
-            attributesEntity = new ArrayList<CacheEntity>(allEntity.length % 3 * 2);
-            elementsEntity = new ArrayList<CacheEntity>(allEntity.length % 3 * 2);
-            wrappersEntity = new ArrayList<CacheWrapperEntity>(2);
+            attributesEntity = new LinkedList<CacheEntity>();//allEntity.length % 3 * 2);
+            elementsEntity = new LinkedList<CacheEntity>();
+            wrappersEntity = new LinkedList<CacheWrapperEntity>();//2
 
             MethodFieldAdapter methodfield;
             for (int i = 0, d = allEntity.length; i < d; i++) {
@@ -98,7 +101,7 @@ public class ParserImpl implements Parser {
                 processMethodField(methodfield, elem, attributesEntity, elementsEntity, wrappersEntity, false, obj, clazz, entityType);
             }
             mClassCacheManager.pushEntityToCache(clazz, attributesEntity, elementsEntity, wrappersEntity, entityType);
-        } else {
+        } else {    //if class entites already chached
             CacheEntity cacheEntity;
             String xmlValue;
             String annotationName;
@@ -163,6 +166,7 @@ public class ParserImpl implements Parser {
         } else if (methodfield.isAnnotationPresent(XmlElement.class)) {
 
             String annotationName = methodfield.getAnnotation(XmlElement.class).name();
+            //process Java  Type Wrappers (Boolean, Integer, Float etc.)
             boolean simpleTypeParsed = processSimpleValue(elem, methodfield, annotationName, obj);
             if (simpleTypeParsed == false) {
                 processComplexValue(elem, methodfield, annotationName, obj);
@@ -183,7 +187,7 @@ public class ParserImpl implements Parser {
 
         mfAdapter.setAccessible(true); //TODO add accessorTypeLogic
         Class<?> valueType = mfAdapter.getType();
-        if (String.class.equals(valueType)) {
+        if (String.class.equals(valueType)) {            //TODO investigate why String should be handled here
             String value = elem.getValue(valueName);
             mfAdapter.put(obj, value);
             return true;

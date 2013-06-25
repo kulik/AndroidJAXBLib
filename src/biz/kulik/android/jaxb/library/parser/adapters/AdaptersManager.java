@@ -2,8 +2,7 @@ package biz.kulik.android.jaxb.library.parser.adapters;
 
 import biz.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter;
 import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter;
-
-import java.lang.reflect.Field;
+import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter;
 
 /**
  * User: kulik
@@ -11,12 +10,12 @@ import java.lang.reflect.Field;
  * Time: 2:31 PM
  */
 public class AdaptersManager {
-    private AdapterChacheManager javaAdapterManager;
-    private GlobalAdapterChacheManager packageAssignedAdaptersManager;
+    private AdapterChacheManager mJavaAdapterManager;
+    private GlobalAdapterChacheManager mPackageAssignedAdaptersManager;
 
     public AdaptersManager() {
-        javaAdapterManager = new AdapterChacheManager();
-        packageAssignedAdaptersManager = new GlobalAdapterChacheManager();
+        mJavaAdapterManager = new AdapterChacheManager();
+        mPackageAssignedAdaptersManager = new GlobalAdapterChacheManager();
     }
 
 //    public Object marshal(Field field, Object value) {
@@ -24,16 +23,16 @@ public class AdaptersManager {
 //
 //    }
 
-    public XmlAdapter getAdapterForField(Field field) {
+    public XmlAdapter getAdapterForField(MethodFieldAdapter methodFieldAdapter) {
         XmlAdapter adapter;
-        if (field.isAnnotationPresent(XmlJavaTypeAdapter.class)) {
-            XmlJavaTypeAdapter fieldLevelAnn = field.getAnnotation(XmlJavaTypeAdapter.class);
-            adapter = javaAdapterManager.getAdapter(fieldLevelAnn.value());
+        if (methodFieldAdapter.isAnnotationPresent(XmlJavaTypeAdapter.class)) {
+            XmlJavaTypeAdapter fieldLevelAnn = methodFieldAdapter.getAnnotation(XmlJavaTypeAdapter.class);
+            adapter = mJavaAdapterManager.getAdapter(fieldLevelAnn.value());
         } else {
-            Package pack = field.getDeclaringClass().getPackage();
-            packageAssignedAdaptersManager.processPackage(pack);
-            Class clazz = field.getClass();
-            adapter = packageAssignedAdaptersManager.getAdapter(new Criteria(pack, clazz));
+            Package pack = methodFieldAdapter.getPackage();
+            mPackageAssignedAdaptersManager.processPackage(pack);
+            Class clazz = methodFieldAdapter.getClass();
+            adapter = mPackageAssignedAdaptersManager.getAdapter(new Criteria(pack, clazz));
         }
         return adapter;
     }

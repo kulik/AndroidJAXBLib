@@ -39,24 +39,27 @@ public class GlobalAdapterChacheManager {
 
     /**
      * add to Chache instance of all XMLAdapter declared for it package
+     *
      * @param packaze
      */
     public void processPackage(Package packaze) {
         if (!processedPackages.contains(packaze)) {
-            XmlJavaTypeAdapters ann = packaze.getAnnotation(XmlJavaTypeAdapters.class);
-            XmlJavaTypeAdapter[] adapters = ann.value();
-            XmlAdapter adapterInstance;
-            try {
-                for (XmlJavaTypeAdapter adapterMetaData : ann.value()) {
-                    adapterInstance = adapterMetaData.value().newInstance();
-                    adaptersChache.put(new Criteria(packaze, adapterMetaData.type()), adapterInstance);
+            if (packaze.isAnnotationPresent(XmlJavaTypeAdapters.class)) {
+                XmlJavaTypeAdapters ann = packaze.getAnnotation(XmlJavaTypeAdapters.class);
+                XmlJavaTypeAdapter[] adapters = ann.value();
+                XmlAdapter adapterInstance;
+                try {
+                    for (XmlJavaTypeAdapter adapterMetaData : ann.value()) {
+                        adapterInstance = adapterMetaData.value().newInstance();
+                        adaptersChache.put(new Criteria(packaze, adapterMetaData.type()), adapterInstance);
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
                 }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
+                processedPackages.add(packaze);
             }
-            processedPackages.add(packaze);
         }
     }
 

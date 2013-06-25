@@ -55,7 +55,12 @@ public class FieldAdapter implements MethodFieldAdapter {
 
     @Override
     public Class<?> getType() {
-        return mField.getType();  //To change body of implemented methods use File | Settings | File Templates.
+        return mField.getType();
+    }
+
+    @Override
+    public Package getPackage() {
+        return mField.getDeclaringClass().getPackage();
     }
 
 

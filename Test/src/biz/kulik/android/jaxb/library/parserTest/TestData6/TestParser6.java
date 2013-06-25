@@ -43,8 +43,8 @@ public class TestParser6 extends AndroidTestCase {
         ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
         AbstractResponse result = (AbstractResponse) parser.parse(ParseCreateTSWeekResponse.class, responseString);
 
-//        TSCreateRsp ts;
-//        ts = parser.parse(TSCreateRsp.class, inputStream);
+//        PrimitivesTypes ts;
+//        ts = parser.parse(PrimitivesTypes.class, inputStream);
 
         assertTestDate6((ParseCreateTSWeekResponse) result);
 
