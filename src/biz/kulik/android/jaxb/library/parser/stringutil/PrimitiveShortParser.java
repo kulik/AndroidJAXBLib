@@ -5,7 +5,7 @@ package biz.kulik.android.jaxb.library.parser.stringutil;
  * Date: 6/25/13
  * Time: 7:16 PM
  */
-public class PrimitiveShortParser implements SimpleTypeParser<Short> {
+public class PrimitiveShortParser extends PrimitiveParser<Short> {
     @Override
     public Short valueOf(String value) {
         return Short.valueOf(value);

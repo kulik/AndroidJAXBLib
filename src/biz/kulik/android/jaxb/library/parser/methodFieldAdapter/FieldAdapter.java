@@ -54,7 +54,12 @@ public class FieldAdapter implements MethodFieldAdapter {
     }
 
     @Override
-    public Class<?> getType() {
+    public Class<?> getInputType() {
+        return mField.getType();
+    }
+
+    @Override
+    public Class<?> getOutputType() {
         return mField.getType();
     }
 
@@ -62,6 +67,4 @@ public class FieldAdapter implements MethodFieldAdapter {
     public Package getPackage() {
         return mField.getDeclaringClass().getPackage();
     }
-
-
 }

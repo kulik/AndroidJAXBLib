@@ -5,7 +5,7 @@ package biz.kulik.android.jaxb.library.parser.stringutil;
  * Date: 12/6/12
  * Time: 8:31 PM
  */
-public class LongParser implements SimpleTypeParser<Long>{
+public class LongParser extends PrimitiveJavaWrapperParser<Long> {
 
     @Override
     public Long valueOf(String value) {

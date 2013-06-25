@@ -5,7 +5,7 @@ package biz.kulik.android.jaxb.library.parser.stringutil;
  * Date: 6/25/13
  * Time: 7:17 PM
  */
-public class PrimitiveFloatParser implements SimpleTypeParser<Float> {
+public class PrimitiveFloatParser extends PrimitiveParser<Float> {
 
     @Override
     public Float valueOf(String value) {

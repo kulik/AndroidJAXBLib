@@ -25,7 +25,9 @@ public interface MethodFieldAdapter {
 
     public boolean equals(MethodFieldAdapter o1);
 
-    public Class<?> getType();
+    public Class<?> getInputType();
+
+    public Class<?> getOutputType();
 
     public Package getPackage();
 

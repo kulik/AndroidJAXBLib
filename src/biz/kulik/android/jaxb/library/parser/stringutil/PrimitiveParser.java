@@ -5,9 +5,10 @@ package biz.kulik.android.jaxb.library.parser.stringutil;
  * Date: 6/25/13
  * Time: 9:16 PM
  */
-public class StringParser extends PrimitiveJavaWrapperParser<String> {
+public abstract class PrimitiveParser<T> implements SimpleTypeParser<T> {
+
     @Override
-    public String valueOf(String value) {
-        return value;
+    public boolean isPrimitiveType() {
+        return true;
     }
 }

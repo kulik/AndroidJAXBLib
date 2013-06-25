@@ -7,4 +7,6 @@ package biz.kulik.android.jaxb.library.parser.stringutil;
  */
 public interface SimpleTypeParser<T> {
     T valueOf(String value);
+
+    public boolean isPrimitiveType();
 }

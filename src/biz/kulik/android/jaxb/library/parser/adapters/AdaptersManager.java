@@ -28,13 +28,17 @@ public class AdaptersManager {
         if (methodFieldAdapter.isAnnotationPresent(XmlJavaTypeAdapter.class)) {
             XmlJavaTypeAdapter fieldLevelAnn = methodFieldAdapter.getAnnotation(XmlJavaTypeAdapter.class);
             adapter = mJavaAdapterManager.getAdapter(fieldLevelAnn.value());
+            //TODO add debug mode Check class types compatibility
         } else {
             Package pack = methodFieldAdapter.getPackage();
             mPackageAssignedAdaptersManager.processPackage(pack);
             Class clazz = methodFieldAdapter.getClass();
             adapter = mPackageAssignedAdaptersManager.getAdapter(new Criteria(pack, clazz));
         }
+
         return adapter;
     }
+
+
 
 }

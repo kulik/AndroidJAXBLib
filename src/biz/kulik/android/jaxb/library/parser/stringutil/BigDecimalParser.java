@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  * Date: 1/21/13
  * Time: 2:49 PM
  */
-public class BigDecimalParser implements SimpleTypeParser<BigDecimal> {
+public class BigDecimalParser extends PrimitiveJavaWrapperParser<BigDecimal> {
 
 
         @Override

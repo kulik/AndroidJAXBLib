@@ -5,9 +5,9 @@ package biz.kulik.android.jaxb.library.parser.stringutil;
  * Date: 6/25/13
  * Time: 7:11 PM
  */
-public class PrimitiveByteParser implements SimpleTypeParser {
+public class PrimitiveByteParser  extends PrimitiveParser<Byte> {
     @Override
-    public Object valueOf(String value) {
+    public Byte valueOf(String value) {
         return Byte.valueOf(value);
     }
 }

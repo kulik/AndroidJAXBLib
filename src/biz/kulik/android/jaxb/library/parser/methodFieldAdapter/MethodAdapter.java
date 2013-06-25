@@ -53,8 +53,13 @@ public class MethodAdapter implements MethodFieldAdapter {
     }
 
     @Override
-    public Class<?> getType() {
+    public Class<?> getInputType() {
         return mMethod.getParameterTypes()[0];
+    }
+
+    @Override
+    public Class<?> getOutputType() {
+        return mMethod.getReturnType();
     }
 
     @Override
