@@ -12,7 +12,7 @@ public class SimpleParsersManager {
     //TODO use LazyMap
     //TODO throw exceptions from parsers, and log it's
 
-    private static final HashMap<Class<?>, SimpleTypeParser> SIMPLE_TYPE_PARSERS = new HashMap<Class<?>, SimpleTypeParser>(6) {{
+    private static final HashMap<Class<?>, SimpleTypeParser> SIMPLE_TYPE_PARSERS = new HashMap<Class<?>, SimpleTypeParser>(16) {{
         put(Integer.class, new IntegerParser());
         put(Double.class, new DoubleParser());
         put(Float.class, new FloatParser());
@@ -21,6 +21,7 @@ public class SimpleParsersManager {
         put(BigDecimal.class, new BigDecimalParser());
         put(Short.class, new ShortParser());
         put(Byte.class, new ByteParser());
+        put(String.class, new StringParser());
 
         //Primitive Java Types
         put(Byte.TYPE, new PrimitiveByteParser());

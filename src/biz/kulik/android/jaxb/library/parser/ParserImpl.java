@@ -4,7 +4,7 @@ import android.util.Log;
 import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 import biz.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
-import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
+import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter;
 import biz.kulik.android.jaxb.library.parser.adapters.AdaptersManager;
 import biz.kulik.android.jaxb.library.parser.chache.CacheEntity;
 import biz.kulik.android.jaxb.library.parser.chache.CacheWrapperEntity;
@@ -17,7 +17,9 @@ import biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager;
 import biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser;
 
 import java.io.InputStream;
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class ParserImpl implements Parser {
 
     private UnMarshalerTypes mUnMarshalerType;
 
-        private AdaptersManager mJavaAdaptersManager;
+    private AdaptersManager mJavaAdaptersManager;
 
     private ClassCacheManager mClassCacheManager;
 
@@ -163,9 +165,10 @@ public class ParserImpl implements Parser {
 //                  TODO  elementsEntity.add(new CacheEntity(methodfield, annotationName));
             String elementName = methodfield.getAnnotation(XmlElement.class).name();
             wrappersEntity.add(new CacheWrapperEntity(methodfield, elementName, wrapperName));
-        } else if (methodfield.isAnnotationPresent(XmlElement.class)) {
 
+        } else if (methodfield.isAnnotationPresent(XmlElement.class)) {
             String annotationName = methodfield.getAnnotation(XmlElement.class).name();
+            XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(methodfield);
             //process Java  Type Wrappers (Boolean, Integer, Float etc.)
             boolean simpleTypeParsed = processSimpleValue(elem, methodfield, annotationName, obj);
             if (simpleTypeParsed == false) {
@@ -183,21 +186,13 @@ public class ParserImpl implements Parser {
      * @throws IllegalAccessException
      */
     protected <T> boolean processSimpleValue(ElementUnmarshaler elem, MethodFieldAdapter mfAdapter, String valueName, T obj) throws IllegalAccessException, InvocationTargetException {
-        //TODO get velue after checking
-
         mfAdapter.setAccessible(true); //TODO add accessorTypeLogic
         Class<?> valueType = mfAdapter.getType();
-        if (String.class.equals(valueType)) {            //TODO investigate why String should be handled here
+        SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
+        if (simpleTypeParser != null) {
             String value = elem.getValue(valueName);
-            mfAdapter.put(obj, value);
+            mfAdapter.put(obj, simpleTypeParser.valueOf(value));
             return true;
-        } else {
-            SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
-            if (simpleTypeParser != null) {
-                String value = elem.getValue(valueName);
-                mfAdapter.put(obj, simpleTypeParser.valueOf(value));
-                return true;
-            }
         }
         return false;
     }
@@ -209,18 +204,14 @@ public class ParserImpl implements Parser {
      * @throws IllegalAccessException
      */
     protected <T> boolean processAtributeValue(String value, MethodFieldAdapter mfAdapter, T obj) throws IllegalAccessException, InvocationTargetException {
+        //TODO get velue after checking
 
         mfAdapter.setAccessible(true); //TODO add accessorTypeLogic
         Class<?> valueType = mfAdapter.getType();
-        if (String.class.equals(valueType)) {
-            mfAdapter.put(obj, value);
+        SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
+        if (simpleTypeParser != null) {
+            mfAdapter.put(obj, simpleTypeParser.valueOf(value));
             return true;
-        } else {
-            SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
-            if (simpleTypeParser != null) {
-                mfAdapter.put(obj, simpleTypeParser.valueOf(value));
-                return true;
-            }
         }
         return false;
     }
