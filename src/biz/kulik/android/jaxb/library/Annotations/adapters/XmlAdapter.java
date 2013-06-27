@@ -1,6 +1,6 @@
 package biz.kulik.android.jaxb.library.Annotations.adapters;
 
-import biz.kulik.android.jaxb.library.parser.adapters.AdapterException;
+import biz.kulik.android.jaxb.library.adapters.AdapterException;
 
 import java.lang.reflect.ParameterizedType;
 

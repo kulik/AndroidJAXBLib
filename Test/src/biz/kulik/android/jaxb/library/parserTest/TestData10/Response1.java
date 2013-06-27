@@ -10,10 +10,32 @@ import java.util.List;
  * Time: 17:55
  */
 public class Response1 {
+    @XmlElement(name = "data")
+    public List<BankResponse> mBankList;
 
-    @XmlElement(name = "textS")
-    public String textS;
 
-    @XmlElement(name="text")
-    public List<String> text;
+    public static class BankResponse {
+        @XmlElement(name = "bank")
+        public String mName;
+
+        @XmlElement(name = "email")
+        public String mEmail;
+
+        @XmlElement(name = "phone")
+        public String mPhone;
+
+        public BankResponse() {
+        }
+
+        public BankResponse(String name, String email, String phone) {
+            mName = name;
+            mEmail = email;
+            mPhone = phone;
+        }
+
+        @Override
+        public String toString() {
+            return mName;
+        }
+    }
 }

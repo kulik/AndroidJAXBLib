@@ -1,9 +1,162 @@
-{
-    "textS":"TimeSheetString",
-    "text":[
-        "TimeSheet1",
-        "TimeSheet2",
-        "TimeSheet3",
-        "TimeSheet4"
-    ]
-}
+{"status": "success", "data": [
+    {
+        "bank": "SpareBank 1 Askim",
+        "email": "ksforsikring@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 Buskerud-Vestfold",
+        "email": "kundeservice@s1bv.no",
+        "phone": "02480"
+    },
+    {
+        "bank": "SpareBank 1 Drammen",
+        "email": "kundeservice@s1bv.no",
+        "phone": "02480"
+    },
+    {
+        "bank": "SpareBank 1 Drøbak",
+        "email": "ksforsikring@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 Fredrikstad",
+        "email": "ksforsikring@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 Gudbra ndsdal",
+        "email": "bankpost@s1g.no",
+        "phone": "61 21 80 00"
+    },
+    {
+        "bank": "SpareBank 1 Halden",
+        "email": "ksforsikring@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 Hallingdal",
+        "email": "post@sb1.no",
+        "phone": "03202"
+    },
+    {
+        "bank": "Sparebanken Hedmark",
+        "email": "kundesenter@sparebanken-hedmark.no",
+        "phone": "02999"
+    },
+    {
+        "bank": "SpareBank 1 Horten",
+        "email": "kundeservice@s1bv.no",
+        "phone": "02480"
+    },
+    {
+        "bank": "SpareBank 1 Kongsberg",
+        "email": "kundeservice@s1bv.no",
+        "phone": "02480"
+    },
+    {
+        "bank": "SpareBank 1 Larvik",
+        "email": "kundeservice@s1bv.no",
+        "phone": "02480"
+    },
+    {
+        "bank": "SpareBank 1 Lom og Skjåk",
+        "email": "bankpost@sb1ls.no",
+        "phone": "61 21 90 00"
+    },
+    {
+        "bank": "SpareBank 1 Modum",
+        "email": "ms@modum.sparebank1.no",
+        "phone": "02270"
+    },
+    {
+        "bank": "SpareBank 1 Moss",
+        "email": "ksforsikring@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 Nord-Norge",
+        "email": "02244@snn.no",
+        "phone": "02244"
+    },
+    {
+        "bank": "SpareBank 1 Nordvest",
+        "email": "nordvest@snv.no",
+        "phone": "03900"
+    },
+    {
+        "bank": "SpareBank1 Nøtterøy-Tønsberg",
+        "email": "service@nottero.sparebank1.no",
+        "phone": "02440"
+    },
+    {
+        "bank": "SpareBank 1 Oslo Akershus",
+        "email": "bank1@sparebank1.no",
+        "phone": "07040"
+    },
+    {
+        "bank": "SpareBank 1 Ringerike Hadeland",
+        "email": "firmapost@rhbank.no",
+        "phone": "02130"
+    },
+    {
+        "bank": "SpareBank 1 Rygge",
+        "email": "ksforsikring@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 Råde",
+        "email": "ksforsikring@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 Sandefjord",
+        "email": "kundeservice@s1bv.no",
+        "phone": "02480"
+    },
+    {
+        "bank": "SpareBank 1 Sarpsborg",
+        "email": "epost@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 SMN",
+        "email": "smn@smn.no",
+        "phone": "07300"
+    },
+    {
+        "bank": "SpareBank 1 Soon",
+        "email": "epost@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 SR-Bank",
+        "email": "kundesenter@sr-bank.no",
+        "phone": "02002"
+    },
+    {
+        "bank": "SpareBank 1 Telemark",
+        "email": "post@sb1telemark.no",
+        "phone": "02610"
+    },
+    {
+        "bank": "SpareBank 1 Vestby",
+        "email": "ksforsikring@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 Søre Sunnmøre",
+        "email": "sparebanken@sparebanken.no",
+        "phone": "70 07 00 00"
+    },
+    {
+        "bank": "SpareBank 1 Våler",
+        "email": "ksforsikring@sparebank1.no",
+        "phone": "05700"
+    },
+    {
+        "bank": "SpareBank 1 Østfold Akershus",
+        "email": "ksforsikring@sparebank1.no",
+        "phone": "05700"
+    }
+]}

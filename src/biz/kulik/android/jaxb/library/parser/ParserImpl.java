@@ -6,8 +6,8 @@ import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 import biz.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
 import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter;
 import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapterTypesException;
-import biz.kulik.android.jaxb.library.parser.adapters.AdapterException;
-import biz.kulik.android.jaxb.library.parser.adapters.AdaptersManager;
+import biz.kulik.android.jaxb.library.adapters.AdapterException;
+import biz.kulik.android.jaxb.library.adapters.AdaptersManager;
 import biz.kulik.android.jaxb.library.parser.chache.CacheEntity;
 import biz.kulik.android.jaxb.library.parser.chache.CacheWrapperEntity;
 import biz.kulik.android.jaxb.library.parser.chache.ClassCacheManager;
@@ -29,6 +29,7 @@ import java.util.List;
 
 /**
  * User: kulik
+ *
  * Date: 11/23/12
  * Time: 10:45 AM
  */
@@ -264,7 +265,7 @@ public class ParserImpl implements Parser {
                 XmlAdapter itemAdapter = mJavaAdaptersManager.getAdapterByProp(methodField.getPackage(), methodField.getClassClass(), tClass);
                 Class<?> adapterValueType = XmlAdapter.getUnmarshalerType(itemAdapter);
                 if (!Object.class.equals(adapterValueType)) {
-                     tClass = adapterValueType;
+                    tClass = adapterValueType;
                 }
                 if (String.class.equals(tClass)) {
 //TODO create stub SIMPLEPARSER for String

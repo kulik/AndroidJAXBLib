@@ -18,11 +18,6 @@ public class AdaptersManager {
         mPackageAssignedAdaptersManager = new GlobalAdapterChacheManager();
     }
 
-//    public Object marshal(Field field, Object value) {
-//        XmlAdapter adapter = getAdapterForField(field);
-//
-//    }
-
     public XmlAdapter getAdapterForField(MethodFieldAdapter methodFieldAdapter) {
         XmlAdapter adapter;
         if (methodFieldAdapter.isAnnotationPresent(XmlJavaTypeAdapter.class)) {
