@@ -1,4 +1,4 @@
-package biz.kulik.android.jaxb.library.parser.adapters;
+package biz.kulik.android.jaxb.library.adapters;
 
 import biz.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter;
 import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter;
