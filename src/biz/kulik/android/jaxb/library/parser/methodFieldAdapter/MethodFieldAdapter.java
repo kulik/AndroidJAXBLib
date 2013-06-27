@@ -29,6 +29,8 @@ public interface MethodFieldAdapter {
 
     public Class<?> getOutputType();
 
+    public Class<?> getClassClass();
+
     public Package getPackage();
 
 }

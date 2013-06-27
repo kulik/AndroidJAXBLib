@@ -8,6 +8,10 @@ package biz.kulik.android.jaxb.library.parser.stringutil;
 public class PrimitiveIntegerParser extends PrimitiveParser<Integer> {
     @Override
     public Integer valueOf(String value) {
-        return Integer.valueOf(value);
+        try {
+            return Integer.valueOf(value);
+        } catch (NumberFormatException e) {
+        }
+        return 0;
     }
 }

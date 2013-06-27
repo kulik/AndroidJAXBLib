@@ -1,6 +1,7 @@
 package biz.kulik.android.jaxb.library.parserTest.TS_Roster;
 
 import android.test.AndroidTestCase;
+import biz.kulik.android.jaxb.library.ParserAbstractTest;
 import biz.kulik.android.jaxb.library.R;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
 import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
@@ -13,29 +14,11 @@ import java.io.InputStream;
  * Date: 10/26/12
  * Time: 12:50 PM
  */
-public class TestTS_Roster extends AndroidTestCase {
+public class TestTS_Roster extends ParserAbstractTest<GetRosterResponse> {
     private static final String TAG = TestTS_Roster.class.getSimpleName();
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
-
     public void testParse4XML() {
-        InputStream inputStream = getContext().getResources().openRawResource(R.raw.ts_roster_xml);
-
-        ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
-
-        GetRosterResponse lbs;
-        lbs = parser.parse(GetRosterResponse.class, inputStream);
-
-        assertTrue(true);
+        parse(UnMarshalerTypes.XMLAdapter, R.raw.ts_roster_xml, GetRosterResponse.class);
     }
 
 //    public void testParse4XML() {
@@ -49,9 +32,8 @@ public class TestTS_Roster extends AndroidTestCase {
 //        assertTestDate4(lbs);
 //    }
 
-    private void assertTestDate4(RootBusStop lbs) {
+    @Override
+    protected void assertTestData(GetRosterResponse ts) {
         assertTrue(true);
-
     }
-
 }

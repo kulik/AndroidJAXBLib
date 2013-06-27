@@ -1,5 +1,7 @@
 package biz.kulik.android.jaxb.library.Annotations.adapters;
 
+import biz.kulik.android.jaxb.library.parser.adapters.AdapterException;
+
 import java.lang.reflect.ParameterizedType;
 
 /**
@@ -9,23 +11,43 @@ import java.lang.reflect.ParameterizedType;
  */
 public abstract class XmlAdapter<ValueType, BoundType>{
 
+    private static final boolean ADAPTER_DEBUG = true;
+
     protected XmlAdapter() {}
     public abstract BoundType unmarshal(ValueType v) throws Exception;
     public abstract ValueType marshal(BoundType v) throws Exception;
 
-    public static Class<?> getUnmarsalerType(XmlAdapter adapter) {
+    public static Class<?> getUnmarshalerType(XmlAdapter adapter) {
         Class<?> clazz = (Class<?>) ((ParameterizedType) adapter.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        if (Object.class.equals(clazz)) {
-            clazz = null;
-        }
         return clazz;
     }
 
-    public static Class<?> getMarsalerType(XmlAdapter adapter) {
+    public static Class<?> getMarshalerType(XmlAdapter adapter) {
         Class<?> clazz = (Class<?>) ((ParameterizedType) adapter.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
-        if (Object.class.equals(clazz)) {
-            clazz = null;
-        }
         return clazz;
     }
+
+    public static <V,T> V unmarshal(XmlAdapter<T, V> adapter, T value) throws AdapterException {
+        try {
+            return adapter.unmarshal(value);
+        } catch (Exception e) {
+            throw new AdapterException(e);
+        }
+    }
+
+    public static <T,V> T marshal(XmlAdapter<T, V> adapter, V value) throws AdapterException {
+        try {
+            return adapter.marshal(value);
+        } catch (Exception e) {
+            throw new AdapterException(e);
+        }
+    }
+
+//    public static void checkAdapterCompatibility(XmlAdapter adapter, Class<?> clazz) {
+//        if (ADAPTER_DEBUG) {
+//            if (!clazz.isAssignableFrom(XmlAdapter.getMarshalerType(adapter))) {
+//                throw new XmlAdapterTypesException();
+//            }
+//        }
+//    }
 }

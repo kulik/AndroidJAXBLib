@@ -63,6 +63,11 @@ public class MethodAdapter implements MethodFieldAdapter {
     }
 
     @Override
+    public Class<?> getClassClass() {
+        return mMethod.getDeclaringClass();
+    }
+
+    @Override
     public Package getPackage() {
         return mMethod.getDeclaringClass().getPackage();
     }

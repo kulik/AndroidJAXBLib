@@ -41,7 +41,12 @@ public class TestParser6 extends AndroidTestCase {
                 "    <text>TimeSheet VMT0000602 has been Saved.</text>\n" +
                 "</TSCreateRsp>";
         ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
-        AbstractResponse result = (AbstractResponse) parser.parse(ParseCreateTSWeekResponse.class, responseString);
+        AbstractResponse result = null;
+        try {
+            result = (AbstractResponse) parser.parse(ParseCreateTSWeekResponse.class, responseString);
+        } catch (Exception e) {
+            assertTrue(false);
+        }
 
 //        PrimitivesTypes ts;
 //        ts = parser.parse(PrimitivesTypes.class, inputStream);

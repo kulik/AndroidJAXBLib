@@ -5,6 +5,8 @@ import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 import biz.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
 import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter;
+import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapterTypesException;
+import biz.kulik.android.jaxb.library.parser.adapters.AdapterException;
 import biz.kulik.android.jaxb.library.parser.adapters.AdaptersManager;
 import biz.kulik.android.jaxb.library.parser.chache.CacheEntity;
 import biz.kulik.android.jaxb.library.parser.chache.CacheWrapperEntity;
@@ -46,20 +48,20 @@ public class ParserImpl implements Parser {
     }
 
     @Override
-    public <T> T parse(Class<T> cls, String data) {
+    public <T> T parse(Class<T> cls, String data) throws Exception {
         ElementUnmarshaler rootElement = ElementUnmarshalerFactory.createAdapter(mUnMarshalerType, data);
         T rootObj = parse(cls, rootElement);
         return rootObj;
     }
 
     @Override
-    public <T> T parse(Class<T> cls, InputStream data) {
+    public <T> T parse(Class<T> cls, InputStream data) throws Exception {
         ElementUnmarshaler rootElement = ElementUnmarshalerFactory.createAdapter(mUnMarshalerType, data);
         T rootObj = parse(cls, rootElement);
         return rootObj;
     }
 
-    private <T> T parse(Class<T> cls, ElementUnmarshaler rootElement) {
+    private <T> T parse(Class<T> cls, ElementUnmarshaler rootElement) throws Exception {
         T rootObj = null;
         try {
             rootObj = cls.newInstance();
@@ -71,21 +73,21 @@ public class ParserImpl implements Parser {
         } catch (InstantiationException e) {
             Log.e(TAG, "InstantiationException while parsing: " + e.getMessage());
             Log.e(TAG, "It may caused missing defoult constructor");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (AdapterException e) {
+            throw e.getAdapterException();
         }
         return rootObj;
     }
 
     //TODO mast be refactored exclude logic from chache
-    protected void processObject(Object obj, Class<?> clazz, ElementUnmarshaler elem) throws Exception {
+    protected void processObject(Object obj, Class<?> clazz, ElementUnmarshaler elem) throws AdapterException, InvocationTargetException, InstantiationException, IllegalAccessException {
         //Class<?> cl = obj.getClass();
         processClassEntities(obj, clazz, elem, MethodFieldFactory.EntityType.FIELDS);
         processClassEntities(obj, clazz, elem, MethodFieldFactory.EntityType.METHODS);
 
     }
 
-    private void processClassEntities(Object obj, Class<?> clazz, ElementUnmarshaler elem, MethodFieldFactory.EntityType entityType) throws Exception {
+    private void processClassEntities(Object obj, Class<?> clazz, ElementUnmarshaler elem, MethodFieldFactory.EntityType entityType) throws XmlAdapterTypesException, IllegalAccessException, AdapterException, InvocationTargetException, InstantiationException {
         List<CacheEntity> attributesEntity = mClassCacheManager.getChachedAttributesEntityList(clazz, entityType);
         List<CacheEntity> elementsEntity = mClassCacheManager.getChachedElementsEntityList(clazz, entityType);
         List<CacheWrapperEntity> wrappersEntity = mClassCacheManager.getChachedWrappedElementsEntityList(clazz, entityType);
@@ -126,8 +128,8 @@ public class ParserImpl implements Parser {
 
                 Class<?> originValueType = methodField.getInputType();
                 XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(methodField);
-                Class<?> adapterValueType = XmlAdapter.getUnmarsalerType(adapter);
-                if (adapterValueType != null) {
+                Class<?> adapterValueType = XmlAdapter.getUnmarshalerType(adapter);
+                if (!(Object.class.equals(adapterValueType))) {
                     originValueType = adapterValueType;
                 }
                 simpleTypeParsed = processSimpleValue(elem, methodField, annotationName, obj, originValueType, adapter);
@@ -145,8 +147,8 @@ public class ParserImpl implements Parser {
                 Class<?> originValueType = methodField.getInputType();
 
                 XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(methodField);
-                Class<?> adapterValueType = XmlAdapter.getUnmarsalerType(adapter);
-                if (adapterValueType != null) {
+                Class<?> adapterValueType = XmlAdapter.getUnmarshalerType(adapter);
+                if (!(Object.class.equals(adapterValueType))) {
                     originValueType = adapterValueType;
                 }
 
@@ -166,7 +168,7 @@ public class ParserImpl implements Parser {
                                     boolean isWrapped,
                                     Object obj,
                                     Class<?> clazz,
-                                    MethodFieldFactory.EntityType entityType) throws Exception {
+                                    MethodFieldFactory.EntityType entityType) throws XmlAdapterTypesException, InvocationTargetException, IllegalAccessException, AdapterException, InstantiationException {
 
         if (methodField.isAnnotationPresent(XmlAttribute.class)) {
             String annotationName = methodField.getAnnotation(XmlAttribute.class).name();
@@ -189,8 +191,10 @@ public class ParserImpl implements Parser {
             Class<?> originValueType = methodField.getInputType();
 
             XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(methodField);
-            Class<?> adapterValueType = XmlAdapter.getUnmarsalerType(adapter);
-            if (adapterValueType != null) {
+//            XmlAdapter.checkAdapterCompatibility(adapter, originValueType);
+
+            Class<?> adapterValueType = XmlAdapter.getUnmarshalerType(adapter);
+            if (!(Object.class.equals(adapterValueType))) {
                 originValueType = adapterValueType;
             }
             //process Java  Type Wrappers (Boolean, Integer, Float etc.)
@@ -205,26 +209,20 @@ public class ParserImpl implements Parser {
     }
 
     /**
-     * @param mfAdapter       Method or Field adapter of object where to put value
-     * @param obj             Object which field will be set
-     * @param originValueType //TODO
-     * @param adapter         //TODO
+     * @param mfAdapter Method or Field adapter of object where to put value
+     * @param obj       Object which field will be set
+     * @param valueType Type for parsing from XML
+     * @param adapter   XMLAdapter
      * @throws IllegalAccessException
      */
-    protected <T> boolean processSimpleValue(ElementUnmarshaler elem, MethodFieldAdapter mfAdapter, String valueName, T obj, Class<?> originValueType, XmlAdapter adapter) throws IllegalAccessException, InvocationTargetException {
+    protected <T> boolean processSimpleValue(ElementUnmarshaler elem, MethodFieldAdapter mfAdapter, String valueName, T obj, Class<?> valueType, XmlAdapter adapter) throws IllegalAccessException, InvocationTargetException, AdapterException {
         Method unmarshal;
         Class<?> marshalInType;
 
-        SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(originValueType);
+        SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
         if (simpleTypeParser != null) {
             String value = elem.getValue(valueName);
-            try {
-                mfAdapter.put(obj, adapter.unmarshal(simpleTypeParser.valueOf(value)));
-            } catch (Exception e) {
-                //TODO
-                e.printStackTrace();
-            }
-
+            mfAdapter.put(obj, XmlAdapter.unmarshal(adapter, simpleTypeParser.valueOf(value)));
             return true;
         }
         return false;
@@ -234,7 +232,7 @@ public class ParserImpl implements Parser {
      * @param value     String value from xml document
      * @param mfAdapter Method or Field adapter of object where to put value
      * @param obj       Object which field will be set
-     * @throws IllegalAccessException
+     * @throws IllegalAccessException, InvocationTargetException
      */
     protected <T> boolean processAtributeValue(String value, MethodFieldAdapter mfAdapter, T obj) throws IllegalAccessException, InvocationTargetException {
         //TODO get velue after checking
@@ -249,7 +247,7 @@ public class ParserImpl implements Parser {
         return false;
     }
 
-    protected <T> void processComplexValue(ElementUnmarshaler elem, MethodFieldAdapter methodField, String annotName, T obj, Class<?> originValueType, XmlAdapter adapter) throws Exception {
+    protected <T> void processComplexValue(ElementUnmarshaler elem, MethodFieldAdapter methodField, String annotName, T obj, Class<?> originValueType, XmlAdapter adapter) throws AdapterException, IllegalAccessException, InstantiationException, InvocationTargetException {
 
         //TODO change to Collection.class
         if (originValueType == List.class) {
@@ -258,32 +256,39 @@ public class ParserImpl implements Parser {
 
             Type genericType = methodField.getGenericParameterTypes();
 //            Class<?> tClass = ReflectionUtils.getGenericParameterClass(List.class, methodField.getDeclaringClass(), 0);
-            Object item = null;
+            Object preParsedItem = null;
             if (genericType instanceof ParameterizedType) {
                 ParameterizedType paramType = (ParameterizedType) genericType;
                 Class<?> tClass = (Class<T>) paramType.getActualTypeArguments()[0];
 
+                XmlAdapter itemAdapter = mJavaAdaptersManager.getAdapterByProp(methodField.getPackage(), methodField.getClassClass(), tClass);
+                Class<?> adapterValueType = XmlAdapter.getUnmarshalerType(itemAdapter);
+                if (!Object.class.equals(adapterValueType)) {
+                     tClass = adapterValueType;
+                }
                 if (String.class.equals(tClass)) {
 //TODO create stub SIMPLEPARSER for String
                     for (int i = 0, d = children.size(); i < d; i++) {
-                        objects.add(children.get(i).getValue());
+                        preParsedItem = children.get(i).getValue();
+                        objects.add(XmlAdapter.unmarshal(itemAdapter, preParsedItem));
                     }
                 } else {
                     SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(originValueType);
                     if (simpleTypeParser != null) {
                         for (int i = 0, d = children.size(); i < d; i++) {
-                            objects.add(simpleTypeParser.valueOf(children.get(i).getValue(annotName)));
+                            preParsedItem = simpleTypeParser.valueOf(children.get(i).getValue(annotName));
+                            objects.add(XmlAdapter.unmarshal(itemAdapter, preParsedItem));
                         }
                     } else {
                         for (int i = 0, d = children.size(); i < d; i++) {
-                            item = tClass.newInstance();
-                            objects.add(item);
-                            processObject(item, tClass, children.get(i));
+                            preParsedItem = tClass.newInstance();
+                            processObject(preParsedItem, tClass, children.get(i));
+                            objects.add(XmlAdapter.unmarshal(itemAdapter, preParsedItem));
                         }
                     }
                 }
             }
-            methodField.put(obj, adapter.unmarshal(objects));
+            methodField.put(obj, XmlAdapter.unmarshal(adapter, objects));
         } else if (originValueType.isArray()) {
             //TODO Need to implement
             throw new UnsupportedOperationException("Array parsing not implemented yet, use List instaed");
@@ -292,7 +297,7 @@ public class ParserImpl implements Parser {
                 ElementUnmarshaler child = elem.getChild(annotName);
                 Object childObj = originValueType.newInstance();
                 processObject(childObj, originValueType, child);
-                methodField.put(obj, adapter.unmarshal(childObj));
+                methodField.put(obj, XmlAdapter.unmarshal(adapter, childObj));
             }
         }
     }

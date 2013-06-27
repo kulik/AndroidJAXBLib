@@ -8,6 +8,10 @@ package biz.kulik.android.jaxb.library.parser.stringutil;
 public class PrimitiveLongParser extends PrimitiveParser<Long> {
     @Override
     public Long valueOf(String value) {
-        return Long.valueOf(value);
+        try {
+            return Long.valueOf(value);
+        } catch (NumberFormatException e) {
+        }
+        return 0l;
     }
 }

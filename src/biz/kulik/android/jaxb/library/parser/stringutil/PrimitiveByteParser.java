@@ -5,9 +5,13 @@ package biz.kulik.android.jaxb.library.parser.stringutil;
  * Date: 6/25/13
  * Time: 7:11 PM
  */
-public class PrimitiveByteParser  extends PrimitiveParser<Byte> {
+public class PrimitiveByteParser extends PrimitiveParser<Byte> {
     @Override
     public Byte valueOf(String value) {
-        return Byte.valueOf(value);
+        try {
+            return Byte.valueOf(value);
+        } catch (NumberFormatException e) {
+        }
+        return 0;
     }
 }

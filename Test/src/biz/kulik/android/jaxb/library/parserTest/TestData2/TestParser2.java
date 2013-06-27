@@ -1,6 +1,7 @@
 package biz.kulik.android.jaxb.library.parserTest.TestData2;
 
 import android.test.AndroidTestCase;
+import biz.kulik.android.jaxb.library.ParserAbstractTest;
 import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
 import biz.kulik.android.jaxb.library.R;
@@ -12,28 +13,11 @@ import java.io.InputStream;
  * Date: 10/26/12
  * Time: 12:45 PM
  */
-public class TestParser2 extends AndroidTestCase {
+public class TestParser2 extends ParserAbstractTest<TestStorage> {
     private static final String TAG = TestParser2.class.getSimpleName();
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     public void testParse2JSON() {
-
-        InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_2_json);
-
-        ParserImpl parser = new ParserImpl(UnMarshalerTypes.JSONAdapter);
-
-        TestStorage ts;
-        ts = parser.parse(TestStorage.class, inputStream);
-        assertTestDate2(ts);
+        parse(UnMarshalerTypes.JSONAdapter,R.raw.test_2_json, TestStorage.class);
     }
 
     //TODO implement XML
@@ -48,7 +32,8 @@ public class TestParser2 extends AndroidTestCase {
 //        assertTestDate2(ts);
     }
 
-    private void assertTestDate2(TestStorage ts) {
+    @Override
+    public void assertTestData(TestStorage ts) {
 
         assertNotNull("", ts);
         assertNotNull("", ts.mFavoritePropertyResponses);

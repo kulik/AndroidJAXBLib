@@ -18,8 +18,12 @@ public  abstract class ParserAbstractTest<T> extends AndroidTestCase {
         InputStream inputStream = getContext().getResources().openRawResource(resID);
 
         ParserImpl parser = new ParserImpl(type);
-        T ts;
-        ts = parser.parse(clazz, inputStream);
+        T ts = null;
+        try {
+            ts = parser.parse(clazz, inputStream);
+        } catch (Exception e) {
+            assertTrue("Parsing exception: " + e.getMessage(), false);
+        }
 
         assertTestData(ts);
     }

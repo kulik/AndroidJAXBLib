@@ -31,14 +31,18 @@ public class AdaptersManager {
             //TODO add debug mode Check class types compatibility
         } else {
             Package pack = methodFieldAdapter.getPackage();
-            mPackageAssignedAdaptersManager.processPackage(pack);
-            Class clazz = methodFieldAdapter.getClass();
-            adapter = mPackageAssignedAdaptersManager.getAdapter(new Criteria(pack, clazz));
+            Class clazz = methodFieldAdapter.getClassClass();
+            Class returnType = methodFieldAdapter.getInputType(); //TODO make shure that composer with methods should use another method
+            mPackageAssignedAdaptersManager.process(pack, clazz, returnType, methodFieldAdapter);
+            adapter = mPackageAssignedAdaptersManager.getAdapter(pack, clazz, returnType);
         }
 
         return adapter;
     }
 
+    public XmlAdapter getAdapterByProp(Package pack, Class clazz, Class returnType) {
 
+        return mPackageAssignedAdaptersManager.getAdapter(pack, clazz, returnType);
+    }
 
 }

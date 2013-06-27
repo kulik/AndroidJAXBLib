@@ -1,9 +1,11 @@
 package biz.kulik.android.jaxb.library.parserTest.TestData1;
 
 import android.test.AndroidTestCase;
+import biz.kulik.android.jaxb.library.ParserAbstractTest;
 import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import biz.kulik.android.jaxb.library.parser.ParserImpl;
 import biz.kulik.android.jaxb.library.R;
+import biz.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.MyBean;
 
 import java.io.InputStream;
 
@@ -12,32 +14,19 @@ import java.io.InputStream;
  * Date: 10/26/12
  * Time: 12:50 PM
  */
-public class TestParser1 extends AndroidTestCase {
+public class TestParser1 extends ParserAbstractTest<SearchSuggestion> {
     private static final String TAG = TestParser1.class.getSimpleName();
 
     public void testParse1JSON() {
-        InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_1_json);
-
-        ParserImpl parser = new ParserImpl(UnMarshalerTypes.JSONAdapter);
-
-        SearchSuggestion se;
-        se = parser.parse(SearchSuggestion.class, inputStream);
-
-        assertTestDate1(se);
+        parse(UnMarshalerTypes.JSONAdapter, R.raw.test_1_json, SearchSuggestion.class);
     }
 
     public void testParse1XML() {
-        InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_1_xml);
-
-        ParserImpl parser = new ParserImpl(UnMarshalerTypes.XMLAdapter);
-
-        SearchSuggestion se;
-        se = parser.parse(SearchSuggestion.class, inputStream);
-
-        assertTestDate1(se);
+        parse(UnMarshalerTypes.XMLAdapter, R.raw.test_1_xml, SearchSuggestion.class);
     }
 
-    private void assertTestDate1(SearchSuggestion se) {
+    @Override
+    protected void assertTestData(SearchSuggestion se) {
         assertNotNull("", se);
         assertNotNull("", se.section);
         assertNotNull("", se.section.item);
@@ -68,6 +57,6 @@ public class TestParser1 extends AndroidTestCase {
         assertEquals("", se.section.item.get(2).url, "http://en.wikipedia.org/wiki/Sun2222");
         assertEquals("", se.section.item.get(2).title, "Sun3");
         assertEquals("", se.section.item.get(2).image.source, "http://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_-_August_1%2C_2010.jpg/August_1%2C_2010.jpg");
+        //To change body of implemented methods use File | Settings | File Templates.
     }
-
 }

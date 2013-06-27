@@ -1,15 +1,9 @@
 package biz.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest;
 
-import android.test.AndroidTestCase;
 import biz.kulik.android.jaxb.library.ParserAbstractTest;
 import biz.kulik.android.jaxb.library.R;
-import biz.kulik.android.jaxb.library.parser.ParserImpl;
 import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
-import biz.kulik.android.jaxb.library.parserTest.TS_Roster.GetRosterResponse;
-import biz.kulik.android.jaxb.library.parserTest.TestDataTS.GetTSSavedResponse;
-import biz.kulik.android.jaxb.library.parserTest.TestLongData4.RootBusStop;
 
-import java.io.InputStream;
 import java.util.Date;
 
 /**
@@ -19,9 +13,14 @@ import java.util.Date;
  */
 public class TestJavaTypeAdapters extends ParserAbstractTest<MyBean> {
 
-    public void testParse9JSON() {
-        parse(UnMarshalerTypes.JSONAdapter, R.raw.test_java_type_adapters, MyBean.class);
+    public void testParseJavaTypeAdaptersJSON() {
+        parse(UnMarshalerTypes.JSONAdapter, R.raw.test_java_type_adapters_json, MyBean.class);
     }
+
+    public void testParseJavaTypeAdaptersXML() {
+        parse(UnMarshalerTypes.XMLAdapter, R.raw.test_java_type_adapters_xml, MyBean.class);
+    }
+
 
     @Override
     protected void assertTestData(MyBean ts) {
