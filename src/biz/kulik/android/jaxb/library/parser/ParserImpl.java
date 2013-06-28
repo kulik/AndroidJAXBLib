@@ -44,7 +44,7 @@ public class ParserImpl implements Parser {
 
     public ParserImpl(UnMarshalerTypes ad) {
         mUnMarshalerType = ad;
-        mJavaAdaptersManager = new AdaptersManager();
+        mJavaAdaptersManager = new AdaptersManager(AdaptersManager.ManagerType.PARSER);
         mClassCacheManager = new ClassCacheManager();
     }
 
@@ -68,12 +68,12 @@ public class ParserImpl implements Parser {
             rootObj = cls.newInstance();
             processObject(rootObj, cls, rootElement);
         } catch (InvocationTargetException e) {
-            Log.e(TAG, "InvocationTargetException while parsing: " + e.getMessage());
+            Log.e(TAG, "InvocationTargetException while parsing: " + e.getMessage(), e);
         } catch (IllegalAccessException e) {
-            Log.e(TAG, "IllegalAccessException while parsing: " + e.getMessage());
+            Log.e(TAG, "IllegalAccessException while parsing: " + e.getMessage(), e);
         } catch (InstantiationException e) {
             Log.e(TAG, "InstantiationException while parsing: " + e.getMessage());
-            Log.e(TAG, "It may caused missing defoult constructor");
+            Log.e(TAG, "It may caused missing defoult constructor", e);
         } catch (AdapterException e) {
             throw e.getAdapterException();
         }
@@ -129,7 +129,7 @@ public class ParserImpl implements Parser {
 
                 Class<?> originValueType = methodField.getInputType();
                 XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(methodField);
-                Class<?> adapterValueType = XmlAdapter.getUnmarshalerType(adapter);
+                Class<?> adapterValueType = XmlAdapter.getUnMarshalerType(adapter);
                 if (!(Object.class.equals(adapterValueType))) {
                     originValueType = adapterValueType;
                 }
@@ -148,7 +148,7 @@ public class ParserImpl implements Parser {
                 Class<?> originValueType = methodField.getInputType();
 
                 XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(methodField);
-                Class<?> adapterValueType = XmlAdapter.getUnmarshalerType(adapter);
+                Class<?> adapterValueType = XmlAdapter.getUnMarshalerType(adapter);
                 if (!(Object.class.equals(adapterValueType))) {
                     originValueType = adapterValueType;
                 }
@@ -194,8 +194,8 @@ public class ParserImpl implements Parser {
             XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(methodField);
 //            XmlAdapter.checkAdapterCompatibility(adapter, originValueType);
 
-            Class<?> adapterValueType = XmlAdapter.getUnmarshalerType(adapter);
-            if (!(Object.class.equals(adapterValueType))) {
+            Class<?> adapterValueType = XmlAdapter.getUnMarshalerType(adapter);
+            if (!(adapterValueType.equals(Object.class))) {
                 originValueType = adapterValueType;
             }
             //process Java  Type Wrappers (Boolean, Integer, Float etc.)
@@ -263,7 +263,7 @@ public class ParserImpl implements Parser {
                 Class<?> tClass = (Class<T>) paramType.getActualTypeArguments()[0];
 
                 XmlAdapter itemAdapter = mJavaAdaptersManager.getAdapterByProp(methodField.getPackage(), methodField.getClassClass(), tClass);
-                Class<?> adapterValueType = XmlAdapter.getUnmarshalerType(itemAdapter);
+                Class<?> adapterValueType = XmlAdapter.getUnMarshalerType(itemAdapter);
                 if (!Object.class.equals(adapterValueType)) {
                     tClass = adapterValueType;
                 }

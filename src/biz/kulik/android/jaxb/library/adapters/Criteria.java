@@ -4,15 +4,17 @@ public final class Criteria {
 
     private Package mPackaze;
     private Class mClazz;
-    private Class<?> mReturnType;
+    private Class<?> mMarshalType;
+    private Class<?> mUnMarshalType;
 
     public Criteria() {
     }
 
-    public Criteria(Package packaze, Class clazz, Class<?> returnType) {
+    public Criteria(Package packaze, Class clazz, Class<?> marsalType, Class<?> unmarsalType) {
         mPackaze = packaze;
         mClazz = clazz;
-        mReturnType = returnType;
+        mMarshalType = marsalType;
+        mUnMarshalType = unmarsalType;
     }
 
     @Override
@@ -22,8 +24,9 @@ public final class Criteria {
 
         Criteria criteria = (Criteria) o;
 
-        if (mClazz != null && !criteria.mClazz.equals(mClazz)) return false;
-        if (mReturnType == null || criteria.mReturnType == null || !mReturnType.equals(criteria.mReturnType)) return false;
+        if (mClazz != null && !mClazz.equals(criteria.mClazz)) return false;
+        if (mUnMarshalType != null && !mUnMarshalType.equals(criteria.mUnMarshalType)) return false;
+        if (mMarshalType != null && !mMarshalType.equals(criteria.mMarshalType)) return false;
         if (mPackaze == null || criteria.mPackaze == null || !mPackaze.equals(criteria.mPackaze)) return false;
 
         return true;
@@ -32,15 +35,17 @@ public final class Criteria {
     @Override
     public int hashCode() {
         int result = mPackaze != null ? mPackaze.hashCode() : 0;
-        result = (mClazz != null) ? (31 * result +  mClazz.hashCode()) : result;
-        result = 31 * result + (mReturnType != null ? mReturnType.hashCode() : 0);
+        result = 31 * result + ((mClazz != null) ? mClazz.hashCode() : 0);
+        result = 31 * result + (mUnMarshalType != null ? mUnMarshalType.hashCode() : 0);
+        result = 31 * result + (mMarshalType != null ? mMarshalType.hashCode() : 0);
         return result;
     }
 
-    public Criteria set(Package p, Class<?> clazz, Class<?> returnType) {
+    public Criteria set(Package p, Class<?> clazz, Class<?> marshalType, Class<?> unMarshalType) {
         mPackaze = p;
         mClazz = clazz;
-        mReturnType = returnType;
+        mMarshalType = marshalType;
+        mUnMarshalType = unMarshalType;
         return this;
     }
 

@@ -17,7 +17,7 @@ public abstract class XmlAdapter<ValueType, BoundType>{
     public abstract BoundType unmarshal(ValueType v) throws Exception;
     public abstract ValueType marshal(BoundType v) throws Exception;
 
-    public static Class<?> getUnmarshalerType(XmlAdapter adapter) {
+    public static Class<?> getUnMarshalerType(XmlAdapter adapter) {
         Class<?> clazz = (Class<?>) ((ParameterizedType) adapter.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         return clazz;
     }

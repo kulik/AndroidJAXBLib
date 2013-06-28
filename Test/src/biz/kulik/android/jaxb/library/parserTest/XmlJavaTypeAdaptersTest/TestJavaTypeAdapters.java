@@ -4,6 +4,8 @@ import biz.kulik.android.jaxb.library.ParserAbstractTest;
 import biz.kulik.android.jaxb.library.R;
 import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -22,11 +24,18 @@ public class TestJavaTypeAdapters extends ParserAbstractTest<MyBean> {
     }
 
 
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
     @Override
     protected void assertTestData(MyBean ts) {
         assertNotNull(ts);
         assertNotNull(ts.myDate);
-        assertEquals(ts.myDate, new Date(597877200000l));
+
+        try {
+            assertEquals(ts.myDate, dateFormat.parse("12.12.1988"));
+        } catch (ParseException e) {
+            assertTrue(e.getMessage(), false);
+        }
         //TODO make more assertations
 
     }

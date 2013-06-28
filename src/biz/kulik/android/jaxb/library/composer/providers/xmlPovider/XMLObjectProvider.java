@@ -3,6 +3,7 @@ package biz.kulik.android.jaxb.library.composer.providers.xmlPovider;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,7 +19,7 @@ public class XMLObjectProvider implements UMOObject, UMOArray {
 
     private Element mElement;
 
-    public XMLObjectProvider(Document document, String rootElement) {
+    public XMLObjectProvider(Document document, String rootElement) throws DOMException {
         mDocument = document;
         mElement = document.createElement(rootElement);
     }

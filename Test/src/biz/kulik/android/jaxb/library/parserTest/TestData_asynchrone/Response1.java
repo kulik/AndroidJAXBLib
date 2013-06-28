@@ -1,4 +1,4 @@
-package biz.kulik.android.jaxb.library.parserTest.TestData10;
+package biz.kulik.android.jaxb.library.parserTest.TestData_asynchrone;
 
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 

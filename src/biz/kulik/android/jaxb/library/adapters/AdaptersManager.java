@@ -2,6 +2,7 @@ package biz.kulik.android.jaxb.library.adapters;
 
 import biz.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter;
 import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter;
+import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.FieldAdapter;
 import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter;
 
 /**
@@ -10,12 +11,21 @@ import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapt
  * Time: 2:31 PM
  */
 public class AdaptersManager {
-    private AdapterChacheManager mJavaAdapterManager;
-    private GlobalAdapterChacheManager mPackageAssignedAdaptersManager;
 
-    public AdaptersManager() {
+    private AdapterChacheManager mJavaAdapterManager;
+    private AbstractAdapterChacheManager mPackageAssignedAdaptersManager;
+
+    public static enum ManagerType {
+        PARSER, COMPOSER
+    }
+
+    public AdaptersManager(ManagerType type) {
         mJavaAdapterManager = new AdapterChacheManager();
-        mPackageAssignedAdaptersManager = new GlobalAdapterChacheManager();
+        if (type == ManagerType.PARSER) {
+            mPackageAssignedAdaptersManager = new ParserAdapterChacheManager();
+        } else if (type == ManagerType.COMPOSER) {
+            mPackageAssignedAdaptersManager = new ComposerAdapterChacheManager();
+        }
     }
 
     public XmlAdapter getAdapterForField(MethodFieldAdapter methodFieldAdapter) {
@@ -28,16 +38,36 @@ public class AdaptersManager {
             Package pack = methodFieldAdapter.getPackage();
             Class clazz = methodFieldAdapter.getClassClass();
             Class returnType = methodFieldAdapter.getInputType(); //TODO make shure that composer with methods should use another method
-            mPackageAssignedAdaptersManager.process(pack, clazz, returnType, methodFieldAdapter);
+            mPackageAssignedAdaptersManager.process(pack, clazz, returnType);
             adapter = mPackageAssignedAdaptersManager.getAdapter(pack, clazz, returnType);
         }
 
         return adapter;
     }
 
-    public XmlAdapter getAdapterByProp(Package pack, Class clazz, Class returnType) {
+    public Object adaptMarshal(Object obj, FieldAdapter fieldAdapter) throws AdapterException {
+        XmlAdapter adapter = getAdapterForField(fieldAdapter);
+        Class<?> adapterValueType = XmlAdapter.getMarshalerType(adapter);
+        if (!Object.class.equals(adapterValueType)) {
+            return  XmlAdapter.marshal(adapter, obj);
+        }
+        return obj;
+    }
 
+
+    public XmlAdapter getAdapterByProp(Package pack, Class clazz, Class returnType) {
+        mPackageAssignedAdaptersManager.process(pack, clazz, returnType);
         return mPackageAssignedAdaptersManager.getAdapter(pack, clazz, returnType);
+    }
+
+    public Object adaptMarshal(Object obj,Package pack, Class<?> ownerClass) throws AdapterException {
+        Class<?> objType = obj.getClass();
+        XmlAdapter adapter = getAdapterByProp(pack, ownerClass, objType);
+        Class<?> adapterValueType = XmlAdapter.getMarshalerType(adapter);
+        if (!Object.class.equals(adapterValueType)) {
+            return  XmlAdapter.marshal(adapter, obj);
+        }
+        return obj;
     }
 
 }
