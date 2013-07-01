@@ -29,6 +29,11 @@ public class TextSprite extends SceneObject {
     public TextSprite() {
     }
 
+    public TextSprite(String t, Geometry g) {
+        text = t;
+        geometry = g;
+    }
+
     @Override
     public SceneObjectType getType() {
         return SceneObjectType.TEXT;

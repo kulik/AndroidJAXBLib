@@ -8,7 +8,6 @@ import biz.kulik.android.jaxb.library.composer.Composer;
 import biz.kulik.android.jaxb.library.composer.ComposerImpl;
 import biz.kulik.android.jaxb.library.composer.providers.ProviderTypes;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
-import biz.kulik.android.jaxb.library.compouserTest.testData1.RootProxy;
 import biz.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.MyBean;
 import org.w3c.dom.Document;
 
@@ -31,7 +30,7 @@ public class TestJavaTypeAdapterCompouser extends AndroidTestCase {
         // To load text file
         MyBean bean = new MyBean();
         try {
-            bean.myDate =  dateFormat.parse("12.12.1988");
+            bean.myDate = dateFormat.parse("12.12.1988");
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -45,14 +44,14 @@ public class TestJavaTypeAdapterCompouser extends AndroidTestCase {
             assertTrue(false);
         }
         Log.v(TAG, umo.getWrappedObject().toString());
-        assertTrue(true);
+        assertEquals(umo.getWrappedObject().toString(), "{\"my_date\":\"12.12.1988\"}");
 
     }
 
     public void testCompouseXML() {
         MyBean bean = new MyBean();
         try {
-            bean.myDate =  dateFormat.parse("12.12.1988");
+            bean.myDate = dateFormat.parse("12.12.1988");
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -63,10 +62,10 @@ public class TestJavaTypeAdapterCompouser extends AndroidTestCase {
             UMO umo = (UMO) composer.compose(bean);
 
             Log.v(TAG, DocUtils.getStringFromDoc((Document) umo.getRootDocument()));
+            assertEquals(DocUtils.getStringFromDoc((Document) umo.getRootDocument()), "<?xml version=\"1.0\" encoding=\"UTF-8\"?><my_bean><my_date>12.12.1988</my_date></my_bean>");
         } catch (AdapterException e) {
             e.printStackTrace();
             assertTrue(false);
         }
-        assertTrue(true);
     }
 }

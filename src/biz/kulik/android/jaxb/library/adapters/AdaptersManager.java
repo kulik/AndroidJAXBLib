@@ -60,9 +60,9 @@ public class AdaptersManager {
         return mPackageAssignedAdaptersManager.getAdapter(pack, clazz, returnType);
     }
 
-    public Object adaptMarshal(Object obj,Package pack, Class<?> ownerClass) throws AdapterException {
-        Class<?> objType = obj.getClass();
-        XmlAdapter adapter = getAdapterByProp(pack, ownerClass, objType);
+    public Object adaptMarshal(Object obj, Package pack, Class<?> genericClass, Class<?> ownerClass) throws AdapterException {
+
+        XmlAdapter adapter = getAdapterByProp(pack, ownerClass, genericClass);
         Class<?> adapterValueType = XmlAdapter.getMarshalerType(adapter);
         if (!Object.class.equals(adapterValueType)) {
             return  XmlAdapter.marshal(adapter, obj);

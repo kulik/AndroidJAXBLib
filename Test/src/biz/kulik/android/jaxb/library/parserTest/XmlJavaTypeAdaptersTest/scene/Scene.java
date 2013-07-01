@@ -34,5 +34,14 @@ public class Scene {
    @XmlElement(name = "collage")
     public Collage collage;
 
+    @XmlElement(name = "scene_width")
+    public int width;
+
+    @XmlElement(name = "scene_height")
+    public int height;
+
+    public Scene() {
+        sceneObjects = new ArrayList<SceneObject>();
+    }
 }
 

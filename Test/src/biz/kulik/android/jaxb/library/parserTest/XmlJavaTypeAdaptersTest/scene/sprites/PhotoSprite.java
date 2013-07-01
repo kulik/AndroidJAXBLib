@@ -1,6 +1,7 @@
 package biz.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites;
 
 import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
+import biz.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.Geometry;
 
 public class PhotoSprite extends SceneObject {
 
@@ -17,5 +18,11 @@ public class PhotoSprite extends SceneObject {
     @Override
     public SceneObjectType getType() {
         return SceneObjectType.PHOTO;
+    }
+
+    public PhotoSprite(String fileName, Integer slotNo, Geometry geometry) {
+        this.mFileName = fileName;
+        this.mSlotNo = slotNo;
+        this.geometry = geometry;
     }
 }
