@@ -17,6 +17,7 @@ import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.FieldAdapter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class ComposerImpl implements Composer {
 
     @Override
     public UMO compose(Object data) throws AdapterException {
-        UMO rootElem = null;
+        UMO rootElem;
         rootElem = processObject(data, "", null);
         return rootElem;
     }
@@ -45,34 +46,34 @@ public class ComposerImpl implements Composer {
         UMO myElem = null;
         Class<?> objClass = obj.getClass();
         try {
-            if (obj != null) {
-                String root = "";
-                if (objClass.isAnnotationPresent(XmlRootElement.class)) {
-                    root = ((XmlRootElement) objClass.getAnnotation(XmlRootElement.class)).name();
-                }
-                //TODO need changed to Collection.class
-                if (objClass.isAssignableFrom(List.class)) {
-                    List ourList = (List) obj;
+            String root = "";
+            if (objClass.isAnnotationPresent(XmlRootElement.class)) {
+                root = objClass.getAnnotation(XmlRootElement.class).name();
+            }
+            //TODO need changed to Collection.class
+            if (objClass.isAssignableFrom(List.class)) {
+                List ourList = (List) obj;
 
-                    myElem = mFactory.createProvider(UMOArray.class, root);
-                    //TODO Wrapper
-                    for (int i = 0, d = ourList.size(); i < d; i++) {
-                        Object itemObj = ourList.get(i);
+                myElem = mFactory.createProvider(UMOArray.class, root);
+                //TODO Wrapper
+                for (int i = 0, d = ourList.size(); i < d; i++) {
+                    Object itemObj = ourList.get(i);
+                    if (itemObj != null) {
 //                        Object adaptObj = mJavaAdaptersManager.adaptMarshal(obj, objClass.getPackage(), objClass, ownerClass); TODO add adapt
                         UMO item = processObject(itemObj, "".equals(valueName) ? root : valueName, ownerClass);
                         //TODO check if simple type
                         ((UMOArray) myElem).put("", item);
                     }
-                } else if (objClass.isArray()) {
-                    //TODO Need to implement
-                } else {
-                    myElem = mFactory.createProvider(UMOObject.class, "".equals(valueName) ? root : valueName);
-
-                    Object adaptObj = mJavaAdaptersManager.adaptMarshal(obj, objClass.getPackage(), objClass, ownerClass);
-                    Class<?> adaptClass = adaptObj.getClass();
-
-                    processObjectContent(adaptObj, (UMOObject) myElem, adaptClass.getPackage());
                 }
+            } else if (objClass.isArray()) {
+                //TODO Need to implement
+            } else {
+                myElem = mFactory.createProvider(UMOObject.class, "".equals(valueName) ? root : valueName);
+
+                Object adaptObj = mJavaAdaptersManager.adaptMarshal(obj, objClass.getPackage(), objClass, ownerClass);
+                Class<?> adaptClass = adaptObj.getClass();
+
+                processObjectContent(adaptObj, (UMOObject) myElem, adaptClass.getPackage());
             }
         } catch (InvocationTargetException e) {
             Log.e(TAG, e.getMessage(), e);
@@ -85,39 +86,38 @@ public class ComposerImpl implements Composer {
 
     }
 
-    private void processObjectContent(Object obj, UMOObject sobj, Package pack) throws IllegalAccessException, InvocationTargetException, InstantiationException, AdapterException {
-        processFields(obj, sobj, pack);
+    private void processObjectContent(Object obj, UMOObject serialObj, Package pack) throws IllegalAccessException, InvocationTargetException, InstantiationException, AdapterException {
+        processFields(obj, serialObj, pack);
         //processMethods();
     }
 
-    protected void processFields(Object obj, UMOObject sobj, Package pack) throws IllegalAccessException, InvocationTargetException, InstantiationException, AdapterException {
+    protected void processFields(Object obj, UMOObject serialObj, Package pack) throws IllegalAccessException, InvocationTargetException, InstantiationException, AdapterException {
         Class<?> objClass = obj.getClass();
         Field[] allFields = objClass.getDeclaredFields();
         Log.d(TAG, "ProcessFields quantity:" + allFields.length);
         for (Field field : allFields) {
-            Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + field.getAnnotations());
+            Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + Arrays.toString(field.getAnnotations()));
             field.setAccessible(true);
 
-//            Object value = field.get(obj);
             Object value = field.get(obj);
 
             if (value != null) {   // TODO merge it checking with nillable
                 Object adaptValue = mJavaAdaptersManager.adaptMarshal(value, new FieldAdapter(field));
-                Class<?> adaptClass = adaptValue.getClass();
 
                 if (adaptValue != null) {
+                    Class<?> adaptClass = adaptValue.getClass();
                     if (field.isAnnotationPresent(XmlAttribute.class)) {
                         String attributeName = field.getAnnotation(XmlAttribute.class).name();
-                        boolean primitiveTypeCompoused = SimpleValueUtils.processPrimitiveAttributes(adaptValue, adaptClass, attributeName, sobj);
-                        if (primitiveTypeCompoused == false) {
-                            SimpleValueUtils.processAtributeValue(adaptValue, adaptClass, attributeName, sobj);
+                        boolean primitiveTypeComposed = SimpleValueUtils.processPrimitiveAttributes(adaptValue, adaptClass, attributeName, serialObj);
+                        if (!primitiveTypeComposed) {
+                            SimpleValueUtils.processAtributeValue(adaptValue, adaptClass, attributeName, serialObj);
                         }
                     } else if (field.isAnnotationPresent(XmlElement.class)) {
                         String valueName = field.getAnnotation(XmlElement.class).name();
                         //TODO implement default name usage
-                        boolean primitiveTypeCompoused = SimpleValueUtils.processPrimitiveValue(adaptValue, adaptClass, valueName, sobj);
-                        if (!primitiveTypeCompoused) {
-                            boolean simpleTypeParsed = SimpleValueUtils.processSimpleValue(adaptValue, adaptClass, valueName, sobj);
+                        boolean primitiveTypeComposed = SimpleValueUtils.processPrimitiveValue(adaptValue, adaptClass, valueName, serialObj);
+                        if (!primitiveTypeComposed) {
+                            boolean simpleTypeParsed = SimpleValueUtils.processSimpleValue(adaptValue, adaptClass, valueName, serialObj);
                             if (!simpleTypeParsed) {
                                 boolean isWrapped = field.isAnnotationPresent(XmlElementWrapper.class);
                                 String wrapperName = "";
@@ -127,7 +127,7 @@ public class ComposerImpl implements Composer {
                                         wrapperName = field.getName();
                                     }
                                 }
-                                processComplexValue(adaptValue, wrapperName, isWrapped, valueName, sobj, pack, objClass, field);
+                                processComplexValue(adaptValue, wrapperName, isWrapped, valueName, serialObj, pack, objClass, field);
                             }
                         }
                     }
@@ -159,7 +159,6 @@ public class ComposerImpl implements Composer {
                 listItem = ourList.get(i);
 
                 Object adaptItemValue = mJavaAdaptersManager.adaptMarshal(listItem, pack, genericClass, ownerClass);
-                Class<?> adaptItemClass = adaptItemValue.getClass();
 
                 umoListItem = processObject(adaptItemValue, valueName, ownerClass);
                 list.put(valueName, umoListItem);

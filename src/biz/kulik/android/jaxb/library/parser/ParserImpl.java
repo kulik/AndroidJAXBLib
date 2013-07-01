@@ -93,7 +93,7 @@ public class ParserImpl implements Parser {
         List<CacheEntity> elementsEntity = mClassCacheManager.getChachedElementsEntityList(clazz, entityType);
         List<CacheWrapperEntity> wrappersEntity = mClassCacheManager.getChachedWrappedElementsEntityList(clazz, entityType);
 
-        if (attributesEntity == null || elementsEntity == null || elementsEntity == null) {
+        if (attributesEntity == null || elementsEntity == null || wrappersEntity == null) {
             MethodFieldAdapter[] allEntity;
             allEntity = MethodFieldFactory.getAllEntytyByType(clazz, entityType);
 
