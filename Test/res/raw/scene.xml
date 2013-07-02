@@ -58,35 +58,35 @@
             <sound fileName="sound_001.mp3"/>
         </sprite>
 
-        <!--<sprite type="Stamp" stampType="gyro">-->
-            <!--<stampGyro startingFrame="spriteStamp003_001.jpg">-->
-                <!--<frames direction="left">-->
-                    <!--<frame fileName="spriteStamp003_001.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_002.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_003.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_004.jpg"/>-->
-                <!--</frames>-->
-                <!--<frames direction="right">-->
-                    <!--<frame fileName="spriteStamp003_005.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_006.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_007.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_008.jpg"/>-->
-                <!--</frames>-->
-                <!--<frames direction="up">-->
-                    <!--<frame fileName="spriteStamp003_009.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_010.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_011.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_012.jpg"/>-->
-                <!--</frames>-->
-                <!--<frames direction="down">-->
-                    <!--<frame fileName="spriteStamp003_013.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_014.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_015.jpg"/>-->
-                    <!--<frame fileName="spriteStamp003_016.jpg"/>-->
-                <!--</frames>-->
-            <!--</stampGyro>-->
-            <!--<geometry centerX="700" centerY="350" width="300" height="200"/>-->
-        <!--</sprite>-->
+        <sprite type="Stamp" stampType="gyro">
+            <stampGyro startingFrame="spriteStamp003_001.jpg">
+                <frames direction="left">
+                    <frame fileName="spriteStamp003_001.jpg"/>
+                    <frame fileName="spriteStamp003_002.jpg"/>
+                    <frame fileName="spriteStamp003_003.jpg"/>
+                    <frame fileName="spriteStamp003_004.jpg"/>
+                </frames>
+                <frames direction="right">
+                    <frame fileName="spriteStamp003_005.jpg"/>
+                    <frame fileName="spriteStamp003_006.jpg"/>
+                    <frame fileName="spriteStamp003_007.jpg"/>
+                    <frame fileName="spriteStamp003_008.jpg"/>
+                </frames>
+                <frames direction="up">
+                    <frame fileName="spriteStamp003_009.jpg"/>
+                    <frame fileName="spriteStamp003_010.jpg"/>
+                    <frame fileName="spriteStamp003_011.jpg"/>
+                    <frame fileName="spriteStamp003_012.jpg"/>
+                </frames>
+                <frames direction="down">
+                    <frame fileName="spriteStamp003_013.jpg"/>
+                    <frame fileName="spriteStamp003_014.jpg"/>
+                    <frame fileName="spriteStamp003_015.jpg"/>
+                    <frame fileName="spriteStamp003_016.jpg"/>
+                </frames>
+            </stampGyro>
+            <geometry centerX="700" centerY="350" width="300" height="200"/>
+        </sprite>
 
     </sprites>
 

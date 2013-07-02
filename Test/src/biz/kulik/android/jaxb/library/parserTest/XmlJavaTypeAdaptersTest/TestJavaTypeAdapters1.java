@@ -25,7 +25,7 @@ public class TestJavaTypeAdapters1 extends ParserAbstractTest<Scene> {
     protected void assertTestData(Scene scene) {
         assertNotNull(scene);
         assertNotNull(scene.sceneObjects);
-        assertEquals(scene.sceneObjects.size(), 7);
+        assertEquals(scene.sceneObjects.size(), 8);
         int i = 0;
         assertTrue(scene.sceneObjects.get(i) instanceof PhotoSprite);
         assertEquals(scene.sceneObjects.get(i).getType(), SceneObject.SceneObjectType.PHOTO);
@@ -94,26 +94,68 @@ public class TestJavaTypeAdapters1 extends ParserAbstractTest<Scene> {
         assertEquals(scene.sceneObjects.get(i).geometry.width, 300f);
         assertEquals(scene.sceneObjects.get(i).geometry.height, 200f);
         assertEquals(scene.sceneObjects.get(i).geometry.angle, 60f);
-//
-//        <sprite type="Stamp" stampType="animated">
-//        <stampAnimated fps="10">
-//        <frames>
-//        <frame fileName="spriteStamp002_001.jpg"/>
-//        <frame fileName="spriteStamp002_002.jpg"/>
-//        <frame fileName="spriteStamp002_003.jpg"/>
-//        <frame fileName="spriteStamp002_004.jpg"/>
-//        <frame fileName="spriteStamp002_005.jpg"/>
-//        <frame fileName="spriteStamp002_006.jpg"/>
-//        <frame fileName="spriteStamp002_007.jpg"/>
-//        <frame fileName="spriteStamp002_008.jpg"/>
-//        <frame fileName="spriteStamp002_009.jpg"/>
-//        <frame fileName="spriteStamp002_010.jpg"/>
-//        </frames>
-//        </stampAnimated>
-//        <geometry centerX="700" centerY="350" width="300" height="200"/>
-//        <sound fileName="sound_001.mp3"/>
-//        </sprite>
-//
+
+        i = 6;
+        assertTrue(scene.sceneObjects.get(i) instanceof AnimatedStamp);
+        AnimatedStamp so6 = (AnimatedStamp) scene.sceneObjects.get(i);
+        assertEquals(so6.getType(), SceneObject.SceneObjectType.ANIMATED_STAMP);
+        assertEquals(so6.framesPerSecond, 10);
+        assertNotNull(so6.frames);
+        assertEquals(so6.frames.size(), 10);
+        assertEquals(so6.frames.get(0).fileName, "spriteStamp002_001.jpg");
+        assertEquals(so6.frames.get(1).fileName, "spriteStamp002_002.jpg");
+        assertEquals(so6.frames.get(2).fileName, "spriteStamp002_003.jpg");
+        assertEquals(so6.frames.get(3).fileName, "spriteStamp002_004.jpg");
+        assertEquals(so6.frames.get(4).fileName, "spriteStamp002_005.jpg");
+        assertEquals(so6.frames.get(5).fileName, "spriteStamp002_006.jpg");
+        assertEquals(so6.frames.get(6).fileName, "spriteStamp002_007.jpg");
+        assertEquals(so6.frames.get(7).fileName, "spriteStamp002_008.jpg");
+        assertEquals(so6.frames.get(8).fileName, "spriteStamp002_009.jpg");
+        assertEquals(so6.frames.get(9).fileName, "spriteStamp002_010.jpg");
+        assertNotNull(scene.sceneObjects.get(i).geometry);
+        assertEquals(scene.sceneObjects.get(i).geometry.centerX, 700f);
+        assertEquals(scene.sceneObjects.get(i).geometry.centerY, 350f);
+        assertEquals(scene.sceneObjects.get(i).geometry.width, 300f);
+        assertEquals(scene.sceneObjects.get(i).geometry.height, 200f);
+        assertEquals(so6.soundFilePath, "sound_001.mp3");
+
+        i = 7;
+        assertTrue(scene.sceneObjects.get(i) instanceof GyroStampSprite);
+        GyroStampSprite so7 = (GyroStampSprite) scene.sceneObjects.get(i);
+        assertEquals(so7.getType(), SceneObject.SceneObjectType.GYRO);
+        assertNotNull(so7.framesSetList);
+        assertEquals(so7.framesSetList.size(), 4);
+        assertEquals(so7.framesSetList.get(0).direction, Frames.Direction.LEFT);
+        assertEquals(so7.framesSetList.get(0).frames.size(), 4);
+        assertEquals(so7.framesSetList.get(0).frames.get(0).fileName, "spriteStamp003_001.jpg");
+        assertEquals(so7.framesSetList.get(0).frames.get(1).fileName, "spriteStamp003_002.jpg");
+        assertEquals(so7.framesSetList.get(0).frames.get(2).fileName, "spriteStamp003_003.jpg");
+        assertEquals(so7.framesSetList.get(0).frames.get(3).fileName, "spriteStamp003_004.jpg");
+        assertEquals(so7.framesSetList.get(1).direction, Frames.Direction.RIGHT);
+        assertEquals(so7.framesSetList.get(1).frames.size(), 4);
+        assertEquals(so7.framesSetList.get(1).frames.get(0).fileName, "spriteStamp003_005.jpg");
+        assertEquals(so7.framesSetList.get(1).frames.get(1).fileName, "spriteStamp003_006.jpg");
+        assertEquals(so7.framesSetList.get(1).frames.get(2).fileName, "spriteStamp003_007.jpg");
+        assertEquals(so7.framesSetList.get(1).frames.get(3).fileName, "spriteStamp003_008.jpg");
+        assertEquals(so7.framesSetList.get(2).direction, Frames.Direction.UP);
+        assertEquals(so7.framesSetList.get(2).frames.size(), 4);
+        assertEquals(so7.framesSetList.get(2).frames.get(0).fileName, "spriteStamp003_009.jpg");
+        assertEquals(so7.framesSetList.get(2).frames.get(1).fileName, "spriteStamp003_010.jpg");
+        assertEquals(so7.framesSetList.get(2).frames.get(2).fileName, "spriteStamp003_011.jpg");
+        assertEquals(so7.framesSetList.get(2).frames.get(3).fileName, "spriteStamp003_012.jpg");
+        assertEquals(so7.framesSetList.get(3).direction, Frames.Direction.DOWN);
+        assertEquals(so7.framesSetList.get(3).frames.size(), 4);
+        assertEquals(so7.framesSetList.get(3).frames.get(0).fileName, "spriteStamp003_013.jpg");
+        assertEquals(so7.framesSetList.get(3).frames.get(1).fileName, "spriteStamp003_014.jpg");
+        assertEquals(so7.framesSetList.get(3).frames.get(2).fileName, "spriteStamp003_015.jpg");
+        assertEquals(so7.framesSetList.get(3).frames.get(3).fileName, "spriteStamp003_016.jpg");
+        assertNotNull(so7.geometry);
+        assertEquals(so7.geometry.centerX, 700f);
+        assertEquals(so7.geometry.centerY, 350f);
+        assertEquals(so7.geometry.width, 300f);
+        assertEquals(so7.geometry.height, 200f);
+
+
 //        <sprite type="Stamp" stampType="gyro">
 //        <stampGyro startingFrame="spriteStamp003_001.jpg">
 //        <frames direction="left">

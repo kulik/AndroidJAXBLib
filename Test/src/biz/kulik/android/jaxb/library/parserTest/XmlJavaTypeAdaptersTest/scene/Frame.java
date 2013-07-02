@@ -11,6 +11,6 @@ import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 public class Frame {
 
     @XmlAttribute(name = "fileName")
-    private String fileName;
+    public String fileName;
 
 }

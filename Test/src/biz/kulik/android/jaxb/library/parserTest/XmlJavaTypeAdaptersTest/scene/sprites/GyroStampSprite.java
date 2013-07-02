@@ -19,11 +19,13 @@ import java.util.List;
 public class GyroStampSprite extends SceneObject {
 
     @XmlAttribute(name = "startingFrame")
-    private String startingFrameName;
+    public String startingFrameName;
 
-    @XmlElementWrapper(name = "frames")
-    @XmlElement(name = "frame")
-    private List<Frame> frames;
+    @XmlElement(name = "frames")
+    public List<Frames> framesSetList;
+
+    public GyroStampSprite() {
+    }
 
     @Override
     public SceneObjectType getType() {

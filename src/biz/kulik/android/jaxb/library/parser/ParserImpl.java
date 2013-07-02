@@ -235,14 +235,21 @@ public class ParserImpl implements Parser {
      * @param obj       Object which field will be set
      * @throws IllegalAccessException, InvocationTargetException
      */
-    protected <T> boolean processAtributeValue(String value, MethodFieldAdapter mfAdapter, T obj) throws IllegalAccessException, InvocationTargetException {
+    protected <T> boolean processAtributeValue(String value, MethodFieldAdapter mfAdapter, T obj) throws IllegalAccessException, InvocationTargetException, AdapterException {
         //TODO get velue after checking
 
         mfAdapter.setAccessible(true); //TODO add accessorTypeLogic
-        Class<?> valueType = mfAdapter.getInputType();
-        SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
+        Class<?> originValueType = mfAdapter.getInputType();
+        XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(mfAdapter);
+        Class<?> adapterValueType = XmlAdapter.getUnMarshalerType(adapter);
+        if (!Object.class.equals(adapterValueType)) {
+            originValueType = adapterValueType;
+        }
+        SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(originValueType);
         if (simpleTypeParser != null) {
-            mfAdapter.put(obj, simpleTypeParser.valueOf(value));
+            Object parsedValue = simpleTypeParser.valueOf(value);
+            Object adaptedValue = XmlAdapter.unmarshal(adapter, parsedValue);
+            mfAdapter.put(obj, adaptedValue);
             return true;
         }
         return false;

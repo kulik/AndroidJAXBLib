@@ -32,6 +32,7 @@ public class SpritesAdapter extends XmlAdapter<SpriteAdapterBean, SceneObject> {
                 break;
             case ANIMATED_STAMP:
                 so = adapterBean.animatedStamp;
+                adapterBean.animatedStamp.soundFilePath = adapterBean.sound.fileName;
                 break;
             case BORDER:
                 so = adapterBean.borderStamp;

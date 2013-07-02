@@ -10,6 +10,7 @@ import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 import biz.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
 import biz.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.Frame;
+import biz.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.Sound;
 
 import java.util.List;
 
@@ -21,11 +22,13 @@ import java.util.List;
 public class AnimatedStamp extends SceneObject {
 
     @XmlAttribute(name = "fps")
-    private int framesPerSecond;
+    public int framesPerSecond;
 
     @XmlElementWrapper(name = "frames")
     @XmlElement(name = "frame")
-    private List<Frame> frames;
+    public List<Frame> frames;
+
+    public String soundFilePath;
 
     @Override
     public SceneObjectType getType() {
