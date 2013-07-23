@@ -19,14 +19,14 @@ public class ComposerAdapterChacheManager extends AbstractAdapterChacheManager{
 
     private HashMap<Criteria, XmlAdapter> adaptersChache;
 
-    private Set<Package> processedPackages;
+//    private Set<Package> processedPackages;
     private Set<Class<?>> processedCasses;
 
     private Criteria mChacheCriteria;
 
     public ComposerAdapterChacheManager() {
         adaptersChache = new HashMap<Criteria, XmlAdapter>();
-        processedPackages = new LinkedHashSet<Package>();
+//        processedPackages = new LinkedHashSet<Package>();
         processedCasses = new LinkedHashSet<Class<?>>();
         mChacheCriteria = new Criteria();
     }
@@ -39,22 +39,22 @@ public class ComposerAdapterChacheManager extends AbstractAdapterChacheManager{
 
         try {
             XmlAdapter adapterInstance;
-            if (pack !=null && !processedPackages.contains(pack)) {
-                if (pack.isAnnotationPresent(XmlJavaTypeAdapters.class)) {
-                    XmlJavaTypeAdapters ann = pack.getAnnotation(XmlJavaTypeAdapters.class);
-                    XmlJavaTypeAdapter[] adapters = ann.value();
-                    for (XmlJavaTypeAdapter adapterMetaData : ann.value()) {
-                        adapterInstance = adapterMetaData.value().newInstance();
-                        adaptersChache.put(new Criteria(pack, null, XmlAdapter.getMarshalerType(adapterInstance), null),  adapterInstance);
-                    }
-                }
-                if (pack.isAnnotationPresent(XmlJavaTypeAdapter.class)) {
-                    XmlJavaTypeAdapter adapterMetaData = (XmlJavaTypeAdapter) pack.getAnnotation(XmlJavaTypeAdapter.class);
-                    adapterInstance = adapterMetaData.value().newInstance();
-                    adaptersChache.put(new Criteria(pack, null, XmlAdapter.getMarshalerType(adapterInstance), null), adapterInstance);
-                }
-                processedPackages.add(pack);
-            }
+//            if (pack !=null && !processedPackages.contains(pack)) {
+//                if (pack.isAnnotationPresent(XmlJavaTypeAdapters.class)) {
+//                    XmlJavaTypeAdapters ann = pack.getAnnotation(XmlJavaTypeAdapters.class);
+//                    XmlJavaTypeAdapter[] adapters = ann.value();
+//                    for (XmlJavaTypeAdapter adapterMetaData : ann.value()) {
+//                        adapterInstance = adapterMetaData.value().newInstance();
+//                        adaptersChache.put(new Criteria(pack, null, XmlAdapter.getMarshalerType(adapterInstance), null),  adapterInstance);
+//                    }
+//                }
+//                if (pack.isAnnotationPresent(XmlJavaTypeAdapter.class)) {
+//                    XmlJavaTypeAdapter adapterMetaData = (XmlJavaTypeAdapter) pack.getAnnotation(XmlJavaTypeAdapter.class);
+//                    adapterInstance = adapterMetaData.value().newInstance();
+//                    adaptersChache.put(new Criteria(pack, null, XmlAdapter.getMarshalerType(adapterInstance), null), adapterInstance);
+//                }
+//                processedPackages.add(pack);
+//            }
             if (clazz != null && !processedCasses.contains(clazz)) {
                 if (clazz.isAnnotationPresent(XmlJavaTypeAdapters.class)) {
                     XmlJavaTypeAdapters ann = (XmlJavaTypeAdapters) clazz.getAnnotation(XmlJavaTypeAdapters.class);
