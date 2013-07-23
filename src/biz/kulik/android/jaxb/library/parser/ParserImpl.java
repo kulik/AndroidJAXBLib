@@ -182,10 +182,12 @@ public class ParserImpl implements Parser {
         } else if (!isWrapped && methodField.isAnnotationPresent(XmlElementWrapper.class)) {
             String wrapperName = methodField.getAnnotation(XmlElementWrapper.class).name();
             ElementUnmarshaler elemWrapped = elem.getChild(wrapperName);
-            processMethodField(methodField, elemWrapped, attributesEntity, elementsEntity, wrappersEntity, true, obj, clazz, entityType);
+            if (elemWrapped != null) {
+                processMethodField(methodField, elemWrapped, attributesEntity, elementsEntity, wrappersEntity, true, obj, clazz, entityType);
 //                  TODO  elementsEntity.add(new CacheEntity(methodField, annotationName));
-            String elementName = methodField.getAnnotation(XmlElement.class).name();
-            wrappersEntity.add(new CacheWrapperEntity(methodField, elementName, wrapperName));
+                String elementName = methodField.getAnnotation(XmlElement.class).name();
+                wrappersEntity.add(new CacheWrapperEntity(methodField, elementName, wrapperName));
+            }
 
         } else if (methodField.isAnnotationPresent(XmlElement.class)) {
             String annotationName = methodField.getAnnotation(XmlElement.class).name();
