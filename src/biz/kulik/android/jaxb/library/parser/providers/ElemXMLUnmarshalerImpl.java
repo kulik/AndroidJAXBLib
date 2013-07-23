@@ -97,7 +97,7 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
     @Override
     public ElementUnmarshaler getChild(String name) {
         Element el = (Element) mElement.getElementsByTagName(name).item(0);
-        return new ElemXMLUnmarshalerImpl(el);
+        return (el != null) ? new ElemXMLUnmarshalerImpl(el) : null;
     }
 
     @Override

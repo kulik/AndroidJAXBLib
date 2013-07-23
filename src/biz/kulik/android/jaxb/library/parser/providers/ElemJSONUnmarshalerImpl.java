@@ -95,6 +95,7 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
             jobj = mObject.getJSONObject(name);
         } catch (JSONException e) {
             Log.v(TAG, "JSONException when parsing json data");
+            return null;
         }
         return new ElemJSONUnmarshalerImpl(jobj);
     }

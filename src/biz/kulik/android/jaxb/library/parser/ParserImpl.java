@@ -29,7 +29,7 @@ import java.util.List;
 
 /**
  * User: kulik
- *
+ * <p/>
  * Date: 11/23/12
  * Time: 10:45 AM
  */
@@ -154,9 +154,11 @@ public class ParserImpl implements Parser {
                 }
 
                 ElementUnmarshaler elemWrapped = elem.getChild(wrapperName);
-                simpleTypeParsed = processSimpleValue(elemWrapped, methodField, elementName, obj, originValueType, adapter);
-                if (!simpleTypeParsed) {
-                    processComplexValue(elemWrapped, methodField, elementName, obj, originValueType, adapter);
+                if (elemWrapped != null) {
+                    simpleTypeParsed = processSimpleValue(elemWrapped, methodField, elementName, obj, originValueType, adapter);
+                    if (!simpleTypeParsed) {
+                        processComplexValue(elemWrapped, methodField, elementName, obj, originValueType, adapter);
+                    }
                 }
             }
         }
