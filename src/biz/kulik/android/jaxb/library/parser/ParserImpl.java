@@ -184,10 +184,10 @@ public class ParserImpl implements Parser {
             ElementUnmarshaler elemWrapped = elem.getChild(wrapperName);
             if (elemWrapped != null) {
                 processMethodField(methodField, elemWrapped, attributesEntity, elementsEntity, wrappersEntity, true, obj, clazz, entityType);
-//                  TODO  elementsEntity.add(new CacheEntity(methodField, annotationName));
-                String elementName = methodField.getAnnotation(XmlElement.class).name();
-                wrappersEntity.add(new CacheWrapperEntity(methodField, elementName, wrapperName));
             }
+//          TODO  elementsEntity.add(new CacheEntity(methodField, annotationName));
+            String elementName = methodField.getAnnotation(XmlElement.class).name();
+            wrappersEntity.add(new CacheWrapperEntity(methodField, elementName, wrapperName));
 
         } else if (methodField.isAnnotationPresent(XmlElement.class)) {
             String annotationName = methodField.getAnnotation(XmlElement.class).name();
