@@ -16,18 +16,21 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
- * User: nata
+ * User: nata, kulik
  * Date: 9/21/12
  * Time: 4:14 PM
  */
 public class ProviderFactory {
 
-    Document mDocument;
-    boolean isRootXml = true;
+    private Document mDocument;
+    private boolean isRootXml = true;
     private ProviderTypes mType;
 
     public ProviderFactory(ProviderTypes ad) {
         mType = ad;
+    }
+
+    public void newDocument() {
         if (mType == ProviderTypes.XMLProvider) {
             try {
                 DocumentBuilderFactory documentBuilderFactory =
@@ -36,7 +39,7 @@ public class ProviderFactory {
                 documentBuilder = documentBuilderFactory.newDocumentBuilder();
                 mDocument = documentBuilder.newDocument();
             } catch (ParserConfigurationException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                e.printStackTrace();
             }
         }
     }
