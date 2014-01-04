@@ -1,0 +1,9 @@
+{
+    "primByte": 10,
+    "primInt": 100,
+    "primFloat": 0.1,
+    "primShort": 11,
+    "primLong": 1000,
+    "primBool": true,
+    "primDouble": 1.1
+}

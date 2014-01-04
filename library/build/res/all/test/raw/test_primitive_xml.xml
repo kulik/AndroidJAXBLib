@@ -1,0 +1,12 @@
+<?xml version='1.0'?>
+<primiteves>
+    <primByte>10</primByte>
+    <primInt>100</primInt>
+    <primFloat>0.1</primFloat>
+    <primShort>11</primShort>
+    <primLong>1000</primLong>
+    <primBool>true</primBool>
+    <primDouble>1.1</primDouble>
+</primiteves>
+
+<!-- From: file:/home/kulik/project/AndroidJAXBLib/test-android/res/raw/test_primitive_xml.xml -->

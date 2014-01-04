@@ -1,0 +1,4 @@
+include ':library'
+//include ':test-android'
+//include ':test-lectric'
+//include ':test-jaxb-comparation'

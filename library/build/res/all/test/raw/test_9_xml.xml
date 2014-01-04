@@ -1,0 +1,8 @@
+<?xml version='1.0'?>
+<TSCreateRsp>
+    <textS>TimeSheetString</textS>
+    <text>TimeSheet1</text>
+    <text>TimeSheet2</text>
+    <text>TimeSheet3</text>
+    <text>TimeSheet4</text>
+</TSCreateRsp><!-- From: file:/home/kulik/project/AndroidJAXBLib/test-android/res/raw/test_9_xml.xml -->
