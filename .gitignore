@@ -1,3 +1,6 @@
+# Gradle
+.gradle/
+build/
 # built application files
 *.apk
 *.ap_
@@ -10,6 +13,7 @@
 
 # generated files
 bin/
+classes/
 gen/
 
 # IDEA files
@@ -21,6 +25,8 @@ out/
 .userSettings/
 .settings/
 .classpath
+.project
+.metadata/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -28,6 +34,3 @@ local.properties
 # Visual Studio
 _UpgradeReport_Files/
 /*/_ReSharper.*/
-
-# Local configuration file (sdk path, etc)
-local.properties

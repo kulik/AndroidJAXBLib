@@ -1,6 +1,16 @@
 package biz.kulik.android.jaxb.library.parser;
 
 import android.util.Log;
+
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import biz.kulik.android.jaxb.library.Annotations.XmlElement;
 import biz.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
@@ -15,17 +25,9 @@ import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapt
 import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory;
 import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler;
 import biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory;
+import biz.kulik.android.jaxb.library.parser.stringutil.ExeptionUtil;
 import biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager;
 import biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser;
-
-import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * User: kulik
@@ -66,6 +68,10 @@ public class ParserImpl implements Parser {
         T rootObj = null;
         try {
             rootObj = cls.newInstance();
+        } catch (IllegalAccessException e) {
+            ExeptionUtil.processInstantiationExceptions(e, cls);
+        }
+        try {
             processObject(rootObj, cls, rootElement);
         } catch (InvocationTargetException e) {
             Log.e(TAG, "InvocationTargetException while parsing: " + e.getMessage(), e);
@@ -293,7 +299,11 @@ public class ParserImpl implements Parser {
                         }
                     } else {
                         for (int i = 0, d = children.size(); i < d; i++) {
-                            preParsedItem = tClass.newInstance();
+                            try {
+                                preParsedItem = tClass.newInstance();
+                            } catch (IllegalAccessException e) {
+                                ExeptionUtil.processInstantiationExceptions(e, originValueType);
+                            }
                             processObject(preParsedItem, tClass, children.get(i));
                             objects.add(XmlAdapter.unmarshal(itemAdapter, preParsedItem));
                         }
@@ -306,8 +316,14 @@ public class ParserImpl implements Parser {
             throw new UnsupportedOperationException("Array parsing not implemented yet, use List instaed");
         } else {
             if (elem.isChildExist(annotName)) {
-                ElementUnmarshaler child = elem.getChild(annotName);
-                Object childObj = originValueType.newInstance();
+                Object childObj = null;
+                ElementUnmarshaler child = null;
+                child = elem.getChild(annotName);
+                try {
+                    childObj = originValueType.newInstance();
+                } catch (IllegalAccessException e) {
+                    ExeptionUtil.processInstantiationExceptions(e, originValueType);
+                }
                 processObject(childObj, originValueType, child);
                 methodField.put(obj, XmlAdapter.unmarshal(adapter, childObj));
             }
