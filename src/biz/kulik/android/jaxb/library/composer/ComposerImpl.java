@@ -37,7 +37,7 @@ public class ComposerImpl implements Composer {
     }
 
     @Override
-    public UMO compose(Object data) throws AdapterException {
+    public synchronized UMO compose(Object data) throws AdapterException {
         UMO rootElem;
         mFactory.newDocument();
         rootElem = processObject(data, "", null);

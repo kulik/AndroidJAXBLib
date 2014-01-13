@@ -1,12 +1,5 @@
 package biz.kulik.android.jaxb.library.composer.providers;
 
-import biz.kulik.android.jaxb.library.Annotations.adapters.ComposerException;
-import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray;
-import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
-import biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONArrayProvider;
-import biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONObjectProvider;
-import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
-import biz.kulik.android.jaxb.library.composer.providers.xmlPovider.XMLObjectProvider;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -14,6 +7,13 @@ import org.w3c.dom.Node;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import biz.kulik.android.jaxb.library.Annotations.adapters.ComposerException;
+import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray;
+import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
+import biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONArrayProvider;
+import biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONObjectProvider;
+import biz.kulik.android.jaxb.library.composer.providers.xmlPovider.XMLObjectProvider;
 
 /**
  * User: nata, kulik
@@ -38,8 +38,9 @@ public class ProviderFactory {
                 DocumentBuilder documentBuilder = null;
                 documentBuilder = documentBuilderFactory.newDocumentBuilder();
                 mDocument = documentBuilder.newDocument();
+                isRootXml = true;
             } catch (ParserConfigurationException e) {
-                e.printStackTrace();
+                throw new IllegalStateException("some problem on creating new document");
             }
         }
     }
@@ -49,12 +50,12 @@ public class ProviderFactory {
         switch (mType) {
             case XMLProvider:
                 try {
-                provider = (T) new XMLObjectProvider(mDocument, root);
+                    provider = (T) new XMLObjectProvider(mDocument, root);
                 } catch (DOMException e) {
                     throw new ComposerException("Exception like @XMLRootElement doesn't exist, or some name of element or arrtibute is free string: " + e.getMessage());
                 }
                 if (isRootXml) {
-                    mDocument.appendChild((Node) ((XMLObjectProvider)provider).getWrappedObject());
+                    mDocument.appendChild((Node) ((XMLObjectProvider) provider).getWrappedObject());
                     isRootXml = false;
                 }
 
