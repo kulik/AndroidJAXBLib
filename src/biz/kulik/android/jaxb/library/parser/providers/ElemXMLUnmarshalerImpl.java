@@ -1,6 +1,5 @@
 package biz.kulik.android.jaxb.library.parser.providers;
 
-import android.util.Log;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,6 +15,8 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import biz.kulik.android.jaxb.library.loger.Log;
 
 /**
  * User: nata
@@ -48,11 +49,11 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
             doc = db.parse(is);
             mElement = doc.getDocumentElement();
         } catch (ParserConfigurationException e) {
-            Log.e(TAG, "XML parse error " + e.getMessage());
+            Log.e(TAG, "XML parse error ", e);
         } catch (SAXException e) {
-            Log.e(TAG, "Wrong XML file " + e.getMessage());
+            Log.e(TAG, "Wrong XML file ", e);
         } catch (IOException e) {
-            Log.e(TAG, "I/O exception" + e.getMessage());
+            Log.e(TAG, "I/O exception", e);
         }
     }
 
@@ -64,13 +65,13 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
             doc = loadXMLFromString(data);
             mElement = doc.getDocumentElement();
         } catch (ParserConfigurationException e) {
-            Log.e(TAG, "XML parse error " + e.getMessage());
+            Log.e(TAG, "XML parse error ", e);
         } catch (SAXException e) {
-            Log.e(TAG, "Wrong XML file " + e.getMessage());
+            Log.e(TAG, "Wrong XML file ", e);
         } catch (IOException e) {
-            Log.e(TAG, "I/O exception" + e.getMessage());
+            Log.e(TAG, "I/O exception", e);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "unrecognized exception", e);
         }
     }
 

@@ -10,10 +10,7 @@ public class FloatParser extends PrimitiveJavaWrapperParser<Float> {
     @Override
     public Float valueOf(String value) {
         Float f = null;
-        try {
-            f = Float.valueOf(value);
-        } catch (NumberFormatException e) {
-        }
+        f = Float.valueOf(value);
         return f;
     }
 }

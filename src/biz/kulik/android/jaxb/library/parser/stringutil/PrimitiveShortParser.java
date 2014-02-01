@@ -8,10 +8,6 @@ package biz.kulik.android.jaxb.library.parser.stringutil;
 public class PrimitiveShortParser extends PrimitiveParser<Short> {
     @Override
     public Short valueOf(String value) {
-        try {
-            return Short.valueOf(value);
-        } catch (NumberFormatException e) {
-        }
-        return 0;
+        return Short.valueOf(value);
     }
 }

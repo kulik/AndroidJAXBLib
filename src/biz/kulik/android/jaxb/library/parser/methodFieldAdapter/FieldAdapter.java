@@ -72,4 +72,10 @@ public class FieldAdapter implements MethodFieldAdapter {
     public Package getPackage() {
         return mField.getDeclaringClass().getPackage();
     }
+
+    @Override
+    public String getSignature() {
+        return mField.toString();
+    }
+
 }

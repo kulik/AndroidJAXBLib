@@ -1,7 +1,5 @@
 package biz.kulik.android.jaxb.library.parser;
 
-import android.util.Log;
-
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -18,6 +16,7 @@ import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter;
 import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapterTypesException;
 import biz.kulik.android.jaxb.library.adapters.AdapterException;
 import biz.kulik.android.jaxb.library.adapters.AdaptersManager;
+import biz.kulik.android.jaxb.library.loger.Log;
 import biz.kulik.android.jaxb.library.parser.chache.CacheEntity;
 import biz.kulik.android.jaxb.library.parser.chache.CacheWrapperEntity;
 import biz.kulik.android.jaxb.library.parser.chache.ClassCacheManager;
@@ -64,7 +63,7 @@ public class ParserImpl implements Parser {
         return rootObj;
     }
 
-    private <T> T parse(Class<T> cls, ElementUnmarshaler rootElement) throws Exception {
+    private synchronized <T> T parse(Class<T> cls, ElementUnmarshaler rootElement) throws Exception {
         T rootObj = null;
         try {
             rootObj = cls.newInstance();
@@ -123,7 +122,7 @@ public class ParserImpl implements Parser {
                 methodField = cacheEntity.getMethodField();
                 annotationName = cacheEntity.getXmlName();
                 xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
-
+                Log.d(TAG, "processing method/field :" + methodField.getSignature());
                 processAtributeValue(xmlValue, methodField, obj);
             }
             boolean simpleTypeParsed;
@@ -133,6 +132,7 @@ public class ParserImpl implements Parser {
                 annotationName = cacheEntity.getXmlName();
                 methodField.setAccessible(true); //TODO add accessorTypeLogic
 
+                Log.d(TAG, "processing method/field :" + methodField.getSignature());
                 Class<?> originValueType = methodField.getInputType();
                 XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(methodField);
                 Class<?> adapterValueType = XmlAdapter.getUnMarshalerType(adapter);
@@ -150,12 +150,13 @@ public class ParserImpl implements Parser {
                 String wrapperName = wrapperEntity.getXmlWrapper();
                 String elementName = wrapperEntity.getXmlName();
                 methodField = wrapperEntity.getMethodField();
-                methodField.setAccessible(true); //TODO add accessorTypeLogic
+                methodField.setAccessible(true);
                 Class<?> originValueType = methodField.getInputType();
 
                 XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(methodField);
                 Class<?> adapterValueType = XmlAdapter.getUnMarshalerType(adapter);
                 if (!(Object.class.equals(adapterValueType))) {
+                    Log.d(TAG, "Use JavaTypeAdapter : " + adapter.getClass().getName());
                     originValueType = adapterValueType;
                 }
 
@@ -232,8 +233,12 @@ public class ParserImpl implements Parser {
 
         SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
         if (simpleTypeParser != null) {
-            String value = elem.getValue(valueName);
-            mfAdapter.put(obj, XmlAdapter.unmarshal(adapter, simpleTypeParser.valueOf(value)));
+            try {
+                String value = elem.getValue(valueName);
+                mfAdapter.put(obj, XmlAdapter.unmarshal(adapter, simpleTypeParser.valueOf(value)));
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "Problem evaluate number onder tag/attribute: " + mfAdapter.getSignature(), e);
+            }
             return true;
         }
         return false;
@@ -247,7 +252,7 @@ public class ParserImpl implements Parser {
      */
     protected <T> boolean processAtributeValue(String value, MethodFieldAdapter mfAdapter, T obj) throws IllegalAccessException, InvocationTargetException, AdapterException {
         //TODO get velue after checking
-
+        Log.d(TAG, "process atribute:" + mfAdapter.getSignature());
         mfAdapter.setAccessible(true); //TODO add accessorTypeLogic
         Class<?> originValueType = mfAdapter.getInputType();
         XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(mfAdapter);
@@ -257,9 +262,13 @@ public class ParserImpl implements Parser {
         }
         SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(originValueType);
         if (simpleTypeParser != null) {
-            Object parsedValue = simpleTypeParser.valueOf(value);
-            Object adaptedValue = XmlAdapter.unmarshal(adapter, parsedValue);
-            mfAdapter.put(obj, adaptedValue);
+            try {
+                Object parsedValue = simpleTypeParser.valueOf(value);
+                Object adaptedValue = XmlAdapter.unmarshal(adapter, parsedValue);
+                mfAdapter.put(obj, adaptedValue);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "Problem evaluate number onder tag/attribute: " + mfAdapter.getSignature(), e);
+            }
             return true;
         }
         return false;
@@ -282,6 +291,7 @@ public class ParserImpl implements Parser {
                 XmlAdapter itemAdapter = mJavaAdaptersManager.getAdapterByProp(methodField.getPackage(), methodField.getClassClass(), tClass);
                 Class<?> adapterValueType = XmlAdapter.getUnMarshalerType(itemAdapter);
                 if (!Object.class.equals(adapterValueType)) {
+                    Log.d(TAG, "Use JavaTypeAdapter : " + adapter.getClass().getName());
                     tClass = adapterValueType;
                 }
                 if (String.class.equals(tClass)) {
@@ -294,8 +304,12 @@ public class ParserImpl implements Parser {
                     SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(originValueType);
                     if (simpleTypeParser != null) {
                         for (int i = 0, d = children.size(); i < d; i++) {
-                            preParsedItem = simpleTypeParser.valueOf(children.get(i).getValue(annotName));
-                            objects.add(XmlAdapter.unmarshal(itemAdapter, preParsedItem));
+                            try {
+                                preParsedItem = simpleTypeParser.valueOf(children.get(i).getValue(annotName));
+                                objects.add(XmlAdapter.unmarshal(itemAdapter, preParsedItem));
+                            } catch (NumberFormatException e) {
+                                Log.e(TAG, "Problem evaluate number onder tag/attribute: " + methodField.getSignature(), e);
+                            }
                         }
                     } else {
                         for (int i = 0, d = children.size(); i < d; i++) {

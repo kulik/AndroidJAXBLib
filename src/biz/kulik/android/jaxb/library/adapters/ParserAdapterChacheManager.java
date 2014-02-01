@@ -3,7 +3,6 @@ package biz.kulik.android.jaxb.library.adapters;
 import biz.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter;
 import biz.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapters;
 import biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter;
-import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;

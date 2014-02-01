@@ -1,9 +1,6 @@
 package biz.kulik.android.jaxb.library.parser.chache;
 
-import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.FieldAdapter;
 import biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter;
-
-import java.lang.reflect.Field;
 
 /**
  * User: kulik

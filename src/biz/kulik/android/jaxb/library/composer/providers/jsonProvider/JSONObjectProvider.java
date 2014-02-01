@@ -1,9 +1,10 @@
 
 package biz.kulik.android.jaxb.library.composer.providers.jsonProvider;
 
-import android.util.Log;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
+import biz.kulik.android.jaxb.library.loger.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,7 +23,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(key, umo.getWrappedObject());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
