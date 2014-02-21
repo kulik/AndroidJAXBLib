@@ -12,7 +12,7 @@ import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 public class TestTS_Roster extends ParserAbstractTest<GetRosterResponse> {
     private static final String TAG = TestTS_Roster.class.getSimpleName();
 
-    public void testParse4XML() {
+    public void testParse4XML() throws Exception {
         parse(UnMarshalerTypes.XMLAdapter, R.raw.ts_roster_xml, GetRosterResponse.class);
     }
 

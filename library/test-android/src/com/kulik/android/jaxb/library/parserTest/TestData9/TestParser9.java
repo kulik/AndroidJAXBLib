@@ -11,11 +11,11 @@ import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
  */
 public class TestParser9 extends ParserAbstractTest<TSCreateRsp> {
 
-    public void testParse9JSON() {
+    public void testParse9JSON() throws Exception {
         parse(UnMarshalerTypes.JSONAdapter, R.raw.test_9_json, TSCreateRsp.class);
     }
 
-    public void testParse9XML() {
+    public void testParse9XML() throws Exception {
         parse(UnMarshalerTypes.XMLAdapter, R.raw.test_9_xml, TSCreateRsp.class);
     }
 

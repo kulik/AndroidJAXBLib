@@ -15,16 +15,16 @@ import java.io.InputStream;
 public abstract class ParserAbstractTest<T> extends AndroidTestCase {
     private static final String TAG = ParserAbstractTest.class.getSimpleName();
 
-    protected void parse(UnMarshalerTypes type, int resID, Class<T> clazz) {
+    protected void parse(UnMarshalerTypes type, int resID, Class<T> clazz) throws Exception {
         InputStream inputStream = getContext().getResources().openRawResource(resID);
 
         ParserImpl parser = new ParserImpl(type);
         T ts = null;
-        try {
+//        try {
             ts = parser.parse(clazz, inputStream);
-        } catch (Exception e) {
-            assertTrue("Parsing exception: " + e.getMessage(), false);
-        }
+//        } catch (Exception e) {
+//            assertTrue("Parsing exception: " + e.getMessage(), false);
+//        }
 
         assertTestData(ts);
     }

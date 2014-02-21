@@ -11,7 +11,7 @@ import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
  */
 public class TestParser10_1 extends ParserAbstractTest<Response1> {
     //TODO implement asynchronus test
-    public void testParse10JSON() {
+    public void testParse10JSON() throws Exception {
         parse(UnMarshalerTypes.JSONAdapter, R.raw.test_10_1_json, Response1.class);
     }
 

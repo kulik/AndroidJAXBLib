@@ -22,7 +22,7 @@ import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.s
 public class TestJavaTypeAdapters1 extends ParserAbstractTest<Scene> {
 
 
-    public void testParseJavaTypeAdaptersXML() {
+    public void testParseJavaTypeAdaptersXML() throws Exception {
         parse(UnMarshalerTypes.XMLAdapter, R.raw.scene, Scene.class);
     }
 

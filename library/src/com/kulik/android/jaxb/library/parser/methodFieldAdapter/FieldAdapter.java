@@ -78,4 +78,8 @@ public class FieldAdapter implements MethodFieldAdapter {
         return mField.toString();
     }
 
+    @Override
+    public String toString() {
+        return mField.toString();
+    }
 }

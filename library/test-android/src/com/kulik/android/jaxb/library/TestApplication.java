@@ -1,6 +1,8 @@
 package com.kulik.android.jaxb.library;
 
 import android.app.Application;
+
+import com.kulik.android.jaxb.library.loger.Log;
 //import com.kulik.logger.EasyLoggerFactory;
 //import com.kulik.logger.MyLogAndroid;
 
@@ -13,6 +15,6 @@ public class TestApplication extends Application {
 
     public TestApplication() {
         super();
-//        EasyLoggerFactory.init(MyLogAndroid.class, "JAXB_tests");
+        Log.setLogLevel(Log.Level.INFO);
     }
 }

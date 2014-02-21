@@ -226,13 +226,14 @@ public class ParserImpl implements Parser {
      * @throws IllegalAccessException
      */
     protected <T> boolean processSimpleValue(ElementUnmarshaler elem, MethodFieldAdapter mfAdapter, String valueName, T obj, Class<?> valueType, XmlAdapter adapter) throws IllegalAccessException, InvocationTargetException, AdapterException {
-        Method unmarshal;
-        Class<?> marshalInType;
-
         SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(valueType);
         if (simpleTypeParser != null) {
             String value = elem.getValue(valueName);
-            mfAdapter.put(obj, XmlAdapter.unmarshal(adapter, simpleTypeParser.valueOf(value)));
+            Object preParsed = (value != null) ? simpleTypeParser.valueOf(value) : null;
+            if (simpleTypeParser.isPrimitiveType() && preParsed == null) {
+                Log.e(TAG, "parsing methodField:" + mfAdapter + " failed on value: " + value);
+            }
+            mfAdapter.put(obj, XmlAdapter.unmarshal(adapter, preParsed));
             return true;
         }
         return false;
@@ -246,7 +247,6 @@ public class ParserImpl implements Parser {
      */
     protected <T> boolean processAtributeValue(String value, MethodFieldAdapter mfAdapter, T obj) throws IllegalAccessException, InvocationTargetException, AdapterException {
         //TODO get velue after checking
-
         mfAdapter.setAccessible(true); //TODO add accessorTypeLogic
         Class<?> originValueType = mfAdapter.getInputType();
         XmlAdapter adapter = mJavaAdaptersManager.getAdapterForField(mfAdapter);
@@ -256,7 +256,10 @@ public class ParserImpl implements Parser {
         }
         SimpleTypeParser simpleTypeParser = SimpleParsersManager.getParser(originValueType);
         if (simpleTypeParser != null) {
-            Object parsedValue = simpleTypeParser.valueOf(value);
+            Object parsedValue = (value != null) ? simpleTypeParser.valueOf(value) : null;
+            if (simpleTypeParser.isPrimitiveType() && parsedValue == null) {
+                Log.e(TAG, "parsing methodField:" + mfAdapter + " failed on value: " + value);
+            }
             Object adaptedValue = XmlAdapter.unmarshal(adapter, parsedValue);
             mfAdapter.put(obj, adaptedValue);
             return true;

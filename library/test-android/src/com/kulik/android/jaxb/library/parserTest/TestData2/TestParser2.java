@@ -12,7 +12,7 @@ import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 public class TestParser2 extends ParserAbstractTest<TestStorage> {
     private static final String TAG = TestParser2.class.getSimpleName();
 
-    public void testParse2JSON() {
+    public void testParse2JSON() throws Exception {
         parse(UnMarshalerTypes.JSONAdapter, R.raw.test_2_json, TestStorage.class);
     }
 

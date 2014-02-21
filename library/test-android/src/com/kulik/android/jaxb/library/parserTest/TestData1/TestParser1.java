@@ -12,11 +12,11 @@ import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 public class TestParser1 extends ParserAbstractTest<SearchSuggestion> {
     private static final String TAG = TestParser1.class.getSimpleName();
 
-    public void testParse1JSON() {
+    public void testParse1JSON() throws Exception {
         parse(UnMarshalerTypes.JSONAdapter, R.raw.test_1_json, SearchSuggestion.class);
     }
 
-    public void testParse1XML() {
+    public void testParse1XML() throws Exception {
         parse(UnMarshalerTypes.XMLAdapter, R.raw.test_1_xml, SearchSuggestion.class);
     }
 

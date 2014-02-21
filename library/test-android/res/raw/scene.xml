@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <scene>
-
+<scene_width>100</scene_width>
+<scene_height>100</scene_height>
     <!-- All assets are stored in the corresponding folders on the same level as this file -->
 
     <background fileName="scene_background.png" type="stretch"/>
@@ -54,7 +55,7 @@
                     <frame fileName="spriteStamp002_010.jpg"/>
                 </frames>
             </stampAnimated>
-            <geometry centerX="700" centerY="350" width="300" height="200"/>
+            <geometry centerX="700" centerY="350" width="300" height="200" angle="60"/>
             <sound fileName="sound_001.mp3"/>
         </sprite>
 
@@ -85,7 +86,7 @@
                     <frame fileName="spriteStamp003_016.jpg"/>
                 </frames>
             </stampGyro>
-            <geometry centerX="700" centerY="350" width="300" height="200"/>
+            <geometry centerX="700" centerY="350" width="300" height="200" angle="60"/>
         </sprite>
 
     </sprites>

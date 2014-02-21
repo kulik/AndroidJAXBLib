@@ -11,7 +11,7 @@ import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
  */
 public class TestParserTS extends ParserAbstractTest<GetTSSavedResponse> {
 
-    public void testParse9XML() {
+    public void testParse9XML() throws Exception {
         parse(UnMarshalerTypes.XMLAdapter, R.raw.ts, GetTSSavedResponse.class);
     }
 

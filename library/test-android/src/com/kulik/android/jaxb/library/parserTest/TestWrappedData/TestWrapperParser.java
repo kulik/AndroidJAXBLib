@@ -11,11 +11,11 @@ import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
  */
 public class TestWrapperParser extends ParserAbstractTest<Menu> {
 
-    public void testJSON() {
+    public void testJSON() throws Exception {
         parse(UnMarshalerTypes.JSONAdapter, R.raw.test_wrappers_json, Menu.class);
     }
 
-    public void testWrapperParseXML() {
+    public void testWrapperParseXML() throws Exception {
         parse(UnMarshalerTypes.XMLAdapter, R.raw.test_wrappers_xml, Menu.class);
     }
 

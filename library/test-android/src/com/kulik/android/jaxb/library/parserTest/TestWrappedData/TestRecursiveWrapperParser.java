@@ -11,11 +11,11 @@ import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
  */
 public class TestRecursiveWrapperParser extends ParserAbstractTest<WrappedRecursiveLists> {
 
-    public void testRecursiveWrapperParseJSON() {
+    public void testRecursiveWrapperParseJSON() throws Exception {
         parse(UnMarshalerTypes.JSONAdapter, R.raw.test_recursive_wrappers_json, WrappedRecursiveLists.class);
     }
 
-    public void testRecursiveWrapperParseXML() {
+    public void testRecursiveWrapperParseXML() throws Exception {
         parse(UnMarshalerTypes.XMLAdapter, R.raw.test_recursive_wrappers_xml, WrappedRecursiveLists.class);
     }
 

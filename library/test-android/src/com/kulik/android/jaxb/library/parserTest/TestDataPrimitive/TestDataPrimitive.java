@@ -11,11 +11,11 @@ import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
  */
 public class TestDataPrimitive extends ParserAbstractTest<PrimitivesTypes> {
 
-    public void testParse9JSON() {
+    public void testParse9JSON() throws Exception {
         parse(UnMarshalerTypes.JSONAdapter, R.raw.test_primitive_json, PrimitivesTypes.class);
     }
 
-    public void testParse9XML() {
+    public void testParse9XML() throws Exception {
         parse(UnMarshalerTypes.XMLAdapter, R.raw.test_primitive_xml, PrimitivesTypes.class);
     }
 

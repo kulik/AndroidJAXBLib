@@ -11,7 +11,7 @@ import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
  */
 public class TestDimaBug21Parser extends ParserAbstractTest<Response> {
 
-    public void testJSON() {
+    public void testJSON() throws Exception {
         parse(UnMarshalerTypes.JSONAdapter, R.raw.bug_21_json, Response.class);
     }
 

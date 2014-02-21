@@ -14,11 +14,11 @@ import java.text.SimpleDateFormat;
  */
 public class TestJavaTypeAdapters extends ParserAbstractTest<MyBean> {
 
-    public void testParseJavaTypeAdaptersJSON() {
+    public void testParseJavaTypeAdaptersJSON() throws Exception {
         parse(UnMarshalerTypes.JSONAdapter, R.raw.test_java_type_adapters_json, MyBean.class);
     }
 
-    public void testParseJavaTypeAdaptersXML() {
+    public void testParseJavaTypeAdaptersXML() throws Exception {
         parse(UnMarshalerTypes.XMLAdapter, R.raw.test_java_type_adapters_xml, MyBean.class);
     }
 
