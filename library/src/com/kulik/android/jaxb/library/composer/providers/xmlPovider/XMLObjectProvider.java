@@ -83,51 +83,71 @@ public class XMLObjectProvider implements UMOObject, UMOArray {
 
     @Override
     public void putValueInt(String valueName, Integer value) {
-        Element elem = mDocument.createElement(valueName);
-        elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
-        mElement.appendChild(elem);
+       putValue(valueName, value);
     }
 
     @Override
     public void putValueLong(String valueName, Long value) {
-        Element elem = mDocument.createElement(valueName);
-        elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
-        mElement.appendChild(elem);
+       putValue(valueName, value);
     }
 
     @Override
     public void putValueFloat(String valueName, Float value) {
-        Element elem = mDocument.createElement(valueName);
-        elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
-        mElement.appendChild(elem);
+       putValue(valueName, value);
     }
 
     @Override
     public void putValueDouble(String valueName, Double value) {
-        Element elem = mDocument.createElement(valueName);
-        elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
-        mElement.appendChild(elem);
+       putValue(valueName, value);
     }
 
     @Override
     public void putValueBoolean(String valueName, Boolean value) {
+       putValue(valueName, value);
+    }
+
+    @Override
+    public void putValueStr(String value) {
+        putValue(value);
+    }
+
+    @Override
+    public void putValueInt(Integer value) {
+        putValue(value);
+    }
+
+    @Override
+    public void putValueLong(Long value) {
+        putValue(value);
+    }
+
+    @Override
+    public void putValueFloat(Float value) {
+        putValue(value);
+    }
+
+    @Override
+    public void putValueDouble(Double value) {
+        putValue(value);
+    }
+
+    @Override
+    public void putValueBoolean(Boolean value) {
+        putValue(value);
+    }
+
+    private void putValue(Object value) {
+        mElement.appendChild(mDocument.createTextNode(String.valueOf(value)));
+    }
+
+    public void putValue(String valueName, Object value) {
         Element elem = mDocument.createElement(valueName);
         elem.appendChild(mDocument.createTextNode(String.valueOf(value)));
         mElement.appendChild(elem);
     }
 
-//    @Override
-//    public void put(UMO value) {
-//        mElement.appendChild((Element) value.getWrappedObject());
-//    }
-
     @Override
     public void putArray(String key, UMO value) {
-//        Node parent = mElement.getParentNode();
-//        parent.removeChild(mElement);
-//        mElement.appendChild((Element) value.getWrappedObject());
         value.setWrappedObject(mElement);
-//        mElement = (Element) parent;
-//        parent.replaceChild(mElement, (Node) value.getWrappedObject());
     }
 }

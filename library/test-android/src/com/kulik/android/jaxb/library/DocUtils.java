@@ -1,5 +1,8 @@
 package com.kulik.android.jaxb.library;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -14,6 +17,7 @@ import java.io.StringWriter;
  */
 public class DocUtils {
 
+    @TargetApi(Build.VERSION_CODES.FROYO)
     public static String getStringFromDoc(org.w3c.dom.Document doc) {
         try {
             DOMSource domSource = new DOMSource(doc);

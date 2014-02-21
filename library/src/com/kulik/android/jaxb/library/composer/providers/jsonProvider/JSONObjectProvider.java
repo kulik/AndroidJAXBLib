@@ -140,6 +140,36 @@ public class JSONObjectProvider implements UMOObject {
     }
 
     @Override
+    public void putValueStr(String value) {
+        putValueStr("value", value);
+    }
+
+    @Override
+    public void putValueInt(Integer value) {
+        putValueInt("value", value);
+    }
+
+    @Override
+    public void putValueLong(Long value) {
+        putValueLong("value", value);
+    }
+
+    @Override
+    public void putValueFloat(Float value) {
+        putValueFloat("value", value);
+    }
+
+    @Override
+    public void putValueDouble(Double value) {
+        putValueDouble("value", value);
+    }
+
+    @Override
+    public void putValueBoolean(Boolean value) {
+        putValueBoolean("value", value);
+    }
+
+    @Override
     public Object getWrappedObject() {
         return mJSONObject;
     }

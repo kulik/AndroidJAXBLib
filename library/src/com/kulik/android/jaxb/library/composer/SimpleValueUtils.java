@@ -57,6 +57,30 @@ public class SimpleValueUtils {
         return false;
     }
 
+    public static boolean processSimpleValue(Object value, Class<?> valueType, UMOObject sobj) {
+
+        if (String.class.equals(valueType)) {
+            sobj.putValueStr((String) value);
+            return true;
+        } else if (Integer.class.equals(valueType)) {
+            sobj.putValueInt((Integer) value);
+            return true;
+        } else if (Long.class.equals(valueType)) {
+            sobj.putValueLong((Long) value);
+            return true;
+        } else if (Float.class.equals(valueType)) {
+            sobj.putValueFloat((Float) value);
+            return true;
+        } else if (Double.class.equals(valueType)) {
+            sobj.putValueDouble((Double) value);
+            return true;
+        } else if (Boolean.class.equals(valueType)) {
+            sobj.putValueBoolean((Boolean) value);
+            return true;
+        }
+        return false;
+    }
+
     public static boolean processPrimitiveValue(Object obj, Class<?> valueType, String valueName, UMOObject sobj) throws IllegalAccessException {
 
         if (Integer.TYPE.equals(valueType)) {
@@ -73,6 +97,27 @@ public class SimpleValueUtils {
             return true;
         } else if (Boolean.TYPE.equals(valueType)) {
             sobj.putValueBoolean(valueName, Boolean.valueOf((Boolean) obj));
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean processPrimitiveValue(Object obj, Class<?> valueType, UMOObject sobj) throws IllegalAccessException {
+
+        if (Integer.TYPE.equals(valueType)) {
+            sobj.putValueInt(Integer.valueOf((Integer) obj));
+            return true;
+        } else if (Long.TYPE.equals(valueType)) {
+            sobj.putValueLong(Long.valueOf((Long) obj));
+            return true;
+        } else if (Float.TYPE.equals(valueType)) {
+            sobj.putValueFloat(Float.valueOf((Float) obj));
+            return true;
+        } else if (Double.TYPE.equals(valueType)) {
+            sobj.putValueDouble(Double.valueOf((Double) obj));
+            return true;
+        } else if (Boolean.TYPE.equals(valueType)) {
+            sobj.putValueBoolean(Boolean.valueOf((Boolean) obj));
             return true;
         }
         return false;

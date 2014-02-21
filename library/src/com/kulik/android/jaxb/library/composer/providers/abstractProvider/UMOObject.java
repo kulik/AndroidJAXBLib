@@ -37,4 +37,17 @@ public interface UMOObject extends UMO {
 
     public void putValueBoolean(String valueName, Boolean value);
 
+    public void putValueStr(String value);
+
+    public void putValueInt(Integer value);
+
+    public void putValueLong(Long value);
+
+    public void putValueFloat(Float value);
+
+    public void putValueDouble(Double value);
+
+    public void putValueBoolean(Boolean value);
+
+
 }

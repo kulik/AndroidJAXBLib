@@ -5,6 +5,7 @@ import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import com.kulik.android.jaxb.library.Annotations.XmlElement;
 import com.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
 import com.kulik.android.jaxb.library.Annotations.XmlRootElement;
+import com.kulik.android.jaxb.library.Annotations.XmlValue;
 import com.kulik.android.jaxb.library.adapters.AdapterException;
 import com.kulik.android.jaxb.library.adapters.AdaptersManager;
 import com.kulik.android.jaxb.library.composer.providers.ProviderFactory;
@@ -129,6 +130,14 @@ public class ComposerImpl implements Composer {
                                     }
                                 }
                                 processComplexValue(adaptValue, wrapperName, isWrapped, valueName, serialObj, pack, objClass, field);
+                            }
+                        }
+                    } else if (field.isAnnotationPresent(XmlValue.class)) {
+                        boolean primitiveTypeComposed = SimpleValueUtils.processPrimitiveValue(adaptValue, adaptClass, serialObj);
+                        if (!primitiveTypeComposed) {
+                            boolean simpleTypeParsed = SimpleValueUtils.processSimpleValue(adaptValue, adaptClass, serialObj);
+                            if (!simpleTypeParsed) {
+                                throw new IllegalArgumentException("XMLValue can be only simple or primitive type: "+ adaptClass + ", Value: " + adaptValue);
                             }
                         }
                     }
