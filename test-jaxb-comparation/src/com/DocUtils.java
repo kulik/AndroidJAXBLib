@@ -1,4 +1,4 @@
-package biz.kulik.android.jaxb.library;
+package com.kulik.android.jaxb.library;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;

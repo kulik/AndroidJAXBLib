@@ -1,7 +1,7 @@
 package library.parserTest.TestData1;
 
-import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
-import biz.kulik.android.jaxb.library.Annotations.XmlElement;
+import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
+import com.kulik.android.jaxb.library.Annotations.XmlElement;
 
 import java.util.List;
 

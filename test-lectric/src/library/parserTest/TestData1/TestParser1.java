@@ -1,7 +1,7 @@
 package library.parserTest.TestData1;
 
-import biz.kulik.android.jaxb.library.parser.ParserImpl;
-import biz.kulik.android.jaxb.library.parser.UnMarshalerTypes;
+import com.kulik.android.jaxb.library.parser.ParserImpl;
+import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;

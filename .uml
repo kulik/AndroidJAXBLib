@@ -3,284 +3,284 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="1132.5" y="2284.5">biz.kulik.android.jaxb.library.composer.providers.ProviderTypes</node>
-    <node x="1469.0" y="2124.0">biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONArrayProvider</node>
-    <node x="1282.0" y="648.0">biz.kulik.android.jaxb.library.parser.ParserImpl</node>
-    <node x="2.0" y="3425.5">biz.kulik.android.jaxb.library.Annotations.XmlAccessorType</node>
-    <node x="3141.5" y="775.0">biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory</node>
-    <node x="639.0" y="754.0">biz.kulik.android.jaxb.library.parser.UnMarshalerTypes</node>
-    <node x="2437.5" y="2863.5">biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler</node>
+    <node x="1132.5" y="2284.5">com.kulik.android.jaxb.library.composer.providers.ProviderTypes</node>
+    <node x="1469.0" y="2124.0">com.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONArrayProvider</node>
+    <node x="1282.0" y="648.0">com.kulik.android.jaxb.library.parser.ParserImpl</node>
+    <node x="2.0" y="3425.5">com.kulik.android.jaxb.library.Annotations.XmlAccessorType</node>
+    <node x="3141.5" y="775.0">com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory</node>
+    <node x="639.0" y="754.0">com.kulik.android.jaxb.library.parser.UnMarshalerTypes</node>
+    <node x="2437.5" y="2863.5">com.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler</node>
     <node x="727.5" y="3234.0">com.tracersoft.util.reflection.ReflectionUtils</node>
-    <node x="1070.0" y="2721.5">biz.kulik.android.jaxb.library.parser.adapters.Criteria</node>
-    <node x="1494.0" y="1695.0">biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray</node>
-    <node x="553.0" y="959.5">biz.kulik.android.jaxb.library.parser.ParserArrayStartedImpl</node>
-    <node x="942.5" y="1895.0">biz.kulik.android.jaxb.library.composer.Composer</node>
-    <node x="3676.0" y="764.5">biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory.EntityType</node>
-    <node x="-10.5" y="55.0">biz.kulik.android.jaxb.library.parser.stringutil.DoubleParser</node>
-    <node x="2630.5" y="701.0">biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter</node>
-    <node x="1439.0" y="1044.5">biz.kulik.android.jaxb.library.parser.Parser</node>
-    <node x="1530.0" y="3255.0">biz.kulik.android.jaxb.library.Annotations.XmlAttribute</node>
-    <node x="537.5" y="375.0">biz.kulik.android.jaxb.library.parser.stringutil.BigDecimalParser</node>
-    <node x="2026.5" y="2498.5">biz.kulik.android.jaxb.library.parser.providers.ElemJSONUnmarshalerImpl</node>
-    <node x="3150.5" y="919.0">biz.kulik.android.jaxb.library.parser.methodFieldAdapter.FieldAdapter</node>
-    <node x="0.0" y="1987.0">biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONObjectProvider</node>
-    <node x="437.5" y="1799.5">biz.kulik.android.jaxb.library.composer.ComposerImpl</node>
-    <node x="272.0" y="55.0">biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser</node>
-    <node x="392.5" y="3225.5">biz.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter.DEFAULT</node>
-    <node x="2090.5" y="753.5">biz.kulik.android.jaxb.library.parser.chache.CacheEntity</node>
-    <node x="592.0" y="2871.0">biz.kulik.android.jaxb.library.parser.adapters.GlobalAdapterChacheManager</node>
-    <node x="538.0" y="2582.5">biz.kulik.android.jaxb.library.parser.adapters.AdaptersManager</node>
-    <node x="269.0" y="455.0">biz.kulik.android.jaxb.library.parser.stringutil.IntegerParser</node>
-    <node x="1640.0" y="1329.0">biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject</node>
-    <node x="1952.0" y="450.0">biz.kulik.android.jaxb.library.parser.chache.ClassCacheManager</node>
-    <node x="738.5" y="553.0">biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager</node>
-    <node x="556.0" y="135.0">biz.kulik.android.jaxb.library.parser.stringutil.FloatParser</node>
-    <node x="1770.0" y="3255.0">biz.kulik.android.jaxb.library.Annotations.XmlElement</node>
-    <node x="1119.0" y="2102.5">biz.kulik.android.jaxb.library.composer.providers.ProviderFactory</node>
-    <node x="1202.0" y="3255.0">biz.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapters</node>
-    <node x="876.5" y="-25.0">biz.kulik.android.jaxb.library.parser.stringutil.LongParser</node>
-    <node x="295.5" y="3324.5">biz.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter</node>
-    <node x="506.0" y="255.0">biz.kulik.android.jaxb.library.parser.stringutil.BooleanParser</node>
-    <node x="2016.5" y="2852.5">biz.kulik.android.jaxb.library.parser.providers.AbstractElementUnmarshaler</node>
-    <node x="1709.0" y="1695.0">biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO</node>
-    <node x="1549.5" y="2778.5">biz.kulik.android.jaxb.library.parser.providers.ElemXMLUnmarshalerImpl</node>
-    <node x="80.5" y="2913.5">biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter</node>
-    <node x="1080.0" y="1296.0">biz.kulik.android.jaxb.library.composer.providers.xmlPovider.XMLObjectProvider</node>
-    <node x="-35.5" y="3223.5">biz.kulik.android.jaxb.library.Annotations.XmlAccessorType.AccessType</node>
-    <node x="-39.5" y="2582.5">biz.kulik.android.jaxb.library.parser.adapters.AdapterChacheManager</node>
-    <node x="1456.0" y="2604.5">biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory</node>
-    <node x="3150.5" y="439.0">biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodAdapter</node>
+    <node x="1070.0" y="2721.5">com.kulik.android.jaxb.library.parser.adapters.Criteria</node>
+    <node x="1494.0" y="1695.0">com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray</node>
+    <node x="553.0" y="959.5">com.kulik.android.jaxb.library.parser.ParserArrayStartedImpl</node>
+    <node x="942.5" y="1895.0">com.kulik.android.jaxb.library.composer.Composer</node>
+    <node x="3676.0" y="764.5">com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory.EntityType</node>
+    <node x="-10.5" y="55.0">com.kulik.android.jaxb.library.parser.stringutil.DoubleParser</node>
+    <node x="2630.5" y="701.0">com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter</node>
+    <node x="1439.0" y="1044.5">com.kulik.android.jaxb.library.parser.Parser</node>
+    <node x="1530.0" y="3255.0">com.kulik.android.jaxb.library.Annotations.XmlAttribute</node>
+    <node x="537.5" y="375.0">com.kulik.android.jaxb.library.parser.stringutil.BigDecimalParser</node>
+    <node x="2026.5" y="2498.5">com.kulik.android.jaxb.library.parser.providers.ElemJSONUnmarshalerImpl</node>
+    <node x="3150.5" y="919.0">com.kulik.android.jaxb.library.parser.methodFieldAdapter.FieldAdapter</node>
+    <node x="0.0" y="1987.0">com.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONObjectProvider</node>
+    <node x="437.5" y="1799.5">com.kulik.android.jaxb.library.composer.ComposerImpl</node>
+    <node x="272.0" y="55.0">com.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser</node>
+    <node x="392.5" y="3225.5">com.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter.DEFAULT</node>
+    <node x="2090.5" y="753.5">com.kulik.android.jaxb.library.parser.chache.CacheEntity</node>
+    <node x="592.0" y="2871.0">com.kulik.android.jaxb.library.parser.adapters.GlobalAdapterChacheManager</node>
+    <node x="538.0" y="2582.5">com.kulik.android.jaxb.library.parser.adapters.AdaptersManager</node>
+    <node x="269.0" y="455.0">com.kulik.android.jaxb.library.parser.stringutil.IntegerParser</node>
+    <node x="1640.0" y="1329.0">com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject</node>
+    <node x="1952.0" y="450.0">com.kulik.android.jaxb.library.parser.chache.ClassCacheManager</node>
+    <node x="738.5" y="553.0">com.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager</node>
+    <node x="556.0" y="135.0">com.kulik.android.jaxb.library.parser.stringutil.FloatParser</node>
+    <node x="1770.0" y="3255.0">com.kulik.android.jaxb.library.Annotations.XmlElement</node>
+    <node x="1119.0" y="2102.5">com.kulik.android.jaxb.library.composer.providers.ProviderFactory</node>
+    <node x="1202.0" y="3255.0">com.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapters</node>
+    <node x="876.5" y="-25.0">com.kulik.android.jaxb.library.parser.stringutil.LongParser</node>
+    <node x="295.5" y="3324.5">com.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter</node>
+    <node x="506.0" y="255.0">com.kulik.android.jaxb.library.parser.stringutil.BooleanParser</node>
+    <node x="2016.5" y="2852.5">com.kulik.android.jaxb.library.parser.providers.AbstractElementUnmarshaler</node>
+    <node x="1709.0" y="1695.0">com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO</node>
+    <node x="1549.5" y="2778.5">com.kulik.android.jaxb.library.parser.providers.ElemXMLUnmarshalerImpl</node>
+    <node x="80.5" y="2913.5">com.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter</node>
+    <node x="1080.0" y="1296.0">com.kulik.android.jaxb.library.composer.providers.xmlPovider.XMLObjectProvider</node>
+    <node x="-35.5" y="3223.5">com.kulik.android.jaxb.library.Annotations.XmlAccessorType.AccessType</node>
+    <node x="-39.5" y="2582.5">com.kulik.android.jaxb.library.parser.adapters.AdapterChacheManager</node>
+    <node x="1456.0" y="2604.5">com.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory</node>
+    <node x="3150.5" y="439.0">com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodAdapter</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="biz.kulik.android.jaxb.library.parser.stringutil.BooleanParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="com.kulik.android.jaxb.library.parser.stringutil.BooleanParser">
       <point x="-120.0" y="-47.0" />
       <point x="847.0" y="280.0" />
       <point x="101.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory" target="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter">
+    <edge source="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory" target="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter">
       <point x="-225.5" y="-0.0" />
       <point x="216.5" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.providers.xmlPovider.XMLObjectProvider" target="biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject">
+    <edge source="com.kulik.android.jaxb.library.composer.providers.xmlPovider.XMLObjectProvider" target="com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject">
       <point x="165.0" y="-0.0" />
       <point x="-165.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.FloatParser" target="biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.FloatParser" target="com.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
       <point x="0.0" y="-25.0" />
       <point x="647.0" y="100.0" />
       <point x="95.0" y="20.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory" target="biz.kulik.android.jaxb.library.parser.providers.ElemJSONUnmarshalerImpl">
+    <edge source="com.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory" target="com.kulik.android.jaxb.library.parser.providers.ElemJSONUnmarshalerImpl">
       <point x="245.0" y="-0.0" />
       <point x="-154.5" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.providers.ElemJSONUnmarshalerImpl" target="biz.kulik.android.jaxb.library.parser.providers.AbstractElementUnmarshaler">
+    <edge source="com.kulik.android.jaxb.library.parser.providers.ElemJSONUnmarshalerImpl" target="com.kulik.android.jaxb.library.parser.providers.AbstractElementUnmarshaler">
       <point x="0.0" y="141.5" />
       <point x="0.0" y="-67.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.providers.ProviderFactory" target="biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONArrayProvider">
+    <edge source="com.kulik.android.jaxb.library.composer.providers.ProviderFactory" target="com.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONArrayProvider">
       <point x="126.0" y="-0.0" />
       <point x="-96.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONArrayProvider" target="biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray">
+    <edge source="com.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONArrayProvider" target="com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray">
       <point x="0.0" y="-36.0" />
       <point x="0.0" y="25.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.adapters.GlobalAdapterChacheManager" target="biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter">
+    <edge source="com.kulik.android.jaxb.library.parser.adapters.GlobalAdapterChacheManager" target="com.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter">
       <point x="-182.0" y="-0.0" />
       <point x="133.5" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory.EntityType" target="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory">
+    <edge source="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory.EntityType" target="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory">
       <point x="-91.0" y="-0.0" />
       <point x="225.5" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.adapters.AdaptersManager" target="biz.kulik.android.jaxb.library.parser.adapters.AdapterChacheManager">
+    <edge source="com.kulik.android.jaxb.library.parser.adapters.AdaptersManager" target="com.kulik.android.jaxb.library.parser.adapters.AdapterChacheManager">
       <point x="0.0" y="-57.5" />
       <point x="774.0" y="2520.0" />
       <point x="214.0" y="2520.0" />
       <point x="0.0" y="-57.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="biz.kulik.android.jaxb.library.parser.stringutil.DoubleParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="com.kulik.android.jaxb.library.parser.stringutil.DoubleParser">
       <point x="-228.5" y="-0.0" />
       <point x="87.0" y="600.0" />
       <point x="0.0" y="25.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.chache.ClassCacheManager" target="biz.kulik.android.jaxb.library.parser.chache.CacheEntity">
+    <edge source="com.kulik.android.jaxb.library.parser.chache.ClassCacheManager" target="com.kulik.android.jaxb.library.parser.chache.CacheEntity">
       <point x="0.0" y="110.0" />
       <point x="0.0" y="-46.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodAdapter" target="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter">
+    <edge source="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodAdapter" target="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter">
       <point x="-216.5" y="-0.0" />
       <point x="2847.0" y="560.0" />
       <point x="0.0" y="-99.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="biz.kulik.android.jaxb.library.parser.stringutil.FloatParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="com.kulik.android.jaxb.library.parser.stringutil.FloatParser">
       <point x="-80.0" y="-47.0" />
       <point x="887.0" y="160.0" />
       <point x="91.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.ParserImpl" target="biz.kulik.android.jaxb.library.parser.chache.CacheEntity">
+    <edge source="com.kulik.android.jaxb.library.parser.ParserImpl" target="com.kulik.android.jaxb.library.parser.chache.CacheEntity">
       <point x="285.0" y="-0.0" />
       <point x="-156.5" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.adapters.AdaptersManager" target="biz.kulik.android.jaxb.library.parser.adapters.Criteria">
+    <edge source="com.kulik.android.jaxb.library.parser.adapters.AdaptersManager" target="com.kulik.android.jaxb.library.parser.adapters.Criteria">
       <point x="236.0" y="40.0" />
       <point x="1174.0" y="2680.0" />
       <point x="0.0" y="-78.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.ParserArrayStartedImpl" target="biz.kulik.android.jaxb.library.parser.UnMarshalerTypes">
+    <edge source="com.kulik.android.jaxb.library.parser.ParserArrayStartedImpl" target="com.kulik.android.jaxb.library.parser.UnMarshalerTypes">
       <point x="0.0" y="-120.5" />
       <point x="0.0" y="46.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="biz.kulik.android.jaxb.library.parser.stringutil.IntegerParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="com.kulik.android.jaxb.library.parser.stringutil.IntegerParser">
       <point x="-200.0" y="-47.0" />
       <point x="767.0" y="480.0" />
       <point x="98.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.ComposerImpl" target="biz.kulik.android.jaxb.library.composer.Composer">
+    <edge source="com.kulik.android.jaxb.library.composer.ComposerImpl" target="com.kulik.android.jaxb.library.composer.Composer">
       <point x="207.5" y="-0.0" />
       <point x="-102.5" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.adapters.AdapterChacheManager" target="biz.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter">
+    <edge source="com.kulik.android.jaxb.library.parser.adapters.AdapterChacheManager" target="com.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter">
       <point x="0.0" y="57.5" />
       <point x="0.0" y="-46.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.ParserImpl" target="biz.kulik.android.jaxb.library.parser.chache.ClassCacheManager">
+    <edge source="com.kulik.android.jaxb.library.parser.ParserImpl" target="com.kulik.android.jaxb.library.parser.chache.ClassCacheManager">
       <point x="40.0" y="-152.0" />
       <point x="1607.0" y="560.0" />
       <point x="-295.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.FieldAdapter" target="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter">
+    <edge source="com.kulik.android.jaxb.library.parser.methodFieldAdapter.FieldAdapter" target="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter">
       <point x="-216.5" y="-0.0" />
       <point x="2847.0" y="1040.0" />
       <point x="0.0" y="99.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory" target="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.FieldAdapter">
+    <edge source="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory" target="com.kulik.android.jaxb.library.parser.methodFieldAdapter.FieldAdapter">
       <point x="0.0" y="25.0" />
       <point x="0.0" y="-121.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="biz.kulik.android.jaxb.library.parser.stringutil.LongParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="com.kulik.android.jaxb.library.parser.stringutil.LongParser">
       <point x="0.0" y="-47.0" />
       <point x="0.0" y="25.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.chache.CacheEntity" target="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter">
+    <edge source="com.kulik.android.jaxb.library.parser.chache.CacheEntity" target="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapter">
       <point x="156.5" y="-0.0" />
       <point x="-216.5" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.LongParser" target="biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.LongParser" target="com.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
       <point x="-90.5" y="-0.0" />
       <point x="367.0" y="0.0" />
       <point x="0.0" y="-25.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.adapters.AdaptersManager" target="biz.kulik.android.jaxb.library.parser.adapters.GlobalAdapterChacheManager">
+    <edge source="com.kulik.android.jaxb.library.parser.adapters.AdaptersManager" target="com.kulik.android.jaxb.library.parser.adapters.GlobalAdapterChacheManager">
       <point x="0.0" y="57.5" />
       <point x="0.0" y="-89.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.BooleanParser" target="biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.BooleanParser" target="com.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
       <point x="-101.0" y="-0.0" />
       <point x="447.0" y="280.0" />
       <point x="80.0" y="25.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.DoubleParser" target="biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.DoubleParser" target="com.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
       <point x="97.5" y="-0.0" />
       <point x="-95.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.Annotations.XmlAccessorType.AccessType" target="biz.kulik.android.jaxb.library.Annotations.XmlAccessorType">
+    <edge source="com.kulik.android.jaxb.library.Annotations.XmlAccessorType.AccessType" target="com.kulik.android.jaxb.library.Annotations.XmlAccessorType">
       <point x="0.0" y="56.5" />
       <point x="0.0" y="-14.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.providers.AbstractElementUnmarshaler" target="biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler">
+    <edge source="com.kulik.android.jaxb.library.parser.providers.AbstractElementUnmarshaler" target="com.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler">
       <point x="164.5" y="-0.0" />
       <point x="-143.5" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONObjectProvider" target="biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject">
+    <edge source="com.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONObjectProvider" target="com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject">
       <point x="0.0" y="173.0" />
       <point x="165.0" y="2400.0" />
       <point x="2045.0" y="2400.0" />
       <point x="2045.0" y="1480.0" />
       <point x="165.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject" target="biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO">
+    <edge source="com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject" target="com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO">
       <point x="0.0" y="151.0" />
       <point x="0.0" y="-25.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.ComposerImpl" target="biz.kulik.android.jaxb.library.composer.providers.ProviderFactory">
+    <edge source="com.kulik.android.jaxb.library.composer.ComposerImpl" target="com.kulik.android.jaxb.library.composer.providers.ProviderFactory">
       <point x="0.0" y="-120.5" />
       <point x="645.0" y="1720.0" />
       <point x="1205.0" y="1720.0" />
       <point x="-40.0" y="-57.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.providers.ProviderFactory" target="biz.kulik.android.jaxb.library.composer.providers.xmlPovider.XMLObjectProvider">
+    <edge source="com.kulik.android.jaxb.library.composer.providers.ProviderFactory" target="com.kulik.android.jaxb.library.composer.providers.xmlPovider.XMLObjectProvider">
       <point x="0.0" y="-57.5" />
       <point x="0.0" y="184.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="com.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
       <point x="-40.0" y="-47.0" />
       <point x="927.0" y="80.0" />
       <point x="95.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.ParserImpl" target="biz.kulik.android.jaxb.library.parser.UnMarshalerTypes">
+    <edge source="com.kulik.android.jaxb.library.parser.ParserImpl" target="com.kulik.android.jaxb.library.parser.UnMarshalerTypes">
       <point x="-285.0" y="-0.0" />
       <point x="128.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.ParserImpl" target="biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager">
+    <edge source="com.kulik.android.jaxb.library.parser.ParserImpl" target="com.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager">
       <point x="-285.0" y="-40.0" />
       <point x="967.0" y="760.0" />
       <point x="0.0" y="47.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.providers.ElemXMLUnmarshalerImpl" target="biz.kulik.android.jaxb.library.parser.providers.AbstractElementUnmarshaler">
+    <edge source="com.kulik.android.jaxb.library.parser.providers.ElemXMLUnmarshalerImpl" target="com.kulik.android.jaxb.library.parser.providers.AbstractElementUnmarshaler">
       <point x="151.5" y="-0.0" />
       <point x="-164.5" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.ParserArrayStartedImpl" target="biz.kulik.android.jaxb.library.parser.Parser">
+    <edge source="com.kulik.android.jaxb.library.parser.ParserArrayStartedImpl" target="com.kulik.android.jaxb.library.parser.Parser">
       <point x="214.0" y="-0.0" />
       <point x="-128.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="biz.kulik.android.jaxb.library.parser.stringutil.BigDecimalParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.SimpleParsersManager" target="com.kulik.android.jaxb.library.parser.stringutil.BigDecimalParser">
       <point x="-160.0" y="-47.0" />
       <point x="807.0" y="400.0" />
       <point x="109.5" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.BigDecimalParser" target="biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.BigDecimalParser" target="com.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
       <point x="-109.5" y="-0.0" />
       <point x="407.0" y="400.0" />
       <point x="40.0" y="25.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray" target="biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO">
+    <edge source="com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray" target="com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO">
       <point x="71.0" y="-0.0" />
       <point x="-96.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.adapters.GlobalAdapterChacheManager" target="biz.kulik.android.jaxb.library.parser.adapters.Criteria">
+    <edge source="com.kulik.android.jaxb.library.parser.adapters.GlobalAdapterChacheManager" target="com.kulik.android.jaxb.library.parser.adapters.Criteria">
       <point x="182.0" y="-40.0" />
       <point x="1174.0" y="2920.0" />
       <point x="0.0" y="78.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory" target="biz.kulik.android.jaxb.library.parser.providers.ElemXMLUnmarshalerImpl">
+    <edge source="com.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory" target="com.kulik.android.jaxb.library.parser.providers.ElemXMLUnmarshalerImpl">
       <point x="0.0" y="35.5" />
       <point x="0.0" y="-141.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory" target="biz.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodAdapter">
+    <edge source="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldFactory" target="com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodAdapter">
       <point x="0.0" y="-25.0" />
       <point x="0.0" y="121.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.providers.ProviderFactory" target="biz.kulik.android.jaxb.library.composer.providers.ProviderTypes">
+    <edge source="com.kulik.android.jaxb.library.composer.providers.ProviderFactory" target="com.kulik.android.jaxb.library.composer.providers.ProviderTypes">
       <point x="0.0" y="57.5" />
       <point x="0.0" y="-35.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.ParserImpl" target="biz.kulik.android.jaxb.library.parser.Parser">
+    <edge source="com.kulik.android.jaxb.library.parser.ParserImpl" target="com.kulik.android.jaxb.library.parser.Parser">
       <point x="0.0" y="152.0" />
       <point x="0.0" y="-35.5" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.parser.stringutil.IntegerParser" target="biz.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
+    <edge source="com.kulik.android.jaxb.library.parser.stringutil.IntegerParser" target="com.kulik.android.jaxb.library.parser.stringutil.SimpleTypeParser">
       <point x="0.0" y="-25.0" />
       <point x="0.0" y="25.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.composer.providers.ProviderFactory" target="biz.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONObjectProvider">
+    <edge source="com.kulik.android.jaxb.library.composer.providers.ProviderFactory" target="com.kulik.android.jaxb.library.composer.providers.jsonProvider.JSONObjectProvider">
       <point x="-126.0" y="-0.0" />
       <point x="165.0" y="-0.0" />
     </edge>
-    <edge source="biz.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter.DEFAULT" target="biz.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter">
+    <edge source="com.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter.DEFAULT" target="com.kulik.android.jaxb.library.Annotations.XmlJavaTypeAdapter">
       <point x="0.0" y="14.5" />
       <point x="0.0" y="-35.5" />
     </edge>

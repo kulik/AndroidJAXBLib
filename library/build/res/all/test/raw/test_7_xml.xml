@@ -1,9 +1,0 @@
-<AdaptersTest>
-    <date>2013-03-12T00:00:00"</date>
-    <Viewing>
-            <FromTime>18:00</FromTime>
-            <ToTime> "19:00",
-            "Date": "2013-03-12T00:00:00",
-            "Note": ""
-            }
-</AdaptersTest><!-- From: file:/home/kulik/project/AndroidJAXBLib/test-android/res/raw/test_7_xml.xml -->

@@ -6,7 +6,7 @@ android {
 
     sourceSets {
         defaultConfig {
-            testPackageName 'biz.kulik.android.jaxb.library'
+            testPackageName 'com.kulik.android.jaxb.library'
         }
 
         main {
@@ -21,9 +21,11 @@ android {
         }
 
         instrumentTest {
-            res.srcDirs       = ["../test-android/res"]
-            resources.srcDirs = ["../test-android/src"]
-            java.srcDirs      = ["../test-android/src"]
+            res.srcDirs       = ["test-android/res"]
+            resources.srcDirs = ["test-android/src"]
+            java.srcDirs      = ["test-android/src"]
         }
     }
 }
+
+apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'

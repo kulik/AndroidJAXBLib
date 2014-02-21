@@ -5,16 +5,16 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.6.+'
-	classpath 'com.squareup.gradle:gradle-android-test-plugin:0.9.+'
 	classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.2'
     }
 }
 
+	//classpath 'com.squareup.gradle:gradle-android-test-plugin:0.9.+'
 //apply plugin: 'maven'
 //apply plugin: 'nexus'
 
-//group = 'biz.kulik.jaxb'
-//version = '0.1-SNAPSHOT'
+group = 'biz.kulik.jaxb'
+version = '0.1-SNAPSHOT'
 
 //install {
 //  repositories.mavenInstaller {
@@ -55,10 +55,9 @@ buildscript {
 //        email 'kxamed@gmail.com'
 //      }
 //    }
-
 //    organization {
-//      name 'The Awesome Company'
+//    name 'The Awesome Company'
 //      url 'http://'
 //    }
 //  }
-
+//}

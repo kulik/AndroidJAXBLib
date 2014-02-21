@@ -53,8 +53,8 @@ cp $HUDSON_SETTINGS/local.properties .
 cd Test
 
 echo " ########################### BUILD SCRIPT ##############################" 
-echo "uninstall biz.kulik.android.jaxb.library"	
-adb uninstall biz.kulik.android.jaxb.library
+echo "uninstall com.kulik.android.jaxb.library"
+adb uninstall com.kulik.android.jaxb.library
 
 echo " ###################### MAKE UNIT TESTS ########################" 
 
