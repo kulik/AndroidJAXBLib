@@ -1,8 +1,8 @@
 package com.kulik.android.jaxb.library.parserTest.TestData2;
 
 import com.kulik.android.jaxb.library.ParserAbstractTest;
-import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import com.kulik.android.jaxb.library.R;
+import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 
 /**
  * User: kulik
@@ -13,7 +13,7 @@ public class TestParser2 extends ParserAbstractTest<TestStorage> {
     private static final String TAG = TestParser2.class.getSimpleName();
 
     public void testParse2JSON() {
-        parse(UnMarshalerTypes.JSONAdapter,R.raw.test_2_json, TestStorage.class);
+        parse(UnMarshalerTypes.JSONAdapter, R.raw.test_2_json, TestStorage.class);
     }
 
     //TODO implement XML

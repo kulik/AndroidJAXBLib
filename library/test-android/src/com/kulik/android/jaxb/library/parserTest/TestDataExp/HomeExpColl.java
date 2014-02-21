@@ -10,7 +10,7 @@ import java.util.List;
  * Date: 15.02.13
  * Time: 11:00
  */
-public class    HomeExpColl implements Serializable {
+public class HomeExpColl implements Serializable {
 
     @XmlElement(name = "HomeExpTypeColl")
     private List<HomeExpTypeColl> homeExpTypeColl;

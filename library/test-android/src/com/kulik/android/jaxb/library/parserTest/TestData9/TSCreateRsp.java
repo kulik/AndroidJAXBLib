@@ -14,6 +14,6 @@ public class TSCreateRsp {
     @XmlElement(name = "textS")
     public String textS;
 
-    @XmlElement(name="text")
+    @XmlElement(name = "text")
     public List<String> text;
 }

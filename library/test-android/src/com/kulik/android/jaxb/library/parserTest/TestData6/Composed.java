@@ -7,6 +7,6 @@ import java.io.Serializable;
  * Date: 18.03.13
  * Time: 11:45
  */
-public interface Composed extends Serializable{
+public interface Composed extends Serializable {
     public abstract Serializable getComposerObject();
 }

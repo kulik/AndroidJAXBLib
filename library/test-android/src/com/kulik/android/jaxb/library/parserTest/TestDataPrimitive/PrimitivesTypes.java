@@ -31,6 +31,4 @@ public class PrimitivesTypes {
     public double primDouble;
 
 
-
-
 }

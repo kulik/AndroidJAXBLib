@@ -3,12 +3,13 @@ package com.kulik.android.jaxb.library;
 import android.annotation.TargetApi;
 import android.os.Build;
 
+import java.io.StringWriter;
+
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.StringWriter;
 
 /**
  * User: kulik

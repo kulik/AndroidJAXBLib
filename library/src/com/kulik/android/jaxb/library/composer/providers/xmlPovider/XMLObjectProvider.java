@@ -3,6 +3,7 @@ package com.kulik.android.jaxb.library.composer.providers.xmlPovider;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
+
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -82,27 +83,27 @@ public class XMLObjectProvider implements UMOObject, UMOArray {
 
     @Override
     public void putValueInt(String valueName, Integer value) {
-       putValue(valueName, value);
+        putValue(valueName, value);
     }
 
     @Override
     public void putValueLong(String valueName, Long value) {
-       putValue(valueName, value);
+        putValue(valueName, value);
     }
 
     @Override
     public void putValueFloat(String valueName, Float value) {
-       putValue(valueName, value);
+        putValue(valueName, value);
     }
 
     @Override
     public void putValueDouble(String valueName, Double value) {
-       putValue(valueName, value);
+        putValue(valueName, value);
     }
 
     @Override
     public void putValueBoolean(String valueName, Boolean value) {
-       putValue(valueName, value);
+        putValue(valueName, value);
     }
 
     @Override

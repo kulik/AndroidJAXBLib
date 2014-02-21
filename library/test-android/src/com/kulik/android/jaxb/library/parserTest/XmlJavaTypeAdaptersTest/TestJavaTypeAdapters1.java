@@ -4,7 +4,15 @@ import com.kulik.android.jaxb.library.ParserAbstractTest;
 import com.kulik.android.jaxb.library.R;
 import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.Scene;
-import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.*;
+import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.AnimatedStamp;
+import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.Border;
+import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.DrawSprite;
+import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.Frames;
+import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.GyroStampSprite;
+import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.PhotoSprite;
+import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.SceneObject;
+import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.StaticStamp;
+import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.TextSprite;
 
 /**
  * User: kulik
@@ -153,10 +161,10 @@ public class TestJavaTypeAdapters1 extends ParserAbstractTest<Scene> {
         assertEquals(so7.geometry.width, 300f);
         assertEquals(so7.geometry.height, 200f);
 
-        assertNotNull(scene.background );
-        assertNotNull(scene.background.fileName );
+        assertNotNull(scene.background);
+        assertNotNull(scene.background.fileName);
         assertEquals(scene.background.fileName, "scene_background.png");
-        assertNotNull(scene.background.type );
+        assertNotNull(scene.background.type);
         assertEquals(scene.background.type, "stretch");
         assertNotNull(scene.collage);
         assertNotNull(scene.collage.bgFileName);

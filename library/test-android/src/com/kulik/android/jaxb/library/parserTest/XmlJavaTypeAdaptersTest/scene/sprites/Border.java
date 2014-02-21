@@ -4,7 +4,7 @@ import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 
 /**
  * The class determines the sprites of the type "border"
- * 
+ *
  * @author kadygrob Copyright QArea Inc, 2013
  */
 public class Border extends SceneObject {

@@ -2,6 +2,7 @@ package com.kulik.android.jaxb.library.composer.providers.jsonProvider;
 
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray;
+
 import org.json.JSONArray;
 
 /**

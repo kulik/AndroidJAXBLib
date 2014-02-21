@@ -13,9 +13,9 @@ public class PayType implements Serializable {
 
 
     @XmlElement(name = "Paytype")
-    private String  payType;
+    private String payType;
 
     @XmlElement(name = "paytypedescr")
-    private String  paytypeDescr;
+    private String paytypeDescr;
 
 }

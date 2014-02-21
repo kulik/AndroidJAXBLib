@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Date: 25.01.13
  * Time: 18:45
  */
-public class TSActivity  implements Serializable {
+public class TSActivity implements Serializable {
     private static final String TAG = TSActivity.class.getSimpleName();
 
     @XmlElement(name = "ACTIVITY_ID")

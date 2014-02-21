@@ -2,6 +2,7 @@ package com.kulik.android.jaxb.library.compouserTest.testData2;
 
 import android.test.AndroidTestCase;
 import android.util.Log;
+
 import com.kulik.android.jaxb.library.adapters.AdapterException;
 import com.kulik.android.jaxb.library.composer.Composer;
 import com.kulik.android.jaxb.library.composer.ComposerImpl;

@@ -15,10 +15,10 @@ public class ReflectionUtils {
      * Для некоторого класса (или интерфейса) определяет,
      * каким классом был параметризован один из его предков (реализующих классов) с generic-параметрами.
      *
-     * @param actualClass     анализируемый класс
-     * @param genericClass    класс (или интерфейс), для которого определяется значение параметра
-     * @param parameterIndex  номер параметра
-     * @return                класс, являющийся параметром с индексом parameterIndex в genericClass
+     * @param actualClass    анализируемый класс
+     * @param genericClass   класс (или интерфейс), для которого определяется значение параметра
+     * @param parameterIndex номер параметра
+     * @return класс, являющийся параметром с индексом parameterIndex в genericClass
      */
     public static Class getGenericParameterClass(final Class actualClass, final Class genericClass, final int parameterIndex) {
         // Прекращаем работу если genericClass не является предком actualClass.
@@ -127,7 +127,7 @@ public class ReflectionUtils {
         Type[] types = sourceClass.getGenericInterfaces();
         for (Type type : types) {
             if (type instanceof Class) {
-                if (genericInterface.isAssignableFrom((Class)type)) {
+                if (genericInterface.isAssignableFrom((Class) type)) {
                     return type;
                 }
             } else if (type instanceof ParameterizedType) {

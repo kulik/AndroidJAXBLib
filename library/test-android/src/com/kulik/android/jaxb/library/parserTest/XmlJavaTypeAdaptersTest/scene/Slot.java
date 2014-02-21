@@ -10,7 +10,7 @@ import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 
 /**
  * The class determine the attributes of a slot in a collage
- * 
+ *
  * @author kadygrob Copyright QArea Inc, 2013
  */
 public class Slot {

@@ -4,7 +4,7 @@ import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 
 /**
  * Determine static image sprite
- * 
+ *
  * @author kadygrob Copyright QArea Inc, 2013
  */
 public class StaticStamp extends SceneObject {

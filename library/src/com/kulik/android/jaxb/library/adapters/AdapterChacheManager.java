@@ -21,6 +21,7 @@ public class AdapterChacheManager {
 
     /**
      * Returns adapter from chache or new instance? and chace it
+     *
      * @param adapterClass - class of necessary
      * @return instance of necessary XmlAdapter class
      */

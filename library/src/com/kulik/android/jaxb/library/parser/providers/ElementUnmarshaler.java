@@ -18,8 +18,10 @@ public interface ElementUnmarshaler {
     public ElementUnmarshaler getChild(String name);
 
     public boolean isChildExist(String name);
+
     /**
      * if value doesnt exist return ""
+     *
      * @param name
      * @return
      */

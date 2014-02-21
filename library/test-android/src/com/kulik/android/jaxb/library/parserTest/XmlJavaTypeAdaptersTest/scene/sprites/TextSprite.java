@@ -5,7 +5,7 @@ import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.G
 
 /**
  * This class describes the text sprites
- * 
+ *
  * @author kadygrob Copyright QArea Inc, 2013
  */
 public class TextSprite extends SceneObject {

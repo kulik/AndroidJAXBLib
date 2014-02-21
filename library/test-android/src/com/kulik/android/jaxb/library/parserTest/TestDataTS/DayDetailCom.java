@@ -10,7 +10,7 @@ import java.util.List;
  * Date: 13.02.13
  * Time: 15:49
  */
-public class DayDetailCom implements Serializable{
+public class DayDetailCom implements Serializable {
 
     @XmlElement(name = "DayDetail")
     private List<DayDetail> dayDetail;

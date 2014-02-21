@@ -10,7 +10,7 @@ import java.util.List;
  * Date: 15.02.13
  * Time: 17:43
  */
-public class PRV_WORKER_SAVED  implements Serializable {
+public class PRV_WORKER_SAVED implements Serializable {
 
 
     @XmlElement(name = "PRV_WRKR_SAVED_SUB")

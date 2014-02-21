@@ -1,6 +1,7 @@
 package com.kulik.android.jaxb.library;
 
 import android.test.AndroidTestCase;
+
 import com.kulik.android.jaxb.library.parser.ParserImpl;
 import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 
@@ -11,7 +12,7 @@ import java.io.InputStream;
  * Date: 10/26/12
  * Time: 12:45 PM
  */
-public  abstract class ParserAbstractTest<T> extends AndroidTestCase {
+public abstract class ParserAbstractTest<T> extends AndroidTestCase {
     private static final String TAG = ParserAbstractTest.class.getSimpleName();
 
     protected void parse(UnMarshalerTypes type, int resID, Class<T> clazz) {

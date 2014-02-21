@@ -1,6 +1,7 @@
 package com.kulik.android.jaxb.library.parserTest.TestData6;
 
 import android.test.AndroidTestCase;
+
 import com.kulik.android.jaxb.library.parser.ParserImpl;
 import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 
@@ -24,9 +25,9 @@ public class TestParser6 extends AndroidTestCase {
 
     public void testParse6JSON() {
 
-    //    InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_3_json);
+        //    InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_3_json);
 
-      //  ParserImpl parser = new ParserImpl(UnMarshalerTypes.JSONAdapter);
+        //  ParserImpl parser = new ParserImpl(UnMarshalerTypes.JSONAdapter);
 
 //        ResponseContainer<List<ApartmentViewingsListResponse> ts;
 //        ts = parser.parse(ResponseContainer<List<ApartmentViewingsListResponse>>.class, inputStream);
@@ -36,7 +37,7 @@ public class TestParser6 extends AndroidTestCase {
     public void testParse6XML() {
 
 //       InputStream inputStream = getContext().getResources().openRawResource(R.raw.test_6_xml);
-        String responseString ="<?xml version='1.0'?>\n" +
+        String responseString = "<?xml version='1.0'?>\n" +
                 "<TSCreateRsp xmlns=\"http://release-dev.provade.com//Enterprise/Tools/schemas/PRV_WORKER_API.TSCreateRsp.v1\">\n" +
                 "    <text>TimeSheet VMT0000602 has been Saved.</text>\n" +
                 "</TSCreateRsp>";
@@ -56,8 +57,7 @@ public class TestParser6 extends AndroidTestCase {
     }
 
 
-
-    private void assertTestDate6( ParseCreateTSWeekResponse ts) {
+    private void assertTestDate6(ParseCreateTSWeekResponse ts) {
 
         assertNotNull(ts);
         assertNotNull(ts.text);

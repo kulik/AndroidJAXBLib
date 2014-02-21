@@ -1,10 +1,11 @@
 package com.kulik.android.jaxb.library.parserTest.TestData3;
 
 import android.test.AndroidTestCase;
-import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
-import com.kulik.android.jaxb.library.parser.ParserImpl;
-import com.kulik.android.jaxb.library.parserTest.TestData2.TestStorage;
+
 import com.kulik.android.jaxb.library.R;
+import com.kulik.android.jaxb.library.parser.ParserImpl;
+import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
+import com.kulik.android.jaxb.library.parserTest.TestData2.TestStorage;
 
 import java.io.InputStream;
 
@@ -49,7 +50,7 @@ public class TestParser3 extends AndroidTestCase {
 //        assertTestDate2(ts);
     }
 
-    private void assertTestDate2( TestStorage ts) {
+    private void assertTestDate2(TestStorage ts) {
 
         assertNotNull("", ts);
         assertNotNull("", ts.mFavoritePropertyResponses);

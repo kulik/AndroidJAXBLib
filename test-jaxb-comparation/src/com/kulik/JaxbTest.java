@@ -1,15 +1,10 @@
 package com.kulik;
 
 import com.kulik.compouserTest.RootProxy;
-import com.kulik.rolesMatrix.RoleMatrix;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * User: kulik

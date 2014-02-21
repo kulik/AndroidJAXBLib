@@ -1,6 +1,7 @@
 package com.kulik.android.jaxb.library.parserTest.TestLongData4;
 
 import android.test.AndroidTestCase;
+
 import com.kulik.android.jaxb.library.R;
 import com.kulik.android.jaxb.library.parser.ParserImpl;
 import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;

@@ -18,10 +18,10 @@
     "adb shell am instrument -w com.kulik.android.jaxb.library/android.test.InstrumentationTestRunner"
     -->
     <!--<instrumentation android:name="com.zutubi.android.junitreport.JUnitReportTestRunner"-->
-                     <!--android:targetPackage="com.kulik.android.jaxb.library"-->
-                     <!--android:label="Tests for com.kulik.android.jaxb.library"/>-->
+    <!--android:targetPackage="com.kulik.android.jaxb.library"-->
+    <!--android:label="Tests for com.kulik.android.jaxb.library"/>-->
 
     <instrumentation
-            android:name="android.test.InstrumentationTestRunner"
-            android:targetPackage="com.kulik.android.jaxb.library" />
+        android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="com.kulik.android.jaxb.library"/>
 </manifest>

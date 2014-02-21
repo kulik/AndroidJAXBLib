@@ -14,13 +14,13 @@ public class ResponseContainer<T extends AbstractResponse> {
 
     public static final String STATUS_ERROR = "error";
 
-    /***
+    /**
      * Server operation success flag.
      */
     @XmlElement(name = "status")
     public String statusFlag;
 
-    /***
+    /**
      * There will be placed depend on statusFlag:<br/>
      * on success - returned data from server;<br/>
      * on error - null.<br/>
@@ -28,7 +28,7 @@ public class ResponseContainer<T extends AbstractResponse> {
     @XmlElement(name = "data")
     public T data;
 
-    /***
+    /**
      * There will be placed depend on statusFlag:<br/>
      * on success - null;<br/>
      * on error - server error descriptor.<br/>

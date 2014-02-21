@@ -1,8 +1,8 @@
 package com.kulik.android.jaxb.library.compouserTest.testWrapper;
 
-import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
-import biz.kulik.android.jaxb.library.Annotations.XmlElement;
-import biz.kulik.android.jaxb.library.Annotations.XmlRootElement;
+import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
+import com.kulik.android.jaxb.library.Annotations.XmlElement;
+import com.kulik.android.jaxb.library.Annotations.XmlRootElement;
 
 /**
  * Created by kulik on 1/8/14.

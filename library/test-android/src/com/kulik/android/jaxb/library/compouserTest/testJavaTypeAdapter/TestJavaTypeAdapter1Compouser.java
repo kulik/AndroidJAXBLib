@@ -2,6 +2,7 @@ package com.kulik.android.jaxb.library.compouserTest.testJavaTypeAdapter;
 
 import android.test.AndroidTestCase;
 import android.util.Log;
+
 import com.kulik.android.jaxb.library.DocUtils;
 import com.kulik.android.jaxb.library.adapters.AdapterException;
 import com.kulik.android.jaxb.library.composer.Composer;
@@ -13,6 +14,7 @@ import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.S
 import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.PhotoSprite;
 import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.SceneObject;
 import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.scene.sprites.TextSprite;
+
 import org.w3c.dom.Document;
 
 import java.text.SimpleDateFormat;

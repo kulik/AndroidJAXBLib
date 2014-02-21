@@ -23,9 +23,9 @@ public class RootProxy {
     @XmlElement(name = "A")
     AProxy ma = new AProxy();
 
-        @XmlElement(name = "TestList1")
-        @XmlElementWrapper(name = "bookList")
-        List<TestListItem> mlist1 = new ArrayList<TestListItem>(Arrays.asList(new TestListItem[]{new TestListItem(1224), new TestListItem(1234)}));
+    @XmlElement(name = "TestList1")
+    @XmlElementWrapper(name = "bookList")
+    List<TestListItem> mlist1 = new ArrayList<TestListItem>(Arrays.asList(new TestListItem[]{new TestListItem(1224), new TestListItem(1234)}));
 
     @XmlElement(name = "TestList")
     List<TestListItem> mlist = new ArrayList<TestListItem>(Arrays.asList(new TestListItem[]{new TestListItem(122), new TestListItem(123)}));

@@ -17,7 +17,7 @@ public class Frames {
     public static enum Direction {
         LEFT, RIGHT, UP, DOWN;
 
-        public static Direction getByName(String name){
+        public static Direction getByName(String name) {
             return valueOf(name.toUpperCase());
         }
     }

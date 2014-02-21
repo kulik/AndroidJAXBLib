@@ -2,6 +2,7 @@ package com.kulik.android.jaxb.library.compouserTest.testJavaTypeAdapter;
 
 import android.test.AndroidTestCase;
 import android.util.Log;
+
 import com.kulik.android.jaxb.library.DocUtils;
 import com.kulik.android.jaxb.library.adapters.AdapterException;
 import com.kulik.android.jaxb.library.composer.Composer;
@@ -9,6 +10,7 @@ import com.kulik.android.jaxb.library.composer.ComposerImpl;
 import com.kulik.android.jaxb.library.composer.providers.ProviderTypes;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import com.kulik.android.jaxb.library.parserTest.XmlJavaTypeAdaptersTest.MyBean;
+
 import org.w3c.dom.Document;
 
 import java.text.ParseException;

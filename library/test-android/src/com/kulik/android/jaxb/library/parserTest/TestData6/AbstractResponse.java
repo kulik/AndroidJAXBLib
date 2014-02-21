@@ -45,7 +45,7 @@ public abstract class AbstractResponse implements Serializable {
         mStatus = status;
     }
 
-    public Status getStatus () {
+    public Status getStatus() {
         return mStatus;
     }
 }

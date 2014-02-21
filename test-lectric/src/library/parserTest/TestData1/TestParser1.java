@@ -3,6 +3,7 @@ package library.parserTest.TestData1;
 import com.kulik.android.jaxb.library.parser.ParserImpl;
 import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -52,7 +53,7 @@ public class TestParser1 {
         assertNotNull("", se);
         assertNotNull("", se.section);
         assertNotNull("", se.section.item);
-        assertTrue("",    se.section.item.size() == 3);
+        assertTrue("", se.section.item.size() == 3);
         assertNotNull("", se.section.item.get(0).image);
         assertNotNull("", se.section.item.get(0).image.source);
         assertNotNull("", se.section.item.get(0).title);

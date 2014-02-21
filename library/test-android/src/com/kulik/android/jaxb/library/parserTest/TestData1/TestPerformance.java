@@ -11,7 +11,7 @@ import android.test.PerformanceTestCase;
  * Date: 10/26/12
  * Time: 12:50 PM
  */
-public class TestPerformance extends AndroidTestCase implements PerformanceTestCase{
+public class TestPerformance extends AndroidTestCase implements PerformanceTestCase {
 //    private static final MyLog LOG = EasyLoggerFactory.getLogger(TestPerformance.class);
 
     @Override

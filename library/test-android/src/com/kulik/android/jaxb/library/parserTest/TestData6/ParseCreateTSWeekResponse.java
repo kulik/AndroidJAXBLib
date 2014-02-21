@@ -9,17 +9,18 @@ import java.io.Serializable;
  * Date: 26.12.12
  * Time: 17:25
  */
-public class ParseCreateTSWeekResponse extends AbstractWorkerResponse implements Composed{
+public class ParseCreateTSWeekResponse extends AbstractWorkerResponse implements Composed {
 
     private Serializable mComposed;
-    public ParseCreateTSWeekResponse(Serializable composed){
+
+    public ParseCreateTSWeekResponse(Serializable composed) {
         mComposed = composed;
     }
 
     public ParseCreateTSWeekResponse() {
     }
 
-    @XmlElement(name="text")
+    @XmlElement(name = "text")
     public String text = "";
 
     public String getText() {

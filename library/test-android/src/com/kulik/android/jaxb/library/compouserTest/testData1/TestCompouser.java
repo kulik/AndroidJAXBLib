@@ -2,14 +2,17 @@ package com.kulik.android.jaxb.library.compouserTest.testData1;
 
 import android.test.AndroidTestCase;
 import android.util.Log;
-//import com.kulik.android.jaxb.library.DocUtils;
+
 import com.kulik.android.jaxb.library.DocUtils;
 import com.kulik.android.jaxb.library.adapters.AdapterException;
 import com.kulik.android.jaxb.library.composer.Composer;
 import com.kulik.android.jaxb.library.composer.ComposerImpl;
 import com.kulik.android.jaxb.library.composer.providers.ProviderTypes;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
+
 import org.w3c.dom.Document;
+
+//import com.kulik.android.jaxb.library.DocUtils;
 
 /**
  * User: kulik

@@ -13,18 +13,18 @@ public class HomeExpTypeColl implements Serializable {
 
 
     @XmlElement(name = "BUSINESS_UNIT")
-    private String  businessUnit;
+    private String businessUnit;
 
     @XmlElement(name = "HomeExpTypeCom")
-    private HomeExpTypeCom  homeExpTypeCom;
+    private HomeExpTypeCom homeExpTypeCom;
 
     @XmlElement(name = "BPDetailsCom")
-    private BPDetailsCom  bPDetailsCom;
+    private BPDetailsCom bPDetailsCom;
 
     @XmlElement(name = "paytypeCom")
-    private PaytypeCom  paytypeCom;
+    private PaytypeCom paytypeCom;
 
     @XmlElement(name = "BillingActionCom")
-    private BillingActionCom  billingActionCom;
+    private BillingActionCom billingActionCom;
 
 }

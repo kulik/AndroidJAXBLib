@@ -10,7 +10,7 @@ import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 
 /**
  * Describe a background for a scene
- * 
+ *
  * @author kadygrob Copyright QArea Inc, 2013
  */
 public class SceneBackground {

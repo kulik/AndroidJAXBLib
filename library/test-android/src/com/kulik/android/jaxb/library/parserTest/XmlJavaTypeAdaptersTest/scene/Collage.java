@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Describes a collage in a scene
- * 
+ *
  * @author kadygrob Copyright QArea Inc, 2013
  */
 public class Collage {

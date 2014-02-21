@@ -27,7 +27,8 @@ public final class Criteria {
         if (mClazz != null && !mClazz.equals(criteria.mClazz)) return false;
         if (mUnMarshalType != null && !mUnMarshalType.equals(criteria.mUnMarshalType)) return false;
         if (mMarshalType != null && !mMarshalType.equals(criteria.mMarshalType)) return false;
-        if ((mPackaze == null) ? criteria.mPackaze != null : !mPackaze.equals(criteria.mPackaze)) return false;
+        if ((mPackaze == null) ? criteria.mPackaze != null : !mPackaze.equals(criteria.mPackaze))
+            return false;
 
         return true;
     }

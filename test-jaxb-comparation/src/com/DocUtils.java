@@ -1,11 +1,12 @@
 package com.kulik.android.jaxb.library;
 
+import java.io.StringWriter;
+
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.StringWriter;
 
 /**
  * User: kulik
@@ -14,9 +15,8 @@ import java.io.StringWriter;
  */
 public class DocUtils {
 
-    public static String getStringFromDoc(org.w3c.dom.Document doc)    {
-        try
-        {
+    public static String getStringFromDoc(org.w3c.dom.Document doc) {
+        try {
             DOMSource domSource = new DOMSource(doc);
             StringWriter writer = new StringWriter();
             StreamResult result = new StreamResult(writer);
@@ -25,9 +25,7 @@ public class DocUtils {
             transformer.transform(domSource, result);
             writer.flush();
             return writer.toString();
-        }
-        catch(TransformerException ex)
-        {
+        } catch (TransformerException ex) {
             ex.printStackTrace();
             return null;
         }

@@ -30,7 +30,7 @@ public class Scene {
     @XmlElement(name = "sprite")
     public List<SceneObject> sceneObjects;
 
-   @XmlElement(name = "collage")
+    @XmlElement(name = "collage")
     public Collage collage;
 
     @XmlElement(name = "scene_width")

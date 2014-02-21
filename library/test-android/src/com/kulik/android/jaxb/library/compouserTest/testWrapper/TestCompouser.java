@@ -2,6 +2,12 @@ package com.kulik.android.jaxb.library.compouserTest.testWrapper;
 
 import android.test.AndroidTestCase;
 
+import com.kulik.android.jaxb.library.adapters.AdapterException;
+import com.kulik.android.jaxb.library.composer.Composer;
+import com.kulik.android.jaxb.library.composer.ComposerImpl;
+import com.kulik.android.jaxb.library.composer.providers.ProviderTypes;
+import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
+
 import org.w3c.dom.Document;
 
 import java.io.ByteArrayOutputStream;
@@ -12,12 +18,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import biz.kulik.android.jaxb.library.adapters.AdapterException;
-import biz.kulik.android.jaxb.library.composer.Composer;
-import biz.kulik.android.jaxb.library.composer.ComposerImpl;
-import biz.kulik.android.jaxb.library.composer.providers.ProviderTypes;
-import biz.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 
 //import biz.kulik.android.jaxb.library.DocUtils;
 

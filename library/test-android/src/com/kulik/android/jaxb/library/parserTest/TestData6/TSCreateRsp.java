@@ -9,6 +9,6 @@ import com.kulik.android.jaxb.library.Annotations.XmlElement;
  */
 public class TSCreateRsp {
 
-    @XmlElement(name="text")
+    @XmlElement(name = "text")
     public String text;
 }

@@ -12,6 +12,7 @@ public interface UMO {
     /**
      * if you compouse into JSON it will return JSONObject or JSONArray depends on root element
      * if you compouse into XML it will return root xmlElement  Element(Node)
+     *
      * @return
      */
     public Object getWrappedObject();
@@ -22,6 +23,7 @@ public interface UMO {
     /**
      * if you compouse into JSON it will return JSONObject or JSONArray depends on root element
      * if you compouse into XML it will return Document each time
+     *
      * @return
      */
     public Object getRootDocument();

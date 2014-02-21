@@ -1,10 +1,11 @@
 package com.kulik.android.jaxb.library.parserTest.TestData5;
 
 import android.test.AndroidTestCase;
+
+import com.kulik.android.jaxb.library.R;
 import com.kulik.android.jaxb.library.parser.ParserImpl;
 import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import com.kulik.android.jaxb.library.parserTest.TestData2.TestStorage;
-import com.kulik.android.jaxb.library.R;
 
 import java.io.InputStream;
 
@@ -15,7 +16,8 @@ import java.io.InputStream;
  */
 public class TestParser5 extends AndroidTestCase {
     private static final String TAG = TestParser5.class.getSimpleName();
-       //TODO parser need to implement
+
+    //TODO parser need to implement
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -50,7 +52,7 @@ public class TestParser5 extends AndroidTestCase {
         assertTrue(true);
     }
 
-    private void assertTestDate2( TestStorage ts) {
+    private void assertTestDate2(TestStorage ts) {
 
         assertNotNull("", ts);
         assertNotNull("", ts.mFavoritePropertyResponses);

@@ -10,7 +10,7 @@ import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 
 /**
  * The class determines the geometry parameters of each sprite
- * 
+ *
  * @author kadygrob Copyright QArea Inc, 2013
  */
 
@@ -36,7 +36,7 @@ public class Geometry {
 
     /**
      * Construct the geometric parametric of the scene.
-     * 
+     *
      * @param centerX
      * @param centerY
      * @param width
@@ -49,7 +49,7 @@ public class Geometry {
         this.width = width;
         this.height = height;
         this.angle = angle;
-    	//scaleFactor = 0.25f;
+        //scaleFactor = 0.25f;
     }
 
 }

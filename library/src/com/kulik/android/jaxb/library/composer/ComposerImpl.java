@@ -1,6 +1,5 @@
 package com.kulik.android.jaxb.library.composer;
 
-import com.kulik.android.jaxb.library.loger.Log;
 import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import com.kulik.android.jaxb.library.Annotations.XmlElement;
 import com.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
@@ -13,6 +12,7 @@ import com.kulik.android.jaxb.library.composer.providers.ProviderTypes;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOArray;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
+import com.kulik.android.jaxb.library.loger.Log;
 import com.kulik.android.jaxb.library.parser.methodFieldAdapter.FieldAdapter;
 
 import java.lang.reflect.Field;
@@ -141,7 +141,7 @@ public class ComposerImpl implements Composer {
                         if (!primitiveTypeComposed) {
                             boolean simpleTypeParsed = SimpleValueUtils.processSimpleValue(adaptValue, adaptClass, serialObj);
                             if (!simpleTypeParsed) {
-                                throw new IllegalArgumentException("XMLValue can be only simple or primitive type: "+ adaptClass + ", Value: " + adaptValue);
+                                throw new IllegalArgumentException("XMLValue can be only simple or primitive type: " + adaptClass + ", Value: " + adaptValue);
                             }
                         }
                     }

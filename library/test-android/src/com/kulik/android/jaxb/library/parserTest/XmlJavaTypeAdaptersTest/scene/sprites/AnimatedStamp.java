@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * Manages the animation of the image sprites
- * 
+ *
  * @author kadygrob Copyright QArea Inc, 2013
  */
 public class AnimatedStamp extends SceneObject {

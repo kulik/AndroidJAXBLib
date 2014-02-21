@@ -49,7 +49,7 @@ public class AdaptersManager {
         XmlAdapter adapter = getAdapterForField(fieldAdapter);
         Class<?> adapterValueType = XmlAdapter.getMarshalerType(adapter);
         if (!Object.class.equals(adapterValueType)) {
-            return  XmlAdapter.marshal(adapter, obj);
+            return XmlAdapter.marshal(adapter, obj);
         }
         return obj;
     }
@@ -65,7 +65,7 @@ public class AdaptersManager {
         XmlAdapter adapter = getAdapterByProp(pack, ownerClass, genericClass);
         Class<?> adapterValueType = XmlAdapter.getMarshalerType(adapter);
         if (!Object.class.equals(adapterValueType)) {
-            return  XmlAdapter.marshal(adapter, obj);
+            return XmlAdapter.marshal(adapter, obj);
         }
         return obj;
     }

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Date: 14.02.13
  * Time: 15:16
  */
-public class  PRV_WRKR_SAVED_SUB implements Serializable{
+public class PRV_WRKR_SAVED_SUB implements Serializable {
 
     @XmlElement(name = "CREATION_DT")
     private String creationDate;

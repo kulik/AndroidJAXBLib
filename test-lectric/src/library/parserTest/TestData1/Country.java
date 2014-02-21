@@ -10,26 +10,26 @@ import java.util.List;
  * Time: 11:46 AM
  */
 public class Country {
-    @XmlElement(name="Title")
+    @XmlElement(name = "Title")
     private String title;
 
-    @XmlElement(name="City")
+    @XmlElement(name = "City")
     private List<City> cities;
 
-    public Country(){
-        title="";
+    public Country() {
+        title = "";
     }
 
     public static class City {
-        @XmlElement(name="Title")
+        @XmlElement(name = "Title")
         private String title;
 
-        @XmlElement(name="Description")
+        @XmlElement(name = "Description")
         private String description;
 
-        public City(){
+        public City() {
             title = "";
-            description="";
+            description = "";
         }
     }
 }

@@ -7,7 +7,7 @@ import com.kulik.android.jaxb.library.parser.methodFieldAdapter.MethodFieldAdapt
  * Date: 12/12/12
  * Time: 4:05 PM
  */
-public class CacheWrapperEntity extends CacheEntity{
+public class CacheWrapperEntity extends CacheEntity {
 
     private String mXmlWrapper;
 

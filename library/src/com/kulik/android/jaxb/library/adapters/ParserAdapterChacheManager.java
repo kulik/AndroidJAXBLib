@@ -13,12 +13,12 @@ import java.util.Set;
  * Date: 11/27/12
  * Time: 10:52 AM
  */
-public class ParserAdapterChacheManager extends AbstractAdapterChacheManager{
+public class ParserAdapterChacheManager extends AbstractAdapterChacheManager {
     private static final String TAG = ParserAdapterChacheManager.class.getSimpleName();
 
     private HashMap<Criteria, XmlAdapter> adaptersChache;
 
-//    private Set<Package> processedPackages;
+    //    private Set<Package> processedPackages;
     private Set<Class<?>> processedCasses;
 
     private Criteria mChacheCriteria;

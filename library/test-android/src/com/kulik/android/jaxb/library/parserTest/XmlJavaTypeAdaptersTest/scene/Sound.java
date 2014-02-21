@@ -10,7 +10,7 @@ import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 
 /**
  * This class determines sound files in a sprite
- * 
+ *
  * @author kadygrob Copyright QArea Inc, 2013
  */
 public class Sound {

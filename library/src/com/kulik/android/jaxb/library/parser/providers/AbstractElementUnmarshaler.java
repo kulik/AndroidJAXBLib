@@ -14,7 +14,7 @@ public abstract class AbstractElementUnmarshaler implements ElementUnmarshaler {
         init(data);
     }
 
-    protected AbstractElementUnmarshaler(String data){
+    protected AbstractElementUnmarshaler(String data) {
         init(data);
     }
 

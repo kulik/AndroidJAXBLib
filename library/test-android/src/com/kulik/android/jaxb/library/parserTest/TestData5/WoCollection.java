@@ -27,15 +27,12 @@ public class WoCollection implements Serializable {
     private String useClock;
 
 
-
     @XmlElement(name = "DistribCollection")
     private List<DistribCollection> destributionCollection;
 
 
-
     @XmlElement(name = "ActivityCollection")
     private List<ActivityCollection> activityCollection;
-
 
 
     public String getBusinessUnit() {

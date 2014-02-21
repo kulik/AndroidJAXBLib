@@ -21,6 +21,6 @@ public class Menu {
     public String mMyString;
 
     @XmlElementWrapper(name = "Categories")
-    @XmlElement(name="Category")
+    @XmlElement(name = "Category")
     public List<Category> categories;
 }

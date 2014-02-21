@@ -1,9 +1,9 @@
-
 package com.kulik.android.jaxb.library.composer.providers.jsonProvider;
 
-import com.kulik.android.jaxb.library.loger.Log;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
+import com.kulik.android.jaxb.library.loger.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,13 +22,13 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(key, umo.getWrappedObject());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
     @Override
     public void putArray(String valueName, UMO value) {
-       put(valueName, value);
+        put(valueName, value);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(annotationName, value);
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -45,7 +45,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(annotationName, value.intValue());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -54,7 +54,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(annotationName, value.longValue());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -63,7 +63,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(annotationName, value.floatValue());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -72,7 +72,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(annotationName, value.doubleValue());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -81,7 +81,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(annotationName, value.booleanValue());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -90,7 +90,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(valueName, value);
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -99,7 +99,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(valueName, value.intValue());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -108,7 +108,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(valueName, value.longValue());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -117,7 +117,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(valueName, value.floatValue());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -126,7 +126,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(valueName, value.doubleValue());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -135,7 +135,7 @@ public class JSONObjectProvider implements UMOObject {
         try {
             mJSONObject.put(valueName, value.booleanValue());
         } catch (JSONException e) {
-            Log.e(TAG,e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 

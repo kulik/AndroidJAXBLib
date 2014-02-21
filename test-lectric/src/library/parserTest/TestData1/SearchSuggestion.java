@@ -12,11 +12,11 @@ import java.util.List;
  */
 public class SearchSuggestion {
 
-    @XmlElement(name="Section")
+    @XmlElement(name = "Section")
     public Section section;
 
     public static class Section {
-        @XmlElement(name="Item")
+        @XmlElement(name = "Item")
         public List<Item> item;
 
         public static class Item {
@@ -30,7 +30,7 @@ public class SearchSuggestion {
 
             public static class Image {
 
-                @XmlAttribute(name="source")
+                @XmlAttribute(name = "source")
                 public String source = "";
             }
         }

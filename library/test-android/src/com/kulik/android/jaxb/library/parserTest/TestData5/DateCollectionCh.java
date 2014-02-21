@@ -24,7 +24,6 @@ public class DateCollectionCh implements Serializable {
     private String startDate;
 
 
-
     @XmlElement(name = "WoCollection")
     private List<WoCollection> woCollection;
 

@@ -9,12 +9,15 @@ import java.lang.reflect.ParameterizedType;
  * Date: 11/27/12
  * Time: 9:55 AM
  */
-public abstract class XmlAdapter<ValueType, BoundType>{
+public abstract class XmlAdapter<ValueType, BoundType> {
 
     private static final boolean ADAPTER_DEBUG = true;
 
-    protected XmlAdapter() {}
+    protected XmlAdapter() {
+    }
+
     public abstract BoundType unmarshal(ValueType v) throws Exception;
+
     public abstract ValueType marshal(BoundType v) throws Exception;
 
     public static Class<?> getUnMarshalerType(XmlAdapter adapter) {
@@ -27,7 +30,7 @@ public abstract class XmlAdapter<ValueType, BoundType>{
         return clazz;
     }
 
-    public static <V,T> V unmarshal(XmlAdapter<T, V> adapter, T value) throws AdapterException {
+    public static <V, T> V unmarshal(XmlAdapter<T, V> adapter, T value) throws AdapterException {
         try {
             return adapter.unmarshal(value);
         } catch (Exception e) {
@@ -35,7 +38,7 @@ public abstract class XmlAdapter<ValueType, BoundType>{
         }
     }
 
-    public static <T,V> T marshal(XmlAdapter<T, V> adapter, V value) throws AdapterException {
+    public static <T, V> T marshal(XmlAdapter<T, V> adapter, V value) throws AdapterException {
         try {
             return adapter.marshal(value);
         } catch (Exception e) {

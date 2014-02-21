@@ -1,8 +1,8 @@
 package com.kulik.android.jaxb.library.parserTest.TestWrappedData;
 
 import com.kulik.android.jaxb.library.ParserAbstractTest;
-import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 import com.kulik.android.jaxb.library.R;
+import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 
 /**
  * User: kulik

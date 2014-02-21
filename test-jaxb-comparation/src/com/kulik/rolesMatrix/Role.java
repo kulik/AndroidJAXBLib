@@ -1,8 +1,9 @@
 package com.kulik.rolesMatrix;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import java.util.List;
 
 public class Role {
 

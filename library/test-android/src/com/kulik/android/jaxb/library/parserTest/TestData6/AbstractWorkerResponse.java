@@ -5,7 +5,7 @@ package com.kulik.android.jaxb.library.parserTest.TestData6;
  * Date: 26.12.12
  * Time: 17:49
  */
-public abstract class AbstractWorkerResponse extends AbstractResponse{
+public abstract class AbstractWorkerResponse extends AbstractResponse {
     protected static final String FUNCTION_GET_EMAIL = "Worker_Email.v1/";
     protected static final String FUNCTION_SEND_PASSWORD = "Email_Pswd.v1/";
     protected static final String FUNCTION_GET_HOME_TAB = "WorkerHomeDetail.v1/";
@@ -28,12 +28,12 @@ public abstract class AbstractWorkerResponse extends AbstractResponse{
 //        } else {
 //            return LocalPreferences.getLogin();
 //        }
-        return  null;
+        return null;
     }
 
     @Override
     public String getPassword() {
-            //return LocalPreferences.getPassword();
+        //return LocalPreferences.getPassword();
         return null;
     }
 
