@@ -1,63 +1,23 @@
-
 buildscript {
     repositories {
-	 mavenCentral()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.6.+'
-	classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.2'
+        classpath 'com.android.tools.build:gradle:0.7.+'
     }
 }
 
-	//classpath 'com.squareup.gradle:gradle-android-test-plugin:0.9.+'
-//apply plugin: 'maven'
-//apply plugin: 'nexus'
+def isReleaseBuild() {
+    return version.contains("SNAPSHOT") == false
+}
 
-group = 'biz.kulik.jaxb'
-version = '0.1-SNAPSHOT'
+allprojects {
+    version = VERSION_NAME
+    group = GROUP
 
-//install {
-//  repositories.mavenInstaller {
-//    pom.artifactId = 'android-jaxb-lib'
-//  }
-//}
-//uploadArchives {
-//  repositories.mavenDeployer {
-//    pom.artifactId = 'android-jaxb-lib'
-//  }
-//}
+    repositories {
+        mavenCentral()
+    }
+}
 
-//modifyPom {
-//  project {
-//    name 'Android JAX-B Lib'
-//    description "A Realization of JAXB standart XML, JSON binding."
-//    url 'https://github.com/kulik/AndroidJAXBLib'
-//    inceptionYear '2012'
-//
-//    scm {
-//      url 'https://github.com/kulik/AndroidJAXBLib.git'
-//      connection 'scm:git:git://github.com/kulik/AndroidJAXBLib.git'
-//      developerConnection 'scm:git:ssh://git@github.com/kulik/AndroidJAXBLib.git'
-//    }
-//
-//    licenses {
-//      license {
-//        name 'The Apache Software License, Version 2.0'
-//        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//        distribution 'repo'
-//      }
-//    }
-//
-//    developers {
-//      developer {
-//        id 'yevgen.kulik'
-//        name 'Yevgen Kulik'
-//        email 'kxamed@gmail.com'
-//      }
-//    }
-//    organization {
-//    name 'The Awesome Company'
-//      url 'http://'
-//    }
-//  }
-//}
+apply plugin: 'android-reporting'
