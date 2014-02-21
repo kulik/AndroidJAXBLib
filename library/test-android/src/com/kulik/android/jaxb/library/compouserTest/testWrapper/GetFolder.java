@@ -1,4 +1,4 @@
-package src.biz.kulik.android.jaxb.library.compouserTest.testWrapper;
+package com.kulik.android.jaxb.library.compouserTest.testWrapper;
 
 
 import biz.kulik.android.jaxb.library.Annotations.XmlAttribute;
@@ -28,7 +28,7 @@ public class GetFolder implements EWSRequest {
         @XmlAttribute(name = "xmlns")
         private final String attrXmlNS = "http://schemas.microsoft.com/exchange/services/2006/messages";
         @XmlAttribute(name = "xmlns:t")
-        private final String attrXmlNST = "http://schemas.microsoft.com/exchange/services/2006/types" ;
+        private final String attrXmlNST = "http://schemas.microsoft.com/exchange/services/2006/types";
 
         @XmlElementWrapper(name = "FolderShape")
         @XmlElement(name = "t:BaseShape")

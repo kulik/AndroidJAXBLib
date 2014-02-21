@@ -1,4 +1,4 @@
-package src.biz.kulik.android.jaxb.library.compouserTest.testWrapper;
+package com.kulik.android.jaxb.library.compouserTest.testWrapper;
 
 import android.test.AndroidTestCase;
 

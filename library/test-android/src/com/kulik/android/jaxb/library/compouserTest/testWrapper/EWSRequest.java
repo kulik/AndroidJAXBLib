@@ -1,4 +1,4 @@
-package src.biz.kulik.android.jaxb.library.compouserTest.testWrapper;
+package com.kulik.android.jaxb.library.compouserTest.testWrapper;
 
 /**
  * Created by kulik on 1/8/14.

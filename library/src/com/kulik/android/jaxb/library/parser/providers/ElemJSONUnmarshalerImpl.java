@@ -1,5 +1,7 @@
 package com.kulik.android.jaxb.library.parser.providers;
 
+import com.kulik.android.jaxb.library.loger.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,8 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import biz.kulik.android.jaxb.library.loger.Log;
 
 /**
  * User: nata
