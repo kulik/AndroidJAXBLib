@@ -1,0 +1,36 @@
+# Gradle
+.gradle/
+build/
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+classes/
+gen/
+
+# IDEA files
+.idea/
+out/
+*.iml
+
+# Eclipse files
+.userSettings/
+.settings/
+.classpath
+.project
+.metadata/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Visual Studio
+_UpgradeReport_Files/
+/*/_ReSharper.*/

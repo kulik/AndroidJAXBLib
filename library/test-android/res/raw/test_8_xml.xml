@@ -1,0 +1,138 @@
+<TSCreateRoster xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.TSCreateRoster.v1">
+  <DateCollectionCh xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DateCollectionCh.v1">
+    <StartDate>2013-01-14</StartDate>
+    <EndDate>2013-01-20</EndDate>
+    <WoCollection>
+        <WoCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.WoCollection.v1">
+          <BUSINESS_UNIT>PRVBB</BUSINESS_UNIT>
+        <WORK_ORDER_ID>VMW00000081000</WORK_ORDER_ID>
+        <JOB_TITLE>Resource Service 1</JOB_TITLE>
+        <USE_CLOCK>N</USE_CLOCK>
+        <DistribCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DistribCollection.v1">
+            <DISTRIB_ID>1</DISTRIB_ID>
+          </DistribCollection>
+          <ActivityCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.ActivityCollection.v1">
+            <ACTIVITY>_Did not work</ACTIVITY>
+            <ACTIVITY>_Resource - Generic</ACTIVITY>
+            <ACTIVITY>Resource - Specific</ACTIVITY>
+          </ActivityCollection>
+    </WoCollection>
+    <WoCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.WoCollection.v1">
+      <BUSINESS_UNIT>PRVBB</BUSINESS_UNIT>
+      <WORK_ORDER_ID>VMW00000109000</WORK_ORDER_ID>
+      <JOB_TITLE>Resource Service 1</JOB_TITLE>
+      <USE_CLOCK>N</USE_CLOCK>
+      <DistribCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DistribCollection.v1">
+        <DISTRIB_ID>1</DISTRIB_ID>
+      </DistribCollection>
+      <ActivityCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.ActivityCollection.v1">
+        <ACTIVITY>_Did not work</ACTIVITY>
+        <ACTIVITY>_Resource - Generic</ACTIVITY>
+        <ACTIVITY>Resource - Specific</ACTIVITY>
+      </ActivityCollection>
+    </WoCollection>
+    <WoCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.WoCollection.v1">
+      <BUSINESS_UNIT>PRVBB</BUSINESS_UNIT>
+      <WORK_ORDER_ID>VMW00000110000</WORK_ORDER_ID>
+      <JOB_TITLE>Resource Service Approval</JOB_TITLE>
+      <USE_CLOCK>N</USE_CLOCK>
+      <DistribCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DistribCollection.v1">
+        <DISTRIB_ID>2</DISTRIB_ID>
+      </DistribCollection>
+      <ActivityCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.ActivityCollection.v1">
+        <ACTIVITY>_Did not work</ACTIVITY>
+        <ACTIVITY>_Resource - Generic</ACTIVITY>
+        <ACTIVITY>Resource - Specific</ACTIVITY>
+      </ActivityCollection>
+    </WoCollection>
+    <WoCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.WoCollection.v1">
+      <BUSINESS_UNIT>PRVBB</BUSINESS_UNIT>
+      <WORK_ORDER_ID>VMW00000111000</WORK_ORDER_ID>
+      <JOB_TITLE>Resource Service 1</JOB_TITLE>
+      <USE_CLOCK>N</USE_CLOCK>
+      <DistribCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DistribCollection.v1">
+        <DISTRIB_ID>2</DISTRIB_ID>
+      </DistribCollection>
+      <ActivityCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.ActivityCollection.v1">
+        <ACTIVITY>_Did not work</ACTIVITY>
+        <ACTIVITY>_Resource - Generic</ACTIVITY>
+        <ACTIVITY>Resource - Specific</ACTIVITY>
+      </ActivityCollection>
+    </WoCollection>
+    <WoCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.WoCollection.v1">
+      <BUSINESS_UNIT>PRVBB</BUSINESS_UNIT>
+      <WORK_ORDER_ID>VMW00000115000</WORK_ORDER_ID>
+      <JOB_TITLE>Resource Service 1</JOB_TITLE>
+      <USE_CLOCK>Y</USE_CLOCK>
+      <DistribCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DistribCollection.v1">
+        <DISTRIB_ID>2</DISTRIB_ID>
+      </DistribCollection>
+      <ActivityCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.ActivityCollection.v1">
+        <ACTIVITY>_Did not work</ACTIVITY>
+        <ACTIVITY>_Resource - Generic</ACTIVITY>
+        <ACTIVITY>Resource - Specific</ACTIVITY>
+      </ActivityCollection>
+    </WoCollection>
+    </WoCollection>
+  </DateCollectionCh>
+  <DateCollectionCh xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DateCollectionCh.v1">
+    <StartDate>2013-01-21</StartDate>
+    <EndDate>2013-01-27</EndDate>
+    <WoCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.WoCollection.v1">
+      <BUSINESS_UNIT>PRVBB</BUSINESS_UNIT>
+      <WORK_ORDER_ID>VMW00000081000</WORK_ORDER_ID>
+      <JOB_TITLE>Resource Service 1</JOB_TITLE>
+      <USE_CLOCK>N</USE_CLOCK>
+      <DistribCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DistribCollection.v1">
+        <DISTRIB_ID>1</DISTRIB_ID>
+      </DistribCollection>
+      <ActivityCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.ActivityCollection.v1">
+        <ACTIVITY>_Did not work</ACTIVITY>
+        <ACTIVITY>_Resource - Generic</ACTIVITY>
+        <ACTIVITY>Resource - Specific</ACTIVITY>
+      </ActivityCollection>
+    </WoCollection>
+    <WoCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.WoCollection.v1">
+      <BUSINESS_UNIT>PRVBB</BUSINESS_UNIT>
+      <WORK_ORDER_ID>VMW00000109000</WORK_ORDER_ID>
+      <JOB_TITLE>Resource Service 1</JOB_TITLE>
+      <USE_CLOCK>N</USE_CLOCK>
+      <DistribCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DistribCollection.v1">
+        <DISTRIB_ID>1</DISTRIB_ID>
+      </DistribCollection>
+      <ActivityCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.ActivityCollection.v1">
+        <ACTIVITY>_Did not work</ACTIVITY>
+        <ACTIVITY>_Resource - Generic</ACTIVITY>
+        <ACTIVITY>Resource - Specific</ACTIVITY>
+      </ActivityCollection>
+    </WoCollection>
+    <WoCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.WoCollection.v1">
+      <BUSINESS_UNIT>PRVBB</BUSINESS_UNIT>
+      <WORK_ORDER_ID>VMW00000110000</WORK_ORDER_ID>
+      <JOB_TITLE>Resource Service Approval</JOB_TITLE>
+      <USE_CLOCK>N</USE_CLOCK>
+      <DistribCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DistribCollection.v1">
+        <DISTRIB_ID>2</DISTRIB_ID>
+      </DistribCollection>
+      <ActivityCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.ActivityCollection.v1">
+        <ACTIVITY>_Did not work</ACTIVITY>
+        <ACTIVITY>_Resource - Generic</ACTIVITY>
+        <ACTIVITY>Resource - Specific</ACTIVITY>
+      </ActivityCollection>
+    </WoCollection>
+    <WoCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.WoCollection.v1">
+      <BUSINESS_UNIT>PRVBB</BUSINESS_UNIT>
+      <WORK_ORDER_ID>VMW00000111000</WORK_ORDER_ID>
+      <JOB_TITLE>Resource Service 1</JOB_TITLE>
+      <USE_CLOCK>N</USE_CLOCK>
+      <DistribCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.DistribCollection.v1">
+        <DISTRIB_ID>2</DISTRIB_ID>
+      </DistribCollection>
+      <ActivityCollection xmlns="http://release-dev.provade.com/Enterprise/Tools/schemas/PRV_WORKER_API.ActivityCollection.v1">
+        <ACTIVITY>_Did not work</ACTIVITY>
+        <ACTIVITY>_Resource - Generic</ACTIVITY>
+        <ACTIVITY>Resource - Specific</ACTIVITY>
+      </ActivityCollection>
+    </WoCollection>
+  </DateCollectionCh>
+</TSCreateRoster>

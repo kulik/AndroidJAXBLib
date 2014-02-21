@@ -1,0 +1,43 @@
+{
+    "Categories":{
+        "level":"0",
+        "Category":[
+            {
+                "id":"toolCategory",
+                "order":"0",
+                "elementA":"element0"
+            },
+            {
+                "id":"toolCategory1",
+                "order":"10",
+                "elementA":"element20"
+            },
+            {
+                "id":"toolCategory2",
+                "order":"20",
+                "elementA":"element10"
+            }
+        ],
+        "platform":{
+            "type":"",
+            "enabled":"",
+            "minOsVersion":"",
+            "caption":"",
+            "visible":""
+        }
+    },
+
+    "StringElWrapper":{
+        "StringElem":"MyString"
+    },
+
+    "CostomElemWrapper":{
+        "Category":{
+            "id":"toolCostom",
+            "order":"40",
+            "elementA":"element"
+        }
+    }
+}
+
+
