@@ -9,10 +9,6 @@ public class PrimitiveFloatParser extends PrimitiveParser<Float> {
 
     @Override
     public Float valueOf(String value) {
-        try {
-            return Float.valueOf(value);
-        } catch (NumberFormatException e) {
-        }
-        return 0f;
+        return Float.valueOf(value);
     }
 }

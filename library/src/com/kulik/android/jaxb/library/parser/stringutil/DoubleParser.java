@@ -10,10 +10,7 @@ public class DoubleParser extends PrimitiveJavaWrapperParser<Double> {
     @Override
     public Double valueOf(String value) {
         Double d = null;
-        try {
-            d = Double.valueOf(value);
-        } catch (NumberFormatException e) {
-        }
+        d = Double.valueOf(value);
         return d;
     }
 }

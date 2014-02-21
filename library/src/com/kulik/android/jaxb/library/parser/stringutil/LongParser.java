@@ -10,10 +10,7 @@ public class LongParser extends PrimitiveJavaWrapperParser<Long> {
     @Override
     public Long valueOf(String value) {
         Long l = null;
-        try {
-            l = Long.valueOf(value);
-        } catch (NumberFormatException e) {
-        }
+        l = Long.valueOf(value);
         return l;
     }
 }

@@ -1,7 +1,7 @@
 
 package com.kulik.android.jaxb.library.composer.providers.jsonProvider;
 
-import android.util.Log;
+import com.kulik.android.jaxb.library.loger.Log;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMO;
 import com.kulik.android.jaxb.library.composer.providers.abstractProvider.UMOObject;
 import org.json.JSONException;

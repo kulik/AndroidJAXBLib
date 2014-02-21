@@ -1,8 +1,8 @@
 package com.kulik.android.jaxb.library.parser;
 
-import android.util.Log;
 import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import com.kulik.android.jaxb.library.Annotations.XmlElement;
+import com.kulik.android.jaxb.library.loger.Log;
 import com.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler;
 import com.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory;
 

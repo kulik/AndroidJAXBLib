@@ -37,8 +37,9 @@ public class ProviderFactory {
                 DocumentBuilder documentBuilder = null;
                 documentBuilder = documentBuilderFactory.newDocumentBuilder();
                 mDocument = documentBuilder.newDocument();
+                isRootXml = true;
             } catch (ParserConfigurationException e) {
-                e.printStackTrace();
+                throw new IllegalStateException("some problem on creating new document");
             }
         }
     }
@@ -48,12 +49,12 @@ public class ProviderFactory {
         switch (mType) {
             case XMLProvider:
                 try {
-                provider = (T) new XMLObjectProvider(mDocument, root);
+                    provider = (T) new XMLObjectProvider(mDocument, root);
                 } catch (DOMException e) {
                     throw new ComposerException("Exception like @XMLRootElement doesn't exist, or some name of element or arrtibute is free string: " + e.getMessage());
                 }
                 if (isRootXml) {
-                    mDocument.appendChild((Node) ((XMLObjectProvider)provider).getWrappedObject());
+                    mDocument.appendChild((Node) ((XMLObjectProvider) provider).getWrappedObject());
                     isRootXml = false;
                 }
 

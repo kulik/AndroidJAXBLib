@@ -1,6 +1,6 @@
 package com.kulik.android.jaxb.library.composer;
 
-import android.util.Log;
+import com.kulik.android.jaxb.library.loger.Log;
 import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import com.kulik.android.jaxb.library.Annotations.XmlElement;
 import com.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
@@ -37,7 +37,7 @@ public class ComposerImpl implements Composer {
     }
 
     @Override
-    public UMO compose(Object data) throws AdapterException {
+    public synchronized UMO compose(Object data) throws AdapterException {
         UMO rootElem;
         mFactory.newDocument();
         rootElem = processObject(data, "", null);
@@ -98,6 +98,7 @@ public class ComposerImpl implements Composer {
         Field[] allFields = objClass.getDeclaredFields();
         Log.d(TAG, "ProcessFields quantity:" + allFields.length);
         for (Field field : allFields) {
+            UMOObject fieldLevelSObj = serialObj;
             Log.d(TAG, "ProcessFields field:" + field.getName() + "; AnnotationPresent:" + Arrays.toString(field.getAnnotations()));
             field.setAccessible(true);
 
@@ -110,26 +111,29 @@ public class ComposerImpl implements Composer {
                     Class<?> adaptClass = adaptValue.getClass();
                     if (field.isAnnotationPresent(XmlAttribute.class)) {
                         String attributeName = field.getAnnotation(XmlAttribute.class).name();
-                        boolean primitiveTypeComposed = SimpleValueUtils.processPrimitiveAttributes(adaptValue, adaptClass, attributeName, serialObj);
+                        boolean primitiveTypeComposed = SimpleValueUtils.processPrimitiveAttributes(adaptValue, adaptClass, attributeName, fieldLevelSObj);
                         if (!primitiveTypeComposed) {
-                            SimpleValueUtils.processAtributeValue(adaptValue, adaptClass, attributeName, serialObj);
+                            SimpleValueUtils.processAtributeValue(adaptValue, adaptClass, attributeName, fieldLevelSObj);
                         }
                     } else if (field.isAnnotationPresent(XmlElement.class)) {
+                        String wrapperName = "";
                         String valueName = field.getAnnotation(XmlElement.class).name();
+                        boolean isWrapped = field.isAnnotationPresent(XmlElementWrapper.class);
+                        if (isWrapped) {
+                            wrapperName = (field.getAnnotation(XmlElementWrapper.class)).name();
+                            if ("".equals(wrapperName)) {
+                                wrapperName = field.getName();
+                            }
+                            UMOObject wrapper = mFactory.createProvider(UMOObject.class, wrapperName);
+                            fieldLevelSObj.put(wrapperName, wrapper);
+                            fieldLevelSObj = wrapper;
+                        }
                         //TODO implement default name usage
-                        boolean primitiveTypeComposed = SimpleValueUtils.processPrimitiveValue(adaptValue, adaptClass, valueName, serialObj);
+                        boolean primitiveTypeComposed = SimpleValueUtils.processPrimitiveValue(adaptValue, adaptClass, valueName, fieldLevelSObj);
                         if (!primitiveTypeComposed) {
-                            boolean simpleTypeParsed = SimpleValueUtils.processSimpleValue(adaptValue, adaptClass, valueName, serialObj);
+                            boolean simpleTypeParsed = SimpleValueUtils.processSimpleValue(adaptValue, adaptClass, valueName, fieldLevelSObj);
                             if (!simpleTypeParsed) {
-                                boolean isWrapped = field.isAnnotationPresent(XmlElementWrapper.class);
-                                String wrapperName = "";
-                                if (isWrapped) {
-                                    wrapperName = (field.getAnnotation(XmlElementWrapper.class)).name();
-                                    if ("".equals(wrapperName)) {
-                                        wrapperName = field.getName();
-                                    }
-                                }
-                                processComplexValue(adaptValue, wrapperName, isWrapped, valueName, serialObj, pack, objClass, field);
+                                processComplexValue(adaptValue, wrapperName, isWrapped, valueName, fieldLevelSObj, pack, objClass, field);
                             }
                         }
                     } else if (field.isAnnotationPresent(XmlValue.class)) {
@@ -156,11 +160,6 @@ public class ComposerImpl implements Composer {
             Object listItem;
             UMO umoListItem;
 
-            if (isWrapped) {
-                UMOObject wrapper = mFactory.createProvider(UMOObject.class, wrapperName);
-                sobj.put(wrapperName, wrapper);
-                sobj = wrapper;
-            }
             //TODO XXX this is hot fix for compatibility it MUST BE FIXED
             UMOArray list = mFactory.createProvider(UMOArray.class, valueName);
             sobj.putArray(valueName, list);

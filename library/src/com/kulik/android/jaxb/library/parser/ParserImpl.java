@@ -1,6 +1,7 @@
 package com.kulik.android.jaxb.library.parser;
 
-import android.util.Log;
+import com.kulik.android.jaxb.library.ExeptionUtil;
+import com.kulik.android.jaxb.library.loger.Log;
 import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import com.kulik.android.jaxb.library.Annotations.XmlElement;
 import com.kulik.android.jaxb.library.Annotations.XmlElementWrapper;
@@ -66,6 +67,10 @@ public class ParserImpl implements Parser {
         T rootObj = null;
         try {
             rootObj = cls.newInstance();
+        } catch (IllegalAccessException e) {
+            ExeptionUtil.processInstantiationExceptions(e, cls);
+        }
+        try {
             processObject(rootObj, cls, rootElement);
         } catch (InvocationTargetException e) {
             Log.e(TAG, "InvocationTargetException while parsing: " + e.getMessage(), e);

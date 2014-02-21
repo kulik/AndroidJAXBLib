@@ -8,10 +8,6 @@ package com.kulik.android.jaxb.library.parser.stringutil;
 public class PrimitiveDoubleParser extends PrimitiveParser<Double> {
     @Override
     public Double valueOf(String value) {
-        try {
-            return Double.valueOf(value);
-        } catch (NumberFormatException e) {
-        }
-        return Double.valueOf(0);
+        return Double.valueOf(value);
     }
 }

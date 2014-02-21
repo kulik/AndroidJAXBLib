@@ -1,7 +1,7 @@
 package com.kulik.android.jaxb.library.adapters;
 
-import android.util.Log;
 import com.kulik.android.jaxb.library.Annotations.adapters.XmlAdapter;
+import com.kulik.android.jaxb.library.loger.Log;
 
 import java.util.HashMap;
 

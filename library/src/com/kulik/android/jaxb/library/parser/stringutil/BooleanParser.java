@@ -10,10 +10,7 @@ public class BooleanParser extends PrimitiveJavaWrapperParser<Boolean> {
     @Override
     public Boolean valueOf(String value) {
         Boolean b = null;
-        try {
-            b = Boolean.valueOf(value);
-        } catch (NumberFormatException e) {
-        }
+        b = Boolean.valueOf(value);
         return b;
     }
 }

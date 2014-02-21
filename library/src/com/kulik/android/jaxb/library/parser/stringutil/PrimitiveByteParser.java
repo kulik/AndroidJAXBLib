@@ -8,10 +8,6 @@ package com.kulik.android.jaxb.library.parser.stringutil;
 public class PrimitiveByteParser extends PrimitiveParser<Byte> {
     @Override
     public Byte valueOf(String value) {
-        try {
-            return Byte.valueOf(value);
-        } catch (NumberFormatException e) {
-        }
-        return 0;
+        return Byte.valueOf(value);
     }
 }

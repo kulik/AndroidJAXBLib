@@ -40,7 +40,6 @@ public class XMLObjectProvider implements UMOObject, UMOArray {
 
     @Override
     public void put(String key, UMO umo) {
-
         mElement.appendChild((Element) umo.getWrappedObject());
     }
 

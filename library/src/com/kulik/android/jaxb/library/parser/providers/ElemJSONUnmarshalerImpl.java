@@ -1,13 +1,17 @@
 package com.kulik.android.jaxb.library.parser.providers;
 
-import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import biz.kulik.android.jaxb.library.loger.Log;
 
 /**
  * User: nata
@@ -60,7 +64,7 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
                 strBuff.append(s);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "open file as String", e);
         }
         return strBuff.toString();
     }
@@ -74,10 +78,10 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
             for (int i = 0; i < jarray.length(); i++) {
                 Object exp = jarray.get(i);
                 if (exp instanceof JSONObject) { //TODO optimize
-                //XXX problem here if contentis string
+                    //XXX problem here if contentis string
                     children.add(new ElemJSONUnmarshalerImpl((JSONObject) exp));
                 } else if (exp instanceof JSONArray) {
-                   //TODO Array of Arrays
+                    //TODO Array of Arrays
                 } else if (exp instanceof String) {
                     children.add(new ElemJSONStringUnmarshalerImpl((String) exp));
                 }

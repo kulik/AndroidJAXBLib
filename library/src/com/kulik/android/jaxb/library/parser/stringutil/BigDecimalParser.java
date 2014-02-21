@@ -10,13 +10,10 @@ import java.math.BigDecimal;
 public class BigDecimalParser extends PrimitiveJavaWrapperParser<BigDecimal> {
 
 
-        @Override
-        public BigDecimal valueOf(String value) {
-            BigDecimal bd = null;
-            try {
-                bd = new BigDecimal(value.replaceAll(",", ""));
-            } catch (NumberFormatException e) {
-            }
-            return bd;
-        }
+    @Override
+    public BigDecimal valueOf(String value) {
+        BigDecimal bd = null;
+        bd = new BigDecimal(value.replaceAll(",", ""));
+        return bd;
+    }
 }

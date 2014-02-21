@@ -33,4 +33,6 @@ public interface MethodFieldAdapter {
 
     public Package getPackage();
 
+    public String getSignature();
+
 }
