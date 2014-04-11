@@ -70,7 +70,7 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
     }
 
     @Override
-    public List getChildren(String name) {
+    public List getChildren(String name, String ns) {
         List<ElementUnmarshaler> children = new ArrayList<ElementUnmarshaler>();
         JSONArray jarray = null;
         try {
@@ -93,7 +93,7 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
     }
 
     @Override
-    public ElementUnmarshaler getChild(String name) {
+    public ElementUnmarshaler getChild(String name, String ns) {
         JSONObject jobj = new JSONObject();
         try {
             jobj = mObject.getJSONObject(name);
@@ -105,12 +105,12 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
     }
 
     @Override
-    public boolean isChildExist(String name) {
+    public boolean isChildExist(String name, String ns) {
         return mObject.optJSONObject(name) != null;
     }
 
     @Override
-    public String getValue(String name) {
+    public String getValue(String name, String ns) {
         try {
             return mObject.getString(name);
         } catch (JSONException e) {
@@ -130,8 +130,8 @@ public class ElemJSONUnmarshalerImpl extends AbstractElementUnmarshaler {
     }
 
     @Override
-    public String getAttributeValue(String name) {
-        return getValue(name);
+    public String getAttributeValue(String name, String ns) {
+        return getValue(name, ns);
     }
 
 }

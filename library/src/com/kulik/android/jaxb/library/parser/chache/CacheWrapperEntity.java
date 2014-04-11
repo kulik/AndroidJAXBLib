@@ -11,8 +11,8 @@ public class CacheWrapperEntity extends CacheEntity {
 
     private String mXmlWrapper;
 
-    public CacheWrapperEntity(MethodFieldAdapter mf, String xmlName, String wrapperName) {
-        super(mf, xmlName);
+    public CacheWrapperEntity(MethodFieldAdapter mf, String xmlName, String ns, String wrapperName) {
+        super(mf, xmlName, ns);
         mXmlWrapper = wrapperName;
     }
 

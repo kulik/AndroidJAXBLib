@@ -11,10 +11,12 @@ public class CacheEntity {
 
     private MethodFieldAdapter mMethodField;
     private String mXmlName;
+    private String mXmlNS;
 
-    public CacheEntity(MethodFieldAdapter mf, String xmlName) {
+    public CacheEntity(MethodFieldAdapter mf, String xmlName, String ns) {
         mMethodField = mf;
         mXmlName = xmlName;
+        mXmlNS = ns;
     }
 
     public String getXmlName() {
@@ -23,5 +25,9 @@ public class CacheEntity {
 
     public MethodFieldAdapter getMethodField() {
         return mMethodField;
+    }
+
+    public String getNS() {
+        return mXmlNS;
     }
 }

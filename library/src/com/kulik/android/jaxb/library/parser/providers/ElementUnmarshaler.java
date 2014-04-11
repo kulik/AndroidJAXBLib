@@ -11,13 +11,13 @@ public interface ElementUnmarshaler {
 
     //public void init(InputStream is);
 
-    public List getChildren(String name);
+    public List getChildren(String name, String ns);
 
     //public List getChildren();
 
-    public ElementUnmarshaler getChild(String name);
+    public ElementUnmarshaler getChild(String name, String ns);
 
-    public boolean isChildExist(String name);
+    public boolean isChildExist(String name, String ns);
 
     /**
      * if value doesnt exist return ""
@@ -25,11 +25,11 @@ public interface ElementUnmarshaler {
      * @param name
      * @return
      */
-    public String getValue(String name);
+    public String getValue(String name, String ns);
 
     public String getValue();
 
-    public String getAttributeValue(String name);
+    public String getAttributeValue(String name, String ns);
 
 
 }

@@ -2,6 +2,7 @@ package com.kulik.android.jaxb.library.parser;
 
 import com.kulik.android.jaxb.library.Annotations.XmlAttribute;
 import com.kulik.android.jaxb.library.Annotations.XmlElement;
+import com.kulik.android.jaxb.library.Annotations.adapters.Constants;
 import com.kulik.android.jaxb.library.loger.Log;
 import com.kulik.android.jaxb.library.parser.providers.ElementUnmarshaler;
 import com.kulik.android.jaxb.library.parser.providers.ElementUnmarshalerFactory;
@@ -51,7 +52,7 @@ public class ParserArrayStartedImpl implements Parser {
         if (cls.isAssignableFrom(Collection.class)) {
             try {
                 //XXX
-                List<ElementUnmarshaler> children = rootElement.getChildren("sdfgsdfgsdfgsdfgsdf");
+                List<ElementUnmarshaler> children = rootElement.getChildren("sdfgsdfgsdfgsdfgsdf", Constants.ANY_NS);
                 rootObj = (T) new ArrayList();
 
                 Class<?> genericClass = cls.getTypeParameters()[0].getGenericDeclaration();
@@ -112,7 +113,7 @@ public class ParserArrayStartedImpl implements Parser {
 
             if (field.isAnnotationPresent(XmlAttribute.class)) {
                 String annotationName = field.getAnnotation(XmlAttribute.class).name();
-                xmlValue = elem.getAttributeValue(annotationName);   //Retrieves an attribute value by name.
+                xmlValue = elem.getAttributeValue(annotationName, Constants.ANY_NS);   //Retrieves an attribute value by name.
                 processAtributeValue(xmlValue, field, obj);
             } else if (field.isAnnotationPresent(XmlElement.class)) {
 
@@ -132,7 +133,7 @@ public class ParserArrayStartedImpl implements Parser {
      */
     protected <T> boolean processSimpleValue(ElementUnmarshaler elem, Field field, T obj) throws IllegalAccessException {
         String annotationName = field.getAnnotation(XmlElement.class).name();
-        String value = elem.getValue(annotationName);
+        String value = elem.getValue(annotationName, Constants.ANY_NS);
 
         field.setAccessible(true);
         Class<?> valueType = field.getType();
@@ -198,7 +199,7 @@ public class ParserArrayStartedImpl implements Parser {
 
         //TODO change to Collection.class
         if (valueType == Collection.class) {
-            List<ElementUnmarshaler> children = elem.getChildren(annotName);
+            List<ElementUnmarshaler> children = elem.getChildren(annotName, Constants.ANY_NS);
             List objects = new ArrayList();
             field.set(obj, objects);
 
@@ -228,7 +229,7 @@ public class ParserArrayStartedImpl implements Parser {
 //                processObject(item, (Element) childNodes.item(i));
 //            }
         } else {
-            ElementUnmarshaler child = elem.getChild(annotName);
+            ElementUnmarshaler child = elem.getChild(annotName, Constants.ANY_NS);
             Class<?> type = field.getType();
             Object childObj = type.newInstance();
             field.set(obj, childObj);

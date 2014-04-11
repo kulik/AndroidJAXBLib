@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <soap:Header>
+        <t:ServerVersionInfo xmlns:t="http://schemas.microsoft.com/exchange/services/2006/types" MajorVersion="8" MinorVersion="3" MajorBuildNumber="83" MinorBuildNumber="4" />
+    </soap:Header>
+    <soap:Body>
+        <m:GetFolderResponse xmlns:m="http://schemas.microsoft.com/exchange/services/2006/messages" xmlns:t="http://schemas.microsoft.com/exchange/services/2006/types">
+            <m:ResponseMessages>
+                <m:GetFolderResponseMessage ResponseClass="Success">
+                    <m:ResponseCode>NoError</m:ResponseCode>
+                    <m:Folders>
+                        <t:Folder>
+                            <t:FolderId Id="AAAWAHRlc3RAdGVzdC5hbHRlcnJlYmUucnUALgAAAAAAjnXCrEsrcUCdDag2B2j3NQEAqo8wI2V14k+DclYSq8Ux9wAAAmpOMQAA" ChangeKey="BQAAABQAAABjwwPuWTiWRouuG29rgB6zAAAELQ==" />
+                            <t:DisplayName>Notes</t:DisplayName>
+                            <t:TotalCount>12</t:TotalCount>
+                            <t:ChildFolderCount>10</t:ChildFolderCount>
+                            <t:UnreadCount>0</t:UnreadCount>
+                        </t:Folder>
+                    </m:Folders>
+                </m:GetFolderResponseMessage>
+            </m:ResponseMessages>
+        </m:GetFolderResponse>
+    </soap:Body>
+</soap:Envelope>

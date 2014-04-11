@@ -1,5 +1,6 @@
 package com.kulik.android.jaxb.library.parser.providers;
 
+import com.kulik.android.jaxb.library.Annotations.adapters.Constants;
 import com.kulik.android.jaxb.library.loger.Log;
 
 import org.w3c.dom.Document;
@@ -19,8 +20,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import static com.kulik.android.jaxb.library.Annotations.adapters.Constants.ANY_NS;
+
 /**
- * User: nata
+ * User: Yevgen Kulik, nata
  * Date: 9/19/12
  * Time: 6:47 PM
  */
@@ -43,7 +46,8 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
     @Override
     protected void init(InputStream is) {
         Document doc;
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory dbf = getFactory();
+
         dbf.setIgnoringElementContentWhitespace(true);
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
@@ -56,6 +60,12 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
         } catch (IOException e) {
             Log.e(TAG, "I/O exception", e);
         }
+    }
+
+    private static DocumentBuilderFactory getFactory() {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        return factory;
     }
 
     @Override
@@ -77,41 +87,51 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
     }
 
     public static Document loadXMLFromString(String xml) throws Exception {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory factory = getFactory();
         DocumentBuilder builder = factory.newDocumentBuilder();
         InputSource is = new InputSource(new StringReader(xml));
         return builder.parse(is);
     }
 
     @Override
-    public List getChildren(String name) {
+    public List getChildren(String name, String ns) {
         List<ElementUnmarshaler> children = new ArrayList<ElementUnmarshaler>();
         NodeList nodes = mElement.getChildNodes();
         for (int i = 0; i < nodes.getLength(); i++) {
             Node node = nodes.item(i);
-            if (node.getNodeType() == Node.ELEMENT_NODE && node.getNodeName().equals(name)) {
+            if (node.getNodeType() == Node.ELEMENT_NODE && node.getLocalName().equals(name)
+                    && isNSMatched(ns, node)) {
                 children.add(new ElemXMLUnmarshalerImpl((Element) node));
             }
         }
         return children;
     }
 
+    /**
+     * mathed if ns in node equals to asked, also matched if asked one null or ""
+     */
+    private boolean isNSMatched(String ns, Node node) {
+        return (ANY_NS.equals(ns) || ns.equals(node.getNamespaceURI()));
+    }
+
     @Override
-    public ElementUnmarshaler getChild(String name) {
-        Element el = (Element) mElement.getElementsByTagName(name).item(0);
+    public ElementUnmarshaler getChild(String name, String ns) {
+        Element el = (Element) mElement.getElementsByTagNameNS(ns, name).item(0);
         return (el != null) ? new ElemXMLUnmarshalerImpl(el) : null;
     }
 
     @Override
-    public boolean isChildExist(String name) {
-        return (mElement.getElementsByTagName(name).getLength() > 0 &&
-                mElement.getElementsByTagName(name).item(0) != null);
+    public boolean isChildExist(String name, String ns) {
+        NodeList elementsByTagName = mElement.getElementsByTagNameNS(ns, name);
+        boolean b = elementsByTagName.getLength() > 0 &&
+                elementsByTagName.item(0) != null;
+        return b;
     }
 
     @Override
-    public String getValue(String tagName) {
+    public String getValue(String tagName, String ns) {
         Node node;
-        node = mElement.getElementsByTagName(tagName).item(0);
+        node = mElement.getElementsByTagNameNS(ns, tagName).item(0);
         if (node != null && node.getNodeType() == Node.ELEMENT_NODE) {
             node = node.getChildNodes().item(0);
             if (node != null) {
@@ -131,8 +151,12 @@ public class ElemXMLUnmarshalerImpl extends AbstractElementUnmarshaler {
     }
 
     @Override
-    public String getAttributeValue(String attrName) {
-        return mElement.getAttribute(attrName);
+    public String getAttributeValue(String attrName, String ns) {
+        if (Constants.ANY_NS.equals(ns)) {
+            return mElement.getAttribute(attrName);
+        } else {
+            return mElement.getAttributeNS(ns, attrName);
+        }
     }
 
 

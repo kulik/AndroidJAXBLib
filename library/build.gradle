@@ -20,7 +20,7 @@ android {
 
         }
 
-        instrumentTest {
+        androidTest {
             res.srcDirs       = ["test-android/res"]
             resources.srcDirs = ["test-android/src"]
             java.srcDirs      = ["test-android/src"]

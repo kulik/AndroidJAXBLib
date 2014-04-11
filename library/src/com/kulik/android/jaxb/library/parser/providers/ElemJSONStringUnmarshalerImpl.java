@@ -19,22 +19,22 @@ public class ElemJSONStringUnmarshalerImpl implements ElementUnmarshaler {
     }
 
     @Override
-    public List getChildren(String name) {
+    public List getChildren(String name, String ns) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public ElementUnmarshaler getChild(String name) {
+    public ElementUnmarshaler getChild(String name, String ns) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean isChildExist(String name) {
+    public boolean isChildExist(String name, String ns) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public String getValue(String name) {
+    public String getValue(String name, String ns) {
 //        return mWrappedString;
         throw new UnsupportedOperationException();
     }
@@ -45,8 +45,8 @@ public class ElemJSONStringUnmarshalerImpl implements ElementUnmarshaler {
     }
 
     @Override
-    public String getAttributeValue(String name) {
-        return getValue(name);
+    public String getAttributeValue(String name, String ns) {
+        return getValue(name, ns);
     }
 
 }
