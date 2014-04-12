@@ -108,7 +108,7 @@ public class ParserImpl implements Parser {
             MethodFieldAdapter methodfield;
             for (int i = 0, d = allEntity.length; i < d; i++) {
                 methodfield = allEntity[i];
-                processMethodField(methodfield, elem, attributesEntity, elementsEntity, wrappersEntity, false, obj, clazz, entityType);
+                processMethodField(methodfield, elem, attributesEntity, elementsEntity, wrappersEntity, false, obj/*, clazz, entityType*/);
             }
             mClassCacheManager.pushEntityToCache(clazz, attributesEntity, elementsEntity, wrappersEntity, entityType);
         } else {    //if class entites already chached
@@ -149,8 +149,10 @@ public class ParserImpl implements Parser {
             for (int i = 0, d = wrappersEntity.size(); i < d; i++) {
                 wrapperEntity = wrappersEntity.get(i);
                 String wrapperName = wrapperEntity.getXmlWrapper();
+                String wrapperNS = wrapperEntity.getNSWrapper();
                 String elementName = wrapperEntity.getXmlName();
                 ns = wrapperEntity.getNS();
+
                 methodField = wrapperEntity.getMethodField();
                 methodField.setAccessible(true); //TODO add accessorTypeLogic
                 Class<?> originValueType = methodField.getInputType();
@@ -161,7 +163,7 @@ public class ParserImpl implements Parser {
                     originValueType = adapterValueType;
                 }
 
-                ElementUnmarshaler elemWrapped = elem.getChild(wrapperName, ns);
+                ElementUnmarshaler elemWrapped = elem.getChild(wrapperName, wrapperNS);
                 if (elemWrapped != null) {
                     simpleTypeParsed = processSimpleValue(elemWrapped, methodField, elementName, ns, obj, originValueType, adapter);
                     if (!simpleTypeParsed) {
@@ -177,9 +179,11 @@ public class ParserImpl implements Parser {
                                     List<CacheEntity> elementsEntity,
                                     List<CacheWrapperEntity> wrappersEntity,
                                     boolean isWrapped,
-                                    Object obj,
-                                    Class<?> clazz,
-                                    MethodFieldFactory.EntityType entityType) throws XmlAdapterTypesException, InvocationTargetException, IllegalAccessException, AdapterException, InstantiationException {
+                                    Object obj
+//            ,
+//                                    Class<?> clazz,
+//                                    MethodFieldFactory.EntityType entityType
+    ) throws XmlAdapterTypesException, InvocationTargetException, IllegalAccessException, AdapterException, InstantiationException {
 
         if (methodField.isAnnotationPresent(XmlAttribute.class)) {
             XmlAttribute xmlAttribute = methodField.getAnnotation(XmlAttribute.class);
@@ -192,14 +196,16 @@ public class ParserImpl implements Parser {
         } else if (!isWrapped && methodField.isAnnotationPresent(XmlElementWrapper.class)) {
             XmlElementWrapper xmlElementWrapper = methodField.getAnnotation(XmlElementWrapper.class);
             String wrapperName = xmlElementWrapper.name();
-            String ns = xmlElementWrapper.namespace();
-            ElementUnmarshaler elemWrapped = elem.getChild(wrapperName, ns);
+            String wrapperNS = xmlElementWrapper.namespace();
+            ElementUnmarshaler elemWrapped = elem.getChild(wrapperName, wrapperNS);
             if (elemWrapped != null) {
-                processMethodField(methodField, elemWrapped, attributesEntity, elementsEntity, wrappersEntity, true, obj, clazz, entityType);
+                processMethodField(methodField, elemWrapped, attributesEntity, elementsEntity, wrappersEntity, true, obj/*, clazz, entityType*/);
             }
 //          TODO  elementsEntity.add(new CacheEntity(methodField, annotationName));
-            String elementName = methodField.getAnnotation(XmlElement.class).name();
-            wrappersEntity.add(new CacheWrapperEntity(methodField, elementName, ns, wrapperName));
+            XmlElement annotation = methodField.getAnnotation(XmlElement.class);
+            String elementName = annotation.name();
+            String elementNS = annotation.namespace();
+            wrappersEntity.add(new CacheWrapperEntity(methodField, elementName, elementNS, wrapperName, wrapperNS));
 
         } else if (methodField.isAnnotationPresent(XmlElement.class)) {
             XmlElement xmlElement = methodField.getAnnotation(XmlElement.class);

@@ -2,6 +2,7 @@ package com.kulik.android.jaxb.library;
 
 import android.test.AndroidTestCase;
 
+import com.kulik.android.jaxb.library.parser.Parser;
 import com.kulik.android.jaxb.library.parser.ParserImpl;
 import com.kulik.android.jaxb.library.parser.UnMarshalerTypes;
 
@@ -14,18 +15,20 @@ import java.io.InputStream;
  */
 public abstract class ParserAbstractTest<T> extends AndroidTestCase {
     private static final String TAG = ParserAbstractTest.class.getSimpleName();
+    private Parser mParser;
 
     protected void parse(UnMarshalerTypes type, int resID, Class<T> clazz) throws Exception {
+        init(type);
+        parseInternal(resID, clazz);
+    }
+
+    protected void init(UnMarshalerTypes type) throws Exception {
+        mParser = new ParserImpl(type);
+    }
+
+    protected void parseInternal(int resID, Class<T> clazz) throws Exception {
         InputStream inputStream = getContext().getResources().openRawResource(resID);
-
-        ParserImpl parser = new ParserImpl(type);
-        T ts = null;
-//        try {
-            ts = parser.parse(clazz, inputStream);
-//        } catch (Exception e) {
-//            assertTrue("Parsing exception: " + e.getMessage(), false);
-//        }
-
+        T ts = mParser.parse(clazz, inputStream);
         assertTestData(ts);
     }
 

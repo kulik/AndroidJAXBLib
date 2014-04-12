@@ -16,7 +16,12 @@ public class TestParserXMLNS extends ParserAbstractTest<GetFolderResponse> {
 //    }
 
     public void testParseXMLNS() throws Exception {
-        parse(UnMarshalerTypes.XMLAdapter, R.raw.xmlns_test, GetFolderResponse.class);
+        init(UnMarshalerTypes.XMLAdapter);
+        parseInternal(R.raw.xmlns_test, GetFolderResponse.class);
+        parseInternal(R.raw.xmlns_test, GetFolderResponse.class);
+        parseInternal(R.raw.xmlns_test, GetFolderResponse.class);
+        parseInternal(R.raw.xmlns_test, GetFolderResponse.class);
+        parseInternal(R.raw.xmlns_test, GetFolderResponse.class);
     }
 
     @Override

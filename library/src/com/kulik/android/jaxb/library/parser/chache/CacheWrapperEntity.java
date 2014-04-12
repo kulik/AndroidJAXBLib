@@ -11,12 +11,19 @@ public class CacheWrapperEntity extends CacheEntity {
 
     private String mXmlWrapper;
 
-    public CacheWrapperEntity(MethodFieldAdapter mf, String xmlName, String ns, String wrapperName) {
+    private String mNsWrapper;
+
+    public CacheWrapperEntity(MethodFieldAdapter mf, String xmlName, String ns, String wrapperName, String wrapperNsName) {
         super(mf, xmlName, ns);
         mXmlWrapper = wrapperName;
+        mNsWrapper = wrapperNsName;
     }
 
     public String getXmlWrapper() {
         return mXmlWrapper;
+    }
+
+    public String getNSWrapper() {
+        return mNsWrapper;
     }
 }
