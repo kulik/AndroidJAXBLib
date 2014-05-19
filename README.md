@@ -28,6 +28,9 @@ if you want to use Maven, you need other pice of your pom.xml
        <type>aar</type>
     </dependency>
     
+## Examples
+
+This library has full test coverage. So TESTS - is a greatest examples. Also you can read other docs for JavaEE JAX-B implementations.
     
 ## Supported annotations
 
