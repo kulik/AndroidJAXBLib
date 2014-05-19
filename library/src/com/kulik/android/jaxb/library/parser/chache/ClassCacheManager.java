@@ -21,6 +21,8 @@ public class ClassCacheManager {
 
     private HashMap<Class<?>, List<CacheWrapperEntity>> mElementsWrapperFieldsChache;
     private HashMap<Class<?>, List<CacheWrapperEntity>> mElementsWrapperMethodsChache;
+    private HashMap<Class<?>, List<CacheEntity>> mValueMethodsChache;
+    private HashMap<Class<?>, List<CacheEntity>> mValueFieldsChache;
 
 
     public ClassCacheManager() {
@@ -30,6 +32,9 @@ public class ClassCacheManager {
         mElementsMethodsChache = new HashMap<Class<?>, List<CacheEntity>>();
         mElementsWrapperFieldsChache = new HashMap<Class<?>, List<CacheWrapperEntity>>();
         mElementsWrapperMethodsChache = new HashMap<Class<?>, List<CacheWrapperEntity>>();
+        mValueFieldsChache = new HashMap<Class<?>, List<CacheEntity>>();
+        mValueMethodsChache = new HashMap<Class<?>, List<CacheEntity>>();
+
     }
 
     /**
@@ -37,24 +42,27 @@ public class ClassCacheManager {
      * {@link com.kulik.android.jaxb.library.Annotations.XmlElement} to chache.
      *
      * @param clazz - necessary class
+     * @param valueEntities
      * @return instance of necessary List of accessor fields, if
      */
     public void pushEntityToCache(Class<?> clazz,
                                   List<CacheEntity> attributesEntities,
                                   List<CacheEntity> elementsEntities,
                                   List<CacheWrapperEntity> cacheWrapperEntities,
-                                  MethodFieldFactory.EntityType entityType) {
+                                  List<CacheEntity> valueEntities, MethodFieldFactory.EntityType entityType) {
 
         switch (entityType) {
             case FIELDS:
                 mAttributesFieldsChache.put(clazz, attributesEntities);
                 mElementsFieldsChache.put(clazz, elementsEntities);
                 mElementsWrapperFieldsChache.put(clazz, cacheWrapperEntities);
+                mValueFieldsChache.put(clazz, valueEntities);
                 break;
             case METHODS:
                 mAttributesMethodsChache.put(clazz, attributesEntities);
                 mElementsMethodsChache.put(clazz, elementsEntities);
                 mElementsWrapperMethodsChache.put(clazz, cacheWrapperEntities);
+                mValueMethodsChache.put(clazz, valueEntities);
                 break;
             default:
                 throw new UnsupportedOperationException("Can't find cache with current entity type for fields");
@@ -95,4 +103,14 @@ public class ClassCacheManager {
         }
     }
 
+    public List<CacheEntity> getChachedValueEntityList(Class<?> clazz, MethodFieldFactory.EntityType entityType) {
+        switch (entityType) {
+            case FIELDS:
+                return mValueFieldsChache.get(clazz);
+            case METHODS:
+                return mValueMethodsChache.get(clazz);
+            default:
+                throw new UnsupportedOperationException("Can't find cache with current entity type for methods");
+        }
+    }
 }
