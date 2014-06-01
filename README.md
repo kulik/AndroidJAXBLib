@@ -41,10 +41,16 @@ This library has full test coverage. So TESTS - is a greatest examples. Also you
 @XmlValue
 @XmlRootElement
 
+## Library Logs
 
+Log level from the library can be configured by call 
+
+    JaxbConfig.setLogLevel(Log.Level.ERROR); 
+    
+You can use different values for diagnosis the problem.
 
 [Russian DOC](README_RU.md)
-
+  
 
 
 Available soon [English DOC](README_ENG.md)
