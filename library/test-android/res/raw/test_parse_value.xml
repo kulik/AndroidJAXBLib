@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<migrate>
+    <note_list>
+        <note DisplayName="Ideas" Name="template_cream_ideas.html">
+            <attachment Description="d" Name="n" Location="l" Type="t" ContentId="c">template_img_4.png</attachment>
+        </note>
+        <note DisplayName="Action Items" Name="template_cream_action_items.html">
+            <attachment Description="d10" Name="n10" Location="l10" Type="t10" ContentId="c10">template_img_410.png</attachment>
+            <attachment Description="d11" Name="n11" Location="l11" Type="t11" ContentId="c11">template_img_411.png</attachment>
+            <attachment Description="d12" Name="n12" Location="l12" Type="t12" ContentId="c12">template_img_412.png</attachment>
+        </note>
+
+        <note DisplayName="Meeting" Name="template_cream_meeting.html"/>
+        <note DisplayName="Report with two line name" Name="template_cream_report.html"/>
+            <!--<attachment>template_img_1.png</attachment>-->
+        <!--</note>-->
+        <!--<note name="">-->
+            <!--<attachment>template_img_2.png</attachment>-->
+        <!--</note>-->
+        <!--<note name="">-->
+            <!--<attachment>template_img_3.png</attachment>-->
+        <!--</note>-->
+    </note_list>
+</migrate>
+

@@ -1,43 +1,24 @@
-
-//buildscript {
-//    repositories {
-//        maven { url 'http://repo1.maven.org/maven2' }
-//    }
-//    dependencies {
-//        classpath 'com.android.tools.build:gradle:0.5.+'
-//    }
-//} 
-apply plugin: 'android-library'
-
-android {
-   compileSdkVersion 17
-    buildToolsVersion = 17
-
- sourceSets {
-        main {
-            manifest {
-                srcFile 'AndroidManifest.xml'
-            }
-            java {
-                srcDir 'src'
-            }
-            res {
-                srcDir 'res'
-            }
-            assets {
-                srcDir 'assets'
-            }
-            resources {
-                srcDir 'src'
-            }
-            aidl.srcDirs = ['src']
-        }
-
+buildscript {
+    repositories {
+        mavenCentral()
     }
-
-
-    defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 11
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.+'
     }
 }
+
+def isReleaseBuild() {
+    return version.contains("SNAPSHOT") == false
+}
+
+allprojects {
+    version = VERSION_NAME
+    group = GROUP
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+apply plugin: 'android-reporting'
+//apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
