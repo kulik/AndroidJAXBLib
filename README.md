@@ -1,5 +1,7 @@
 # AndroidJAXBLib
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kulik/AndroidJAXBLib?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Android JAXB - lightweight annotation based library of the JAX-B standart. This is not a build from javaEE libs. it is My own realezation of the popular standart. 
 
 Now library supports two marshaller adapters JSON and XML. So you can switch parsing or compousing from one to other in simple way. 
